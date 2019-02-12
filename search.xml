@@ -4,13 +4,25 @@
   
     
     <entry>
-      <title>Hello World</title>
-      <link href="/2019-02/12-hello-world/"/>
-      <url>/2019-02/12-hello-world/</url>
+      <title>开始</title>
+      <link href="/2019-02/12-kai-shi/"/>
+      <url>/2019-02/12-kai-shi/</url>
       
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="关于搭建"><a href="#关于搭建" class="headerlink" title="关于搭建"></a>关于搭建</h3><p>从下午搭建到现在,基本上算是搭建完了,文章从零开始,以后一点一点填吧.</p><p>其实博客在半月前就已经开始搭建了,只不过选择了一个没有什么配置手册的主题,然后扩展还比较少…最后不得不弃坑。</p><p>之前其实是从gitee上搭建的,现在听了周围dalao的建议,随波逐流来到了github</p><p>关于现在搭建的方法,使用Github + Hexo + Matery.</p><h3 id="关于作者"><a href="#关于作者" class="headerlink" title="关于作者"></a>关于作者</h3><p>作者:Ciyang </p><p>现于 SD-SLYZ 上高中,是一名现役OIer,爱搞一些黑科技,写点高(la)端(ji)题解,出点毒(jian)瘤(dan)题,其实还仍是个中二少年……</p><p>之前自己发明过MidHeap(BST), 块状字典树(边压Trie), 后来才知道已经被发明过了,但还是一直热衷于自创毒瘤数据结构来一举成名,其实毫无卵用.</p><p>最近打算颓U3D,做一款SLG网络国战手游,想的很美好,然后并没有时间和精力,还是先熟练U3D的基本操作吧.</p><p>联系方式:</p><pre><code>QQ: 896681584Github: Xciyang网站通用昵称: Ciyang</code></pre><h3 id="关于博客"><a href="#关于博客" class="headerlink" title="关于博客"></a>关于博客</h3><p>这个博客不一定只发题解,多数应该还是一些黑科技,学习总结和经历之类的东西吧.</p><p>博客还会不断优化</p><p>借此吐槽一下这个主题</p><p>关于里面的技能是什么???为什么需要自己填写,自己写百分比…</p><p>其他技能又是什么???为什么要把文章标签当作其他技能…我的技能是闲聊?…好像有道理.</p><h3 id="利益相关"><a href="#利益相关" class="headerlink" title="利益相关"></a>利益相关</h3><p>欢迎收藏!</p><p>欢迎加友链!</p>]]></content>
       
       
+      <categories>
+          
+          <category> 闲聊 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 闲聊 </tag>
+            
+        </tags>
       
     </entry>
     
