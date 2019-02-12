@@ -163,11 +163,11 @@ mark {
 }
 
 .bg-color {
-    background-image: linear-gradient(to right, #ffc7c7 0%, #ff9f82 100%);
+    background-image: linear-gradient(to right, #29fdf3 0%, #0059ff 100%);
 }
 
 .text-color {
-    color: #ff9f82 !important;
+    color: #0059ff !important;
 }
 
 .white-color {
