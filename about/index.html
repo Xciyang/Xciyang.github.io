@@ -245,7 +245,8 @@
 
 <script>
 // Dynamically switch banner pictures every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+var knum = new Date().getMilliseconds() % 7; 
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + knum + '.jpg)');
 </script>
 
 <main class="content">
@@ -529,76 +530,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 
 
                 
-                
-<div class="my-skills">
-    <div class="title center-align" data-aos="zoom-in-up">
-        <i class="fa fa-wrench"></i>&nbsp;&nbsp;我的技能
-    </div>
-    <div class="row">
-        
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title" style="background: linear-gradient(to right, #FFD700 0%, #FFEBCD 100%); width: 45%">
-                    <span>C++</span>
-                </div>
-                <div class="skill-bar-percent">45%</div>
-            </div>
-        </div>
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title" style="background: linear-gradient(to right, #EED8AE 0%, #EEEEE0 100%); width: 30%">
-                    <span>CSS</span>
-                </div>
-                <div class="skill-bar-percent">30%</div>
-            </div>
-        </div>
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title" style="background: linear-gradient(to right, #D1EEEE 0%, #CDC9C9 100%); width: 25%">
-                    <span>JavaScript</span>
-                </div>
-                <div class="skill-bar-percent">25%</div>
-            </div>
-        </div>
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title" style="background: linear-gradient(to right, #FF7256 0%, #FFD39B 100%); width: 55%">
-                    <span>程序设计</span>
-                </div>
-                <div class="skill-bar-percent">55%</div>
-            </div>
-        </div>
-        
-        
-    </div>
-
-    
-
-    
-    <div class="other-skills chip-container" data-aos="zoom-in-up">
-        <div class="sub-title center-align"><i class="fa fa-book"></i>&nbsp;&nbsp;其他技能</div>
-        <div class="tag-chips center-align">
-            
-            
-            <a href="/tags/闲聊/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">闲聊</span>
-            </a>
-            
-            
-        </div>
-    </div>
-    
-
-</div>
-                
 
                 
                 
@@ -668,7 +599,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">526</span>
+            <span class="white-color">535</span>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">

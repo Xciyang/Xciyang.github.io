@@ -238,7 +238,8 @@
 
 <script>
 // Dynamically switch banner pictures every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+var knum = new Date().getMilliseconds() % 7; 
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + knum + '.jpg)');
 </script>
 
 <main class="content">
@@ -330,7 +331,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">526</span>
+            <span class="white-color">535</span>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
