@@ -423,7 +423,7 @@
 <p><img src="/images/P2580_1.png" alt="Example"></p>
 <p>按任意顺序插入abcd,abcde,bcde,bcdf四个字符串的Trie树长这样</p>
 <p>红色节点表示已插入字符串的结尾节点</p>
-<h3 id="证明"><a href="#证明" class="headerlink" title="证明:"></a>证明:</h3><p>通过与比较普通指针版和非指针版Trie来证明一下可行性.  </p>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>通过与比较普通指针版和非指针版Trie来证明一下可行性.  </p>
 <p>已知一个节点要保存26条边的指针</p>
 <p>指针版Trie可使用动态内存,缺点是每个节点只保存一个字符,会有大量边的空指针来占用额外的内存,且new节点多了,内存分配常数较大.</p>
 <p>为了减少常数,可以自己写内存池分配,但无论是什么数据,只要稍带随机性形成链,就会有很多只有一个子节点的节点,这无疑有25个空指针浪费内存.</p>
@@ -431,7 +431,7 @@
 <p>边压Trie的复杂度是会改变的,就是对一条链情况的优化,理论最大时间复杂度是O(N)带有一些常数,不考虑常数情况下,永远小于等于普通Trie.   </p>
 <p>边压Trie巧妙利用字符串指针,赋值、继承等操作只需要指针或长度变化就好了,因此插入最小复杂度是O(1),空间上也少了很多空指针. </p>
 <p>太多证明不如一句代码,我放上代码继续分析. </p>
-<h3 id="解析"><a href="#解析" class="headerlink" title="解析:"></a>解析:</h3><p>节点的结构体,原来的char变成了length和字符串指针:  </p>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>节点的结构体,原来的char变成了length和字符串指针:  </p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">define</span> clear(a) memset(a, 0, sizeof(a))</span>
 <span class="token macro property">#<span class="token directive keyword">define</span> copy(a, b) memcpy(a, b, sizeof(a))</span>
     <span class="token keyword">struct</span> Lumpy_Tnode <span class="token punctuation">{</span>
@@ -450,7 +450,7 @@
         <span class="token comment" spellcheck="true">//构造函数</span>
     <span class="token punctuation">}</span> mNode<span class="token punctuation">;</span>
 </code></pre>
-<h4 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作:"></a>插入操作:</h4><p>使用递归和循环,判断比较多,先看代码(看起来常数很大)      </p>
+<h4 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h4><p>使用递归和循环,判断比较多,先看代码(看起来常数很大)      </p>
 <pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> Lumpy_Tnode <span class="token operator">*</span>bNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//str是指针,指向当前插入字符串的第一个元素</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -528,7 +528,7 @@
     <span class="token comment" spellcheck="true">//调用方式:find(查询字符串, 字符串长度, Trie根节点);</span>
 </code></pre>
 <p>比插入的代码简单多了,并且自带剪枝,所以比较快.</p>
-<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码:"></a>完整代码:</h3><p>（开启O2） 用时: 127ms / 内存: 4248KB<br>（关闭O2） 用时: 144ms / 内存: 4128KB</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>（开启O2） 用时: 127ms / 内存: 4248KB<br>（关闭O2） 用时: 144ms / 内存: 4128KB</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
@@ -608,7 +608,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>最需要注意的是输入的字符串insert后不能再更改那一块内存了不能更改了…</p>
-<h3 id="后续"><a href="#后续" class="headerlink" title="后续:"></a>后续:</h3><p>我写的常数可能挺大,希望dalao们试试各种卡常优化…  </p>
+<h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>我写的常数可能挺大,希望dalao们试试各种卡常优化…  </p>
 
             </div>
             <hr>
