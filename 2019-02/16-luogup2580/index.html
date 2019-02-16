@@ -420,7 +420,7 @@
 <p>代码还是之前的代码,名为Lumpy_Tnode.</p>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>树上的边存储字符串,代表节点的单独前缀.</p>
 <p>写题解的上午有了灵感,然后根据思路模拟了一下,可行性挺高的.代码上比普通的复杂一些,我使用了指针.    </p>
-<p><img src="/images/P2580_1.png" alt="Example1"></p>
+<p><img src="/images/P2580_1.png" alt="Example"></p>
 <p>按任意顺序插入abcd,abcde,bcde,bcdf四个字符串的Trie树长这样</p>
 <p>红色节点表示已插入字符串的结尾节点</p>
 <h3 id="证明"><a href="#证明" class="headerlink" title="证明:"></a>证明:</h3><p>通过与比较普通指针版和非指针版Trie来证明一下可行性.  </p>
@@ -493,12 +493,11 @@
 <p>这其中其实有个很巧妙的事,树上的一条链可能指向的地址是连续的.仔细想了想,其实也有空间浪费,不管是节点上还是树上的最长公共前缀都只指向一个字符串,其他字符串中相同的字符占用的空间就浪费掉了,这句话不懂没事,因为这个浪费造成的影响很小. </p>
 <p>如果代码都没看懂,还有图解:</p>
 <ol>
-<li><p>向空树插入abc,再插入ab:<br><img src="/images/P2580_2.png" alt="Trie02"></p>
+<li><p><img src="/images/P2580_2.png" alt="向空树插入abc,再插入ab"></p>
 </li>
-<li><p>再向此树插入ac:</p>
+<li><p><img src="/images/P2580_3.png" alt="再向此树插入ac:"></p>
 </li>
 </ol>
-<p><img src="/images/P2580_3.png" alt="Trie03"></p>
 <p>解释一下图2:</p>
 <p>比较ab和ac,最长公共前缀为a</p>
 <p>新建一个字符串指针指向ab中b的节点,长度为1,继承ab的颜色和ab的子节点.</p>
@@ -1143,7 +1142,7 @@
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">3.7k</span>
+            <span class="white-color">3.6k</span>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
