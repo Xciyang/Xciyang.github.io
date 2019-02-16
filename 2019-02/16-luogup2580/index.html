@@ -1,0 +1,1212 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="LuoguP2580, Ciyang&#39;s Blog">
+    <meta name="description" content="引言这篇题解原来是我放到Luogu上的，打算搬过来，原地址: https://ciyang.blog.luogu.org/solution-p2580
+当时是自己闲得无聊自创的算法，跑了最优解第3，Trie树中最快了
+不过后来Luogu上的">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>LuoguP2580 | Ciyang&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/favicon.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">Ciyang's Blog</span>
+                    </a>
+                </div>
+                
+
+<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/favicon.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ciyang's Blog</div>
+        <div class="logo-desc">
+            
+            相信玄学的OIer
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link">
+<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+
+
+
+
+
+<a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=896681584" class="tooltipped" data-tooltip="QQ: 896681584" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+
+<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" data-tooltip="知乎: Ciyang" data-position="top" data-delay="50">
+    <i class="fa fa-beer"></i>
+</a>
+
+
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/images/P2580_1.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        LuoguP2580
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Cpp/" target="_blank">
+                                <span class="chip bg-color">Cpp</span>
+                            </a>
+                        
+                            <a href="/tags/题解/" target="_blank">
+                                <span class="chip bg-color">题解</span>
+                            </a>
+                        
+                            <a href="/tags/字典树/" target="_blank">
+                                <span class="chip bg-color">字典树</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/题解/" class="post-category" target="_blank">
+                                题解
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-02-16
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2.1k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        8 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>这篇题解原来是我放到Luogu上的，打算搬过来，原地址: <a href="https://ciyang.blog.luogu.org/solution-p2580" target="_blank" rel="noopener">https://ciyang.blog.luogu.org/solution-p2580</a></p>
+<p>当时是自己闲得无聊自创的算法，跑了最优解第3，Trie树中最快了</p>
+<p>不过后来Luogu上的dalao告诉我这个是边压Trie树，因此~人生失去意义~</p>
+<p>此题解非正常字典树,推荐先学习普通的字典树并了解指针的使用</p>
+<p>代码还是之前的代码,名为Lumpy_Tnode.</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>树上的边存储字符串,代表节点的单独前缀.</p>
+<p>写题解的上午有了灵感,然后根据思路模拟了一下,可行性挺高的.代码上比普通的复杂一些,我使用了指针.    </p>
+<p><img src="/images/P2580_1.png" alt="Example1"></p>
+<p>按任意顺序插入abcd,abcde,bcde,bcdf四个字符串的Trie树长这样</p>
+<p>红色节点表示已插入字符串的结尾节点</p>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明:"></a>证明:</h3><p>通过与比较普通指针版和非指针版Trie来证明一下可行性.  </p>
+<p>已知一个节点要保存26条边的指针</p>
+<p>指针版Trie可使用动态内存,缺点是每个节点只保存一个字符,会有大量边的空指针来占用额外的内存,且new节点多了,内存分配常数较大.</p>
+<p>为了减少常数,可以自己写内存池分配,但无论是什么数据,只要稍带随机性形成链,就会有很多只有一个子节点的节点,这无疑有25个空指针浪费内存.</p>
+<p>非指针版常数小,但空间分配也是很大的问题,多了可能MLE,少了RE.然而仍有很多一条链的树,空间最大浪费N*25啊…<del>先不说影响美观</del>而且时间复杂度依然很高,毕竟查询也是O(N).</p>
+<p>边压Trie的复杂度是会改变的,就是对一条链情况的优化,理论最大时间复杂度是O(N)带有一些常数,不考虑常数情况下,永远小于等于普通Trie.   </p>
+<p>边压Trie巧妙利用字符串指针,赋值、继承等操作只需要指针或长度变化就好了,因此插入最小复杂度是O(1),空间上也少了很多空指针. </p>
+<p>太多证明不如一句代码,我放上代码继续分析. </p>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析:"></a>解析:</h3><p>节点的结构体,原来的char变成了length和字符串指针:  </p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">define</span> clear(a) memset(a, 0, sizeof(a))</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> copy(a, b) memcpy(a, b, sizeof(a))</span>
+    <span class="token keyword">struct</span> Lumpy_Tnode <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>pStr<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//指向当前存储字符串首元素</span>
+        <span class="token keyword">int</span> length<span class="token punctuation">,</span> isEnd<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//length存储字符串的长度 isEnd代表是否是结尾节点</span>
+        Lumpy_Tnode <span class="token operator">*</span>children<span class="token punctuation">[</span><span class="token number">26</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//26个子节点</span>
+        <span class="token keyword">inline</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            pStr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> length<span class="token operator">=</span> isEnd<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">inline</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            pStr<span class="token operator">=</span> str<span class="token punctuation">,</span> length<span class="token operator">=</span> len<span class="token punctuation">,</span> isEnd<span class="token operator">=</span> end<span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//构造函数</span>
+    <span class="token punctuation">}</span> mNode<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作:"></a>插入操作:</h4><p>使用递归和循环,判断比较多,先看代码(看起来常数很大)      </p>
+<pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> Lumpy_Tnode <span class="token operator">*</span>bNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//str是指针,指向当前插入字符串的第一个元素</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//字符串长度为0代表结尾</span>
+        <span class="token comment" spellcheck="true">//其实是为了优化代码美观,当作递归边界</span>
+            bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> ch<span class="token operator">=</span> str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//子节点已存在</span>
+            bNode<span class="token operator">=</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">register</span> <span class="token keyword">int</span> sptr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>sptr <span class="token operator">&lt;</span> length <span class="token operator">&amp;&amp;</span> sptr <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">&amp;&amp;</span> bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">++</span>sptr<span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//循环来找当前字符串和节点存储的字符串最长前缀</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>sptr <span class="token operator">!=</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//节点存储的字符串不是插入字符串的子串</span>
+                Lumpy_Tnode <span class="token operator">*</span>nNode<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>pStr <span class="token operator">+</span> sptr<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//拆树,运用字符串指针连续地址的特性来操作</span>
+                <span class="token function">copy</span><span class="token punctuation">(</span>nNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//继承原有子节点的各种信息</span>
+                bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">]</span><span class="token operator">=</span> nNode<span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//清空原有节点,重新初始化</span>
+            <span class="token punctuation">}</span>
+            bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token operator">=</span> sptr<span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//更新当前节点存储的字符串长度,从而更改当前存储的字符串</span>
+            <span class="token function">insert</span><span class="token punctuation">(</span>str <span class="token operator">+</span> sptr<span class="token punctuation">,</span> length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+            bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> length<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//不存在当前首字母的子节点,直接new并且赋值</span>
+            <span class="token comment" spellcheck="true">//因为是指针操作,所以不需要O(n)复制字符串,理论上复杂度O(3)?</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//调用方式:insert(插入字符串, 字符串长度, Trie根节点);</span>
+</code></pre>
+<p>如果代码看懂了,第一反应可能认为指针操作有一些漏洞.</p>
+<p>的确插入的字符串在插入后就不能进行改变了,所以就只要开一个char[N][K]的数组来保存输入的字符串,K为最长字符串的长度. </p>
+<p>相比较空间复杂度总体仍然较小,其实是把原来每个节点存的char放到了一起,每个节点多了一个指针.</p>
+<p>这其中其实有个很巧妙的事,树上的一条链可能指向的地址是连续的.仔细想了想,其实也有空间浪费,不管是节点上还是树上的最长公共前缀都只指向一个字符串,其他字符串中相同的字符占用的空间就浪费掉了,这句话不懂没事,因为这个浪费造成的影响很小. </p>
+<p>如果代码都没看懂,还有图解:</p>
+<ol>
+<li><p>向空树插入abc,再插入ab:<br><img src="/images/P2580_2.png" alt="Trie02"></p>
+</li>
+<li><p>再向此树插入ac:</p>
+</li>
+</ol>
+<p><img src="/images/P2580_3.png" alt="Trie03"></p>
+<p>解释一下图2:</p>
+<p>比较ab和ac,最长公共前缀为a</p>
+<p>新建一个字符串指针指向ab中b的节点,长度为1,继承ab的颜色和ab的子节点.</p>
+<p>清空ab的子节点,颜色改为黑(黑表示不为结尾节点),ab的首字母b子节点指向b.</p>
+<p>在我实现时,先更改长度使ab变为a,再向a中插入c.</p>
+<p>因为没有首字母为c的子节点,直接new一个新的.</p>
+<h4 id="查找操作"><a href="#查找操作" class="headerlink" title="查找操作:"></a>查找操作:</h4><pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> Lumpy_Tnode <span class="token operator">*</span>bNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//递归到查找的字符串长度为0</span>
+        <span class="token comment" spellcheck="true">//判断当前节点是否为结尾,是否是第一次查询</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>isEnd <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> ch<span class="token operator">=</span> str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            bNode<span class="token operator">=</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>length <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//自带剪枝,若当前查找字符串长度小于当前公共前缀,那么字典树中不存在当前查找的字符串</span>
+            <span class="token keyword">register</span> <span class="token keyword">int</span> sptr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>sptr <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">&amp;&amp;</span> bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">++</span>sptr<span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>sptr <span class="token operator">!=</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//最长公共前缀必须是当前查找的字符串的子串</span>
+            <span class="token keyword">return</span> <span class="token function">find</span><span class="token punctuation">(</span>str <span class="token operator">+</span> sptr<span class="token punctuation">,</span> length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//没有子节点,字典树中不存在当前查找的字符串</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//调用方式:find(查询字符串, 字符串长度, Trie根节点);</span>
+</code></pre>
+<p>比插入的代码简单多了,并且自带剪枝,所以比较快.</p>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码:"></a>完整代码:</h3><p>（开启O2） 用时: 127ms / 内存: 4248KB<br>（关闭O2） 用时: 144ms / 内存: 4128KB</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> clear(a) memset(a, 0, sizeof(a))</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> copy(a, b) memcpy(a, b, sizeof(a))</span>
+<span class="token keyword">struct</span> Lumpy_Trie <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> Lumpy_Tnode <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>pStr<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> length<span class="token punctuation">,</span> isEnd<span class="token punctuation">;</span>
+        Lumpy_Tnode <span class="token operator">*</span>children<span class="token punctuation">[</span><span class="token number">26</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">inline</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            pStr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> length<span class="token operator">=</span> isEnd<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">inline</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            pStr<span class="token operator">=</span> str<span class="token punctuation">,</span> length<span class="token operator">=</span> len<span class="token punctuation">,</span> isEnd<span class="token operator">=</span> end<span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> mNode<span class="token punctuation">;</span>
+    <span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> Lumpy_Tnode <span class="token operator">*</span>bNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> ch<span class="token operator">=</span> str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            bNode<span class="token operator">=</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">register</span> <span class="token keyword">int</span> sptr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>sptr <span class="token operator">&lt;</span> length <span class="token operator">&amp;&amp;</span> sptr <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">&amp;&amp;</span> bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">++</span>sptr<span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>sptr <span class="token operator">!=</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                Lumpy_Tnode <span class="token operator">*</span>nNode<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>pStr <span class="token operator">+</span> sptr<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">copy</span><span class="token punctuation">(</span>nNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">]</span><span class="token operator">=</span> nNode<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token operator">=</span> sptr<span class="token punctuation">;</span>
+            <span class="token function">insert</span><span class="token punctuation">(</span>str <span class="token operator">+</span> sptr<span class="token punctuation">,</span> length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+            bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> length<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> Lumpy_Tnode <span class="token operator">*</span>bNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>length <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>isEnd <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> ch<span class="token operator">=</span> str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            bNode<span class="token operator">=</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>length <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">register</span> <span class="token keyword">int</span> sptr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>sptr <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">&amp;&amp;</span> bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">++</span>sptr<span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>sptr <span class="token operator">!=</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token function">find</span><span class="token punctuation">(</span>str <span class="token operator">+</span> sptr<span class="token punctuation">,</span> length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> t<span class="token punctuation">;</span>
+<span class="token keyword">char</span> allstr<span class="token punctuation">[</span><span class="token number">10001</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">51</span><span class="token punctuation">]</span><span class="token punctuation">,</span> tmp<span class="token punctuation">[</span><span class="token number">51</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> allstr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>allstr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>allstr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">.</span>mNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        j<span class="token operator">=</span> t<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>tmp<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">.</span>mNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">switch</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> <span class="token number">0</span><span class="token operator">:</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"WRONG\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token number">1</span><span class="token operator">:</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"OK\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token number">2</span><span class="token operator">:</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"REPEAT\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>最需要注意的是输入的字符串insert后不能再更改那一块内存了不能更改了…</p>
+<h3 id="后续"><a href="#后续" class="headerlink" title="后续:"></a>后续:</h3><p>我写的常数可能挺大,希望dalao们试试各种卡常优化…  </p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://xciyang.github.io" class="b-link-green">Ciyang's Blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019-02/16-luogup2580/" class="b-link-green">LuoguP2580</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: '7BQ3ob3WSCRNqx6hDwbdTSnG-gzGzoHsz',
+        appKey: 'XIkONR2UXsu6jiyIL9VzPSuA',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'Ciyang最......'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2019-02/16-luogup2580/">
+                    <div class="card-image">
+                        
+                        <img src="/images/P2580_1.png" class="responsive-img" alt="LuoguP2580">
+                        
+                        <span class="card-title">LuoguP2580</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">引言这篇题解原来是我放到Luogu上的，打算搬过来，原地址: https://ciyang.blog.luogu.org/solution-p2580
+当时是自己闲得无聊自创的算法，跑了最优解第3，Trie树中最快了
+不过后来Luogu上的</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/题解/" class="post-category" target="_blank">
+                                    题解
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Cpp/" target="_blank">
+                        <span class="chip bg-color">Cpp</span>
+                    </a>
+                    
+                    <a href="/tags/题解/" target="_blank">
+                        <span class="chip bg-color">题解</span>
+                    </a>
+                    
+                    <a href="/tags/字典树/" target="_blank">
+                        <span class="chip bg-color">字典树</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019-02/15-du-liu-ma-feng-tui-jian/">
+                    <div class="card-image">
+                        
+                        <img src="/images/CodeImg.png" class="responsive-img" alt="毒瘤码风推荐">
+                        
+                        <span class="card-title">毒瘤码风推荐</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">码风前言相信码风对于我们来说太熟悉了，以至于平常都忘记了它的存在
+简介码风全称代码风格…
+我就不啰嗦了，估计也都知道是啥，想看详细介绍可以右转代码风格-百度百科或Programming style-Wikipedia
+正文那么就直接推荐自己</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/闲聊/" class="post-category" target="_blank">
+                                    闲聊
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/闲聊/" target="_blank">
+                        <span class="chip bg-color">闲聊</span>
+                    </a>
+                    
+                    <a href="/tags/Cpp/" target="_blank">
+                        <span class="chip bg-color">Cpp</span>
+                    </a>
+                    
+                    <a href="/tags/码风/" target="_blank">
+                        <span class="chip bg-color">码风</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('80')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Ciyang's Blog<br />'
+            + '作者: Ciyang<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv">
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                <i class="fa fa-users"></i>
+                次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">3.7k</span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+
+
+
+
+
+<a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=896681584" class="tooltipped" data-tooltip="QQ: 896681584" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+
+<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" data-tooltip="知乎: Ciyang" data-position="top" data-delay="50">
+    <i class="fa fa-beer"></i>
+</a>
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
