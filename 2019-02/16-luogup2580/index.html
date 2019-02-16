@@ -504,7 +504,7 @@
 <p>清空ab的子节点,颜色改为黑(黑表示不为结尾节点),ab的首字母b子节点指向b.</p>
 <p>在我实现时,先更改长度使ab变为a,再向a中插入c.</p>
 <p>因为没有首字母为c的子节点,直接new一个新的.</p>
-<h4 id="查找操作"><a href="#查找操作" class="headerlink" title="查找操作:"></a>查找操作:</h4><pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> Lumpy_Tnode <span class="token operator">*</span>bNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<h4 id="查找操作"><a href="#查找操作" class="headerlink" title="查找操作"></a>查找操作</h4><pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> Lumpy_Tnode <span class="token operator">*</span>bNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">//递归到查找的字符串长度为0</span>
         <span class="token comment" spellcheck="true">//判断当前节点是否为结尾,是否是第一次查询</span>
@@ -1057,7 +1057,7 @@
             + '来源: Ciyang's Blog<br />'
             + '作者: Ciyang<br />'
             + '链接: <a href="' + url + '">' + url + '</a><br />'
-            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+            + '本文章著作权归Ciyang所有，任何形式的转载都请注明出处。';
 
         selection.selectAllChildren(newdiv);
         window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
