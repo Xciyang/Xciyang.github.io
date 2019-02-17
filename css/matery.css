@@ -1341,6 +1341,7 @@ table tr:nth-child(2n), thead {
     margin-top: -60px;
 }
 
+
 @media only screen and (max-width: 601px) {
     .about-container {
         width: 95%;
