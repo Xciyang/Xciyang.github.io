@@ -395,7 +395,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        425
+                        426
                     </div>
                     
 
@@ -425,19 +425,20 @@
 <p>求 $ gcd(x, a0) = a1 $ 且 $ lcm(x, b0) = b1 $ 中 x 的方案数 </p>
 <p>那么首先我们都知道两个很基础的东西</p>
 <p>$$ gcd(a, b) = gcd(b, a % b)$$</p>
-<p>$$ lcm(a, b) = a * b / gcd(a, b)$$</p>
+<p>$$ lcm(a, b) = a × b / gcd(a, b)$$</p>
 <p>然后就可以来做这道题了</p>
 <p>因为</p>
-<p>$$ lcm(x, b0) = x * b0 / gcd(x, b0) = b1 $$</p>
+<p>$$ lcm(x, b0) = x × b0 / gcd(x, b0) = b1 $$</p>
 <p>所以</p>
-<p>$$ x = \frac{b1}{b0} * gcd(x, b0) $$</p>
+<p>$$ x = \frac{b1}{b0} × gcd(x, b0) $$</p>
 <p>我们设一个数 $ y = gcd(x, b0) $ 那么一定 $ 1 ≤ y ≤ \sqrt{b0} $</p>
-<p>所以我们只要枚举 y 的值, 然后代入算出 $ x = b1 / b0 * y $</p>
+<p>所以我们只要枚举 y 的值, 然后代入算出 $ x = b1 / b0 × y $</p>
 <p>然后代入题目中的两个式子进行判断</p>
 <p>还有一个简化</p>
-<p>$$ x * b0 / gcd(x, b0) == b1 $$</p>
+<p>$$ x × b0 / gcd(x, b0) == b1 $$</p>
 <p>可简化为</p>
-<p>$$ b1 / b0 <em> y </em> b0 / gcd(x, b0) == b1 $$</p>
+<p>$$ b1 / b0 × y × b0 / gcd(x, b0) == b1 $$</p>
+<p>即</p>
 <p>$$ gcd(x, b0) == y $$</p>
 <p>要判断 $ x = b1 / y $ 的情况, 也有可能是一个解</p>
 <p>也不要忘了特判 $ y = \sqrt{b0} $ 的情况</p>
