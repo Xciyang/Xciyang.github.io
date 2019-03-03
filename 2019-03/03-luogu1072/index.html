@@ -395,7 +395,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        423
+                        425
                     </div>
                     
 
@@ -439,8 +439,8 @@
 <p>可简化为</p>
 <p>$$ b1 / b0 <em> y </em> b0 / gcd(x, b0) == b1 $$</p>
 <p>$$ gcd(x, b0) == y $$</p>
-<p>还要判断 $ x = b1 / y $ 也有可能是一个解</p>
-<p>也不要忘了特判 $ y = sqrt{b0} $ 的情况</p>
+<p>要判断 $ x = b1 / y $ 的情况, 也有可能是一个解</p>
+<p>也不要忘了特判 $ y = \sqrt{b0} $ 的情况</p>
 <p>然后就完美解决了</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>没有开各种优化, 能过</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
