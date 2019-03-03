@@ -395,7 +395,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        426
+                        427
                     </div>
                     
 
@@ -424,8 +424,8 @@
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>先从题目描述说起, 给出了a0, a1, b0, b1四个数</p>
 <p>求 $ gcd(x, a0) = a1 $ 且 $ lcm(x, b0) = b1 $ 中 x 的方案数 </p>
 <p>那么首先我们都知道两个很基础的东西</p>
-<p>$$ gcd(a, b) = gcd(b, a % b)$$</p>
-<p>$$ lcm(a, b) = a × b / gcd(a, b)$$</p>
+<p>$$ gcd(a, b) = gcd(b, a \mod b) $$</p>
+<p>$$ lcm(a, b) = a × b / gcd(a, b) $$</p>
 <p>然后就可以来做这道题了</p>
 <p>因为</p>
 <p>$$ lcm(x, b0) = x × b0 / gcd(x, b0) = b1 $$</p>
