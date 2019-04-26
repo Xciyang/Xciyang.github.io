@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ciyang&#39;s Blog">
     <meta name="description" content="Ciyang&#39;s Blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
@@ -17,12 +17,15 @@
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
     <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
@@ -32,19 +35,18 @@
 
 <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="container">
-            <div class="nav-wrapper">
-                <div class="brand-logo">
-                    <a href="/" class="waves-effect waves-light">
-                        
-                        <img src="/favicon.png" class="logo-img hide-on-small-only">
-                        
-                        <span class="logo-span">Ciyang's Blog</span>
-                    </a>
-                </div>
-                
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/favicon.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ciyang's Blog</span>
+                </a>
+            </div>
+            
 
-<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
 <ul class="right">
     
     <li class="hide-on-med-and-down">
@@ -102,14 +104,13 @@
     </li>
     
     <li>
-        <a id="toggleSearch" class="waves-effect waves-light">
-            <i id="searchIcon" class="mdi-action-search" title="搜索"></i>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
         </a>
     </li>
-
 </ul>
 
-<div class="side-nav" id="mobile-nav">
+<div id="mobile-nav" class="side-nav sidenav">
 
     <div class="mobile-head bg-color">
         
@@ -183,108 +184,207 @@
         
         
     </ul>
-
-    <div class="social-link">
-<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-    <i class="fa fa-github"></i>
-</a>
-
-
-
-
-
-<a href="tencent://AddContact/?subcmd=all&uin=896681584&" class="tooltipped" data-tooltip="QQ: 896681584" data-position="top" data-delay="50">
-    <i class="fa fa-qq"></i>
-</a>
-
-
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" data-tooltip="知乎: Ciyang" data-position="top" data-delay="50">
-    <i class="fa fa-beer"></i>
-</a>
-
-
-</div>
 </div>
 
-            </div>
         </div>
 
         
     </nav>
+
 </header>
 
-<style type="text/css">
-    /* don't remove. */
-    .index-cover {
-        height: 100vh;
+
+<style>
+    .carousel-control {
+        width: 45px;
+        height: 45px;
+        line-height: 55px;
+        border-radius: 45px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 100;
+    }
+
+    #prev-cover {
+        position: absolute;
+        top: 48%;
+        left: 8px;
+    }
+
+    #next-cover {
+        position: absolute;
+        top: 48%;
+        right: 8px;;
+    }
+
+    #prev-cover i {
+        margin-right: 3px;
+    }
+
+    #next-cover i {
+        margin-left: 3px;
+    }
+
+    .carousel-control:hover {
+        background-color:rgba(0, 0, 0, .4);
+    }
+
+    .carousel-control i {
+        color: #fff;
+        font-size: 2.4rem;
     }
 </style>
 
-<div class="bg-cover index-cover about-cover" style="background-image: url('/medias/cover.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-                <div class="brand">
-                    <div class="title center-align">
-                        
-                        Ciyang
-                        
-                    </div>
 
-                    <div class="description center-align">
-                        
-                        一个半退役OI的文化课选手...
-                        
-                    </div>
-                </div>
+
+<div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
+    
+    <div id="prev-cover" class="left waves-effect carousel-control">
+        <i class="icon fa fa-angle-left"></i>
+    </div>
+    <div id="next-cover" class="right waves-effect carousel-control">
+        <i class="icon fa fa-angle-right"></i>
+    </div>
+    
+
+    <div class="carousel-item red white-text bg-cover about-cover">
+        <div class="container">
+            <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                Ciyang
+                
+            </div>
+
+            <div class="description center-align">
+                
+                一个半退役OI的文化课选手...
+                
             </div>
         </div>
-        
-        <div class="cover-btns">
-            <a href="#recommend-sections" class="waves-effect waves-light btn">
-                <i class="fa fa-angle-double-down"></i>继续阅读
-            </a>
+    </div>
+</div>
+<script>
+    // 每天切换 banner 图.  Switch banner image every day.
+    var knum = new Date().getMilliseconds() % 9;
+    $('.bg-cover').css('background-image', 'url(/medias/banner/' + knum + '.jpg)');
+</script>
 
-            
-        </div>
-        <div class="cover-social-link">
+            <div class="cover-btns">
+                <a href="#indexCard" class="waves-effect waves-light btn">
+                    <i class="fa fa-angle-double-down"></i>开始阅读
+                </a>
+
+                
+            </div>
+            <div class="cover-social-link">
 <a href="https://github.com/Xciyang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
     <i class="fa fa-github"></i>
 </a>
 
 
 
+<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件: 896681584@qq.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
 
 
-<a href="tencent://AddContact/?subcmd=all&uin=896681584&" class="tooltipped" data-tooltip="QQ: 896681584" data-position="top" data-delay="50">
+
+<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped" data-tooltip="QQ: 896681584" data-position="top" data-delay="50">
     <i class="fa fa-qq"></i>
 </a>
 
 
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" data-tooltip="知乎: Ciyang" data-position="top" data-delay="50">
+
+<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" data-tooltip="知乎" data-position="top" data-delay="50">
     <i class="fa fa-beer"></i>
 </a>
 
 
 </div>
-        
+        </div>
     </div>
+
+    
+    
+
+    
+    
+    <div class="carousel-item amber white-text carousel-post bg-cover" style="background-image: url('/medias/featureimages/3.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <div class="title center-align">NOIP2003 - 传染病控制</div>
+                    <div class="description center-align">
+                    
+                        【LuoguP1041】【NOIP2003】传染病控制
+                    
+                    </div>
+                    <div class="cover-btns">
+                        <a href="/2019-04/24-luogu1041/" class="waves-effect waves-light btn" target="_blank">
+                            <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
 </div>
 
 <script>
-    var knum = new Date().getMilliseconds() % 9;
-    $('.bg-cover').css('background-image', 'url(/medias/banner/' + knum + '.jpg)');
+$(function () {
+    let coverSlider = $('.carousel');
+    coverSlider.carousel({
+        duration: Number('120'),
+        fullWidth: true,
+        indicators: 'true' === 'true'
+    });
+
+    let carouselIntervalId;
+    
+    // Loop to call the next cover article picture.
+    let autoCarousel = function() {
+        carouselIntervalId = setInterval(function () {
+            coverSlider.carousel('next');
+        }, 5000);
+    };
+    autoCarousel();
+    
+
+    let restartPlay = function () {
+        
+        clearInterval(carouselIntervalId);
+        autoCarousel();
+        
+    };
+
+    
+    // prev and next cover post.
+    $('#prev-cover').click(function () {
+        coverSlider.carousel('prev');
+        restartPlay();
+    });
+    $('#next-cover').click(function () {
+        coverSlider.carousel('next');
+        restartPlay();
+    });
+    
+});
 </script>
+
+
 
 <main class="content">
 
     
-    <div class="index-card">
+    <div id="indexCard" class="index-card">
         <div class="container ">
             <div class="card">
                 <div class="card-content">
-                    
-
                     
                         <div class="dream">
     
@@ -293,11 +393,15 @@
     </div>
     
     <div class="row">
-        <div class="col s10 offset-s1  m8 offset-m2 center-align text">
-            首页评论交换友链~ 作者最近文化课比较忙啊。
+        <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
+            首页评论交换友链~ 作者最近文化课比较忙啊.,4.26号更新了博客主题版本.
         </div>
     </div>
 </div>
+                    
+
+                    
+
                     
 
                     <div id="recommend-sections" class="recommend">
@@ -967,282 +1071,7 @@
             
         </div>
     </article>
-    <div class="container ">
-        <div class="card">
-            <div class="card-content">
-                <div class="title center-align">
-                    <i class="fa fa-commenting-o"></i>&nbsp;&nbsp;留下评论
-                </div>
-                
-                    <style>
-    .valine-card {
-        margin: 1.5rem auto;
-    }
 
-    .valine-card .card-content {
-        padding: 20px 20px 5px 20px;
-    }
-
-    .vinfo{
-        padding-bottom: 20px;
-    }
-    
-    #vcomments input[type=text],
-    #vcomments input[type=email],
-    #vcomments input[type=url],
-    #vcomments textarea {
-        box-sizing: border-box;
-    }
-
-    #vcomments p {
-        margin: 2px 2px 10px;
-        font-size: 1.05rem;
-        line-height: 1.78rem;
-    }
-
-    #vcomments blockquote p {
-        text-indent: 0.2rem;
-    }
-
-    #vcomments a {
-        padding: 0 2px;
-        color: #42b983;
-        font-weight: 500;
-        text-decoration: underline;
-    }
-
-    #vcomments img {
-        max-width: 100%;
-        height: auto;
-        cursor: pointer;
-    }
-
-    #vcomments ol li {
-        list-style-type: decimal;
-    }
-
-    #vcomments ol,
-    ul {
-        display: block;
-        padding-left: 2em;
-        word-spacing: 0.05rem;
-    }
-
-    #vcomments ul li,
-    ol li {
-        display: list-item;
-        line-height: 1.8rem;
-        font-size: 1rem;
-    }
-
-    #vcomments ul li {
-        list-style-type: disc;
-    }
-
-    #vcomments ul ul li {
-        list-style-type: circle;
-    }
-
-    #vcomments table, th, td {
-        padding: 12px 13px;
-        border: 1px solid #dfe2e5;
-    }
-
-    #vcomments table, th, td {
-        border: 0;
-    }
-
-    table tr:nth-child(2n), thead {
-        background-color: #fafafa;
-    }
-
-    #vcomments table th {
-        background-color: #f2f2f2;
-        min-width: 80px;
-    }
-
-    #vcomments table td {
-        min-width: 80px;
-    }
-
-    #vcomments h1 {
-        font-size: 1.85rem;
-        font-weight: bold;
-        line-height: 2.2rem;
-    }
-
-    #vcomments h2 {
-        font-size: 1.65rem;
-        font-weight: bold;
-        line-height: 1.9rem;
-    }
-
-    #vcomments h3 {
-        font-size: 1.45rem;
-        font-weight: bold;
-        line-height: 1.7rem;
-    }
-
-    #vcomments h4 {
-        font-size: 1.25rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    #vcomments h5 {
-        font-size: 1.1rem;
-        font-weight: bold;
-        line-height: 1.4rem;
-    }
-
-    #vcomments h6 {
-        font-size: 1rem;
-        line-height: 1.3rem;
-    }
-
-    #vcomments p {
-        font-size: 1rem;
-        line-height: 1.5rem;
-    }
-
-    #vcomments hr {
-        margin: 12px 0;
-        border: 0;
-        border-top: 1px solid #ccc;
-    }
-
-    #vcomments blockquote {
-        margin: 15px 0;
-        border-left: 5px solid #42b983;
-        padding: 1rem 0.8rem 0.3rem 0.8rem;
-        color: #666;
-        background-color: rgba(66, 185, 131, .1);
-    }
-
-    #vcomments pre {
-        font-family: monospace, monospace;
-        padding: 1.2em;
-        margin: .5em 0;
-        background: #272822;
-        overflow: auto;
-        border-radius: 0.3em;
-        tab-size: 4;
-    }
-
-    #vcomments code {
-        font-family: monospace, monospace;
-        padding: 1px 3px;
-        font-size: 0.92rem;
-        color: #e96900;
-        background-color: #f8f8f8;
-        border-radius: 2px;
-    }
-
-    #vcomments pre code {
-        font-family: monospace, monospace;
-        padding: 0;
-        color: #e8eaf6;
-        background-color: #272822;
-    }
-
-    #vcomments pre[class*="language-"] {
-        padding: 1.2em;
-        margin: .5em 0;
-    }
-
-    #vcomments code[class*="language-"],
-    pre[class*="language-"] {
-        color: #e8eaf6;
-    }
-
-    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-        position: inherit;
-        margin-left: -1.3rem;
-        margin-right: 0.4rem;
-        margin-top: -1px;
-        vertical-align: middle;
-        left: unset;
-        visibility: visible;
-    }
-
-    #vcomments b,
-    strong {
-        font-weight: bold;
-    }
-
-    #vcomments dfn {
-        font-style: italic;
-    }
-
-    #vcomments small {
-        font-size: 85%;
-    }
-
-    #vcomments cite {
-        font-style: normal;
-    }
-
-    #vcomments mark {
-        background-color: #fcf8e3;
-        padding: .2em;
-    }
-
-    #vcomments table, th, td {
-        padding: 12px 13px;
-        border: 1px solid #dfe2e5;
-    }
-
-    table tr:nth-child(2n), thead {
-        background-color: #fafafa;
-    }
-
-    #vcomments table th {
-        background-color: #f2f2f2;
-        min-width: 80px;
-    }
-
-    #vcomments table td {
-        min-width: 80px;
-    }
-
-    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-        position: inherit;
-        margin-left: -1.3rem;
-        margin-right: 0.4rem;
-        margin-top: -1px;
-        vertical-align: middle;
-        left: unset;
-        visibility: visible;
-    }
-</style>
-
-<div class="card valine-card" data-aos="fade-up">
-    <div id="vcomments" class="card-content"></div>
-</div>
-
-<script src="/libs/valine/av-min.js"></script>
-<script src="/libs/valine/Valine.min.js"></script>
-<script>
-    new Valine({
-        el: '#vcomments',
-        appId: '7BQ3ob3WSCRNqx6hDwbdTSnG-gzGzoHsz',
-        appKey: 'XIkONR2UXsu6jiyIL9VzPSuA',
-        notify: 'false' === 'true',
-        verify: 'false' === 'true',
-        visitor: 'true' === 'true',
-        avatar: 'mm',
-        pageSize: '10',
-        lang: 'zh-cn',
-        placeholder: '水一下评论?'
-    });
-</script>
-<script>
-    $(document.getElementsByClassName("vinfo")[0]).after("<br>");
-</script>
-                
-            </div>
-        </div>
-    </div>
 </main>
 
 
@@ -1250,6 +1079,7 @@
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
+
             
             
             <br>
@@ -1278,14 +1108,19 @@
 
 
 
+<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件: 896681584@qq.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
 
 
-<a href="tencent://AddContact/?subcmd=all&uin=896681584&" class="tooltipped" data-tooltip="QQ: 896681584" data-position="top" data-delay="50">
+
+<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped" data-tooltip="QQ: 896681584" data-position="top" data-delay="50">
     <i class="fa fa-qq"></i>
 </a>
 
 
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" data-tooltip="知乎: Ciyang" data-position="top" data-delay="50">
+
+<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" data-tooltip="知乎" data-position="top" data-delay="50">
     <i class="fa fa-beer"></i>
 </a>
 
@@ -1301,7 +1136,7 @@
     <div class="modal-content">
         <div class="search-header">
             <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
         </div>
         <div id="searchResult"></div>
     </div>
@@ -1309,7 +1144,9 @@
 
 <script src="/js/search.js"></script>
 <script type="text/javascript">
+$(function () {
     searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
 </script>
 <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
@@ -1319,7 +1156,7 @@
 </div>
 
 
-<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/materialize/materialize.min.js"></script>
 <script src="/libs/masonry/masonry.pkgd.min.js"></script>
 <script src="/libs/aos/aos.js"></script>
 <script src="/libs/scrollprogress/scrollProgress.min.js"></script>

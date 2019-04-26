@@ -7,7 +7,7 @@
     <meta name="keywords" content="标签: GCD, Ciyang&#39;s Blog">
     <meta name="description" content="标签: GCD | Ciyang&#39;s Blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
@@ -17,12 +17,15 @@
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
     <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
@@ -32,19 +35,18 @@
 
 <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="container">
-            <div class="nav-wrapper">
-                <div class="brand-logo">
-                    <a href="/" class="waves-effect waves-light">
-                        
-                        <img src="/favicon.png" class="logo-img hide-on-small-only">
-                        
-                        <span class="logo-span">Ciyang's Blog</span>
-                    </a>
-                </div>
-                
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/favicon.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ciyang's Blog</span>
+                </a>
+            </div>
+            
 
-<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
 <ul class="right">
     
     <li class="hide-on-med-and-down">
@@ -102,14 +104,13 @@
     </li>
     
     <li>
-        <a id="toggleSearch" class="waves-effect waves-light">
-            <i id="searchIcon" class="mdi-action-search" title="搜索"></i>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
         </a>
     </li>
-
 </ul>
 
-<div class="side-nav" id="mobile-nav">
+<div id="mobile-nav" class="side-nav sidenav">
 
     <div class="mobile-head bg-color">
         
@@ -183,63 +184,41 @@
         
         
     </ul>
-
-    <div class="social-link">
-<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-    <i class="fa fa-github"></i>
-</a>
-
-
-
-
-
-<a href="tencent://AddContact/?subcmd=all&uin=896681584&" class="tooltipped" data-tooltip="QQ: 896681584" data-position="top" data-delay="50">
-    <i class="fa fa-qq"></i>
-</a>
-
-
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" data-tooltip="知乎: Ciyang" data-position="top" data-delay="50">
-    <i class="fa fa-beer"></i>
-</a>
-
-
-</div>
 </div>
 
-            </div>
         </div>
 
         
     </nav>
+
 </header>
 
-<div class="bg-cover  about-cover" style="background-image: url('/medias/cover.jpg')">
+<div class="bg-cover pd-header about-cover">
     <div class="container">
-        <div class="row">
-            <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-                <div class="brand">
-                    <div class="title center-align">
-                        
-                        Ciyang
-                        
-                    </div>
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                Ciyang
+                
+            </div>
 
-                    <div class="description center-align">
-                        
-                        一个半退役OI的文化课选手...
-                        
-                    </div>
-                </div>
+            <div class="description center-align">
+                
+                一个半退役OI的文化课选手...
+                
             </div>
         </div>
-        
     </div>
 </div>
-
 <script>
+    // 每天切换 banner 图.  Switch banner image every day.
     var knum = new Date().getMilliseconds() % 9;
     $('.bg-cover').css('background-image', 'url(/medias/banner/' + knum + '.jpg)');
 </script>
+    </div>
+</div>
 
 <main class="content">
 
@@ -286,25 +265,9 @@
                 </a>
                 
                 
-                <a href="/tags/GCD/" title="GCD: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active " data-tagname="GCD" style="background-color: #FEF9E7;">GCD
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/数论/" title="数论: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="数论" style="background-color: #F8F9F9;">数论
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/并查集/" title="并查集: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="并查集" style="background-color: #82E0AA;">并查集
+                             chip-default " data-tagname="并查集" style="background-color: #FEF9E7;">并查集
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -312,7 +275,7 @@
                 
                 <a href="/tags/STL/" title="STL: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="STL" style="background-color: #D7BDE2;">STL
+                             chip-default " data-tagname="STL" style="background-color: #F8F9F9;">STL
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -320,7 +283,7 @@
                 
                 <a href="/tags/离散化/" title="离散化: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="离散化" style="background-color: #A3E4D7;">离散化
+                             chip-default " data-tagname="离散化" style="background-color: #82E0AA;">离散化
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -328,7 +291,7 @@
                 
                 <a href="/tags/LCA/" title="LCA: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="LCA" style="background-color: #85C1E9;">LCA
+                             chip-default " data-tagname="LCA" style="background-color: #D7BDE2;">LCA
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -336,7 +299,23 @@
                 
                 <a href="/tags/主席树/" title="主席树: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="主席树" style="background-color: #F8C471;">主席树
+                             chip-default " data-tagname="主席树" style="background-color: #A3E4D7;">主席树
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/GCD/" title="GCD: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-active " data-tagname="GCD" style="background-color: #85C1E9;">GCD
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/数论/" title="数论: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " data-tagname="数论" style="background-color: #F8C471;">数论
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -398,6 +377,14 @@
                 </a>
                 
                 
+                <a href="/tags/码风/" title="码风: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " data-tagname="码风" style="background-color: #F9E79F;">码风
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/tags/字典树/" title="字典树: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default " data-tagname="字典树" style="background-color: #D5F5E3;">字典树
@@ -409,14 +396,6 @@
                 <a href="/tags/边压Trie/" title="边压Trie: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default " data-tagname="边压Trie" style="background-color: #85C1E9;">边压Trie
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/码风/" title="码风: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="码风" style="background-color: #F9E79F;">码风
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -434,53 +413,52 @@
     </div>
 </div>
 
-    <div class="container">
-        
+    
 
-        <article>
-            <div class="row tags-posts">
-                
-                
-                <div class="article tag-post col s12 m6 l4" data-tags="题解, Cpp, GCD, 数论" data-aos="fade-up">
-                    <div class="card">
-                        <a href="/2019-03/03-luogu1072/">
-                            <div class="card-image tag-image">
+    <article id="articles" class="container articles">
+        <div class="row tags-posts">
+            
+            
+            <div class="article tag-post col s12 m6 l4" data-tags="题解, Cpp, GCD, 数论" data-aos="fade-up">
+                <div class="card">
+                    <a href="/2019-03/03-luogu1072/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="NOIP2009 - Hankson 的趣味题">
+                            
+                            <span class="card-title">NOIP2009 - Hankson 的趣味题</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-03
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/题解/" class="post-category" target="_blank">
+                                题解
+                                </a>
                                 
                                 
-                                <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="NOIP2009 - Hankson 的趣味题">
-                                
-                                <span class="card-title">NOIP2009 - Hankson 的趣味题</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-03
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                    
-                                    <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
-                                    </a>
-                                    
-                                    
-                                </span>
-                            </div>
+                            </span>
                         </div>
                     </div>
                 </div>
-                
             </div>
-        </article>
-    </div>
+            
+        </div>
+    </article>
 </main>
 
 
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
+
             
             
             <br>
@@ -509,14 +487,19 @@
 
 
 
+<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件: 896681584@qq.com" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
 
 
-<a href="tencent://AddContact/?subcmd=all&uin=896681584&" class="tooltipped" data-tooltip="QQ: 896681584" data-position="top" data-delay="50">
+
+<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped" data-tooltip="QQ: 896681584" data-position="top" data-delay="50">
     <i class="fa fa-qq"></i>
 </a>
 
 
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" data-tooltip="知乎: Ciyang" data-position="top" data-delay="50">
+
+<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" data-tooltip="知乎" data-position="top" data-delay="50">
     <i class="fa fa-beer"></i>
 </a>
 
@@ -532,7 +515,7 @@
     <div class="modal-content">
         <div class="search-header">
             <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
         </div>
         <div id="searchResult"></div>
     </div>
@@ -540,7 +523,9 @@
 
 <script src="/js/search.js"></script>
 <script type="text/javascript">
+$(function () {
     searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
 </script>
 <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
@@ -550,7 +535,7 @@
 </div>
 
 
-<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/materialize/materialize.min.js"></script>
 <script src="/libs/masonry/masonry.pkgd.min.js"></script>
 <script src="/libs/aos/aos.js"></script>
 <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
