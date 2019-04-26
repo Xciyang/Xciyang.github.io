@@ -422,7 +422,7 @@
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>先建图, 是以1节点为根的一棵树.</p>
 <p>我们开一个一维数组f, 下标代表节点编号. 记录传染到这个点最少再传染给几个人.</p>
 <p>我们分类讨论, 先不考虑儿子节点还会继续传染的情况. 如果这个点没有儿子或者只有一个儿子, 那么最少再传染0个人. 否则传染节点数就是儿子数 - 1.</p>
-<p>如果儿子节点还会继续传染, 那么我们就切断求出的f值最大的那个. </p>
+<p>如果儿子节点还会继续传染, 那么我们就切断求出的f值最大的那个.</p>
 <p>$$ f[now] = (\sum_i^{i∈sons[now]}f[i] + 1) - (\max_i^{i∈sons[now]}f[i]) - 1 $$<br>这个式子我实在不会写的更好了, sons代表节点的所有儿子.</p>
 <p>看懂的话应该很快就能发现DP的错误在哪.结合这两个说明:</p>
 <blockquote>
@@ -433,7 +433,7 @@
 </blockquote>
 <p>单独看好像还是找不出这个DP的错误.然后我给出一张图.</p>
 <p><img src="/images/P1041_1.png" alt="Example"></p>
-<p>正解应该是4, 然后DP竟跑出更优解3…其实是因为他在同一个疾病传播周期内切断了两条.DP将会先切断2, 然后切断7和8. 然而7和8在同一个传播周期内, 所以不能同时切断. </p>
+<p>正解应该是4, 然后DP竟跑出更优解3…其实是因为他在同一个疾病传播周期内切断了两条.DP将会先切断2, 然后切断7和8. 然而7和8在同一个传播周期内, 所以不能同时切断.</p>
 <p>这就是DP的错误, 不符合题目要求. 然后就只能考虑搜索, 因为DP的启发, 就很容易想到按深度来搜索了.</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>错误DP代码(40分):</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
