@@ -505,7 +505,45 @@
     <span class="token keyword">int</span> cchWideChar
     <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p><em>CodePage</em>为指定执行转换的字符集。如果原字符串为ASCII通常选择CP_ACP，关于CP_ACP与CP_THREAD_ACP的区别可以自己了解。我们这里原字符串为UTF-8，因此选择CP_UTF8。数值表：<br>数值 | 说明<br>–|–<br>CP_ACP | Windows系统默认的ANSI代码页。<br>CP_MACCP | Mac系统代码页。<br>CP_ACP | OEM系统代码页。<br>CP_SYMBOL | 符号字符集。<br>CP_THREAD_ACP | 当前Windows线程的ANSI代码页。<br>CP_UTF7 | 使用UTF-7。<br>CP_UTF8 | 使用UTF-8。</p>
+<p><em>CodePage</em>为指定执行转换的字符集。如果原字符串为ASCII通常选择CP_ACP，关于CP_ACP与CP_THREAD_ACP的区别可以自己了解。我们这里原字符串为UTF-8，因此选择CP_UTF8。数值表：</p>
+<table>
+<thead>
+<tr>
+<th>数值</th>
+<th>说明   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CP_ACP</td>
+<td>Windows系统默认的ANSI代码页。 </td>
+</tr>
+<tr>
+<td>CP_MACCP</td>
+<td>Mac系统代码页。 </td>
+</tr>
+<tr>
+<td>CP_ACP</td>
+<td>OEM系统代码页。 </td>
+</tr>
+<tr>
+<td>CP_SYMBOL</td>
+<td>符号字符集。 </td>
+</tr>
+<tr>
+<td>CP_THREAD_ACP</td>
+<td>当前Windows线程的ANSI代码页。 </td>
+</tr>
+<tr>
+<td>CP_UTF7</td>
+<td>使用UTF-7。 </td>
+</tr>
+<tr>
+<td>CP_UTF8</td>
+<td>使用UTF-8。 </td>
+</tr>
+</tbody>
+</table>
 <p><em>dwFlags</em>设定转换类型。缺省值为MB_PRECOMPOSED，对于UTF-8必须为0或MB_ERR_INVALID_CHARS，此参数作用较小，数值表就不给出了。</p>
 <p><em>lpMultiByteStr</em>指向一个要转换的字符串。</p>
 <p><em>cbMultiByte</em>指定长度，如果lpMultiByteStr指向的字符串为空结束，此参数可设为-1。如果设为-1，函数将处理包括终止空字符在内的所有字符。我们可以用strlen来自行获得长度。</p>
