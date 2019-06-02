@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="颓废日记 - 开发图片爬虫 Ⅰ, Ciyang&#39;s Blog">
+    <meta name="keywords" content="项目日记 - 开发图片爬虫 Ⅰ, Ciyang&#39;s Blog">
     <meta name="description" content="前言这个项目很久前就开始写了，但一直没有很完善。最近想起来，打算重新完善这个项目。
 本教程仅适用于C++。如果观看效果不佳，可点击右下方折叠目录。内容较为复杂，可以根据自己需要来阅读。
 目的做一个项目，首先需要知道你的目标是什么。这个项目名">
@@ -15,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>颓废日记 - 开发图片爬虫 Ⅰ | Ciyang&#39;s Blog</title>
+    <title>项目日记 - 开发图片爬虫 Ⅰ | Ciyang&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -30,7 +30,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
 
 <body>
 
@@ -235,7 +235,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        颓废日记 - 开发图片爬虫 Ⅰ
+                        项目日记 - 开发图片爬虫 Ⅰ
                     </div>
                 </div>
             </div>
@@ -641,7 +641,7 @@
 </tr>
 </tbody>
 </table>
-<p><em>dwContext</em>指向一个变量的指针，将随着返回的句柄，一起传递给回调函数。有兴趣可以自行查阅，我们设为NULL即可。</p>
+<p><em>dwContext</em>为指向一个变量的指针，将随着返回的句柄，一起传递给回调函数。有兴趣可以自行查阅，我们设为NULL即可。</p>
 <p><em>Return Value</em>即返回值，若成功连接则返回一个有效的HINTERNET句柄，如果失败将放回NULL。如果失败可以使用GetLastError检索特定的错误讯息。请调用InternetGetLastResponseInfo确定为什么对服务器的访问被拒绝，这些函数大家有兴趣可以查阅更多资料来了解。</p>
 <h4 id="FILE"><a href="#FILE" class="headerlink" title="FILE"></a>FILE</h4><p>这一步就不作过多讲解了，只简单介绍这几个函数。</p>
 <p>fopen用来打开文件，返回文件指针。</p>
@@ -675,7 +675,7 @@
 <p><em>hInternet</em>为要关闭的句柄。我们要依次关闭那俩个HINTERNET句柄。</p>
 <p><em>Return Value</em>即返回值，成功为TRUE，失败为FALSE。若失败可用GetLastError查看更多错误信息。</p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>其实获取网页内容的代码是非常简单的，然而其中还蕴含着许许多多的知识。这段代码不仅可以获取网页，也可以用来获取图片或其他格式的文件。</p>
-<p>这段函数下载后一般为Unicode编码文件，下一章我将讲解如何将它转换为ASCII编码。</p>
+<p>这段函数下载后一般为Unicode编码文件，下一节我将讲解如何将它转换为ASCII编码。</p>
 
             </div>
             <hr>
@@ -699,7 +699,7 @@
                     </span>
                     <a href="https://xciyang.github.io" class="b-link-green">Ciyang's Blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019-05/26-spiking1/" class="b-link-green">颓废日记 - 开发图片爬虫 Ⅰ</a>
+                    <a href="/2019-05/26-spiking1/" class="b-link-green">项目日记 - 开发图片爬虫 Ⅰ</a>
                 </p>
             </div>
         </div>
@@ -998,25 +998,23 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019-05/26-spiking1/">
+                <a href="/2019-05/28-spiking2/">
                     <div class="card-image">
                         
-                        <img src="/images/spiKing1.jpg" class="responsive-img" alt="颓废日记 - 开发图片爬虫 Ⅰ">
+                        <img src="/images/spiKing3.jpg" class="responsive-img" alt="项目日记 - 开发图片爬虫 Ⅱ">
                         
-                        <span class="card-title">颓废日记 - 开发图片爬虫 Ⅰ</span>
+                        <span class="card-title">项目日记 - 开发图片爬虫 Ⅱ</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">前言这个项目很久前就开始写了，但一直没有很完善。最近想起来，打算重新完善这个项目。
-本教程仅适用于C++。如果观看效果不佳，可点击右下方折叠目录。内容较为复杂，可以根据自己需要来阅读。
-目的做一个项目，首先需要知道你的目标是什么。这个项目名</div>
+                    <div class="summary">前言我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。
+因此我们要先将获取后的网页转换成我们想要的编码，</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-26
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-28
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1029,7 +1027,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1276,7 +1273,7 @@
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">17.3k</span>
+            <span class="white-color">19.1k</span>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">

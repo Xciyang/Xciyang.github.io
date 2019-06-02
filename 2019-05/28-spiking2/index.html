@@ -4,11 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="LuoguP5145 - 漂浮的鸭子, Ciyang&#39;s Blog">
-    <meta name="description" content="题目链接: https://www.luogu.org/problemnew/show/P5145
-前言最近颓的东西太多了, 终于又来做搜索题.
-这题很水 随手交了个暴力随机化就A了.
-分析这道题正解思路非常妙, 代码比较短. 但我们能不能">
+    <meta name="keywords" content="项目日记 - 开发图片爬虫 Ⅱ, Ciyang&#39;s Blog">
+    <meta name="description" content="前言我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。
+因此我们要先将获取后的网页转换成我们想要的编码，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>LuoguP5145 - 漂浮的鸭子 | Ciyang&#39;s Blog</title>
+    <title>项目日记 - 开发图片爬虫 Ⅱ | Ciyang&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -230,13 +228,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/spiKing3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        LuoguP5145 - 漂浮的鸭子
+                        项目日记 - 开发图片爬虫 Ⅱ
                     </div>
                 </div>
             </div>
@@ -347,20 +345,20 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/题解/" target="_blank">
-                                <span class="chip bg-color">题解</span>
-                            </a>
-                        
                             <a href="/tags/Cpp/" target="_blank">
                                 <span class="chip bg-color">Cpp</span>
                             </a>
                         
-                            <a href="/tags/搜索/" target="_blank">
-                                <span class="chip bg-color">搜索</span>
+                            <a href="/tags/颓废/" target="_blank">
+                                <span class="chip bg-color">颓废</span>
                             </a>
                         
-                            <a href="/tags/随机化搜索/" target="_blank">
-                                <span class="chip bg-color">随机化搜索</span>
+                            <a href="/tags/项目/" target="_blank">
+                                <span class="chip bg-color">项目</span>
+                            </a>
+                        
+                            <a href="/tags/爬虫/" target="_blank">
+                                <span class="chip bg-color">爬虫</span>
                             </a>
                         
                     </div>
@@ -371,8 +369,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/题解/" class="post-category" target="_blank">
-                                题解
+                            <a href="/categories/项目/" class="post-category" target="_blank">
+                                项目
                             </a>
                         
                     </div>
@@ -383,21 +381,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-05-22
+                    2019-05-28
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        534
+                        1.8k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        6 分
                     </div>
                     
                 
@@ -413,81 +411,136 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目链接: <a href="https://www.luogu.org/problemnew/show/P5145" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P5145</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近颓的东西太多了, 终于又来做搜索题.</p>
-<p><del>这题很水</del> 随手交了个暴力随机化就A了.</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这道题正解思路非常妙, 代码比较短. 但我们能不能想一个更简单粗暴的方法呢?</p>
-<p>先交一下能被卡成接近 $ O(n^2) $ 的暴力, 对于每一个点跑一遍DFS, 如果能回到此点就更新答案, 再加一个玄学剪枝, 将这个环上所有点打标记, 这些点就不用再DFS了.</p>
-<p>开O2只有50分</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// luogu-judger-enable-o2</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">int</span> n<span class="token punctuation">,</span> tox<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> toy<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rex<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> tmpx<span class="token punctuation">,</span> ans<span class="token punctuation">,</span> walkpast<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> lw<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> nown<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">memcpy</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">,</span> lw<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> sum<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> to<span class="token operator">=</span> nown<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>walkpast<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        walkpast<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        sum<span class="token operator">+</span><span class="token operator">=</span> toy<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">,</span> to<span class="token operator">=</span> tox<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>to <span class="token operator">!=</span> nown<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token function">memcpy</span><span class="token punctuation">(</span>lw<span class="token punctuation">,</span> walkpast<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    ans<span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> cin <span class="token operator">>></span> tox<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>></span> toy<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> rex<span class="token punctuation">[</span>tox<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">=</span> i<span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>walkpast<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">dfs</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    cout <span class="token operator">&lt;&lt;</span> ans <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>考虑优化, 其实复杂度是可以玄学过去的 <del>先把cin换成scnaf</del>.</p>
-<p>然后我加了判断有环, 但此点不在环上的一个小剪枝.</p>
-<pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">if</span><span class="token punctuation">(</span>to <span class="token operator">!=</span> nown<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        lw<span class="token punctuation">[</span>nown<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-</code></pre>
-<p>通俗一点讲, 让以后到达这个点的鸭子都知道自己的水坑不在环里就不用继续搜了.</p>
-<p>要是还T怎么办, 那改一下搜索顺序说不定就A了, 为了防止从 N 到 1 一条链卡暴力的情况, 我选择随机起点, 再加一个卡时限.</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;time.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">int</span> n<span class="token punctuation">,</span> tox<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> toy<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rex<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> tmpx<span class="token punctuation">,</span> ans<span class="token punctuation">,</span> walkpast<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> lw<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> nown<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">memcpy</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">,</span> lw<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> sum<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> to<span class="token operator">=</span> nown<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>walkpast<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        walkpast<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        sum<span class="token operator">+</span><span class="token operator">=</span> toy<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">,</span> to<span class="token operator">=</span> tox<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>to <span class="token operator">!=</span> nown<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        lw<span class="token punctuation">[</span>nown<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">memcpy</span><span class="token punctuation">(</span>lw<span class="token punctuation">,</span> walkpast<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    ans<span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span> tox <span class="token operator">+</span> i<span class="token punctuation">,</span> toy <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">,</span> rex<span class="token punctuation">[</span>tox<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">=</span> i<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">clock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> CLOCKS_PER_SEC <span class="token operator">*</span> <span class="token number">0.9</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> tmpx<span class="token operator">=</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>walkpast<span class="token punctuation">[</span>tmpx<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">dfs</span><span class="token punctuation">(</span>tmpx<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> ans<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。</p>
+<p>因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。</p>
+<h3 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h3><p>我们写编码转换的代码，肯定要知道这些编码之间的关系。</p>
+<p>ASCII编码我们再熟悉不过了，然而我相信很多人和我一样，分不清什么是Unicode，UTF-8，UTF-16，UTF-32。</p>
+<p>我不想用长篇大论来解释这些东西，就给出它们各自的定义和我们需要知道的东西。如果想更深入的了解，可以自行搜索。</p>
+<blockquote>
+<p>Unicode（统一码、万国码、单一码）是计算机科学领域里的一项业界标准，包括字符集、编码方案等。</p>
+</blockquote>
+<p>至于它为什么诞生，我简单说明一下。因为我们熟知的ASCII码能表示的字符是非常有限的，根本无法承受那么多国家的字符。因此国际组织就又发明了一个新的编码，几乎收尽所有国家的字符，甚至包括特殊字符。</p>
+<p>Unicode与其他编码类似，也是每一个字符都对应一个数字来表示它。但Unicode也仅仅如此，它没有规定这个二进制代码如何存储。</p>
+<p>那么问题来了，在Unicode编码下，假设有一个3字节的二进制代码，计算机怎么知道表示的是一个字符还是两个字符或者是三个字符呢？因此UTF-8、UTF-16这一系列东西就诞生了。</p>
+<p>先介绍UTF-8，这是开发网页首选的编码存储方式。</p>
+<blockquote>
+<p>UTF-8（8-bit Unicode Transformation Format）是一种针对Unicode的可变长度字符编码，又称万国码，由Ken Thompson于1992年创建。</p>
+</blockquote>
+<p>如果略懂编码的话，可变长度是最大特点。但是为了实现可变长度，就需要一些二进制位来表示长度，我认为它的编码规则可以说是非常典型了。</p>
+<table>
+<thead>
+<tr>
+<th>字节数</th>
+<th>二进制编码形式 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1字节</td>
+<td>0xxxxxxx</td>
+</tr>
+<tr>
+<td>2字节</td>
+<td>110xxxxx 10xxxxxx </td>
+</tr>
+<tr>
+<td>3字节</td>
+<td>1110xxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>4字节</td>
+<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx </td>
+</tr>
+<tr>
+<td>5字节</td>
+<td>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx </td>
+</tr>
+<tr>
+<td>6字节</td>
+<td>1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+</tbody>
+</table>
+<p>再简单说一下UTF-16，定义：</p>
+<blockquote>
+<p>UTF-16是Unicode字符编码五层次模型的第三层：字符编码表（Character Encoding Form，也称为 “storage format”）的一种实现方式。</p>
+</blockquote>
+<p>UTF-16虽然也可变长度，但不如UTF-8灵活。它有大尾序和小尾序两种储存形式，这个可以自行查阅。</p>
+<blockquote>
+<p>UTF-32 (或 UCS-4)是一种将Unicode字符编码的协定，对每一个Unicode码位使用恰好32位元。其它的Unicode transformation formats则使用不定长度编码。</p>
+</blockquote>
+<p>网上找到一个工具，<a href="https://www.qqxiuzi.cn/bianma/Unicode-UTF.php" target="_blank" rel="noopener">Unicode和UTF编码转换</a>，有兴趣可以试一下。</p>
+<h4 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h4><p>我们为什么要了解上面那些东西，最终还是为了更容易理解代码。先给出一个将一个字符串从UTF-8转为ASCII的示例代码，从网上抄下来的。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">changeTxtEncoding</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>szU8<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> wcsLen<span class="token operator">=</span> <span class="token function">MultiByteToWideChar</span><span class="token punctuation">(</span>CP_UTF8<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> szU8<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>szU8<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">wchar_t</span> <span class="token operator">*</span>wszString<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">wchar_t</span><span class="token punctuation">[</span>wcsLen <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">MultiByteToWideChar</span><span class="token punctuation">(</span>CP_UTF8<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> szU8<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>szU8<span class="token punctuation">)</span><span class="token punctuation">,</span> wszString<span class="token punctuation">,</span> wcsLen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    wszString<span class="token punctuation">[</span>wcsLen<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token string">'\0'</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ansiLen<span class="token operator">=</span> <span class="token function">WideCharToMultiByte</span><span class="token punctuation">(</span>CP_ACP<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> wszString<span class="token punctuation">,</span> <span class="token function">wcslen</span><span class="token punctuation">(</span>wszString<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> <span class="token operator">*</span>szAnsi<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">char</span><span class="token punctuation">[</span>ansiLen <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">WideCharToMultiByte</span><span class="token punctuation">(</span>CP_ACP<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> wszString<span class="token punctuation">,</span> <span class="token function">wcslen</span><span class="token punctuation">(</span>wszString<span class="token punctuation">)</span><span class="token punctuation">,</span> szAnsi<span class="token punctuation">,</span> ansiLen<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    szAnsi<span class="token punctuation">[</span>ansiLen<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token string">'\0'</span><span class="token punctuation">;</span>
+    <span class="token keyword">delete</span><span class="token punctuation">[</span><span class="token punctuation">]</span> wszString<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> szAnsi<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<p>此函数是将一个字符串，先从UTF-8转为UTF-16，再转为ASCII。</p>
+<h4 id="MultiByteToWideChar"><a href="#MultiByteToWideChar" class="headerlink" title="MultiByteToWideChar"></a>MultiByteToWideChar</h4><p>此函数可将字符串映射到UTF-16(宽字符)字符串。字符串不一定来自多字节字符集。在这里，字符集或代码页我们都可以理解为编码映射表。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> WINAPI <span class="token function">MultiByteToWideChar</span><span class="token punctuation">(</span>
+    _In_ UINT CodePage<span class="token punctuation">,</span>
+    _In_ DWORD dwFlags<span class="token punctuation">,</span>
+    <span class="token function">_In_NLS_string_</span><span class="token punctuation">(</span>cbMultiByte<span class="token punctuation">)</span> LPCCH lpMultiByteStr<span class="token punctuation">,</span>
+    _In_ <span class="token keyword">int</span> cbMultiByte<span class="token punctuation">,</span>
+    <span class="token function">_Out_writes_to_opt_</span><span class="token punctuation">(</span>cchWideChar<span class="token punctuation">,</span><span class="token keyword">return</span><span class="token punctuation">)</span> LPWSTR lpWideCharStr<span class="token punctuation">,</span>
+    _In_ <span class="token keyword">int</span> cchWideChar
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>定义简化如下：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> WINAPI <span class="token function">MultiByteToWideChar</span><span class="token punctuation">(</span>
+    UINT CodePage<span class="token punctuation">,</span> 
+    DWORD dwFlags<span class="token punctuation">,</span> 
+    LPCCH lpMultiByteStr<span class="token punctuation">,</span> 
+    <span class="token keyword">int</span> cbMultiByte<span class="token punctuation">,</span> 
+    LPWSTR lpWideCharStr<span class="token punctuation">,</span> 
+    <span class="token keyword">int</span> cchWideChar
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><em>CodePage</em>为指定执行转换的字符集。如果原字符串为ASCII通常选择CP_ACP，关于CP_ACP与CP_THREAD_ACP的区别可以自己了解。我们这里原字符串为UTF-8，因此选择CP_UTF8。数值表：<br>数值 | 说明<br>–|–<br>CP_ACP | Windows系统默认的ANSI代码页。<br>CP_MACCP | Mac系统代码页。<br>CP_ACP | OEM系统代码页。<br>CP_SYMBOL | 符号字符集。<br>CP_THREAD_ACP | 当前Windows线程的ANSI代码页。<br>CP_UTF7 | 使用UTF-7。<br>CP_UTF8 | 使用UTF-8。</p>
+<p><em>dwFlags</em>设定转换类型。缺省值为MB_PRECOMPOSED，对于UTF-8必须为0或MB_ERR_INVALID_CHARS，此参数作用较小，数值表就不给出了。</p>
+<p><em>lpMultiByteStr</em>指向一个要转换的字符串。</p>
+<p><em>cbMultiByte</em>指定长度，如果lpMultiByteStr指向的字符串为空结束，此参数可设为-1。如果设为-1，函数将处理包括终止空字符在内的所有字符。我们可以用strlen来自行获得长度。</p>
+<p><em>lpWideCharStr</em>为指向接收缓冲器的指针。</p>
+<p><em>cchWideChar</em>为lpWideCharStr指示的缓冲器的大小(以字符为单位)。如果此值为0不使用lpWideCharStr缓冲区。</p>
+<p><em>Return Value</em>即返回值，返回写入到缓冲器的字符数。如果cchWideChar为0则返回缓冲器所需大小(以字符为单位)。</p>
+<p>我们第一次调用此函数时应将cchWideChar设为0，并记录函数返回值，第二次调用时将cchWideChar设为此值。</p>
+<h4 id="WideCharToMultiByte"><a href="#WideCharToMultiByte" class="headerlink" title="WideCharToMultiByte"></a>WideCharToMultiByte</h4><p>与MultiByteToWideChar恰恰相反，但多两个参数，此函数可将UTF-16(宽字符)字符串映射到新字符串。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> WINAPI <span class="token function">WideCharToMultiByte</span><span class="token punctuation">(</span>
+    UINT CodePage<span class="token punctuation">,</span> 
+    DWORD dwFlags<span class="token punctuation">,</span> 
+    LPCWCH lpWideCharStr<span class="token punctuation">,</span> 
+    <span class="token keyword">int</span> cchWideChar<span class="token punctuation">,</span> 
+    LPSTR lpMultiByteStr<span class="token punctuation">,</span> 
+    <span class="token keyword">int</span> cbMultiByte<span class="token punctuation">,</span> 
+    LPCCH lpDefaultChar<span class="token punctuation">,</span> 
+    LPBOOL lpUsedDefaultChar
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><em>CodePage</em>为指定执行转换的字符集。可选数值与MultiByteToWideChar相同，我们这里选择CP_ACP。</p>
+<p><em>dwFlags</em>设定转换类型。设为0即可。</p>
+<p><em>lpWideCharStr</em>指向一个要转换的字符串。</p>
+<p><em>cchWideChar</em>指定长度。对于宽字符，自行使用wcslen来获得。</p>
+<p><em>lpMultiByteStr</em>为指向接收缓冲器的指针。</p>
+<p><em>cbMultiByte</em>为lpMultiByteStr指示的缓冲器的大小(以字符为单位)。</p>
+<p><em>lpDefaultChar</em>为指向另一个接收缓冲器的指针，如果某个字符不能在指定的代码页中表示将使用此缓冲器。我们不需要，设为NULL即可。</p>
+<p><em>lpUsedDefaultChar</em>为一个指向BOOL变量的指针。如果使用了lpDefaultChar将被设为TRUE，否则为FALSE。我们也设为NULL即可。</p>
+<p><em>Return Value</em>即返回值，与MultiByteToWideChar相类比。</p>
+<p>调用两次，步骤也与MultiByteToWideChar相似。</p>
+<h4 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h4><p>网上给的代码没有释放内存的语句，可能会造成内存泄露。</p>
+<p><em>delete</em>语句使用过指针都知道，释放一个指针指向的内存。</p>
+<p><em>delete[]</em>语句释放一个数组指针指向的内存。</p>
+<p>如果想深入了解其中的原理，可以自行查阅。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>这一节简单介绍了编码的知识和使用C++进行编码转换的代码。我们这个项目深入了解编码系统，所介绍的也不过是冰山一角。</p>
+<p>现在大家已经可以自己写代码对网页进行简单分析了。下一节我打算介绍关于WinHTTP的内容和用途。</p>
 
             </div>
             <hr>
@@ -511,7 +564,7 @@
                     </span>
                     <a href="https://xciyang.github.io" class="b-link-green">Ciyang's Blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019-05/22-luogu5145/" class="b-link-green">LuoguP5145 - 漂浮的鸭子</a>
+                    <a href="/2019-05/28-spiking2/" class="b-link-green">项目日记 - 开发图片爬虫 Ⅱ</a>
                 </p>
             </div>
         </div>
@@ -810,24 +863,24 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019-05/26-spiking1/">
+                <a href="/2019-05/28-spiking2/">
                     <div class="card-image">
                         
-                        <img src="/images/spiKing1.jpg" class="responsive-img" alt="项目日记 - 开发图片爬虫 Ⅰ">
+                        <img src="/images/spiKing3.jpg" class="responsive-img" alt="项目日记 - 开发图片爬虫 Ⅱ">
                         
-                        <span class="card-title">项目日记 - 开发图片爬虫 Ⅰ</span>
+                        <span class="card-title">项目日记 - 开发图片爬虫 Ⅱ</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">前言这个项目很久前就开始写了，但一直没有很完善。最近想起来，打算重新完善这个项目。
-本教程仅适用于C++。如果观看效果不佳，可点击右下方折叠目录。内容较为复杂，可以根据自己需要来阅读。
-目的做一个项目，首先需要知道你的目标是什么。这个项目名</div>
+                    <div class="summary">前言我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。
+因此我们要先将获取后的网页转换成我们想要的编码，</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -840,6 +893,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -870,27 +924,28 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019-04/27-luogu2114/">
+                <a href="/2019-05/26-spiking1/">
                     <div class="card-image">
                         
+                        <img src="/images/spiKing1.jpg" class="responsive-img" alt="项目日记 - 开发图片爬虫 Ⅰ">
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="NOI2014 - 起床困难综合症">
-                        
-                        <span class="card-title">NOI2014 - 起床困难综合症</span>
+                        <span class="card-title">项目日记 - 开发图片爬虫 Ⅰ</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">题目链接1: https://www.luogu.org/problemnew/show/P2114题目链接2: https://www.lydsy.com/JudgeOnline/problem.php?id=3668题目链接3: htt</div>
+                    <div class="summary">前言这个项目很久前就开始写了，但一直没有很完善。最近想起来，打算重新完善这个项目。
+本教程仅适用于C++。如果观看效果不佳，可点击右下方折叠目录。内容较为复杂，可以根据自己需要来阅读。
+目的做一个项目，首先需要知道你的目标是什么。这个项目名</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-27
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-26
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
+                            <a href="/categories/项目/" class="post-category" target="_blank">
+                                    项目
                                 </a>
                             
                             
@@ -900,20 +955,20 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/题解/" target="_blank">
-                        <span class="chip bg-color">题解</span>
-                    </a>
-                    
                     <a href="/tags/Cpp/" target="_blank">
                         <span class="chip bg-color">Cpp</span>
                     </a>
                     
-                    <a href="/tags/搜索/" target="_blank">
-                        <span class="chip bg-color">搜索</span>
+                    <a href="/tags/颓废/" target="_blank">
+                        <span class="chip bg-color">颓废</span>
                     </a>
                     
-                    <a href="/tags/模拟/" target="_blank">
-                        <span class="chip bg-color">模拟</span>
+                    <a href="/tags/项目/" target="_blank">
+                        <span class="chip bg-color">项目</span>
+                    </a>
+                    
+                    <a href="/tags/爬虫/" target="_blank">
+                        <span class="chip bg-color">爬虫</span>
                     </a>
                     
                 </div>
@@ -1060,13 +1115,6 @@
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 <footer class="page-footer bg-color">
     <div class="container row center-align">
