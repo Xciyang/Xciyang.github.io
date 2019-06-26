@@ -2,9 +2,9 @@
 <html lang="zh-CN">
 
 
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="项目日记 - 开发图片爬虫 Ⅲ, Ciyang&#39;s Blog">
+    <meta name="keywords" content="项目日记 - 开发图片爬虫 Ⅲ, Ciyang’s Blog">
     <meta name="description" content="封面图片来自网络，如有侵权将删除。
 前言上一节说这节介绍WinHTTP，现在好像鸽子了。经过我再三思考后，还是先深入学习WinInet吧。
 关于根据链接下载网页的各种方式在第一节已经介绍过了。这里再补充一下，还有一种方式是使用外部库libc">
@@ -15,10 +15,10 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>项目日记 - 开发图片爬虫 Ⅲ | Ciyang&#39;s Blog</title>
+    <title>项目日记 - 开发图片爬虫 Ⅲ | Ciyang’s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
-    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/fontawesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
     <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
@@ -42,7 +42,7 @@
                     
                     <img src="/favicon.png" class="logo-img" alt="LOGO">
                     
-                    <span class="logo-span">Ciyang's Blog</span>
+                    <span class="logo-span">Ciyang’s Blog</span>
                 </a>
             </div>
             
@@ -53,7 +53,7 @@
     <li class="hide-on-med-and-down">
         <a href="/" class="waves-effect waves-light">
             
-            <i class="fa fa-home"></i>
+            <i class="fa fa-1x fa-home"></i>
             
             <span>首页</span>
         </a>
@@ -62,7 +62,7 @@
     <li class="hide-on-med-and-down">
         <a href="/tags" class="waves-effect waves-light">
             
-            <i class="fa fa-tags"></i>
+            <i class="fa fa-1x fa-tags"></i>
             
             <span>标签</span>
         </a>
@@ -71,7 +71,7 @@
     <li class="hide-on-med-and-down">
         <a href="/categories" class="waves-effect waves-light">
             
-            <i class="fa fa-bookmark"></i>
+            <i class="fa fa-1x fa-bookmark"></i>
             
             <span>分类</span>
         </a>
@@ -80,7 +80,7 @@
     <li class="hide-on-med-and-down">
         <a href="/archives" class="waves-effect waves-light">
             
-            <i class="fa fa-archive"></i>
+            <i class="fa fa-1x fa-archive"></i>
             
             <span>归档</span>
         </a>
@@ -89,7 +89,7 @@
     <li class="hide-on-med-and-down">
         <a href="/about" class="waves-effect waves-light">
             
-            <i class="fa fa-user-circle-o"></i>
+            <i class="fa fa-1x fa-user-circle"></i>
             
             <span>关于</span>
         </a>
@@ -98,7 +98,7 @@
     <li class="hide-on-med-and-down">
         <a href="/friends" class="waves-effect waves-light">
             
-            <i class="fa fa-address-book"></i>
+            <i class="fa fa-1x fa-address-book"></i>
             
             <span>友情链接</span>
         </a>
@@ -107,7 +107,7 @@
     <li class="hide-on-med-and-down">
         <a href="/comments" class="waves-effect waves-light">
             
-            <i class="fa fa-comments"></i>
+            <i class="fa fa-1x fa-comments"></i>
             
             <span>评论</span>
         </a>
@@ -126,7 +126,7 @@
         
         <img src="/favicon.png" class="logo-img circle responsive-img">
         
-        <div class="logo-name">Ciyang's Blog</div>
+        <div class="logo-name">Ciyang’s Blog</div>
         <div class="logo-desc">
             
             一个半退役OI的文化课选手...
@@ -141,7 +141,7 @@
         <li>
             <a href="/" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-home"></i>
+                <i class="fa fa-fw fa-1x fa-home"></i>
                 
                 首页
             </a>
@@ -150,7 +150,7 @@
         <li>
             <a href="/tags" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-tags"></i>
+                <i class="fa fa-fw fa-1x fa-tags"></i>
                 
                 标签
             </a>
@@ -159,7 +159,7 @@
         <li>
             <a href="/categories" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-bookmark"></i>
+                <i class="fa fa-fw fa-1x fa-bookmark"></i>
                 
                 分类
             </a>
@@ -168,7 +168,7 @@
         <li>
             <a href="/archives" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-archive"></i>
+                <i class="fa fa-fw fa-1x fa-archive"></i>
                 
                 归档
             </a>
@@ -177,7 +177,7 @@
         <li>
             <a href="/about" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-user-circle-o"></i>
+                <i class="fa fa-fw fa-1x fa-user-circle"></i>
                 
                 关于
             </a>
@@ -186,7 +186,7 @@
         <li>
             <a href="/friends" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-address-book"></i>
+                <i class="fa fa-fw fa-1x fa-address-book"></i>
                 
                 友情链接
             </a>
@@ -195,7 +195,7 @@
         <li>
             <a href="/comments" class="waves-effect waves-light">
                 
-                <i class="fa fa-fw fa-comments"></i>
+                <i class="fa fa-fw fa-1x fa-comments"></i>
                 
                 Comments
             </a>
@@ -216,7 +216,7 @@
 <script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
     (function() {
-        let pwd = '6345c5edad3e97753c2bedcdc1241b0002ead54adfd7f5666d131add3f7d68aa';
+        let pwd = '';
         if (pwd && pwd.length > 0) {
             if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
                 alert('密码错误，将返回主页！');
@@ -389,14 +389,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.6k
+                        2.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        6 分
+                        8 分
                     </div>
                     
                 
@@ -416,6 +416,7 @@
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>上一节说这节介绍WinHTTP，现在好像鸽子了。经过我再三思考后，还是先深入学习WinInet吧。</p>
 <p>关于根据链接下载网页的各种方式在第一节已经介绍过了。这里再补充一下，还有一种方式是使用外部库libcurl，使用方便代码简洁，但我不把它当做我们主要学习的对象，因为它太过于简单。</p>
 <p>这节可以说是个扩展篇，并不是这个项目优先考虑的内容。先介绍它主要是因为这部分东西更有意思，大家可能会更感兴趣。</p>
+<p>如果阅读效果不佳，请点击右下角蓝色按钮折叠目录。</p>
 <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>这个预处理是我自己勉强定义的，所以大家可能不理解。</p>
 <p>通俗的说，URL预处理意为对一个URL链接本体进行处理，请大家不要误以为是对HTML网页内容进行分析。</p>
 <p>再说清楚一些，获取链接所指向的内容前，程序并不知道这个内容是什么类型的。也就是说，它可能是一个HTML也可能是图片，又或者是一个CSS文件。所以我们要对URL进行一定的预处理，然后判断文件后缀之类的。</p>
@@ -431,59 +432,57 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">编号</th>
-<th style="text-align:center">名称</th>
-<th style="text-align:left">介绍</th>
+<th align="center">编号</th>
+<th align="center">名称</th>
+<th align="left">介绍</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">协议(protocol)</td>
-<td style="text-align:left">为进行网络中的数据交换而建立的规则、标准或约定。有时也叫scheme，常用的协议有http、https、ftp、file、mailto。</td>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">协议(protocol)</td>
+<td align="left">为进行网络中的数据交换而建立的规则、标准或约定。有时也叫scheme，常用的协议有http、https、ftp、file、mailto。</td>
 </tr>
 <tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">用户名(user)</td>
-<td style="text-align:left">一般用不到，为访问资源使用的用户名。</td>
+<td align="center">2</td>
+<td align="center">用户名(user)</td>
+<td align="left">一般用不到，为访问资源使用的用户名。</td>
 </tr>
 <tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">密码(password)</td>
-<td style="text-align:left">一般也用不到，为访问资源使用的密码。</td>
+<td align="center">3</td>
+<td align="center">密码(password)</td>
+<td align="left">一般也用不到，为访问资源使用的密码。</td>
 </tr>
 <tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">域名(domain)</td>
-<td style="text-align:left">域名（英语：Domain Name），简称域名、网域，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。有时也叫host，可以使用IP地址作为域名使用。</td>
+<td align="center">4</td>
+<td align="center">域名(domain)</td>
+<td align="left">域名（英语：Domain Name），简称域名、网域，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。有时也叫host，可以使用IP地址作为域名使用。</td>
 </tr>
 <tr>
-<td style="text-align:center">5</td>
-<td style="text-align:center">端口(port)</td>
-<td style="text-align:left">在网络技术中，端口（Port）有好几种意思。我们这里所指的端口不是指物理意义上的端口，而是特指TCP/IP协议中的端口，是逻辑意义上的端口。端口不是一个必须部分，如果省略将采用协议默认使用的端口。</td>
+<td align="center">5</td>
+<td align="center">端口(port)</td>
+<td align="left">在网络技术中，端口（Port）有好几种意思。我们这里所指的端口不是指物理意义上的端口，而是特指TCP/IP协议中的端口，是逻辑意义上的端口。端口不是一个必须部分，如果省略将采用协议默认使用的端口。</td>
 </tr>
 <tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">路径(path)</td>
-<td style="text-align:left">由零或多个“/”符号隔开的字符串，一般用来表示主机上的一个目录或文件地址。</td>
+<td align="center">6</td>
+<td align="center">路径(path)</td>
+<td align="left">由零或多个“/”符号隔开的字符串，一般用来表示主机上的一个目录或文件地址。</td>
 </tr>
 <tr>
-<td style="text-align:center">7</td>
-<td style="text-align:center">参数(params)</td>
-<td style="text-align:left">这是用于指定特殊参数的可选项。</td>
+<td align="center">7</td>
+<td align="center">参数(params)</td>
+<td align="left">这是用于指定特殊参数的可选项。</td>
 </tr>
 <tr>
-<td style="text-align:center">8</td>
-<td style="text-align:center">查询(query)</td>
-<td style="text-align:left">可选项。用于给动态网页传递参数，可有多个参数，用“&amp;”符号隔开，每个参数的名和值用“=”符号隔开。</td>
+<td align="center">8</td>
+<td align="center">查询(query)</td>
+<td align="left">可选项。用于给动态网页传递参数，可有多个参数，用“&amp;”符号隔开，每个参数的名和值用“=”符号隔开。</td>
 </tr>
 <tr>
-<td style="text-align:center">9</td>
-<td style="text-align:center">片段(frag)</td>
-<td style="text-align:left">主要用于对资源进行分类。例如一个网页中有多个名词解释，可使用fragment直接定位到某一名词解释。访问一个帮助文档时，文档的各个章节就可以表述为片段。</td>
+<td align="center">9</td>
+<td align="center">片段(frag)</td>
+<td align="left">主要用于对资源进行分类。例如一个网页中有多个名词解释，可使用fragment直接定位到某一名词解释。访问一个帮助文档时，文档的各个章节就可以表述为片段。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>所以分解URL有什么用呢？我们再简单了解一下HTTP访问的步骤，HTTP访问时会进行多步操作，其中有两步我想重点介绍一下，分别是：发送请求头(Request Headers)和接受响应头(Response Headers)。</p>
 <p>其实大家现在就可以直观的了解它，介绍一种方法。</p>
 <p>随便找一个可用网页（比如这篇博客） -&gt; 点击键盘上的F12，弹出开发人员调试工具 -&gt; 进入’Network’选项页 -&gt; 点击录制按钮（黑色的圆点），按钮变红色 -&gt; 刷新页面。</p>
@@ -492,8 +491,8 @@
 <p><img src="/images/spiKing6.png" alt="开发人员调试工具截图"></p>
 <p>这里已经很直观了，我们需要的就是Response Headers中的’Content-Type:text/html’，这个可以用来判断内容的类型。大家可以再打开一个图片URL进行观察，比如上面那个截图，发现其中’Content-Type:image/png’。我们根据此信息来判断内容的类型。</p>
 <p>其他信息大家可以自行了解，对项目作用不大，我就不作介绍了。</p>
-<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>这部分理论较直观，但代码部分比较复杂。</p>
-<h4 id="URL分解"><a href="#URL分解" class="headerlink" title="URL分解"></a>URL分解</h4><p>使用C++ String的一些函数，比较基础。代码大部分网上抄的，做了一些修改。</p>
+<p>另外，本节含有大量string类的内容，但只要不是初学者都很熟悉了，因此不作理论上的介绍。</p>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>这部分理论易理解，但代码部分比较长。先给出本节所有的代码:</p>
 <pre class=" language-cpp"><code class="language-cpp">string <span class="token function">_trim</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     size_t start<span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">find_first_not_of</span><span class="token punctuation">(</span><span class="token string">" \n\r\t"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     size_t until<span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">find_last_not_of</span><span class="token punctuation">(</span><span class="token string">" \n\r\t"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -501,35 +500,84 @@
     string<span class="token operator">::</span>const_iterator x<span class="token operator">=</span> until <span class="token operator">==</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> str<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> until <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">parse_url</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>raw_url<span class="token punctuation">,</span> INTERNET_PORT <span class="token operator">&amp;</span>nPort<span class="token punctuation">,</span> string <span class="token operator">&amp;</span>domain<span class="token punctuation">,</span> string <span class="token operator">&amp;</span>path<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    string x<span class="token punctuation">,</span> protocol<span class="token punctuation">,</span> port<span class="token punctuation">,</span> query<span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">parse_url</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>raw_url<span class="token punctuation">,</span> string <span class="token operator">&amp;</span>port<span class="token punctuation">,</span> string <span class="token operator">&amp;</span>domain<span class="token punctuation">,</span> string <span class="token operator">&amp;</span>path<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    string x<span class="token operator">=</span> <span class="token function">_trim</span><span class="token punctuation">(</span>raw_url<span class="token punctuation">)</span><span class="token punctuation">,</span> protocol<span class="token punctuation">,</span> query<span class="token punctuation">;</span>
     <span class="token keyword">int</span> offset<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     size_t pos1<span class="token punctuation">,</span> pos2<span class="token punctuation">,</span> pos3<span class="token punctuation">,</span> pos4<span class="token punctuation">;</span>
-    x<span class="token operator">=</span> <span class="token function">_trim</span><span class="token punctuation">(</span>raw_url<span class="token punctuation">)</span><span class="token punctuation">;</span>
     offset<span class="token operator">=</span> offset <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> x<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token string">"https://"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token number">8</span> <span class="token operator">:</span> offset<span class="token punctuation">;</span>
     offset<span class="token operator">=</span> offset <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> x<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token string">"http://"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token number">7</span> <span class="token operator">:</span> offset<span class="token punctuation">;</span>
     pos1<span class="token operator">=</span> x<span class="token punctuation">.</span><span class="token function">find_first_of</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> offset <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     path<span class="token operator">=</span> pos1 <span class="token operator">==</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> <span class="token string">""</span> <span class="token operator">:</span> x<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>pos1<span class="token punctuation">)</span><span class="token punctuation">;</span>
     domain<span class="token operator">=</span> <span class="token function">string</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> offset<span class="token punctuation">,</span> pos1 <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> x<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> pos1 <span class="token operator">:</span> x<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     path<span class="token operator">=</span> <span class="token punctuation">(</span>pos2<span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"#"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> path<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> pos2<span class="token punctuation">)</span> <span class="token operator">:</span> path<span class="token punctuation">;</span>
-    port<span class="token operator">=</span> <span class="token punctuation">(</span>pos3<span class="token operator">=</span> domain<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">":"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> domain<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>pos3 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    port<span class="token operator">=</span> <span class="token punctuation">(</span>pos3<span class="token operator">=</span> domain<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">":"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> domain<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>pos3 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token string">"0"</span><span class="token punctuation">;</span>
     domain<span class="token operator">=</span> domain<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> pos3 <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> pos3 <span class="token operator">:</span> domain<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     protocol<span class="token operator">=</span> offset <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">?</span> x<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> offset <span class="token operator">-</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
     query<span class="token operator">=</span> <span class="token punctuation">(</span>pos4<span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"?"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> path<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>pos4 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
     path<span class="token operator">=</span> pos4 <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> path<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> pos4<span class="token punctuation">)</span> <span class="token operator">:</span> path<span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>port<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">int</span> sRes<span class="token operator">=</span> <span class="token function">sscanf</span><span class="token punctuation">(</span>port<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"%hd"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>nPort<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// cout &lt;&lt; "protocol: " &lt;&lt; protocol &lt;&lt; endl;</span>
-    <span class="token comment" spellcheck="true">// out &lt;&lt; "domain: " &lt;&lt; domain &lt;&lt; endl;</span>
-    <span class="token comment" spellcheck="true">// cout &lt;&lt; "path: " &lt;&lt; path &lt;&lt; endl;</span>
-    <span class="token comment" spellcheck="true">// cout &lt;&lt; "query: " &lt;&lt; query &lt;&lt; endl;</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<p><em>_trim</em>函数是去除字符串的空</p>
+<span class="token keyword">void</span> <span class="token function">judgeUrlType</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>Url<span class="token punctuation">,</span> string <span class="token operator">&amp;</span>fileSuffix<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> byte Temp<span class="token punctuation">[</span>MAXBLOCKSIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    HINTERNET hSession<span class="token operator">=</span> <span class="token function">InternetOpenA</span><span class="token punctuation">(</span><span class="token string">"DownloadKit"</span><span class="token punctuation">,</span> INTERNET_OPEN_TYPE_PRECONFIG<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> hConnect<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> hRequest<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>hSession <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        INTERNET_PORT nPort<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        DWORD dwReadSize<span class="token operator">=</span> MAXBLOCKSIZE<span class="token punctuation">;</span>
+        string sPort<span class="token punctuation">,</span> sServer<span class="token punctuation">,</span> sObject<span class="token punctuation">;</span>
+        <span class="token function">parse_url</span><span class="token punctuation">(</span>Url<span class="token punctuation">,</span> sPort<span class="token punctuation">,</span> sServer<span class="token punctuation">,</span> sObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>size_t i<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> sPort<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> nPort<span class="token operator">=</span> nPort <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> sPort<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'0'</span><span class="token punctuation">;</span>
+        hConnect<span class="token operator">=</span> <span class="token function">InternetConnectA</span><span class="token punctuation">(</span>hSession<span class="token punctuation">,</span> sServer<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nPort<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> INTERNET_SERVICE_HTTP<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>hConnect <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">goto</span> fail<span class="token punctuation">;</span>
+        hRequest<span class="token operator">=</span> <span class="token function">HttpOpenRequestA</span><span class="token punctuation">(</span>
+            hConnect<span class="token punctuation">,</span> <span class="token string">"GET"</span><span class="token punctuation">,</span> sObject<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> INTERNET_FLAG_KEEP_CONNECTION <span class="token operator">|</span> INTERNET_FLAG_NO_AUTH <span class="token operator">|</span> INTERNET_FLAG_NO_COOKIES <span class="token operator">|</span> INTERNET_FLAG_NO_UI <span class="token operator">|</span> INTERNET_FLAG_IGNORE_CERT_CN_INVALID <span class="token operator">|</span> INTERNET_FLAG_RELOAD<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>hRequest <span class="token operator">==</span> <span class="token constant">NULL</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">HttpSendRequest</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">goto</span> fail<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">HttpQueryInfoA</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">,</span> HTTP_QUERY_RAW_HEADERS<span class="token punctuation">,</span> Temp<span class="token punctuation">,</span> <span class="token operator">&amp;</span>dwReadSize<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">goto</span> fail<span class="token punctuation">;</span>
+        Temp<span class="token punctuation">[</span>dwReadSize<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token string">'\0'</span><span class="token punctuation">;</span>
 
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">long</span> i<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> dwReadSize<span class="token punctuation">;</span> i<span class="token operator">=</span> i <span class="token operator">+</span> <span class="token function">strlen</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">"Content-Type:"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span> Temp <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                fileSuffix<span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+                fileSuffix<span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token string">"text/html"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"html"</span> <span class="token operator">:</span> fileSuffix<span class="token punctuation">;</span>
+                fileSuffix<span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token string">"image/png"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"png"</span> <span class="token operator">:</span> fileSuffix<span class="token punctuation">;</span>
+                fileSuffix<span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token string">"image/jpeg"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"jpg"</span> <span class="token operator">:</span> fileSuffix<span class="token punctuation">;</span>
+                fileSuffix<span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token string">"image/gif"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"gif"</span> <span class="token operator">:</span> fileSuffix<span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">// Add what you want</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>hConnect<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hConnect<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>hSession<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hSession<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+fail<span class="token operator">:</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>hConnect<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hConnect<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>hSession<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hSession<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Internet Error\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p><em>_trim</em>函数作用为去除字符串的空白换行符。</p>
+<p><em>parse_url</em>函数作用为分解URL，分解为端口、域名和路径。</p>
+<p><em>judgeUrlType</em>函数作用为获得HTTP响应头并分析URL内容类型。</p>
+<h4 id="string"><a href="#string" class="headerlink" title="string"></a>string</h4><p>本节使用C++STL中的string类比较多，简单的大家都使用过，所以介绍一下几个比较陌生的函数。</p>
+<h5 id="find-first-not-of"><a href="#find-first-not-of" class="headerlink" title="find_first_not_of"></a>find_first_not_of</h5><pre class=" language-cpp"><code class="language-cpp">size_t <span class="token function">find_first_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> str<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
+size_t <span class="token function">find_first_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
+size_t <span class="token function">find_first_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s<span class="token punctuation">,</span> size_t pos<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
+size_t <span class="token function">find_first_not_of</span> <span class="token punctuation">(</span><span class="token keyword">char</span> c<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></code></pre>
+<p><em>Return Value</em>即返回值，返回第一个不匹配字符的位置，如果没有不匹配字符则返回string::npos。若使用字符串作参数，则此处不匹配字符指参数中不包含的字符。</p>
+<h5 id="string-npos"><a href="#string-npos" class="headerlink" title="string::npos"></a>string::npos</h5><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">static</span> <span class="token keyword">const</span> size_t npos <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span></code></pre>
+<h5 id="find-last-not-of"><a href="#find-last-not-of" class="headerlink" title="find_last_not_of"></a>find_last_not_of</h5><pre class=" language-cpp"><code class="language-cpp">size_t <span class="token function">find_last_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> str<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> npos<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
+size_t <span class="token function">find_last_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> npos<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
+size_t <span class="token function">find_last_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s<span class="token punctuation">,</span> size_t pos<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
+size_t <span class="token function">find_last_not_of</span> <span class="token punctuation">(</span><span class="token keyword">char</span> c<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> npos<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></code></pre>
+<p><em>Return Value</em>即返回值，与find_first_not_of类似，返回最后一个不匹配字符的位置。</p>
+<h5 id="substr"><a href="#substr" class="headerlink" title="substr"></a>substr</h5><pre class=" language-cpp"><code class="language-cpp">string <span class="token function">substr</span> <span class="token punctuation">(</span>size_t pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> size_t len <span class="token operator">=</span> npos<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></code></pre>
+<p><em>Return Value</em>即返回值，返回从pos开始长度为len的子串。</p>
+<h4 id="InternetConnectA"><a href="#InternetConnectA" class="headerlink" title="InternetConnectA"></a>InternetConnectA</h4>
             </div>
-            <hr>
+            <hr/>
 
             
 
@@ -548,7 +596,7 @@
                     <span class="reprint-tip">
                         <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
                     </span>
-                    <a href="https://xciyang.github.io" class="b-link-green">Ciyang's Blog</a>
+                    <a href="https://xciyang.github.io" class="b-link-green">Ciyang’s Blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
                     <a href="/2019-06/03-spiking3/" class="b-link-green">项目日记 - 开发图片爬虫 Ⅲ</a>
                 </p>
@@ -836,9 +884,9 @@
         lang: 'zh-cn',
         placeholder: '水一下评论?'
     });
-</script>
-<script>
-    $(document.getElementsByClassName("vinfo")[0]).after("<br>");
+    window.onload = function () {
+        $(document.getElementsByClassName("vinfo")[0]).after("<br><hr>");
+    }
 </script>
     
 
@@ -847,7 +895,7 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
             </div>
@@ -974,7 +1022,7 @@
 
         var selection = window.getSelection();
         // if the selection is short let's not annoy our users.
-        if (('' + selection).length < Number.parseInt('120')) {
+        if (('' + selection).length < Number.parseInt('100')) {
             return;
         }
 
@@ -994,10 +1042,10 @@
 
         var url = document.location.href;
         newdiv.innerHTML += '<br />'
-            + '来源: Ciyang's Blog<br />'
+            + '来源: Ciyang’s Blog<br />'
             + '作者: Ciyang<br />'
             + '链接: <a href="' + url + '">' + url + '</a><br />'
-            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+            + '本文章著作权归作者Ciyang所有，任何形式的转载都请注明出处。';
 
         selection.selectAllChildren(newdiv);
         window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
@@ -1124,33 +1172,34 @@
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">20.7k</span>
+            <span class="white-color">21.2k</span>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
-<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-    <i class="fa fa-github"></i>
+<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" title="访问我的GitHub"
+    data-position="top" data-delay="50">
+    <i class="fab fa-github"></i>
 </a>
 
 
 
-<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件: 896681584@qq.com" data-position="top" data-delay="50">
+<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank"
+    title="邮件: 896681584@qq.com" data-position="top" data-delay="50">
     <i class="fa fa-envelope-open"></i>
 </a>
 
 
 
-<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped" data-tooltip="QQ: 896681584" data-position="top" data-delay="50">
-    <i class="fa fa-qq"></i>
+<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped"
+    title="QQ: 896681584" data-position="top" data-delay="50">
+    <i class="fab fa-qq"></i>
 </a>
 
 
 
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" data-tooltip="知乎" data-position="top" data-delay="50">
-    <i class="fa fa-beer"></i>
+<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" title="知乎" data-position="top" data-delay="50">
+    <i class="fab fa-zhihu"></i>
 </a>
-
-
 </div>
     </div>
 </footer>
@@ -1162,7 +1211,8 @@
     <div class="modal-content">
         <div class="search-header">
             <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
         </div>
         <div id="searchResult"></div>
     </div>
