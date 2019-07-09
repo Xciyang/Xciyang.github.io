@@ -1,25 +1,31 @@
 /*全局基础样式*/
+
+
 /*小屏幕下(手机类)的样式*/
+
 @media only screen and (max-width: 601px) {
     .container {
         width: 95%;
     }
 }
 
+
 /*中等屏幕下(平板类)的样式*/
+
 @media only screen and (min-width: 600px) and (max-width: 992px) {
     .container {
         width: 90%;
     }
 }
 
+
 /*大屏幕下(桌面类)的样式*/
+
 @media only screen and (min-width: 993px) {
     .container {
         width: 85%;
         max-width: 1125px;
     }
-
     .post-container {
         width: 90%;
         margin: 0 auto;
@@ -341,7 +347,9 @@ header .go-back i {
     line-height: 56px;
 }
 
+
 /* 背景图效果. */
+
 .bg-cover {
     position: relative;
     display: flex;
@@ -412,50 +420,37 @@ header .go-back i {
         background: -moz-linear-gradient(135deg, rgba(0, 89, 255, 0.75) 0%, rgba(0, 89, 255, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(0, 89, 255, 0.75) 0%, rgba(0, 89, 255, 0.65) 100%);
     }
-
     15% {
-        background: rgba(68, 0, 255, 0.75);
-        background: linear-gradient(45deg, rgba(68, 0, 255, 0.75) 0%, rgba(68, 0, 255, 0.65) 100%);
-        background: -moz-linear-gradient(135deg, rgba(68, 0, 255, 0.75) 0%, rgba(68, 0, 255, 0.65) 100%);
-        background: -webkit-linear-gradient(135deg, rgba(68, 0, 255, 0.75) 0%, rgba(68, 0, 255, 0.65) 100%);
-    }
-
-    30% {
         background: rgba(214, 51, 255, 0.75);
         background: linear-gradient(45deg, rgba(214, 51, 255, 0.75) 0%, rgba(214, 51, 255, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(214, 51, 255, 0.75) 0%, rgba(214, 51, 255, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(214, 51, 255, 0.75) 0%, rgba(214, 51, 255, 0.65) 100%);
     }
-
-    45% {
+    30% {
         background: rgba(255, 34, 63, 0.75);
         background: linear-gradient(45deg, rgba(255, 34, 63, 0.75) 0%, rgba(255, 34, 63, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(255, 34, 63, 0.75) 0%, rgba(255, 34, 63, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(255, 34, 63, 0.75) 0%, rgba(255, 34, 63, 0.65) 100%);
     }
-
-    60% {
+    45% {
         background: rgba(250, 83, 17, 0.75);
         background: linear-gradient(45deg, rgba(250, 83, 17, 0.75) 0%, rgba(250, 83, 17, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(250, 83, 17, 0.75) 0%, rgba(255, 112, 66, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(250, 83, 17, 0.75) 0%, rgba(250, 83, 17, 0.65) 100%);
     }
-
-    75% {
-        background: rgba(144, 252, 101, 0.75);
+    60% {
+        background: rgba(255, 238, 0, 0.75);
         background: linear-gradient(45deg, rgba(144, 252, 101, 0.75) 0%, rgba(144, 252, 101, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(144, 252, 101, 0.75) 0%, rgba(144, 252, 101, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(2144, 252, 101, 0.75) 0%, rgba(144, 252, 101, 0.65) 100%);
     }
-
-    90% {
-        background: rgba(90, 255, 219, 0.75);
+    75% {
+        background: rgba(89, 255, 111, 0.75);
         background: linear-gradient(45deg, rgba(90, 255, 219, 0.75) 0%, rgba(90, 255, 219, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(90, 255, 219, 0.75) 0%, rgba(90, 255, 219, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(290, 255, 219, 0.75) 0%, rgba(90, 255, 219, 0.65) 100%);
     }
-
-    100% {
+    90% {
         background: rgba(57, 172, 224, 0.75);
         background: linear-gradient(45deg, rgba(57, 172, 224, 0.75) 0%, rgba(57, 172, 224, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(57, 172, 224, 0.75) 0%, rgba(57, 172, 224, 0.65) 100%);
@@ -470,50 +465,37 @@ header .go-back i {
         background: -moz-linear-gradient(135deg, rgba(0, 89, 255, 0.75) 0%, rgba(0, 89, 255, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(0, 89, 255, 0.75) 0%, rgba(0, 89, 255, 0.65) 100%);
     }
-
     15% {
-        background: rgba(68, 0, 255, 0.75);
-        background: linear-gradient(45deg, rgba(68, 0, 255, 0.75) 0%, rgba(68, 0, 255, 0.65) 100%);
-        background: -moz-linear-gradient(135deg, rgba(68, 0, 255, 0.75) 0%, rgba(68, 0, 255, 0.65) 100%);
-        background: -webkit-linear-gradient(135deg, rgba(68, 0, 255, 0.75) 0%, rgba(68, 0, 255, 0.65) 100%);
-    }
-
-    30% {
         background: rgba(214, 51, 255, 0.75);
         background: linear-gradient(45deg, rgba(214, 51, 255, 0.75) 0%, rgba(214, 51, 255, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(214, 51, 255, 0.75) 0%, rgba(214, 51, 255, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(214, 51, 255, 0.75) 0%, rgba(214, 51, 255, 0.65) 100%);
     }
-
-    45% {
+    30% {
         background: rgba(255, 34, 63, 0.75);
         background: linear-gradient(45deg, rgba(255, 34, 63, 0.75) 0%, rgba(255, 34, 63, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(255, 34, 63, 0.75) 0%, rgba(255, 34, 63, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(255, 34, 63, 0.75) 0%, rgba(255, 34, 63, 0.65) 100%);
     }
-
-    60% {
+    45% {
         background: rgba(250, 83, 17, 0.75);
         background: linear-gradient(45deg, rgba(250, 83, 17, 0.75) 0%, rgba(250, 83, 17, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(250, 83, 17, 0.75) 0%, rgba(255, 112, 66, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(250, 83, 17, 0.75) 0%, rgba(250, 83, 17, 0.65) 100%);
     }
-
-    75% {
-        background: rgba(144, 252, 101, 0.75);
+    60% {
+        background: rgba(255, 238, 0, 0.75);
         background: linear-gradient(45deg, rgba(144, 252, 101, 0.75) 0%, rgba(144, 252, 101, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(144, 252, 101, 0.75) 0%, rgba(144, 252, 101, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(2144, 252, 101, 0.75) 0%, rgba(144, 252, 101, 0.65) 100%);
     }
-
-    90% {
-        background: rgba(90, 255, 219, 0.75);
+    75% {
+        background: rgba(89, 255, 111, 0.75);
         background: linear-gradient(45deg, rgba(90, 255, 219, 0.75) 0%, rgba(90, 255, 219, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(90, 255, 219, 0.75) 0%, rgba(90, 255, 219, 0.65) 100%);
         background: -webkit-linear-gradient(135deg, rgba(290, 255, 219, 0.75) 0%, rgba(90, 255, 219, 0.65) 100%);
     }
-
-    100% {
+    90% {
         background: rgba(57, 172, 224, 0.75);
         background: linear-gradient(45deg, rgba(57, 172, 224, 0.75) 0%, rgba(57, 172, 224, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(57, 172, 224, 0.75) 0%, rgba(57, 172, 224, 0.65) 100%);
@@ -589,7 +571,9 @@ header .go-back i {
     }
 }
 
+
 /*中等屏幕下(平板类)的样式*/
+
 @media only screen and (min-width: 600px) and (max-width: 992px) {
     .index-card .card .card-content {
         padding: 20px 20px;
@@ -705,7 +689,9 @@ header .go-back i {
     margin-top: -10px;
 }
 
+
 /*文章列表卡片各样式*/
+
 #articles {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -842,12 +828,16 @@ article .article-tags .chip {
     color: #999 !important;
 }
 
+
 /*文章详情样式*/
+
 #artDetail {
     margin-top: -60px;
 }
 
+
 /* 修改小屏幕下文章详情table样式. */
+
 @media only screen and (max-width: 550px) {
     #articleContent table {
         table-layout: fixed;
@@ -862,9 +852,7 @@ article .article-tags .chip {
 }
 
 #artDetail .card {
-    box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15),
-        0 5px 15px rgba(0, 0, 0, .07),
-        0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
 }
 
 #artDetail .tag-cate {
@@ -954,7 +942,6 @@ article .article-tags .chip {
     #artDetail .article-card-content {
         padding: 0 30px 20px 32px;
     }
-
     #artDetail .article-info {
         padding: 15px 20px 0 28px;
         margin-bottom: -5px;
@@ -1148,7 +1135,9 @@ thead {
     color: #fff;
 }
 
+
 /* archive page. */
+
 #cd-timeline .year {
     position: relative;
     width: 80px;
@@ -1214,17 +1203,14 @@ thead {
         margin-top: 2rem;
         margin-bottom: 2rem;
     }
-
     #cd-timeline::before {
         left: 50%;
         margin-left: -2px;
     }
-
     #cd-timeline .year {
         margin: 10px 0 50px -40px;
         padding: 22px 11px;
     }
-
     #cd-timeline .month {
         margin: 10px 0 30px -30px;
         padding: 14px 16px;
@@ -1254,11 +1240,9 @@ thead {
     .cd-timeline-block {
         margin: 1em 0;
     }
-
     .cd-timeline-block:first-child {
         margin-top: 0;
     }
-
     .cd-timeline-block:last-child {
         margin-bottom: 0;
     }
@@ -1284,11 +1268,9 @@ thead {
         -webkit-transform: translateZ(0);
         -webkit-backface-visibility: hidden;
     }
-
     .cssanimations .cd-timeline-img.is-hidden {
         visibility: hidden;
     }
-
     .cssanimations .cd-timeline-img.bounce-in {
         visibility: visible;
         -webkit-animation: cd-bounce-1 0.6s;
@@ -1333,11 +1315,9 @@ thead {
     .cd-timeline-content h2 {
         font-size: 1.25rem;
     }
-
     .cd-timeline-content p {
         font-size: 1rem;
     }
-
     .cd-timeline-content .cd-read-more,
     .cd-timeline-content .cd-date {
         font-size: 0.875rem;
@@ -1349,37 +1329,29 @@ thead {
         margin-left: 0;
         padding: 0;
         width: 45%;
-
     }
-
     .cd-timeline-content::before {
         top: 24px;
         left: 100%;
     }
-
     .cd-timeline-content .cd-read-more {
         float: left;
     }
-
     .cd-timeline-block:nth-child(even) .cd-timeline-content {
         float: right;
     }
-
     .cd-timeline-block:nth-child(even) .cd-timeline-content::before {
         top: 24px;
         left: auto;
         right: 100%;
         border-color: #ffa726;
     }
-
     .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-read-more {
         float: right;
     }
-
     .cssanimations .cd-timeline-content.is-hidden {
         visibility: hidden;
     }
-
     .cssanimations .cd-timeline-content.bounce-in {
         visibility: visible;
         -webkit-animation: cd-bounce-2 0.6s;
@@ -1387,6 +1359,7 @@ thead {
         animation: cd-bounce-2 0.6s;
     }
 }
+
 
 /* about page styles. */
 
@@ -1642,7 +1615,9 @@ thead {
     cursor: pointer;
 }
 
+
 /*尾部样式*/
+
 footer {
     padding-bottom: 1px;
 }
@@ -1660,7 +1635,9 @@ footer .copy-right {
     color: #dbdbdb;
 }
 
+
 /*搜索层样式*/
+
 #searchIcon {
     font-size: 1.2rem;
 }
@@ -1705,7 +1682,9 @@ footer .copy-right {
     white-space: pre-wrap;
 }
 
+
 /*回到顶部按钮样式*/
+
 .top-scroll {
     display: none;
     position: fixed;
@@ -1749,7 +1728,6 @@ footer .copy-right {
         float: left;
         width: 100%;
     }
-
     .custom-card {
         padding: 0 2px !important;
     }
