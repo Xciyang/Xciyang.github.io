@@ -1,685 +1,219 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="zh-CN">
 
 
+
+
+
 <head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="关于, Ciyang’s Blog">
-    <meta name="description" content="关于 | Ciyang’s Blog">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>关于 | Ciyang’s Blog</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="一个半退役OI的文化课选手...">
+    <meta name="author" content="Ciyang">
+    <meta name="keywords" content>
+    <title>About - Ciyang’s Blog</title>
+    <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=5.7.2">
+    <link rel="stylesheet" href="/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
+    <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
+    <link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_l7tuu6qerl9.css">
+    
+        <link rel="stylesheet" href="/lib/prettify/tomorrow-night-blue.min.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/fontawesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
-    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/matery.css">
-    <link rel="stylesheet" type="text/css" href="/css/my.css">
-    <style type="text/css">
-        
-    </style>
-
-    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
 <link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
 
+
 <body>
+<header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+<div class="container">
+    <a class="navbar-brand" href="/"><strong>Ciyang’s Blog</strong></a>
 
-<header class="navbar-fixed">
-    <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="nav-wrapper container">
-            <div class="brand-logo">
-                <a href="/" class="waves-effect waves-light">
-                    
-                    <img src="/favicon.png" class="logo-img" alt="LOGO">
-                    
-                    <span class="logo-span">Ciyang’s Blog</span>
-                </a>
-            </div>
-            
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
-<ul class="right">
-    
-    <li class="hide-on-med-and-down">
-        <a href="/" class="waves-effect waves-light">
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-center">
             
-            <i class="fa fa-1x fa-home"></i>
+            <li class="nav-item">
+                <a class="nav-link" href="/">主页</a>
+            </li>
             
-            <span>首页</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/tags" class="waves-effect waves-light">
+            <li class="nav-item">
+                <a class="nav-link" href="/archives/">归档</a>
+            </li>
             
-            <i class="fa fa-1x fa-tags"></i>
+            <li class="nav-item">
+                <a class="nav-link" href="/about/">关于</a>
+            </li>
             
-            <span>标签</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/categories" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-bookmark"></i>
-            
-            <span>分类</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/archives" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-archive"></i>
-            
-            <span>归档</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/about" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-user-circle"></i>
-            
-            <span>关于</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/friends" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-address-book"></i>
-            
-            <span>友情链接</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/comments" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-comments"></i>
-            
-            <span>评论</span>
-        </a>
-    </li>
-    
-    <li>
-        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
-        </a>
-    </li>
-</ul>
-
-<div id="mobile-nav" class="side-nav sidenav">
-
-    <div class="mobile-head bg-color">
-        
-        <img src="/favicon.png" class="logo-img circle responsive-img">
-        
-        <div class="logo-name">Ciyang’s Blog</div>
-        <div class="logo-desc">
-            
-            一个半退役OI的文化课选手...
-            
-        </div>
+        </ul>
     </div>
-
-    
-
-    <ul class="menu-list mobile-menu-list">
-        
-        <li>
-            <a href="/" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-home"></i>
-                
-                首页
-            </a>
-        </li>
-        
-        <li>
-            <a href="/tags" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-tags"></i>
-                
-                标签
-            </a>
-        </li>
-        
-        <li>
-            <a href="/categories" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-bookmark"></i>
-                
-                分类
-            </a>
-        </li>
-        
-        <li>
-            <a href="/archives" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-archive"></i>
-                
-                归档
-            </a>
-        </li>
-        
-        <li>
-            <a href="/about" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-user-circle"></i>
-                
-                关于
-            </a>
-        </li>
-        
-        <li>
-            <a href="/friends" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-address-book"></i>
-                
-                友情链接
-            </a>
-        </li>
-        
-        <li>
-            <a href="/comments" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-comments"></i>
-                
-                Comments
-            </a>
-        </li>
-        
-        
-    </ul>
 </div>
 
+
+</nav>
+    <div class="view intro-2"
+         style="background: url('/img/about.jpg')no-repeat center center;background-size: cover;">
+        <div class="full-bg-img">
+            <div class="mask rgba-black-light flex-center">
+                <div class="container text-center white-text wow fadeInUp">
+                    <span class="h2" id="subtitle">
+                        
+                    </span>
+                    
+                </div>
+            </div>
         </div>
-
-        
-    </nav>
-
+    </div>
 </header>
 
-<style type="text/css">
-    /* don't remove. */
-    .about-cover {
-        height: 75vh;
-    }
-</style>
+<main>
+    
+        <div class="container nopadding-md">
+            <div class="py-5 z-depth-3 board">
+                
+                    <div class="about-avatar">
+                        <img src="/img/avatar.jpg"
+                             class="img-fluid z-depth-1 rounded-circle"
+                             alt="avatar">
+                    </div>
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-10 m-auto">
+                            <link rel="stylesheet" href="/css/about.css">
 
-<div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                Ciyang
-                
-            </div>
 
-            <div class="description center-align">
-                
-                一个半退役OI的文化课选手...
-                
-            </div>
-        </div>
-    </div>
+<div class="text-center">
+    <p class="h3">Ciyang</p>
+    <p>OIER / 高中生</p>
+    
+        <a href="https://github.com/Xciyang" class="h4"><i class="fab fa-github" aria-hidden="true"></i></a>
+        &nbsp;&nbsp;
+    
+        <a href="tencent://AddContact/?subcmd=all&uin=896681584" class="h4"><i class="fab fa-qq" aria-hidden="true"></i></a>
+        &nbsp;&nbsp;
+    
+        <a href="https://www.zhihu.com/people/ci-yang-ciyang" class="h4"><i class="fab fa-zhihu" aria-hidden="true"></i></a>
+        &nbsp;&nbsp;
+    
+        <a href="mailto:896681584@qq.com" class="h4"><i class="fa fa-envelope-open" aria-hidden="true"></i></a>
+        &nbsp;&nbsp;
+    
 </div>
+<div class="mt-5 markdown-body">
+    <center> <h2> 友情链接 </h2> </center>
+
+<center> <a href="https://ctz45562.github.io/" style="font-size: 26px;"> ctz </a> </center>
+<center> <a href="https://stevebraveman.github.io/" style="font-size: 26px;"> RiverFun </a> </center>
+<center> <a href="https://www.cnblogs.com/bj2002/" style="font-size: 26px;"> Bj2002 </a> </center>
+<center> <a href="https://colorfulmist.github.io/" style="font-size: 26px;"> ColorfulMist </a></center>
+<center> <a href="https://geiz-revive.github.io/" style="font-size: 26px;"> Geiz-Revive </a></center>
+
+<center> <h2> 留言 </h2> </center>
+
+</div>
+
+<!-- Comments -->
+
+    <br><br>
+    
+    
+<div id="vcomments" style="width: 80%;margin: 0 auto;"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 <script>
-    var knum = new Date().getMilliseconds() % 9;
-    $('.bg-cover').css('background-image', 'url(/medias/banner/' + knum + '.jpg)');
+   var notify = 'false' == true ? true : false;
+   var verify = 'true' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '#vcomments',
+            notify: notify,
+            verify: verify,
+            app_id: "7BQ3ob3WSCRNqx6hDwbdTSnG-gzGzoHsz",
+            app_key: "XIkONR2UXsu6jiyIL9VzPSuA",
+            placeholder: "水一下评论?",
+            avatar:"retro",
+            meta: ['nick','mail','link'],
+            pageSize: "10",
+            visitor: "true"
+        });
+    };
 </script>
-    </div>
-</div>
-
-<main class="content">
-
-    <div id="aboutme" class="container about-container">
-        <div class="card">
-            <div class="card-content">
-                <div class="row">
-                    <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
-                        
-<div class="statis">
-    <span class="count"><a href="/" target="_blank">20</a></span>
-    <span class="name">文章</span>
-</div>
+<noscript>Please enable JavaScript to view the <a href="https://valine.js.org" rel="nofollow noopener">comments powered by Valine.</a></noscript>
 
 
-
-<div class="statis">
-    <span class="count"><a href="/categories" target="_blank">4</a></span>
-    <span class="name">分类</span>
-</div>
-
-
-
-<div class="statis">
-    <span class="count"><a href="/tags" target="_blank">29</a></span>
-    <span class="name">标签</span>
-</div>
-
-                    </div>
-                    <div class="col s12 m12 l4">
-                        <div class="profile center-align">
-                            <div class="avatar">
-                                <img src="/medias/avatar.jpg" alt="Ciyang"
-                                     class="circle responsive-img avatar-img">
-                            </div>
-                            <div class="author">
-                                <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
-                                    
-<div class="statis">
-    <span class="count"><a href="/" target="_blank">20</a></span>
-    <span class="name">文章</span>
-</div>
-
-
-
-<div class="statis">
-    <span class="count"><a href="/categories" target="_blank">4</a></span>
-    <span class="name">分类</span>
-</div>
-
-
-
-<div class="statis">
-    <span class="count"><a href="/tags" target="_blank">29</a></span>
-    <span class="name">标签</span>
-</div>
-
-                                </div>
-                                <div class="title">Ciyang</div>
-                                <div class="career">Student/Oier</div>
-                                <div class="social-link hide-on-large-only" data-aos="zoom-in-left">
-                                    
-<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" title="访问我的GitHub"
-    data-position="top" data-delay="50">
-    <i class="fab fa-github"></i>
-</a>
-
-
-
-<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank"
-    title="邮件: 896681584@qq.com" data-position="top" data-delay="50">
-    <i class="fa fa-envelope-open"></i>
-</a>
-
-
-
-<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped"
-    title="QQ: 896681584" data-position="top" data-delay="50">
-    <i class="fab fa-qq"></i>
-</a>
-
-
-
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" title="知乎" data-position="top" data-delay="50">
-    <i class="fab fa-zhihu"></i>
-</a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l4 hide-on-med-and-down" data-aos="zoom-in-left">
-                        <div class="social-link">
-                            
-<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" title="访问我的GitHub"
-    data-position="top" data-delay="50">
-    <i class="fab fa-github"></i>
-</a>
-
-
-
-<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank"
-    title="邮件: 896681584@qq.com" data-position="top" data-delay="50">
-    <i class="fa fa-envelope-open"></i>
-</a>
-
-
-
-<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped"
-    title="QQ: 896681584" data-position="top" data-delay="50">
-    <i class="fab fa-qq"></i>
-</a>
-
-
-
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" title="知乎" data-position="top" data-delay="50">
-    <i class="fab fa-zhihu"></i>
-</a>
 
                         </div>
                     </div>
                 </div>
-
-                <div class="introduction center-align" data-aos="fade-up">一个半退役文化课选手...</div>
-
-                <style type="text/css">
-    #posts-chart,
-    #categories-chart,
-    #tags-chart {
-        width: 100%;
-        height: 300px;
-        margin: 0.5rem auto;
-        padding: 0.5rem;
-    }
-</style>
-
-<div id="postCharts" class="post-charts">
-    <div class="title center-align" data-aos="zoom-in-up">
-        <i class="far fa-chart-bar"></i>&nbsp;&nbsp;文章统计图
-    </div>
-    <div class="row">
-        <div class="chart col s12 m6 l4" data-aos="zoom-in-up">
-            <div id="posts-chart"></div>
+            </div>
         </div>
-
-        <div class="chart col s12 m6 l4" data-aos="zoom-in-up">
-            <div id="categories-chart"></div>
-        </div>
-
-        <div class="chart col s12 m6 l4" data-aos="zoom-in-up">
-            <div id="tags-chart"></div>
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript" src="/libs/echarts/echarts.min.js"></script>
-<script>
-    let postsChart = echarts.init(document.getElementById('posts-chart'));
-    let categoriesChart = echarts.init(document.getElementById('categories-chart'));
-    let tagsChart = echarts.init(document.getElementById('tags-chart'));
-
     
-
-    let postsOption = {
-        title: {
-            text: '文章发布统计图',
-            top: -5,
-            x: 'center'
-        },
-        tooltip: {
-            trigger: 'axis'
-        },
-        xAxis: {
-            type: 'category',
-            data: ["2018-07","2018-08","2018-09","2018-10","2018-11","2018-12","2019-01","2019-02","2019-03","2019-04","2019-05","2019-06","2019-07"]
-        },
-        yAxis: {
-            type: 'value',
-        },
-        series: [
-            {
-                name: '文章篇数',
-                type: 'line',
-                color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,4,4,3,3,1,5],
-                markPoint: {
-                    symbolSize: 45,
-                    color: ['#fa755a','#3ecf8e','#82d3f4'],
-                    data: [{
-                        type: 'max',
-                        itemStyle: {color: ['#3ecf8e']},
-                        name: '最大值'
-                    }, {
-                        type: 'min',
-                        itemStyle: {color: ['#fa755a']},
-                        name: '最小值'
-                    }]
-                },
-                markLine: {
-                    itemStyle: {color: ['#ab47bc']},
-                    data: [
-                        {type: 'average', name: '平均值'}
-                    ]
-                }
-            }
-        ]
-    };
-
-    
-
-    let categoriesOption = {
-        title: {
-            text: '文章分类统计图',
-            top: -4,
-            x: 'center'
-        },
-        tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        series: [
-            {
-                name: '分类',
-                type: 'pie',
-                radius: '50%',
-                color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"题解","value":14},{"name":"项目","value":3},{"name":"技巧","value":1},{"name":"闲聊","value":2}],
-                itemStyle: {
-                    emphasis: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                }
-            }
-        ]
-    };
-
-    
-
-    let tagsOption = {
-        title: {
-            text: 'TOP10 标签统计图',
-            top: -5,
-            x: 'center'
-        },
-        tooltip: {},
-        xAxis: [
-            {
-                type: 'category',
-                data: ["Cpp","题解","搜索","颓废","闲聊","爬虫","项目","分块","模拟","STL"]
-            }
-        ],
-        yAxis: [
-            {
-                type: 'value'
-            }
-        ],
-        series: [
-            {
-                type: 'bar',
-                color: ['#82d3f4'],
-                barWidth : 18,
-                data: [19,14,5,4,3,3,3,3,2,2],
-                markPoint: {
-                    symbolSize: 45,
-                    data: [{
-                        type: 'max',
-                        itemStyle: {color: ['#3ecf8e']},
-                        name: '最大值'
-                    }, {
-                        type: 'min',
-                        itemStyle: {color: ['#fa755a']},
-                        name: '最小值'
-                    }],
-                },
-                markLine: {
-                    itemStyle: {color: ['#ab47bc']},
-                    data: [
-                        {type: 'average', name: '平均值'}
-                    ]
-                }
-            }
-        ]
-    };
-
-    // render the charts
-    postsChart.setOption(postsOption);
-    categoriesChart.setOption(categoriesOption);
-    tagsChart.setOption(tagsOption);
-</script>
-
-                
-
-                
-
-                
-                
-<div id="myGallery" class="my-gallery">
-    <div class="title center-align" data-aos="zoom-in-up">
-        <i class="far fa-image"></i>&nbsp;&nbsp;相册
-    </div>
-    <div class="row">
-        
-        
-        <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/2.jpg">
-                <img src="/medias/featureimages/2.jpg" class="responsive-img">
-            </div>
-        </div>
-        
-        <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/5.jpg">
-                <img src="/medias/featureimages/5.jpg" class="responsive-img">
-            </div>
-        </div>
-        
-        <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/16.jpg">
-                <img src="/medias/featureimages/16.jpg" class="responsive-img">
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-<script>
-    $(function () {
-        let animateClass = 'animated pulse';
-        $('#myGallery .photo').hover(function () {
-            $(this).addClass(animateClass);
-        }, function () {
-            $(this).removeClass(animateClass);
-        });
-    });
-</script>
-                
-
-            </div>
-        </div>
-    </div>
 </main>
-<footer class="page-footer bg-color">
-    <div class="container row center-align">
-        <div class="col s12 m8 l8copy-right">
-            
-            
-            <br>
-            
-            <span id="busuanzi_container_site_pv">
-                <i class="far fa-heart"></i>
-                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
-            </span>
-            
-            
-            <span id="busuanzi_container_site_uv">
-                <i class="fa fa-users"></i>
-                次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
-            </span>
-            
-            
-            
-            &nbsp;<i class="fa fa-chart-area"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">27.3k</span>
-            
-        </div>
-        <div class="col s12 m8 l4 social-link social-statis">
-<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" title="访问我的GitHub"
-    data-position="top" data-delay="50">
-    <i class="fab fa-github"></i>
-</a>
 
-
-
-<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank"
-    title="邮件: 896681584@qq.com" data-position="top" data-delay="50">
-    <i class="fa fa-envelope-open"></i>
-</a>
-
-
-
-<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped"
-    title="QQ: 896681584" data-position="top" data-delay="50">
-    <i class="fab fa-qq"></i>
-</a>
-
-
-
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" title="知乎" data-position="top" data-delay="50">
-    <i class="fab fa-zhihu"></i>
-</a>
-</div>
-    </div>
+<footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/0x2e/Material-T" target="_blank" rel="nofollow noopener"> <b>Material-T</b></a>
+    <br>
+    
+  </div>
 </footer>
 
-<div class="progress-bar"></div>
-
-<!-- 搜索遮罩框 -->
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <div class="search-header">
-            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
-                   class="search-input">
-        </div>
-        <div id="searchResult"></div>
-    </div>
-</div>
-
-<script src="/js/search.js"></script>
-<script type="text/javascript">
-$(function () {
-    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
-});
-</script>
-<!-- 回到顶部按钮 -->
-<div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
-        <i class="fa fa-angle-up"></i>
-    </a>
-</div>
-
-
-<script src="/libs/materialize/materialize.min.js"></script>
-<script src="/libs/masonry/masonry.pkgd.min.js"></script>
-<script src="/libs/aos/aos.js"></script>
-<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-<script src="/js/matery.js"></script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-
-
-
-
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
-
-
+  <!-- SCRIPTS -->
+  <script src="/lib/mdbootstrap/js/jquery-3.4.1.min.js"></script>
+  <script src="/lib/mdbootstrap/js/popper.min.js"></script>
+  <script src="/lib/mdbootstrap/js/bootstrap.min.js?v=4.3.1"></script>
+  <script src="/lib/mdbootstrap/js/mdb.min.js?v=4.8.7"></script>
+  <script src="/js/main.js"></script>
+  
+  
+    <script src="/lib/prettify/prettify.min.js?v=0.1.0"></script>
+    <script>
+      $(document).ready(function(){
+        $('pre').addClass('prettyprint linenums');
+        prettyPrint();
+      })
+    </script>
+  
+  
+    <script src="/lib/typed/typed.min.js?v=2.0.9"></script>
+    <script>
+        var typed = new Typed('#subtitle', {
+          strings: [
+            '  ',
+            "About&nbsp;",
+        ],
+        cursorChar: "|",
+        typeSpeed: 50,
+        startDelay: 300, //开始之前延迟300毫秒
+        loop: false,
+        });
+        $(".typed-cursor").addClass("h2");
+    </script>
+  
+  
+    <script src="/lib/anchor/anchor.min.js?v=4.2.0"></script>
+    <script>
+      anchors.options = {
+        placement: "right",
+        visible: "false",
+        
+      };
+      anchors.add(".post-content > h1,h2,h3,h4,h5,h6");
+    </script>
+  
 </body>
 </html>

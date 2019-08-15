@@ -1,477 +1,270 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="zh-CN">
 
 
+
+
+
 <head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="Ciyang’s Blog">
-    <meta name="description" content="Ciyang’s Blog">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="一个半退役OI的文化课选手...">
+    <meta name="author" content="Ciyang">
+    <meta name="keywords" content>
     <title>Ciyang’s Blog</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=5.7.2">
+    <link rel="stylesheet" href="/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
+    <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
+    <link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_l7tuu6qerl9.css">
+    
+        <link rel="stylesheet" href="/lib/prettify/tomorrow-night-blue.min.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/fontawesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
-    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/matery.css">
-    <link rel="stylesheet" type="text/css" href="/css/my.css">
-    <style type="text/css">
-        
-    </style>
-
-    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
 <link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
 
+
 <body>
+<header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+<div class="container">
+    <a class="navbar-brand" href="/"><strong>Ciyang’s Blog</strong></a>
 
-<header class="navbar-fixed">
-    <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="nav-wrapper container">
-            <div class="brand-logo">
-                <a href="/" class="waves-effect waves-light">
-                    
-                    <img src="/favicon.png" class="logo-img" alt="LOGO">
-                    
-                    <span class="logo-span">Ciyang’s Blog</span>
-                </a>
-            </div>
-            
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
-<ul class="right">
-    
-    <li class="hide-on-med-and-down">
-        <a href="/" class="waves-effect waves-light">
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-center">
             
-            <i class="fa fa-1x fa-home"></i>
+            <li class="nav-item">
+                <a class="nav-link" href="/">主页</a>
+            </li>
             
-            <span>首页</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/tags" class="waves-effect waves-light">
+            <li class="nav-item">
+                <a class="nav-link" href="/archives/">归档</a>
+            </li>
             
-            <i class="fa fa-1x fa-tags"></i>
+            <li class="nav-item">
+                <a class="nav-link" href="/about/">关于</a>
+            </li>
             
-            <span>标签</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/categories" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-bookmark"></i>
-            
-            <span>分类</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/archives" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-archive"></i>
-            
-            <span>归档</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/about" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-user-circle"></i>
-            
-            <span>关于</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/friends" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-address-book"></i>
-            
-            <span>友情链接</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/comments" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-comments"></i>
-            
-            <span>评论</span>
-        </a>
-    </li>
-    
-    <li>
-        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
-        </a>
-    </li>
-</ul>
-
-<div id="mobile-nav" class="side-nav sidenav">
-
-    <div class="mobile-head bg-color">
-        
-        <img src="/favicon.png" class="logo-img circle responsive-img">
-        
-        <div class="logo-name">Ciyang’s Blog</div>
-        <div class="logo-desc">
-            
-            一个半退役OI的文化课选手...
-            
-        </div>
+        </ul>
     </div>
-
-    
-
-    <ul class="menu-list mobile-menu-list">
-        
-        <li>
-            <a href="/" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-home"></i>
-                
-                首页
-            </a>
-        </li>
-        
-        <li>
-            <a href="/tags" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-tags"></i>
-                
-                标签
-            </a>
-        </li>
-        
-        <li>
-            <a href="/categories" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-bookmark"></i>
-                
-                分类
-            </a>
-        </li>
-        
-        <li>
-            <a href="/archives" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-archive"></i>
-                
-                归档
-            </a>
-        </li>
-        
-        <li>
-            <a href="/about" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-user-circle"></i>
-                
-                关于
-            </a>
-        </li>
-        
-        <li>
-            <a href="/friends" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-address-book"></i>
-                
-                友情链接
-            </a>
-        </li>
-        
-        <li>
-            <a href="/comments" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-comments"></i>
-                
-                Comments
-            </a>
-        </li>
-        
-        
-    </ul>
 </div>
 
+
+</nav>
+    <div class="view intro-2"
+         style="background: url('/img/index.jpg')no-repeat center center;background-size: cover;">
+        <div class="full-bg-img">
+            <div class="mask rgba-black-light flex-center">
+                <div class="container text-center white-text wow fadeInUp">
+                    <span class="h2" id="subtitle">
+                        
+                    </span>
+                    
+                </div>
+            </div>
         </div>
-
-        
-    </nav>
-
+    </div>
 </header>
 
-
-<div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                Ciyang
-                
-            </div>
-
-            <div class="description center-align">
-                
-                一个半退役OI的文化课选手...
-                
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    var knum = new Date().getMilliseconds() % 9;
-    $('.bg-cover').css('background-image', 'url(/medias/banner/' + knum + '.jpg)');
-</script>
-    </div>
-</div>
-
-
-<main class="content">
-
+<main>
     
+        <div class="container nopadding-md">
+            <div class="py-5 z-depth-3 board">
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-10 m-auto">
+                            <link rel="stylesheet" href="/css/index.css">
 
-    
 
-    <!-- 所有文章卡片 -->
-    <article id="articles" class="container articles">
-        <div class="row article-row">
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-02/15-du-liu-ma-feng-tui-jian/">
-                        <div class="card-image">
-                            
-                            <img src="/images/CodeImg.jpg" class="responsive-img" alt="闲聊 - 毒瘤码风推荐">
-                            
-                            <span class="card-title">闲聊 - 毒瘤码风推荐</span>
-                        </div>
-                    </a>
 
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                            用了这个码风，再也不怕代码出BUG了(
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-02-15
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/闲聊/" class="post-category" target="_blank">
-                                    闲聊
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
+    <div class="row mb-4 mx-auto">
+        
+        
+        <div class="col-12 col-md-8 m-auto">
+            <a href="/2019-02/15-du-liu-ma-feng-tui-jian/">
+                <p class="h4 index-header">闲聊 - 毒瘤码风推荐</p>
+                <div class="index-excerpt">
                     
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/闲聊/" target="_blank">
-                            <span class="chip bg-color">闲聊</span>
-                        </a>
-                        
-                        <a href="/tags/码风/" target="_blank">
-                            <span class="chip bg-color">码风</span>
-                        </a>
-                        
-                    </div>
+                        <div class="index-text mb-1">码风前言相信码风对于我们来说太熟悉了，以至于平常都忘记了它的存在
+简介码风全称代码风格…
+我就不啰嗦了，估计也都知道是啥，想看详细介绍可以右转代码风格-百度百科或Programming style-Wikipedia
+正文那么就直接推荐自己的码风了
+(从来不多打空格的可以跳过这一部分)
+// QuickRead
+inline int read() {
+    int e= 0, f= 1;
+    char ch= getchar();
+    while(ch &lt; '0' || ch > '9') {
+        if(ch == '-') f= -1;
+        ch= getchar();
+    }
+    while(ch >= '0' &amp;&amp; ch &lt;= '9') e= e * 10 + ch - '0', ch= getchar();
+    return e * f;
+}
+这个空格写法确实毒瘤，估计像我这样的全世界应该有1%…
+赋值符前不加空格，赋值符后加空格，运算符和逻辑符前后都加空格，手打不是很方便，习惯就好了.
+大括号前不换行加</div>
                     
                 </div>
-            </div>
+            </a>
+
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-02/12-kai-shi/">
-                        <div class="card-image">
-                            
-                            <img src="/images/start.jpg" class="responsive-img" alt="开始">
-                            
-                            <span class="card-title">开始</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                            基本上算是搭建完了,先水一发
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-02-12
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/闲聊/" class="post-category" target="_blank">
-                                    闲聊
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
+                <div>
+                    <i class="iconfont icon-riqi2"></i>&nbsp;2019-02-15
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     
-                    <div class="card-action article-tags">
+                        <i class="iconfont icon-cc-tag-more"></i>
                         
-                        <a href="/tags/闲聊/" target="_blank">
-                            <span class="chip bg-color">闲聊</span>
-                        </a>
+                            Cpp&nbsp;
                         
-                    </div>
+                            闲聊&nbsp;
+                        
+                            码风&nbsp;
+                        
                     
                 </div>
-            </div>
             
         </div>
-    </article>
+    </div>
+
+    <div class="row mb-4 mx-auto">
+        
+        
+        <div class="col-12 col-md-8 m-auto">
+            <a href="/2019-02/12-kai-shi/">
+                <p class="h4 index-header">开始</p>
+                <div class="index-excerpt">
+                    
+                        <div class="index-text mb-1">开始关于搭建从下午搭建到现在,基本上算是搭建完了,文章从零开始,以后一点一点填吧.
+其实博客在半月前就已经开始搭建了,只不过选择了一个没有什么配置手册的主题,然后扩展还比较少…最后不得不弃坑。
+之前其实是从gitee上搭建的,现在听了周围dalao的建议,随波逐流来到了github
+关于现在搭建的方法,使用Github + Hexo + Matery.
+
+
+测试一下HelloWorld
+#include &lt;iostream>
+int main() {
+  std::cout &lt;&lt; "Hello, world!" &lt;&lt; std:endl;
+  return 0;
+}
+
+
+测试一下LaTeX
+$$ \LARGE{S_k=\sum_{i=1}^{k}a_i} $$
+
+
+测试一下内嵌JS
+ Ciyang's Blog 
+
+
+
+关于作者作者:Ciyang 
+现于 SD-SLYZ 上高中,是一名现役OIer,爱搞一些黑科技,写点高（la）端（ji）题解,出点毒（jian）瘤（dan）题,其实还仍是个中二少年……
+之前自己发明过MidHeap（BST）, 块状字典树（边</div>
+                    
+                </div>
+            </a>
+
+            
+                <div>
+                    <i class="iconfont icon-riqi2"></i>&nbsp;2019-02-12
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                        <i class="iconfont icon-cc-tag-more"></i>
+                        
+                            闲聊&nbsp;
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+
+
+
+<nav aria-label="index posts navigation">
+<ul class="pagination pg-blue justify-content-center mt-5">
+    
+        <li class="page-item">
+        <a class="page-link" href="/page/2/">Previous</a>
+        </li>
+    
+    
+</ul>
+</nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
 </main>
 
-
-<div class="container paging">
-    <div class="row">
-        <div class="col s6 m4 l4">
-            
-            <a href="/page/2/"
-               class="left btn-floating btn-large waves-effect waves-light bg-color">
-                <i class="fa fa-angle-left"></i>
-            </a>
-            
-        </div>
-        <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">3 / 3</div>
-        </div>
-        <div class="col s6 m4 l4">
-            
-            <a class="right btn-floating btn-large disabled">
-                <i class="fa fa-angle-right"></i>
-            </a>
-            
-        </div>
-    </div>
-</div>
-
-
-<footer class="page-footer bg-color">
-    <div class="container row center-align">
-        <div class="col s12 m8 l8copy-right">
-            
-            
-            <br>
-            
-            <span id="busuanzi_container_site_pv">
-                <i class="far fa-heart"></i>
-                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
-            </span>
-            
-            
-            <span id="busuanzi_container_site_uv">
-                <i class="fa fa-users"></i>
-                次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
-            </span>
-            
-            
-            
-            &nbsp;<i class="fa fa-chart-area"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">27.3k</span>
-            
-        </div>
-        <div class="col s12 m8 l4 social-link social-statis">
-<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" title="访问我的GitHub"
-    data-position="top" data-delay="50">
-    <i class="fab fa-github"></i>
-</a>
-
-
-
-<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank"
-    title="邮件: 896681584@qq.com" data-position="top" data-delay="50">
-    <i class="fa fa-envelope-open"></i>
-</a>
-
-
-
-<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped"
-    title="QQ: 896681584" data-position="top" data-delay="50">
-    <i class="fab fa-qq"></i>
-</a>
-
-
-
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" title="知乎" data-position="top" data-delay="50">
-    <i class="fab fa-zhihu"></i>
-</a>
-</div>
-    </div>
+<footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/0x2e/Material-T" target="_blank" rel="nofollow noopener"> <b>Material-T</b></a>
+    <br>
+    
+  </div>
 </footer>
 
-<div class="progress-bar"></div>
-
-<!-- 搜索遮罩框 -->
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <div class="search-header">
-            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
-                   class="search-input">
-        </div>
-        <div id="searchResult"></div>
-    </div>
-</div>
-
-<script src="/js/search.js"></script>
-<script type="text/javascript">
-$(function () {
-    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
-});
-</script>
-<!-- 回到顶部按钮 -->
-<div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
-        <i class="fa fa-angle-up"></i>
-    </a>
-</div>
-
-
-<script src="/libs/materialize/materialize.min.js"></script>
-<script src="/libs/masonry/masonry.pkgd.min.js"></script>
-<script src="/libs/aos/aos.js"></script>
-<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-<script src="/js/matery.js"></script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-
-
-
-
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
-
-
+  <!-- SCRIPTS -->
+  <script src="/lib/mdbootstrap/js/jquery-3.4.1.min.js"></script>
+  <script src="/lib/mdbootstrap/js/popper.min.js"></script>
+  <script src="/lib/mdbootstrap/js/bootstrap.min.js?v=4.3.1"></script>
+  <script src="/lib/mdbootstrap/js/mdb.min.js?v=4.8.7"></script>
+  <script src="/js/main.js"></script>
+  
+  
+    <script src="/lib/prettify/prettify.min.js?v=0.1.0"></script>
+    <script>
+      $(document).ready(function(){
+        $('pre').addClass('prettyprint linenums');
+        prettyPrint();
+      })
+    </script>
+  
+  
+    <script src="/lib/typed/typed.min.js?v=2.0.9"></script>
+    <script>
+        var typed = new Typed('#subtitle', {
+          strings: [
+            '  ',
+            "Ciyang&nbsp;",
+        ],
+        cursorChar: "|",
+        typeSpeed: 50,
+        startDelay: 300, //开始之前延迟300毫秒
+        loop: false,
+        });
+        $(".typed-cursor").addClass("h2");
+    </script>
+  
+  
+    <script src="/lib/anchor/anchor.min.js?v=4.2.0"></script>
+    <script>
+      anchors.options = {
+        placement: "right",
+        visible: "false",
+        
+      };
+      anchors.add(".post-content > h1,h2,h3,h4,h5,h6");
+    </script>
+  
 </body>
 </html>

@@ -1,1219 +1,554 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="zh-CN">
 
 
+
+
+
 <head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="Ciyang’s Blog">
-    <meta name="description" content="Ciyang’s Blog">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="一个半退役OI的文化课选手...">
+    <meta name="author" content="Ciyang">
+    <meta name="keywords" content>
     <title>Ciyang’s Blog</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=5.7.2">
+    <link rel="stylesheet" href="/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
+    <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
+    <link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_l7tuu6qerl9.css">
+    
+        <link rel="stylesheet" href="/lib/prettify/tomorrow-night-blue.min.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/fontawesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
-    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/matery.css">
-    <link rel="stylesheet" type="text/css" href="/css/my.css">
-    <style type="text/css">
-        
-    </style>
-
-    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
 <link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
 
+
 <body>
+<header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+<div class="container">
+    <a class="navbar-brand" href="/"><strong>Ciyang’s Blog</strong></a>
 
-<header class="navbar-fixed">
-    <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="nav-wrapper container">
-            <div class="brand-logo">
-                <a href="/" class="waves-effect waves-light">
-                    
-                    <img src="/favicon.png" class="logo-img" alt="LOGO">
-                    
-                    <span class="logo-span">Ciyang’s Blog</span>
-                </a>
-            </div>
-            
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
-<ul class="right">
-    
-    <li class="hide-on-med-and-down">
-        <a href="/" class="waves-effect waves-light">
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-center">
             
-            <i class="fa fa-1x fa-home"></i>
+            <li class="nav-item">
+                <a class="nav-link" href="/">主页</a>
+            </li>
             
-            <span>首页</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/tags" class="waves-effect waves-light">
+            <li class="nav-item">
+                <a class="nav-link" href="/archives/">归档</a>
+            </li>
             
-            <i class="fa fa-1x fa-tags"></i>
+            <li class="nav-item">
+                <a class="nav-link" href="/about/">关于</a>
+            </li>
             
-            <span>标签</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/categories" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-bookmark"></i>
-            
-            <span>分类</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/archives" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-archive"></i>
-            
-            <span>归档</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/about" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-user-circle"></i>
-            
-            <span>关于</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/friends" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-address-book"></i>
-            
-            <span>友情链接</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/comments" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-comments"></i>
-            
-            <span>评论</span>
-        </a>
-    </li>
-    
-    <li>
-        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
-        </a>
-    </li>
-</ul>
-
-<div id="mobile-nav" class="side-nav sidenav">
-
-    <div class="mobile-head bg-color">
-        
-        <img src="/favicon.png" class="logo-img circle responsive-img">
-        
-        <div class="logo-name">Ciyang’s Blog</div>
-        <div class="logo-desc">
-            
-            一个半退役OI的文化课选手...
-            
-        </div>
+        </ul>
     </div>
-
-    
-
-    <ul class="menu-list mobile-menu-list">
-        
-        <li>
-            <a href="/" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-home"></i>
-                
-                首页
-            </a>
-        </li>
-        
-        <li>
-            <a href="/tags" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-tags"></i>
-                
-                标签
-            </a>
-        </li>
-        
-        <li>
-            <a href="/categories" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-bookmark"></i>
-                
-                分类
-            </a>
-        </li>
-        
-        <li>
-            <a href="/archives" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-archive"></i>
-                
-                归档
-            </a>
-        </li>
-        
-        <li>
-            <a href="/about" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-user-circle"></i>
-                
-                关于
-            </a>
-        </li>
-        
-        <li>
-            <a href="/friends" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-address-book"></i>
-                
-                友情链接
-            </a>
-        </li>
-        
-        <li>
-            <a href="/comments" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-comments"></i>
-                
-                Comments
-            </a>
-        </li>
-        
-        
-    </ul>
 </div>
 
+
+</nav>
+    <div class="view intro-2"
+         style="background: url('/img/index.jpg')no-repeat center center;background-size: cover;">
+        <div class="full-bg-img">
+            <div class="mask rgba-black-light flex-center">
+                <div class="container text-center white-text wow fadeInUp">
+                    <span class="h2" id="subtitle">
+                        
+                    </span>
+                    
+                </div>
+            </div>
         </div>
-
-        
-    </nav>
-
+    </div>
 </header>
 
-
-<style>
-    .carousel-control {
-        width: 45px;
-        height: 45px;
-        line-height: 55px;
-        border-radius: 45px;
-        background: transparent;
-        cursor: pointer;
-        z-index: 100;
-    }
-
-    #prev-cover {
-        position: absolute;
-        top: 48%;
-        left: 8px;
-    }
-
-    #next-cover {
-        position: absolute;
-        top: 48%;
-        right: 8px;;
-    }
-
-    #prev-cover i {
-        margin-right: 3px;
-    }
-
-    #next-cover i {
-        margin-left: 3px;
-    }
-
-    .carousel-control:hover {
-        background-color:rgba(0, 0, 0, .4);
-    }
-
-    .carousel-control i {
-        color: #fff;
-        font-size: 2.4rem;
-    }
-</style>
-
-
-
-<div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
+<main>
     
-    <div id="prev-cover" class="left waves-effect carousel-control">
-        <i class="icon fa fa-angle-left"></i>
-    </div>
-    <div id="next-cover" class="right waves-effect carousel-control">
-        <i class="icon fa fa-angle-right"></i>
-    </div>
-    
-
-    <div class="carousel-item red white-text bg-cover about-cover">
-        <div class="container">
-            <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
+        <div class="container nopadding-md">
+            <div class="py-5 z-depth-3 board">
                 
-                Ciyang
-                
-            </div>
-
-            <div class="description center-align">
-                
-                一个半退役OI的文化课选手...
-                
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    var knum = new Date().getMilliseconds() % 9;
-    $('.bg-cover').css('background-image', 'url(/medias/banner/' + knum + '.jpg)');
-</script>
-
-            <div class="cover-btns">
-                <a href="#indexCard" class="waves-effect waves-light btn">
-                    <i class="fa fa-angle-double-down"></i>开始阅读
-                </a>
-
-                
-            </div>
-            <div class="cover-social-link">
-<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" title="访问我的GitHub"
-    data-position="top" data-delay="50">
-    <i class="fab fa-github"></i>
-</a>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-10 m-auto">
+                            <link rel="stylesheet" href="/css/index.css">
 
 
 
-<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank"
-    title="邮件: 896681584@qq.com" data-position="top" data-delay="50">
-    <i class="fa fa-envelope-open"></i>
-</a>
-
-
-
-<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped"
-    title="QQ: 896681584" data-position="top" data-delay="50">
-    <i class="fab fa-qq"></i>
-</a>
-
-
-
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" title="知乎" data-position="top" data-delay="50">
-    <i class="fab fa-zhihu"></i>
-</a>
-</div>
-        </div>
-    </div>
-
-    
-    
-
-    
-    
-    <div class="carousel-item amber white-text carousel-post bg-cover"
-            style="background-image: url('/images/spiKing3.jpg');">
-        <div class="container">
-            <div class="row">
-                <div class="col s10 offset-s1">
-                    <div class="title center-align">项目日记 - 开发图片爬虫 Ⅱ</div>
-                    <div class="description center-align">
-                    
-                        用C++开发一个图片爬虫 Ⅱ ：编码转换
-                    
-                    </div>
-                    <div class="cover-btns">
-                        <a href="/2019-05/28-spiking2/" class="waves-effect waves-light btn" target="_blank">
-                            <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div class="carousel-item amber white-text carousel-post bg-cover"
-            style="background-image: url('/medias/featureimages/18.jpg');">
-        <div class="container">
-            <div class="row">
-                <div class="col s10 offset-s1">
-                    <div class="title center-align">技巧 - 在OJ上出交互题</div>
-                    <div class="description center-align">
-                    
-                        有关在OJ上出交互题的一些技巧
-                    
-                    </div>
-                    <div class="cover-btns">
-                        <a href="/2019-07/12-zai-oj-shang-chu-jiao-hu-ti/" class="waves-effect waves-light btn" target="_blank">
-                            <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    
-</div>
-
-<script>
-$(function () {
-    let coverSlider = $('.carousel');
-    coverSlider.carousel({
-        duration: Number('120'),
-        fullWidth: true,
-        indicators: 'true' === 'true'
-    });
-
-    let carouselIntervalId;
-    
-    // Loop to call the next cover article picture.
-    let autoCarousel = function() {
-        carouselIntervalId = setInterval(function () {
-            coverSlider.carousel('next');
-        }, 5000);
-    };
-    autoCarousel();
-    
-
-    let restartPlay = function () {
+    <div class="row mb-4 mx-auto">
         
-        clearInterval(carouselIntervalId);
-        autoCarousel();
         
-    };
-
-    
-    // prev and next cover post.
-    $('#prev-cover').click(function () {
-        coverSlider.carousel('prev');
-        restartPlay();
-    });
-    $('#next-cover').click(function () {
-        coverSlider.carousel('next');
-        restartPlay();
-    });
-    
-});
-</script>
-
-
-
-<main class="content">
-
-    
-    <div id="indexCard" class="index-card">
-        <div class="container ">
-            <div class="card">
-                <div class="card-content">
+        <div class="col-12 col-md-8 m-auto">
+            <a href="/2019-07/15-luogu5440/">
+                <p class="h4 index-header">LuoguP5440 - 【XR-2】奇迹</p>
+                <div class="index-excerpt">
                     
-                    <div class="dream">
-    
-    <div class="title center-align">
-        <i class="far fa-lightbulb"></i>&nbsp;&nbsp;最近动态
-    </div>
-    
-    <div class="row">
-        <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
-            快暑假了，换了个logo非常舒服。评论区交换友链哦！最近一直很忙（tuifei）。
+                        <div class="index-text mb-1">题目链接: https://www.luogu.org/problemnew/show/P5440
+前言
+不要学那些很酷很炫的算法，不要看不起那些基础算法，比如说搜索。
+
+然后我就天天做搜索，最后退役。...</div>
+                    
+                </div>
+            </a>
+
+            
+                <div>
+                    <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-15
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                        <i class="iconfont icon-cc-tag-more"></i>
+                        
+                            题解&nbsp;
+                        
+                            Cpp&nbsp;
+                        
+                            搜索&nbsp;
+                        
+                    
+                </div>
+            
         </div>
     </div>
+
+    <div class="row mb-4 mx-auto">
+        
+        
+        <div class="col-12 col-md-8 m-auto">
+            <a href="/2019-07/12-zai-oj-shang-chu-jiao-hu-ti/">
+                <p class="h4 index-header">技巧 - 在OJ上出交互题</p>
+                <div class="index-excerpt">
+                    
+                        <div class="index-text mb-1">本博客所指的OJ仅指SYZOJ，即搭建LOJ使用的在线评测系统。
+SYZOJ源码链接(Github仓库): https://github.com/syzoj/syzoj
+前言在校内使用SYZOJ搭建内网OJ已经有些时日了。其实之前就看到有交互题这一说，但一直没有去关注和了解。
+今天正颓废时，突然想起了交互题，然后开始便研究。
+本以为是testlib，现在才发现SYZOJ有自己特有的交互方式。
+正题SYZOJ帮助中的原话如下：
+
+交互器和选手程序同时运行，交互器的标准输入和标准输出连接了选手程序的标准输出和标准输入 —— 交互通过输入输出进行。交互器运行时，其目录下会有 input 文件，表示该测试点的输入文件。交互器运行结束后，需要将选手得分写入 score.txt 文件中，并将提供给用户的额外信息输出到标准错误输出（stderr）中。如果您希望实现 NOI 试题风格的交互（选手通过函数调用与交互器交互），请编写一些头文件作为「附加源文件」并封装标准输入输出的交互。
+
+要学习出交互题，前提是要会出一道传统题。对于出传统题就需要知道的知识就不予讲解。
+如何交互根据帮助，交互通过输入输出进</div>
+                    
+                </div>
+            </a>
+
+            
+                <div>
+                    <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-12
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                        <i class="iconfont icon-cc-tag-more"></i>
+                        
+                            Cpp&nbsp;
+                        
+                            颓废&nbsp;
+                        
+                            技巧&nbsp;
+                        
+                            闲聊&nbsp;
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+
+    <div class="row mb-4 mx-auto">
+        
+        
+        <div class="col-12 col-md-8 m-auto">
+            <a href="/2019-07/11-luogu4008/">
+                <p class="h4 index-header">NOI2003 - 文本编辑器</p>
+                <div class="index-excerpt">
+                    
+                        <div class="index-text mb-1">题目链接1: https://www.luogu.org/problemnew/show/P4008题目链接2: https://www.lydsy.com/JudgeOnline/problem.php?id=1507
+前言这题放在任务计划里已经有些时日了，又拿出来看了看题面。原本是练习Splay用的，但因为不够熟练和懒得缘故，一直不想动手写。看了题解，发现了一个思路简单，代码较为暴力的数据结构——“块状链表”。
+然后就愉快的做（抄）完了，首先感谢@HenryHuang的题解，他的题解使我学习块状链表得到了很大帮助。
+我才不会告诉你很久以前我以为这是STL中string的练手题。
+分析首先这道题有一个光标，只需用一个变量就可以维护光标。
+然后就只剩下Insert、Delete、Get操作了，一般我们都会想到平衡树（Splay），但是难理解且代码复杂。
+首先我们都听说过甚至用过链表，STL中的list就是使用链表实现。这种数据结构只能$ O(1) $获得首节点和尾结点，需要逐个遍历才能获得中间的节点。
+不过链表也有优点，由于它的结构为一条链，每个节点维护了前节点指针和后节点指针，因此向</div>
+                    
+                </div>
+            </a>
+
+            
+                <div>
+                    <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-11
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                        <i class="iconfont icon-cc-tag-more"></i>
+                        
+                            题解&nbsp;
+                        
+                            Cpp&nbsp;
+                        
+                            分块&nbsp;
+                        
+                            块状链表&nbsp;
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+
+    <div class="row mb-4 mx-auto">
+        
+        
+        <div class="col-12 col-md-8 m-auto">
+            <a href="/2019-07/09-luogu3396/">
+                <p class="h4 index-header">LuoguP3396 - 哈希冲突</p>
+                <div class="index-excerpt">
+                    
+                        <div class="index-text mb-1">题目链接: https://www.luogu.org/problemnew/show/P3396
+前言话说快暑假了…但是好像没有几天假期啊。
+然后期末考试之际做了找到题，发现暴力好像都能用分块优化。
+分析读完题目，发现想不到任何复杂度较低思路。对于几乎不接触分块的我，数据范围似乎没有什么用。
+然后就打开了题解，才知道可以根号算法（不指分块），不过我统一把用sqrt函数的解法都叫做分块。
+暴力的复杂度大概是$ O(mn) $ ，每次查询我们都需要$ O(n) $ 来遍历数组，修改是$ O(1) $。如果预处理的话那更玄学，每次查询时$ O(1) $，而修改是$ O(n^2) $ ，那么很有可能变成$ O(n^2m) $算法。
+所以考虑只预处理$ \sqrt{n} $的模数，复杂度为$ O(n \sqrt{n}) $。
+对于查询，如果查询的模数不超过$ \sqrt{n} $那么可以直接输出答案。如果模数超过$ \sqrt{n} $，我们只需要枚举模$ p $后的结果，把他们加起来，那么复杂度仍为$ \frac{n}{\sqrt{n}} = \sqrt{n} $。
+对于修改，与预处理类似，</div>
+                    
+                </div>
+            </a>
+
+            
+                <div>
+                    <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-09
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                        <i class="iconfont icon-cc-tag-more"></i>
+                        
+                            题解&nbsp;
+                        
+                            Cpp&nbsp;
+                        
+                            分块&nbsp;
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+
+    <div class="row mb-4 mx-auto">
+        
+        
+        <div class="col-12 col-md-8 m-auto">
+            <a href="/2019-07/01-luogu3709/">
+                <p class="h4 index-header">LuoguP3709 - 大爷的字符串题</p>
+                <div class="index-excerpt">
+                    
+                        <div class="index-text mb-1">题目链接: https://www.luogu.org/problemnew/show/P3709
+前言最近一个月是各种忙啊。先是准备了半个多月的合格考，然后终于回归了OI。最近一周又生病请假等就没有更新过题解。上次更新题解也是很久之前，因为中间有段时间颓废过度做项目，现在那个项目基本已经咕咕，因为懒得再下Visual Studio了。
+这几天一直在做莫队，然后做到这道题，打算水篇题解。
+分析这题可以说是语文阅读理解神题，丝毫看不懂出题人意图是什么。
+根据出题人的解释，一句话概括如下: 
+
+给你 N 个数, M 次询问区间[l, r]中众数的出现次数
+
+然后就非常容易，但是字符集数据范围1e9需要离散化，我直接边读入边使用map处理。
+根据一些其他题解的提示，我们开一个cnt数组记录区间内某个数出现的次数，然后用cntt数组记录cnt数组中数出现的次数。
+在区间扩大时ans和cnt数组取max，然后区间缩小时就判断cntt是否已经为0，如果是就让ans减一。当然不能忘了区间更改时cnt和cntt肯定都会有所改变。
+代码评测详情(未开O2): Accepted 100 用时: 1634m</div>
+                    
+                </div>
+            </a>
+
+            
+                <div>
+                    <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-01
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                        <i class="iconfont icon-cc-tag-more"></i>
+                        
+                            题解&nbsp;
+                        
+                            Cpp&nbsp;
+                        
+                            STL&nbsp;
+                        
+                            莫队&nbsp;
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+
+    <div class="row mb-4 mx-auto">
+        
+        
+        <div class="col-12 col-md-8 m-auto">
+            <a href="/2019-06/03-spiking3/">
+                <p class="h4 index-header">项目日记 - 开发图片爬虫 Ⅲ</p>
+                <div class="index-excerpt">
+                    
+                        <div class="index-text mb-1">封面图片来自网络，如有侵权将删除。
+前言上一节说这节介绍WinHTTP，现在好像鸽子了。经过我再三思考后，还是先深入学习WinInet吧。
+关于根据链接下载网页的各种方式在第一节已经介绍过了。这里再补充一下，还有一种方式是使用外部库libcurl，使用方便代码简洁，但我不把它当做我们主要学习的对象，因为它太过于简单。
+这节可以说是个扩展篇，并不是这个项目优先考虑的内容。先介绍它主要是因为这部分东西更有意思，大家可能会更感兴趣。
+如果阅读效果不佳，请点击右下角蓝色按钮折叠目录。
+目的这个预处理是我自己勉强定义的，所以大家可能不理解。
+通俗的说，URL预处理意为对一个URL链接本体进行处理，请大家不要误以为是对HTML网页内容进行分析。
+再说清楚一些，获取链接所指向的内容前，程序并不知道这个内容是什么类型的。也就是说，它可能是一个HTML也可能是图片，又或者是一个CSS文件。所以我们要对URL进行一定的预处理，然后判断文件后缀之类的。
+先给出本节流程图：
+
+很多人可能不理解获得内容类型为什么需要先分解URL，那就接着往下看。
+理论从基础说起，大家都模糊地知道URL是什么，我给出它的定义：
 </div>
                     
-
-                    
-                    
-
-<link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<div class="music-player">
-    
-    <div class="title center-align">
-        <i class="fa fa-music"></i>&nbsp;&nbsp;听听音乐
-    </div>
-    
-    <div class="row">
-        <div class="col l8 offset-l2 m10 offset-m1 s12">
-            <div id="aplayer" class="music"></div>
-        </div>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script>
-$(function () {
-    new APlayer({
-        container: document.getElementById('aplayer'),
-        fixed: 'false' === 'true',
-        autoplay: 'false' === 'true',
-        theme: '#bfe8e1',
-        loop: 'all',
-        order: 'random',
-        preload: 'none',
-        volume: Number('0.7'),
-        listFolded: 'false' === 'true',
-        listMaxHeight: '',
-        audio: JSON.parse('[{"name":"Take Me to Infinity (Radio Edit)","artist":"Consoul Trainin","url":"/medias/music/music1.mp3","cover":"/medias/music/cover1.jpg"},{"name":"Nevada (Original Mix)","artist":"Vicetone/Cozi Zuehlsdorff","url":"/medias/music/music2.mp3","cover":"/medias/music/cover2.jpg"},{"name":"Friendships (Original Mix)","artist":"Pascal Letoublon","url":"/medias/music/music3.mp3","cover":"/medias/music/cover3.jpg"}]')
-    });
-});
-</script>
-                    
-
-                    
-
-                    <div id="recommend-sections" class="recommend">
-                        
-
-
-
-
-
-<div class="title"><i class="far fa-thumbs-up"></i>&nbsp;&nbsp;推荐文章</div>
-
-<div class="row">
-
-    
-    
-    <div class="col s12" >
-        <div class="post-card" style="background-image: url('/images/cool.jpg')">
-            <div class="post-body">
-                <div class="post-categories">
-                    
-                    <a href="/categories/题解/" class="category" target="_blank">题解</a>
-                    
                 </div>
-                <a href="/2019-07/15-luogu5440/" target="_blank">
-                    <h3 class="post-title">LuoguP5440 - 【XR-2】奇迹</h3>
-                </a>
-                <p class="post-description">【LuoguP5440】【XR-2】奇迹</p>
-                <a href="/2019-07/15-luogu5440/" target="_blank"
-                        class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%)">
-                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div class="col s12 m6" data-aos="zoom-in-up">
-        <div class="post-card" style="background-image: url('/medias/featureimages/18.jpg')">
-            <div class="post-body">
-                <div class="post-categories">
-                    
-                    <a href="/categories/技巧/" class="category" target="_blank">技巧</a>
-                    
-                </div>
-                <a href="/2019-07/12-zai-oj-shang-chu-jiao-hu-ti/" target="_blank">
-                    <h3 class="post-title">技巧 - 在OJ上出交互题</h3>
-                </a>
-                <p class="post-description">有关在OJ上出交互题的一些技巧</p>
-                <a href="/2019-07/12-zai-oj-shang-chu-jiao-hu-ti/" target="_blank"
-                        class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #EF4DB6 0%, #C643FC 100%)">
-                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div class="col s12 m6" data-aos="zoom-in-up">
-        <div class="post-card" style="background-image: url('/medias/featureimages/6.jpg')">
-            <div class="post-body">
-                <div class="post-categories">
-                    
-                    <a href="/categories/题解/" class="category" target="_blank">题解</a>
-                    
-                </div>
-                <a href="/2019-07/11-luogu4008/" target="_blank">
-                    <h3 class="post-title">NOI2003 - 文本编辑器</h3>
-                </a>
-                <p class="post-description">【LuoguP4008】【BZOJ1507】【NOI2003】文本编辑器 Editor</p>
-                <a href="/2019-07/11-luogu4008/" target="_blank"
-                        class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #1AD6FD 0%, #1D62F0 100%)">
-                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                </a>
-            </div>
-        </div>
-    </div>
-    
+            </a>
 
-</div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-
-    
-
-    <!-- 所有文章卡片 -->
-    <article id="articles" class="container articles">
-        <div class="row article-row">
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-07/15-luogu5440/">
-                        <div class="card-image">
-                            
-                            <img src="/images/cool.jpg" class="responsive-img" alt="LuoguP5440 - 【XR-2】奇迹">
-                            
-                            <span class="card-title">LuoguP5440 - 【XR-2】奇迹</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                            【LuoguP5440】【XR-2】奇迹
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-15
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
+                <div>
+                    <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-03
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     
-                    <div class="card-action article-tags">
+                        <i class="iconfont icon-cc-tag-more"></i>
                         
-                        <a href="/tags/题解/" target="_blank">
-                            <span class="chip bg-color">题解</span>
-                        </a>
+                            Cpp&nbsp;
                         
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
+                            颓废&nbsp;
                         
-                        <a href="/tags/搜索/" target="_blank">
-                            <span class="chip bg-color">搜索</span>
-                        </a>
+                            项目&nbsp;
                         
-                    </div>
+                            爬虫&nbsp;
+                        
                     
                 </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-07/12-zai-oj-shang-chu-jiao-hu-ti/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="技巧 - 在OJ上出交互题">
-                            
-                            <span class="card-title">技巧 - 在OJ上出交互题</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                            有关在OJ上出交互题的一些技巧
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-12
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/技巧/" class="post-category" target="_blank">
-                                    技巧
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/颓废/" target="_blank">
-                            <span class="chip bg-color">颓废</span>
-                        </a>
-                        
-                        <a href="/tags/技巧/" target="_blank">
-                            <span class="chip bg-color">技巧</span>
-                        </a>
-                        
-                        <a href="/tags/闲聊/" target="_blank">
-                            <span class="chip bg-color">闲聊</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-07/11-luogu4008/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="NOI2003 - 文本编辑器">
-                            
-                            <span class="card-title">NOI2003 - 文本编辑器</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                            【LuoguP4008】【BZOJ1507】【NOI2003】文本编辑器 Editor
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-11
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/题解/" target="_blank">
-                            <span class="chip bg-color">题解</span>
-                        </a>
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/分块/" target="_blank">
-                            <span class="chip bg-color">分块</span>
-                        </a>
-                        
-                        <a href="/tags/块状链表/" target="_blank">
-                            <span class="chip bg-color">块状链表</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-07/09-luogu3396/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="LuoguP3396 - 哈希冲突">
-                            
-                            <span class="card-title">LuoguP3396 - 哈希冲突</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                            【LuoguP3396】哈希冲突
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/题解/" target="_blank">
-                            <span class="chip bg-color">题解</span>
-                        </a>
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/分块/" target="_blank">
-                            <span class="chip bg-color">分块</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-07/01-luogu3709/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="LuoguP3709 - 大爷的字符串题">
-                            
-                            <span class="card-title">LuoguP3709 - 大爷的字符串题</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                            【LuoguP3709】大爷的字符串题
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-01
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/题解/" target="_blank">
-                            <span class="chip bg-color">题解</span>
-                        </a>
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/STL/" target="_blank">
-                            <span class="chip bg-color">STL</span>
-                        </a>
-                        
-                        <a href="/tags/莫队/" target="_blank">
-                            <span class="chip bg-color">莫队</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-06/03-spiking3/">
-                        <div class="card-image">
-                            
-                            <img src="/images/spiKing4.jpg" class="responsive-img" alt="项目日记 - 开发图片爬虫 Ⅲ">
-                            
-                            <span class="card-title">项目日记 - 开发图片爬虫 Ⅲ</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                            用C++开发一个图片爬虫 Ⅲ ：URL预处理 【咕咕】
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-06-03
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/项目/" class="post-category" target="_blank">
-                                    项目
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/颓废/" target="_blank">
-                            <span class="chip bg-color">颓废</span>
-                        </a>
-                        
-                        <a href="/tags/项目/" target="_blank">
-                            <span class="chip bg-color">项目</span>
-                        </a>
-                        
-                        <a href="/tags/爬虫/" target="_blank">
-                            <span class="chip bg-color">爬虫</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-05/28-spiking2/">
-                        <div class="card-image">
-                            
-                            <img src="/images/spiKing3.jpg" class="responsive-img" alt="项目日记 - 开发图片爬虫 Ⅱ">
-                            
-                            <span class="card-title">项目日记 - 开发图片爬虫 Ⅱ</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                            用C++开发一个图片爬虫 Ⅱ ：编码转换
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-28
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/项目/" class="post-category" target="_blank">
-                                    项目
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/颓废/" target="_blank">
-                            <span class="chip bg-color">颓废</span>
-                        </a>
-                        
-                        <a href="/tags/项目/" target="_blank">
-                            <span class="chip bg-color">项目</span>
-                        </a>
-                        
-                        <a href="/tags/爬虫/" target="_blank">
-                            <span class="chip bg-color">爬虫</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-05/26-spiking1/">
-                        <div class="card-image">
-                            
-                            <img src="/images/spiKing1.jpg" class="responsive-img" alt="项目日记 - 开发图片爬虫 Ⅰ">
-                            
-                            <span class="card-title">项目日记 - 开发图片爬虫 Ⅰ</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                            用C++开发一个图片爬虫 Ⅰ ：获取网页内容
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/项目/" class="post-category" target="_blank">
-                                    项目
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/颓废/" target="_blank">
-                            <span class="chip bg-color">颓废</span>
-                        </a>
-                        
-                        <a href="/tags/项目/" target="_blank">
-                            <span class="chip bg-color">项目</span>
-                        </a>
-                        
-                        <a href="/tags/爬虫/" target="_blank">
-                            <span class="chip bg-color">爬虫</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-05/22-luogu5145/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="LuoguP5145 - 漂浮的鸭子">
-                            
-                            <span class="card-title">LuoguP5145 - 漂浮的鸭子</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                            【LuoguP5145】漂浮的鸭子
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-22
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/题解/" target="_blank">
-                            <span class="chip bg-color">题解</span>
-                        </a>
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/搜索/" target="_blank">
-                            <span class="chip bg-color">搜索</span>
-                        </a>
-                        
-                        <a href="/tags/随机化搜索/" target="_blank">
-                            <span class="chip bg-color">随机化搜索</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
             
         </div>
-    </article>
+    </div>
+
+    <div class="row mb-4 mx-auto">
+        
+        
+        <div class="col-12 col-md-8 m-auto">
+            <a href="/2019-05/28-spiking2/">
+                <p class="h4 index-header">项目日记 - 开发图片爬虫 Ⅱ</p>
+                <div class="index-excerpt">
+                    
+                        <div class="index-text mb-1">前言我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。
+因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。
+理论我们写编码转换的代码，肯定要知道这些编码之间的关系。
+ASCII编码我们再熟悉不过了，然而我相信很多人和我一样，分不清什么是Unicode，UTF-8，UTF-16，UTF-32。
+我不想用长篇大论来解释这些东西，就给出它们各自的定义和我们需要知道的东西。如果想更深入的了解，可以自行搜索。
+
+Unicode（统一码、万国码、单一码）是计算机科学领域里的一项业界标准，包括字符集、编码方案等。
+
+至于它为什么诞生，我简单说明一下。因为我们熟知的ASCII码能表示的字符是非常有限的，根本无法承受那么多国家的字符。因此国际组织就又发明了一个新的编码，几乎收尽所有国家的字符，甚至包括特殊字符。
+Unicode与其他编码类似，也是每一个字符都对应一个数字来表示它。但Unicode也仅仅如此，它没有规定这个二进制代码如何存储。
+那么问题来了，在</div>
+                    
+                </div>
+            </a>
+
+            
+                <div>
+                    <i class="iconfont icon-riqi2"></i>&nbsp;2019-05-28
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                        <i class="iconfont icon-cc-tag-more"></i>
+                        
+                            Cpp&nbsp;
+                        
+                            颓废&nbsp;
+                        
+                            项目&nbsp;
+                        
+                            爬虫&nbsp;
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+
+    <div class="row mb-4 mx-auto">
+        
+        
+        <div class="col-12 col-md-8 m-auto">
+            <a href="/2019-05/26-spiking1/">
+                <p class="h4 index-header">项目日记 - 开发图片爬虫 Ⅰ</p>
+                <div class="index-excerpt">
+                    
+                        <div class="index-text mb-1">前言这个项目很久前就开始写了，但一直没有很完善。最近想起来，打算重新完善这个项目。
+本教程仅适用于C++。如果观看效果不佳，可点击右下方折叠目录。内容较为复杂，可以根据自己需要来阅读。
+目的做一个项目，首先需要知道你的目标是什么。这个项目名为图片爬虫，当然是为了下载图片。
+再具体一点，用户先给出一个网址，我们先保存网页，抓取网页上的图片链接和其他网址链接。然后保存每一张图片到用户设置的文件夹中。深入其他网址链接，循环这一步骤。
+那么我们去爬一个图片网站，就可以找到很多好（康）看的图片了。
+理论先了解爬虫的定义，如下：
+
+网络爬虫（英语：web crawler），也叫网络蜘蛛（spider），是一种用来自动浏览万维网的网络机器人。其目的一般为编纂网络索引。
+
+对于这个东西我还想补充一下，爬虫操作不当可能是违法的，但对于我们这些小项目来说，请求服务器资源的速度一般达不到攻击服务器的要求。爬虫有一个国际互联网界通行的道德规范，名叫robots协议，有兴趣可以去了解一下。我们就先不管那么多，还是技术更要紧些，不干扰网站正常运行就行了。
+那么如何去开发呢？我们目的很明确，所以大概分为几个步骤。我</div>
+                    
+                </div>
+            </a>
+
+            
+                <div>
+                    <i class="iconfont icon-riqi2"></i>&nbsp;2019-05-26
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                        <i class="iconfont icon-cc-tag-more"></i>
+                        
+                            Cpp&nbsp;
+                        
+                            颓废&nbsp;
+                        
+                            项目&nbsp;
+                        
+                            爬虫&nbsp;
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+
+    <div class="row mb-4 mx-auto">
+        
+        
+        <div class="col-12 col-md-8 m-auto">
+            <a href="/2019-05/22-luogu5145/">
+                <p class="h4 index-header">LuoguP5145 - 漂浮的鸭子</p>
+                <div class="index-excerpt">
+                    
+                        <div class="index-text mb-1">题目链接: https://www.luogu.org/problemnew/show/P5145
+前言最近颓的东西太多了, 终于又来做搜索题.
+这题很水 随手交了个暴力随机化就A了.
+分析这道题正解思路非常妙, 代码比较短. 但我们能不能想一个更简单粗暴的方法呢?
+先交一下能被卡成接近 $ O(n^2) $ 的暴力, 对于每一个点跑一遍DFS, 如果能回到此点就更新答案, 再加一个玄学剪枝, 将这个环上所有点打标记, 这些点就不用再DFS了.
+开O2只有50分
+// luogu-judger-enable-o2
+#include &lt;iostream>
+#include &lt;stdio.h>
+#include &lt;string.h>
+using namespace std;
+int n, tox[100001], toy[100001], rex[100001], tmpx, ans, walkpast[100001], lw[100001];
+void dfs(int nown) {
+    memcpy(walkpast, lw, sizeof(walkpast));</div>
+                    
+                </div>
+            </a>
+
+            
+                <div>
+                    <i class="iconfont icon-riqi2"></i>&nbsp;2019-05-22
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                        <i class="iconfont icon-cc-tag-more"></i>
+                        
+                            题解&nbsp;
+                        
+                            Cpp&nbsp;
+                        
+                            搜索&nbsp;
+                        
+                            随机化搜索&nbsp;
+                        
+                    
+                </div>
+            
+        </div>
+    </div>
+
+
+
+<nav aria-label="index posts navigation">
+<ul class="pagination pg-blue justify-content-center mt-5">
+    
+    
+        <li class="page-item">
+        <a class="page-link" href="/page/2/">Next</a>
+        </li>
+    
+</ul>
+</nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
 </main>
 
-
-<div class="container paging">
-    <div class="row">
-        <div class="col s6 m4 l4">
-            
-            <a class="left btn-floating btn-large disabled">
-                <i class="fa fa-angle-left"></i>
-            </a>
-            
-        </div>
-        <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">1 / 3</div>
-        </div>
-        <div class="col s6 m4 l4">
-            
-            <a href="/page/2/"
-               class="right btn-floating btn-large waves-effect waves-light bg-color">
-                <i class="fa fa-angle-right"></i>
-            </a>
-            
-        </div>
-    </div>
-</div>
-
-
-<footer class="page-footer bg-color">
-    <div class="container row center-align">
-        <div class="col s12 m8 l8copy-right">
-            
-            
-            <br>
-            
-            <span id="busuanzi_container_site_pv">
-                <i class="far fa-heart"></i>
-                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
-            </span>
-            
-            
-            <span id="busuanzi_container_site_uv">
-                <i class="fa fa-users"></i>
-                次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
-            </span>
-            
-            
-            
-            &nbsp;<i class="fa fa-chart-area"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">27.3k</span>
-            
-        </div>
-        <div class="col s12 m8 l4 social-link social-statis">
-<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" title="访问我的GitHub"
-    data-position="top" data-delay="50">
-    <i class="fab fa-github"></i>
-</a>
-
-
-
-<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank"
-    title="邮件: 896681584@qq.com" data-position="top" data-delay="50">
-    <i class="fa fa-envelope-open"></i>
-</a>
-
-
-
-<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped"
-    title="QQ: 896681584" data-position="top" data-delay="50">
-    <i class="fab fa-qq"></i>
-</a>
-
-
-
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" title="知乎" data-position="top" data-delay="50">
-    <i class="fab fa-zhihu"></i>
-</a>
-</div>
-    </div>
+<footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/0x2e/Material-T" target="_blank" rel="nofollow noopener"> <b>Material-T</b></a>
+    <br>
+    
+  </div>
 </footer>
 
-<div class="progress-bar"></div>
-
-<!-- 搜索遮罩框 -->
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <div class="search-header">
-            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
-                   class="search-input">
-        </div>
-        <div id="searchResult"></div>
-    </div>
-</div>
-
-<script src="/js/search.js"></script>
-<script type="text/javascript">
-$(function () {
-    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
-});
-</script>
-<!-- 回到顶部按钮 -->
-<div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
-        <i class="fa fa-angle-up"></i>
-    </a>
-</div>
-
-
-<script src="/libs/materialize/materialize.min.js"></script>
-<script src="/libs/masonry/masonry.pkgd.min.js"></script>
-<script src="/libs/aos/aos.js"></script>
-<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-<script src="/js/matery.js"></script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-
-
-
-
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
-
-
+  <!-- SCRIPTS -->
+  <script src="/lib/mdbootstrap/js/jquery-3.4.1.min.js"></script>
+  <script src="/lib/mdbootstrap/js/popper.min.js"></script>
+  <script src="/lib/mdbootstrap/js/bootstrap.min.js?v=4.3.1"></script>
+  <script src="/lib/mdbootstrap/js/mdb.min.js?v=4.8.7"></script>
+  <script src="/js/main.js"></script>
+  
+  
+    <script src="/lib/prettify/prettify.min.js?v=0.1.0"></script>
+    <script>
+      $(document).ready(function(){
+        $('pre').addClass('prettyprint linenums');
+        prettyPrint();
+      })
+    </script>
+  
+  
+    <script src="/lib/typed/typed.min.js?v=2.0.9"></script>
+    <script>
+        var typed = new Typed('#subtitle', {
+          strings: [
+            '  ',
+            "Ciyang&nbsp;",
+        ],
+        cursorChar: "|",
+        typeSpeed: 50,
+        startDelay: 300, //开始之前延迟300毫秒
+        loop: false,
+        });
+        $(".typed-cursor").addClass("h2");
+    </script>
+  
+  
+    <script src="/lib/anchor/anchor.min.js?v=4.2.0"></script>
+    <script>
+      anchors.options = {
+        placement: "right",
+        visible: "false",
+        
+      };
+      anchors.add(".post-content > h1,h2,h3,h4,h5,h6");
+    </script>
+  
 </body>
 </html>

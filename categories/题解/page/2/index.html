@@ -1,727 +1,2396 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="zh-CN">
 
 
+
+
+
 <head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="分类: 题解, Ciyang’s Blog">
-    <meta name="description" content="分类: 题解 | Ciyang’s Blog">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>分类: 题解 | Ciyang’s Blog</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="一个半退役OI的文化课选手...">
+    <meta name="author" content="Ciyang">
+    <meta name="keywords" content>
+    <title>Archives - Ciyang’s Blog</title>
+    <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=5.7.2">
+    <link rel="stylesheet" href="/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
+    <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
+    <link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_l7tuu6qerl9.css">
+    
+        <link rel="stylesheet" href="/lib/prettify/tomorrow-night-blue.min.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/fontawesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
-    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/matery.css">
-    <link rel="stylesheet" type="text/css" href="/css/my.css">
-    <style type="text/css">
-        
-    </style>
-
-    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
 <link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
 
+
 <body>
+<header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+<div class="container">
+    <a class="navbar-brand" href="/"><strong>Ciyang’s Blog</strong></a>
 
-<header class="navbar-fixed">
-    <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="nav-wrapper container">
-            <div class="brand-logo">
-                <a href="/" class="waves-effect waves-light">
-                    
-                    <img src="/favicon.png" class="logo-img" alt="LOGO">
-                    
-                    <span class="logo-span">Ciyang’s Blog</span>
-                </a>
-            </div>
-            
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
-<ul class="right">
-    
-    <li class="hide-on-med-and-down">
-        <a href="/" class="waves-effect waves-light">
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-center">
             
-            <i class="fa fa-1x fa-home"></i>
+            <li class="nav-item">
+                <a class="nav-link" href="/">主页</a>
+            </li>
             
-            <span>首页</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/tags" class="waves-effect waves-light">
+            <li class="nav-item">
+                <a class="nav-link" href="/archives/">归档</a>
+            </li>
             
-            <i class="fa fa-1x fa-tags"></i>
+            <li class="nav-item">
+                <a class="nav-link" href="/about/">关于</a>
+            </li>
             
-            <span>标签</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/categories" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-bookmark"></i>
-            
-            <span>分类</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/archives" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-archive"></i>
-            
-            <span>归档</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/about" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-user-circle"></i>
-            
-            <span>关于</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/friends" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-address-book"></i>
-            
-            <span>友情链接</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
-        <a href="/comments" class="waves-effect waves-light">
-            
-            <i class="fa fa-1x fa-comments"></i>
-            
-            <span>评论</span>
-        </a>
-    </li>
-    
-    <li>
-        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
-        </a>
-    </li>
-</ul>
-
-<div id="mobile-nav" class="side-nav sidenav">
-
-    <div class="mobile-head bg-color">
-        
-        <img src="/favicon.png" class="logo-img circle responsive-img">
-        
-        <div class="logo-name">Ciyang’s Blog</div>
-        <div class="logo-desc">
-            
-            一个半退役OI的文化课选手...
-            
-        </div>
+        </ul>
     </div>
-
-    
-
-    <ul class="menu-list mobile-menu-list">
-        
-        <li>
-            <a href="/" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-home"></i>
-                
-                首页
-            </a>
-        </li>
-        
-        <li>
-            <a href="/tags" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-tags"></i>
-                
-                标签
-            </a>
-        </li>
-        
-        <li>
-            <a href="/categories" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-bookmark"></i>
-                
-                分类
-            </a>
-        </li>
-        
-        <li>
-            <a href="/archives" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-archive"></i>
-                
-                归档
-            </a>
-        </li>
-        
-        <li>
-            <a href="/about" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-user-circle"></i>
-                
-                关于
-            </a>
-        </li>
-        
-        <li>
-            <a href="/friends" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-address-book"></i>
-                
-                友情链接
-            </a>
-        </li>
-        
-        <li>
-            <a href="/comments" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-1x fa-comments"></i>
-                
-                Comments
-            </a>
-        </li>
-        
-        
-    </ul>
 </div>
 
+
+</nav>
+    <div class="view intro-2"
+         style="background: url('/img/archive.jpg')no-repeat center center;background-size: cover;">
+        <div class="full-bg-img">
+            <div class="mask rgba-black-light flex-center">
+                <div class="container text-center white-text wow fadeInUp">
+                    <span class="h2" id="subtitle">
+                        
+                    </span>
+                    
+                </div>
+            </div>
         </div>
-
-        
-    </nav>
-
+    </div>
 </header>
 
-<div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
+<main>
+    
+        <div class="container nopadding-md">
+            <div class="py-5 z-depth-3 board">
                 
-                Ciyang
-                
-            </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-10 m-auto">
+                            <link rel="stylesheet" href="/css/archive.css">
 
-            <div class="description center-align">
-                
-                一个半退役OI的文化课选手...
-                
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    var knum = new Date().getMilliseconds() % 9;
-    $('.bg-cover').css('background-image', 'url(/medias/banner/' + knum + '.jpg)');
-</script>
-    </div>
-</div>
 
-<main class="content">
+
+
+
+
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item mr-2">
+        <a class="nav-link active" id="pills-All-tab" data-toggle="pill" href="#pills-All" role="tab"
+           aria-controls="pills-home" aria-selected="true">ALL</a>
+    </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92aj000354cwzyge2ctz-tab" data-toggle="pill" href="#pills-cjzcg92aj000354cwzyge2ctz" role="tab" aria-controls="pills-cjzcg92aj000354cwzyge2ctz" aria-selected="false">
+                题解
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92aq000854cwzxbpwqhs-tab" data-toggle="pill" href="#pills-cjzcg92aq000854cwzxbpwqhs" role="tab" aria-controls="pills-cjzcg92aq000854cwzxbpwqhs" aria-selected="false">
+                Cpp
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92ax000d54cw3cmmoisl-tab" data-toggle="pill" href="#pills-cjzcg92ax000d54cw3cmmoisl" role="tab" aria-controls="pills-cjzcg92ax000d54cw3cmmoisl" aria-selected="false">
+                搜索
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92b4000i54cwei9t8rlr-tab" data-toggle="pill" href="#pills-cjzcg92b4000i54cwei9t8rlr" role="tab" aria-controls="pills-cjzcg92b4000i54cwei9t8rlr" aria-selected="false">
+                动态规划
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92bl001354cw7ekd8b2z-tab" data-toggle="pill" href="#pills-cjzcg92bl001354cw7ekd8b2z" role="tab" aria-controls="pills-cjzcg92bl001354cw7ekd8b2z" aria-selected="false">
+                GCD
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92bo001a54cwnpqz0gzb-tab" data-toggle="pill" href="#pills-cjzcg92bo001a54cwnpqz0gzb" role="tab" aria-controls="pills-cjzcg92bo001a54cwnpqz0gzb" aria-selected="false">
+                数论
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92bu001n54cwpezz9bmu-tab" data-toggle="pill" href="#pills-cjzcg92bu001n54cwpezz9bmu" role="tab" aria-controls="pills-cjzcg92bu001n54cwpezz9bmu" aria-selected="false">
+                模拟
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92bw001r54cwdhhsa8dv-tab" data-toggle="pill" href="#pills-cjzcg92bw001r54cwdhhsa8dv" role="tab" aria-controls="pills-cjzcg92bw001r54cwdhhsa8dv" aria-selected="false">
+                并查集
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92bw001u54cw5mx5yjtx-tab" data-toggle="pill" href="#pills-cjzcg92bw001u54cw5mx5yjtx" role="tab" aria-controls="pills-cjzcg92bw001u54cw5mx5yjtx" aria-selected="false">
+                STL
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92bx001v54cwpsvwzdpr-tab" data-toggle="pill" href="#pills-cjzcg92bx001v54cwpsvwzdpr" role="tab" aria-controls="pills-cjzcg92bx001v54cwpsvwzdpr" aria-selected="false">
+                离散化
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92by001z54cwaq3jhl9r-tab" data-toggle="pill" href="#pills-cjzcg92by001z54cwaq3jhl9r" role="tab" aria-controls="pills-cjzcg92by001z54cwaq3jhl9r" aria-selected="false">
+                LCA
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92bz002254cw7q68kvav-tab" data-toggle="pill" href="#pills-cjzcg92bz002254cw7q68kvav" role="tab" aria-controls="pills-cjzcg92bz002254cw7q68kvav" aria-selected="false">
+                主席树
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92bz002454cwe244ausu-tab" data-toggle="pill" href="#pills-cjzcg92bz002454cwe244ausu" role="tab" aria-controls="pills-cjzcg92bz002454cwe244ausu" aria-selected="false">
+                分块
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92c0002754cwlsz8g6wz-tab" data-toggle="pill" href="#pills-cjzcg92c0002754cwlsz8g6wz" role="tab" aria-controls="pills-cjzcg92c0002754cwlsz8g6wz" aria-selected="false">
+                莫队
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92c2002d54cwxu6kwtgg-tab" data-toggle="pill" href="#pills-cjzcg92c2002d54cwxu6kwtgg" role="tab" aria-controls="pills-cjzcg92c2002d54cwxu6kwtgg" aria-selected="false">
+                二分查找
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92c3002g54cwagjuwi1u-tab" data-toggle="pill" href="#pills-cjzcg92c3002g54cwagjuwi1u" role="tab" aria-controls="pills-cjzcg92c3002g54cwagjuwi1u" aria-selected="false">
+                ST表
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92c4002k54cwn7h2oekx-tab" data-toggle="pill" href="#pills-cjzcg92c4002k54cwn7h2oekx" role="tab" aria-controls="pills-cjzcg92c4002k54cwn7h2oekx" aria-selected="false">
+                线段树
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92c4002l54cwxtz4r5xb-tab" data-toggle="pill" href="#pills-cjzcg92c4002l54cwxtz4r5xb" role="tab" aria-controls="pills-cjzcg92c4002l54cwxtz4r5xb" aria-selected="false">
+                前缀和
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92c5002n54cwd37wzttp-tab" data-toggle="pill" href="#pills-cjzcg92c5002n54cwd37wzttp" role="tab" aria-controls="pills-cjzcg92c5002n54cwd37wzttp" aria-selected="false">
+                随机化搜索
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92c6002q54cwz12q5hmb-tab" data-toggle="pill" href="#pills-cjzcg92c6002q54cwz12q5hmb" role="tab" aria-controls="pills-cjzcg92c6002q54cwz12q5hmb" aria-selected="false">
+                状压DP
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92c7002t54cw1nl0sjk1-tab" data-toggle="pill" href="#pills-cjzcg92c7002t54cw1nl0sjk1" role="tab" aria-controls="pills-cjzcg92c7002t54cw1nl0sjk1" aria-selected="false">
+                颓废
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92c8002w54cw58eb605z-tab" data-toggle="pill" href="#pills-cjzcg92c8002w54cw58eb605z" role="tab" aria-controls="pills-cjzcg92c8002w54cw58eb605z" aria-selected="false">
+                项目
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92c9003054cw66fxpiub-tab" data-toggle="pill" href="#pills-cjzcg92c9003054cw66fxpiub" role="tab" aria-controls="pills-cjzcg92c9003054cw66fxpiub" aria-selected="false">
+                爬虫
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92ca003354cw57jdmec1-tab" data-toggle="pill" href="#pills-cjzcg92ca003354cw57jdmec1" role="tab" aria-controls="pills-cjzcg92ca003354cw57jdmec1" aria-selected="false">
+                技巧
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92cc003654cws3v4d4jh-tab" data-toggle="pill" href="#pills-cjzcg92cc003654cws3v4d4jh" role="tab" aria-controls="pills-cjzcg92cc003654cws3v4d4jh" aria-selected="false">
+                闲聊
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92cf003f54cwn2ubc0te-tab" data-toggle="pill" href="#pills-cjzcg92cf003f54cwn2ubc0te" role="tab" aria-controls="pills-cjzcg92cf003f54cwn2ubc0te" aria-selected="false">
+                码风
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92cr003r54cwk7dboqtv-tab" data-toggle="pill" href="#pills-cjzcg92cr003r54cwk7dboqtv" role="tab" aria-controls="pills-cjzcg92cr003r54cwk7dboqtv" aria-selected="false">
+                字典树
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92cw003x54cwnssq5mr6-tab" data-toggle="pill" href="#pills-cjzcg92cw003x54cwnssq5mr6" role="tab" aria-controls="pills-cjzcg92cw003x54cwnssq5mr6" aria-selected="false">
+                边压Trie
+            </a>
+        </li>
+    
+        <li class="nav-item mr-2">
+            <a class="nav-link" id="pills-cjzcg92cy004254cwimrnmc2e-tab" data-toggle="pill" href="#pills-cjzcg92cy004254cwimrnmc2e" role="tab" aria-controls="pills-cjzcg92cy004254cwimrnmc2e" aria-selected="false">
+                块状链表
+            </a>
+        </li>
+    
+</ul>
+<div class="tab-content pt-2 pl-1" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-All" role="tabpanel" aria-labelledby="pills-all-tab">
+        <p>Total: 20</p>
+        <hr>
+        
+            
+                
+                    
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/17-luogu4205/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">NOI2005 - 智慧珠游戏</span>
+            <span style="float: right;">03-17</span>
+        </a>
+        
+                
+        <a href="/2019-03/07-luogu4085/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">USACO17DEC - Haybale Feast</span>
+            <span style="float: right;">03-07</span>
+        </a>
+        
+                
+        <a href="/2019-03/03-luogu1072/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">NOIP2009 - Hankson 的趣味题</span>
+            <span style="float: right;">03-03</span>
+        </a>
+        
+                
+        <a href="/2019-02/18-luogu2633/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">LuoguP2633 - Count on a tree</span>
+            <span style="float: right;">02-18</span>
+        </a>
+        
+                
+        <a href="/2019-02/16-luogu2580/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">LuoguP2580 - 于是他错误的点名开始了</span>
+            <span style="float: right;">02-16</span>
+        </a>
+        
+    </div>
+    
+    
+</div>
 
     
-
-<div id="category-cloud" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fa fa-bookmark"></i>&nbsp;&nbsp;文章分类
-            </div>
-            <div class="tag-chips">
+    <div class="tab-pane fade" id="pills-cjzcg92aj000354cwzyge2ctz" role="tabpanel" aria-labelledby="pills-cjzcg92aj000354cwzyge2ctz-tab">
+        
+            
                 
+                    
+                        
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/17-luogu4205/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">NOI2005 - 智慧珠游戏</span>
+            <span style="float: right;">03-17</span>
+        </a>
+        
+        
                 
+        
                 
-                <a href="/categories/题解/" title="题解: 14">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #F9EBEA;">题解
-                        <span class="tag-length">14</span>
-                    </span>
-                </a>
+        
                 
+        
+        
+            
                 
-                <a href="/categories/项目/" title="项目: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F5EEF8;">项目
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
+                    
+        <a href="/2019-03/07-luogu4085/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">USACO17DEC - Haybale Feast</span>
+            <span style="float: right;">03-07</span>
+        </a>
+        
+        
                 
+        
                 
-                <a href="/categories/技巧/" title="技巧: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #D5F5E3;">技巧
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
+        
                 
+        
                 
-                <a href="/categories/闲聊/" title="闲聊: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #E8F8F5;">闲聊
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
+        
                 
+        
                 
-            </div>
-        </div>
+        
+        
+            
+                
+                    
+        <a href="/2019-03/03-luogu1072/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">NOIP2009 - Hankson 的趣味题</span>
+            <span style="float: right;">03-03</span>
+        </a>
+        
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+                    
+        <a href="/2019-02/18-luogu2633/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">LuoguP2633 - Count on a tree</span>
+            <span style="float: right;">02-18</span>
+        </a>
+        
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+                    
+        <a href="/2019-02/16-luogu2580/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">LuoguP2580 - 于是他错误的点名开始了</span>
+            <span style="float: right;">02-16</span>
+        </a>
+        
+        
+                
+        
+                
+        
+                
+        
+        
     </div>
-</div>
+    </div>
 
     
-
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
+    <div class="tab-pane fade" id="pills-cjzcg92aq000854cwzxbpwqhs" role="tabpanel" aria-labelledby="pills-cjzcg92aq000854cwzxbpwqhs-tab">
+        
             
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-03/17-luogu4205/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="NOI2005 - 智慧珠游戏">
-                            
-                            <span class="card-title">NOI2005 - 智慧珠游戏</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                                【LuoguP4205】【BZOJ1501】【NOI2005】智慧珠游戏
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-17
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
+                
+        
+                
+                    
+                        
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/17-luogu4205/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">NOI2005 - 智慧珠游戏</span>
+            <span style="float: right;">03-17</span>
+        </a>
+        
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+                    
+        <a href="/2019-03/07-luogu4085/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">USACO17DEC - Haybale Feast</span>
+            <span style="float: right;">03-07</span>
+        </a>
+        
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+                    
+        <a href="/2019-03/03-luogu1072/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">NOIP2009 - Hankson 的趣味题</span>
+            <span style="float: right;">03-03</span>
+        </a>
+        
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+                    
+        <a href="/2019-02/18-luogu2633/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">LuoguP2633 - Count on a tree</span>
+            <span style="float: right;">02-18</span>
+        </a>
+        
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+                    
+        <a href="/2019-02/16-luogu2580/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">LuoguP2580 - 于是他错误的点名开始了</span>
+            <span style="float: right;">02-16</span>
+        </a>
+        
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
 
+    
+    <div class="tab-pane fade" id="pills-cjzcg92ax000d54cw3cmmoisl" role="tabpanel" aria-labelledby="pills-cjzcg92ax000d54cw3cmmoisl-tab">
+        
+            
+                
+        
+                
+        
+                
                     
-                    <div class="card-action article-tags">
                         
-                        <a href="/tags/题解/" target="_blank">
-                            <span class="chip bg-color">题解</span>
-                        </a>
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/17-luogu4205/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">NOI2005 - 智慧珠游戏</span>
+            <span style="float: right;">03-17</span>
+        </a>
+        
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92b4000i54cwei9t8rlr" role="tabpanel" aria-labelledby="pills-cjzcg92b4000i54cwei9t8rlr-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92bl001354cw7ekd8b2z" role="tabpanel" aria-labelledby="pills-cjzcg92bl001354cw7ekd8b2z-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+                    
                         
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/03-luogu1072/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">NOIP2009 - Hankson 的趣味题</span>
+            <span style="float: right;">03-03</span>
+        </a>
+        
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92bo001a54cwnpqz0gzb" role="tabpanel" aria-labelledby="pills-cjzcg92bo001a54cwnpqz0gzb-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+                    
                         
-                        <a href="/tags/搜索/" target="_blank">
-                            <span class="chip bg-color">搜索</span>
-                        </a>
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/03-luogu1072/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">NOIP2009 - Hankson 的趣味题</span>
+            <span style="float: right;">03-03</span>
+        </a>
+        
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92bu001n54cwpezz9bmu" role="tabpanel" aria-labelledby="pills-cjzcg92bu001n54cwpezz9bmu-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+                    
                         
-                        <a href="/tags/模拟/" target="_blank">
-                            <span class="chip bg-color">模拟</span>
-                        </a>
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/17-luogu4205/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">NOI2005 - 智慧珠游戏</span>
+            <span style="float: right;">03-17</span>
+        </a>
+        
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92bw001r54cwdhhsa8dv" role="tabpanel" aria-labelledby="pills-cjzcg92bw001r54cwdhhsa8dv-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92bw001u54cw5mx5yjtx" role="tabpanel" aria-labelledby="pills-cjzcg92bw001u54cw5mx5yjtx-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92bx001v54cwpsvwzdpr" role="tabpanel" aria-labelledby="pills-cjzcg92bx001v54cwpsvwzdpr-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92by001z54cwaq3jhl9r" role="tabpanel" aria-labelledby="pills-cjzcg92by001z54cwaq3jhl9r-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+                    
                         
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-02/18-luogu2633/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">LuoguP2633 - Count on a tree</span>
+            <span style="float: right;">02-18</span>
+        </a>
+        
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92bz002254cw7q68kvav" role="tabpanel" aria-labelledby="pills-cjzcg92bz002254cw7q68kvav-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+                    
+                        
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-02/18-luogu2633/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">LuoguP2633 - Count on a tree</span>
+            <span style="float: right;">02-18</span>
+        </a>
+        
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92bz002454cwe244ausu" role="tabpanel" aria-labelledby="pills-cjzcg92bz002454cwe244ausu-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+                    
+                        
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/07-luogu4085/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">USACO17DEC - Haybale Feast</span>
+            <span style="float: right;">03-07</span>
+        </a>
+        
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92c0002754cwlsz8g6wz" role="tabpanel" aria-labelledby="pills-cjzcg92c0002754cwlsz8g6wz-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92c2002d54cwxu6kwtgg" role="tabpanel" aria-labelledby="pills-cjzcg92c2002d54cwxu6kwtgg-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+                    
+                        
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/07-luogu4085/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">USACO17DEC - Haybale Feast</span>
+            <span style="float: right;">03-07</span>
+        </a>
+        
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92c3002g54cwagjuwi1u" role="tabpanel" aria-labelledby="pills-cjzcg92c3002g54cwagjuwi1u-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+                    
+                        
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/07-luogu4085/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">USACO17DEC - Haybale Feast</span>
+            <span style="float: right;">03-07</span>
+        </a>
+        
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92c4002k54cwn7h2oekx" role="tabpanel" aria-labelledby="pills-cjzcg92c4002k54cwn7h2oekx-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+                    
+                        
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/07-luogu4085/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">USACO17DEC - Haybale Feast</span>
+            <span style="float: right;">03-07</span>
+        </a>
+        
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92c4002l54cwxtz4r5xb" role="tabpanel" aria-labelledby="pills-cjzcg92c4002l54cwxtz4r5xb-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+                    
+                        
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-03/07-luogu4085/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">USACO17DEC - Haybale Feast</span>
+            <span style="float: right;">03-07</span>
+        </a>
+        
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92c5002n54cwd37wzttp" role="tabpanel" aria-labelledby="pills-cjzcg92c5002n54cwd37wzttp-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92c6002q54cwz12q5hmb" role="tabpanel" aria-labelledby="pills-cjzcg92c6002q54cwz12q5hmb-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92c7002t54cw1nl0sjk1" role="tabpanel" aria-labelledby="pills-cjzcg92c7002t54cw1nl0sjk1-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92c8002w54cw58eb605z" role="tabpanel" aria-labelledby="pills-cjzcg92c8002w54cw58eb605z-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92c9003054cw66fxpiub" role="tabpanel" aria-labelledby="pills-cjzcg92c9003054cw66fxpiub-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92ca003354cw57jdmec1" role="tabpanel" aria-labelledby="pills-cjzcg92ca003354cw57jdmec1-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92cc003654cws3v4d4jh" role="tabpanel" aria-labelledby="pills-cjzcg92cc003654cws3v4d4jh-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92cf003f54cwn2ubc0te" role="tabpanel" aria-labelledby="pills-cjzcg92cf003f54cwn2ubc0te-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92cr003r54cwk7dboqtv" role="tabpanel" aria-labelledby="pills-cjzcg92cr003r54cwk7dboqtv-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+                    
+                        
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-02/16-luogu2580/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">LuoguP2580 - 于是他错误的点名开始了</span>
+            <span style="float: right;">02-16</span>
+        </a>
+        
+        
+                
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92cw003x54cwnssq5mr6" role="tabpanel" aria-labelledby="pills-cjzcg92cw003x54cwnssq5mr6-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+                    
+                        
+    
+    <p class="h5">2019</p>
+    <div class="list-group">
+        
+        <a href="/2019-02/16-luogu2580/" class="list-group-item list-group-item-action">
+            <span class="archive-post-title">LuoguP2580 - 于是他错误的点名开始了</span>
+            <span style="float: right;">02-16</span>
+        </a>
+        
+        
+        
+    </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-cjzcg92cy004254cwimrnmc2e" role="tabpanel" aria-labelledby="pills-cjzcg92cy004254cwimrnmc2e-tab">
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+            
+                
+        
+                
+        
+                
+        
+                
+        
+        
+    </div>
+    </div>
+
+</div>
+                        </div>
                     </div>
-                    
                 </div>
             </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-03/07-luogu4085/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="USACO17DEC - Haybale Feast">
-                            
-                            <span class="card-title">USACO17DEC - Haybale Feast</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                                【LuoguP4085】【USACO17DEC】Haybale Feast
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-07
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/题解/" target="_blank">
-                            <span class="chip bg-color">题解</span>
-                        </a>
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/分块/" target="_blank">
-                            <span class="chip bg-color">分块</span>
-                        </a>
-                        
-                        <a href="/tags/二分查找/" target="_blank">
-                            <span class="chip bg-color">二分查找</span>
-                        </a>
-                        
-                        <a href="/tags/ST表/" target="_blank">
-                            <span class="chip bg-color">ST表</span>
-                        </a>
-                        
-                        <a href="/tags/线段树/" target="_blank">
-                            <span class="chip bg-color">线段树</span>
-                        </a>
-                        
-                        <a href="/tags/前缀和/" target="_blank">
-                            <span class="chip bg-color">前缀和</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-03/03-luogu1072/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="NOIP2009 - Hankson 的趣味题">
-                            
-                            <span class="card-title">NOIP2009 - Hankson 的趣味题</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                                【LuoguP1072】【NOIP2009】Hankson 的趣味题
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-03
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/题解/" target="_blank">
-                            <span class="chip bg-color">题解</span>
-                        </a>
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/GCD/" target="_blank">
-                            <span class="chip bg-color">GCD</span>
-                        </a>
-                        
-                        <a href="/tags/数论/" target="_blank">
-                            <span class="chip bg-color">数论</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-02/18-luogu2633/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="LuoguP2633 - Count on a tree">
-                            
-                            <span class="card-title">LuoguP2633 - Count on a tree</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                                【LuoguP2633】【SP10628】【BZOJ2588】Count on a tree 树上第 K 大
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-18
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/题解/" target="_blank">
-                            <span class="chip bg-color">题解</span>
-                        </a>
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/LCA/" target="_blank">
-                            <span class="chip bg-color">LCA</span>
-                        </a>
-                        
-                        <a href="/tags/主席树/" target="_blank">
-                            <span class="chip bg-color">主席树</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019-02/16-luogu2580/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="LuoguP2580 - 于是他错误的点名开始了">
-                            
-                            <span class="card-title">LuoguP2580 - 于是他错误的点名开始了</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary">
-                            
-                                【LuoguP2580】于是他错误的点名开始了
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-16
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/题解/" class="post-category" target="_blank">
-                                    题解
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/题解/" target="_blank">
-                            <span class="chip bg-color">题解</span>
-                        </a>
-                        
-                        <a href="/tags/Cpp/" target="_blank">
-                            <span class="chip bg-color">Cpp</span>
-                        </a>
-                        
-                        <a href="/tags/字典树/" target="_blank">
-                            <span class="chip bg-color">字典树</span>
-                        </a>
-                        
-                        <a href="/tags/边压Trie/" target="_blank">
-                            <span class="chip bg-color">边压Trie</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
-    </article>
+    
 </main>
 
-
-<div class="container paging">
-    <div class="row">
-        <div class="col s6 m4 l4">
-            
-            <a href="/categories/题解/"
-               class="left btn-floating btn-large waves-effect waves-light bg-color">
-                <i class="fa fa-angle-left"></i>
-            </a>
-            
-        </div>
-        <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">2 / 2</div>
-        </div>
-        <div class="col s6 m4 l4">
-            
-            <a class="right btn-floating btn-large disabled">
-                <i class="fa fa-angle-right"></i>
-            </a>
-            
-        </div>
-    </div>
-</div>
-
-
-<footer class="page-footer bg-color">
-    <div class="container row center-align">
-        <div class="col s12 m8 l8copy-right">
-            
-            
-            <br>
-            
-            <span id="busuanzi_container_site_pv">
-                <i class="far fa-heart"></i>
-                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
-            </span>
-            
-            
-            <span id="busuanzi_container_site_uv">
-                <i class="fa fa-users"></i>
-                次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
-            </span>
-            
-            
-            
-            &nbsp;<i class="fa fa-chart-area"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">27.3k</span>
-            
-        </div>
-        <div class="col s12 m8 l4 social-link social-statis">
-<a href="https://github.com/Xciyang" class="tooltipped" target="_blank" title="访问我的GitHub"
-    data-position="top" data-delay="50">
-    <i class="fab fa-github"></i>
-</a>
-
-
-
-<a href="mailto:896681584@qq.com" class="tooltipped" target="_blank"
-    title="邮件: 896681584@qq.com" data-position="top" data-delay="50">
-    <i class="fa fa-envelope-open"></i>
-</a>
-
-
-
-<a href="tencent://AddContact/?subcmd=all&uin=896681584" class="tooltipped"
-    title="QQ: 896681584" data-position="top" data-delay="50">
-    <i class="fab fa-qq"></i>
-</a>
-
-
-
-<a href="https://www.zhihu.com/people/ci-yang-ciyang" class="tooltipped" title="知乎" data-position="top" data-delay="50">
-    <i class="fab fa-zhihu"></i>
-</a>
-</div>
-    </div>
+<footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/0x2e/Material-T" target="_blank" rel="nofollow noopener"> <b>Material-T</b></a>
+    <br>
+    
+  </div>
 </footer>
 
-<div class="progress-bar"></div>
-
-<!-- 搜索遮罩框 -->
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <div class="search-header">
-            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
-                   class="search-input">
-        </div>
-        <div id="searchResult"></div>
-    </div>
-</div>
-
-<script src="/js/search.js"></script>
-<script type="text/javascript">
-$(function () {
-    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
-});
-</script>
-<!-- 回到顶部按钮 -->
-<div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
-        <i class="fa fa-angle-up"></i>
-    </a>
-</div>
-
-
-<script src="/libs/materialize/materialize.min.js"></script>
-<script src="/libs/masonry/masonry.pkgd.min.js"></script>
-<script src="/libs/aos/aos.js"></script>
-<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-<script src="/js/matery.js"></script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-
-
-
-
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
-
-
+  <!-- SCRIPTS -->
+  <script src="/lib/mdbootstrap/js/jquery-3.4.1.min.js"></script>
+  <script src="/lib/mdbootstrap/js/popper.min.js"></script>
+  <script src="/lib/mdbootstrap/js/bootstrap.min.js?v=4.3.1"></script>
+  <script src="/lib/mdbootstrap/js/mdb.min.js?v=4.8.7"></script>
+  <script src="/js/main.js"></script>
+  
+  
+    <script src="/lib/prettify/prettify.min.js?v=0.1.0"></script>
+    <script>
+      $(document).ready(function(){
+        $('pre').addClass('prettyprint linenums');
+        prettyPrint();
+      })
+    </script>
+  
+  
+    <script src="/lib/typed/typed.min.js?v=2.0.9"></script>
+    <script>
+        var typed = new Typed('#subtitle', {
+          strings: [
+            '  ',
+            "Archives&nbsp;",
+        ],
+        cursorChar: "|",
+        typeSpeed: 50,
+        startDelay: 300, //开始之前延迟300毫秒
+        loop: false,
+        });
+        $(".typed-cursor").addClass("h2");
+    </script>
+  
+  
+    <script src="/lib/anchor/anchor.min.js?v=4.2.0"></script>
+    <script>
+      anchors.options = {
+        placement: "right",
+        visible: "false",
+        
+      };
+      anchors.add(".post-content > h1,h2,h3,h4,h5,h6");
+    </script>
+  
 </body>
 </html>
