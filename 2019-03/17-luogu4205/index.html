@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1565872790610">
+  <link rel="stylesheet" href="/css/style.css?v=1565876232482">
 <link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
 
 <body class="mdui-drawer-body-left">
@@ -203,21 +203,27 @@
             </a>
           </div>
         <div class="nexmoe-post">
-    <div class="nexmoe-post-cover"> 
-        
-            <img src="/medias/banner/8.jpg">
-        
-        <h1>NOI2005 - 智慧珠游戏</h1>
-    </div>
+  <div class="nexmoe-post-cover">
+    
+    <img id="coverback">
+    <script>
+      var nowImg = document.getElementById('coverback');
+      nowImg.id = 'coverback_old';
+      var key = '20190317';
+      nowImg.src = '/medias/banner/' + key % 9 + '.jpg';
+    </script>
+    
+    <h1>NOI2005 - 智慧珠游戏</h1>
+  </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年03月17日</a>
     <a><i class="nexmoefont icon-areachart"></i>4.5k 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 26 分钟</a>
     
-      <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
+    <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
     
-      <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/搜索/">搜索</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/模拟/">模拟</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
+    <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/搜索/">搜索</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/模拟/">模拟</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
     
   </div>
   <article>
@@ -723,7 +729,7 @@ L: 8种</code></pre><p>加起来的确有很多种, 然后就开始写DFS了.</p
 
   </article>
   
-    
+  
 <div class="nexmoe-post-copyright">
 <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
 <strong>本文作者：</strong>Ciyang<br>
@@ -750,6 +756,7 @@ L: 8种</code></pre><p>加起来的确有很多种, 然后就开始写DFS了.</p
 </div>
 </section>
 </div>
+
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
@@ -765,7 +772,7 @@ L: 8种</code></pre><p>加起来的确有很多种, 然后就开始写DFS了.</p
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1565872790514"></script>
+<script src="/js/app.js?v=1565876232353"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
   

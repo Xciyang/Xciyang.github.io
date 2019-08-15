@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1565872790583">
+  <link rel="stylesheet" href="/css/style.css?v=1565876232442">
 <link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
 
 <body class="mdui-drawer-body-left">
@@ -203,21 +203,27 @@
             </a>
           </div>
         <div class="nexmoe-post">
-    <div class="nexmoe-post-cover"> 
-        
-            <img src="/medias/banner/8.jpg">
-        
-        <h1>NOIP2003 - 传染病控制</h1>
-    </div>
+  <div class="nexmoe-post-cover">
+    
+    <img id="coverback">
+    <script>
+      var nowImg = document.getElementById('coverback');
+      nowImg.id = 'coverback_old';
+      var key = '20190424';
+      nowImg.src = '/medias/banner/' + key % 9 + '.jpg';
+    </script>
+    
+    <h1>NOIP2003 - 传染病控制</h1>
+  </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年04月24日</a>
     <a><i class="nexmoefont icon-areachart"></i>949 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
     
-      <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
+    <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
     
-      <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/动态规划/">动态规划</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/搜索/">搜索</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
+    <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/动态规划/">动态规划</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/搜索/">搜索</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
     
   </div>
   <article>
@@ -343,7 +349,7 @@ vector<span class="token operator">&lt;</span> <span class="token keyword">int</
 
   </article>
   
-    
+  
 <div class="nexmoe-post-copyright">
 <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
 <strong>本文作者：</strong>Ciyang<br>
@@ -370,6 +376,14 @@ vector<span class="token operator">&lt;</span> <span class="token keyword">int</
 </div>
 </section>
 </div>
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [['$', '$'], ['\(', '\)']] }
+  });
+</script>
+
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
@@ -385,7 +399,7 @@ vector<span class="token operator">&lt;</span> <span class="token keyword">int</
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1565872790514"></script>
+<script src="/js/app.js?v=1565876232353"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
   
