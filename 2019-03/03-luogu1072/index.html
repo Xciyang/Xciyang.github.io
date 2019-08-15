@@ -1,111 +1,229 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
-
-
+<html>
 
 <head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="UTF-8">
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="/img/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="一个半退役OI的文化课选手...">
-    <meta name="author" content="Ciyang">
-    <meta name="keywords" content>
-    <title>NOIP2009 - Hankson 的趣味题 - Ciyang’s Blog</title>
-    <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=5.7.2">
-    <link rel="stylesheet" href="/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
-    <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
-    <link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_l7tuu6qerl9.css">
-    
-        <link rel="stylesheet" href="/lib/prettify/tomorrow-night-blue.min.css">
-    
-    <link rel="stylesheet" href="/css/main.css">
+  
+  <title>NOIP2009 - Hankson 的趣味题 - Ciyang’s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
 
-    
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?c285bfd3ab71dfa2d08b9656991e938e";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <meta name="description" content="【LuoguP1072】【NOIP2009】Hankson 的趣味题题目链接: https://www.luogu.org/problemnew/show/P1072 引言半个月没更新博客了, 一直忙于做题练习和学文化课, 不然快被劝退了 最近学习一本通提高篇, 复习下之前学的GCD等数论知识">
+<meta name="keywords" content="题解,Cpp,GCD,数论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP2009 - Hankson 的趣味题">
+<meta property="og:url" content="https://xciyang.github.io/2019-03/03-luogu1072/index.html">
+<meta property="og:site_name" content="Ciyang’s Blog">
+<meta property="og:description" content="【LuoguP1072】【NOIP2009】Hankson 的趣味题题目链接: https://www.luogu.org/problemnew/show/P1072 引言半个月没更新博客了, 一直忙于做题练习和学文化课, 不然快被劝退了 最近学习一本通提高篇, 复习下之前学的GCD等数论知识">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-15T11:55:01.833Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOIP2009 - Hankson 的趣味题">
+<meta name="twitter:description" content="【LuoguP1072】【NOIP2009】Hankson 的趣味题题目链接: https://www.luogu.org/problemnew/show/P1072 引言半个月没更新博客了, 一直忙于做题练习和学文化课, 不然快被劝退了 最近学习一本通提高篇, 复习下之前学的GCD等数论知识">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1565872790614">
 <link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
 
-
-<body>
-<header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-<div class="container">
-    <a class="navbar-brand" href="/"><strong>Ciyang’s Blog</strong></a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto text-center">
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/">主页</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/archives/">归档</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/about/">关于</a>
-            </li>
-            
-        </ul>
+<body class="mdui-drawer-body-left">
+  
+  <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/">
+            <img src="/medias/avatar.jpg">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>21</div>
+        <div><span>标签</span>29</div>
+        <div><span>分类</span>4</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://github.com/Xciyang" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://www.zhihu.com/people/ci-yang-ciyang" target="_blank" mdui-tooltip="{content: '知乎'}" style="color: rgb(123, 12, 57);background-color: rgba(123, 12, 57, .15);">
+            <i class="nexmoefont icon-zhihu"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/6068536" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=896681584&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(12, 2, 255);background-color: rgba(12, 2, 255, .15);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="mailto:896681584@qq.com" target="_blank" mdui-tooltip="{content: '邮箱'}" style="color: rgb(123, 1, 255);background-color: rgba(123, 1, 255, .15);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a>
     </div>
 </div>
-
-
-</nav>
-    <div class="view intro-2"
-         style="background: url('/img/post.jpg')no-repeat center center;background-size: cover;">
-        <div class="full-bg-img">
-            <div class="mask rgba-black-light flex-center">
-                <div class="container text-center white-text wow fadeInUp">
-                    <span class="h2" id="subtitle">
-                        
-                    </span>
-                    
-                        <br>
-                        <p>星期日, 三月 3日 2019, 8:38 晚上</p>
-                    
-                </div>
-            </div>
-        </div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技巧/">技巧</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲聊/">闲聊</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目/">项目</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/题解/">题解</a><span class="category-list-count">14</span></li></ul>
     </div>
-</header>
+  </div>
 
-<main>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div class="nexmoe-widget tagcloud">
+      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.67px;">STL</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/主席树/" style="font-size: 10px;">主席树</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/分块/" style="font-size: 13.33px;">分块</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 11.67px;">动态规划</a> <a href="/tags/块状链表/" style="font-size: 10px;">块状链表</a> <a href="/tags/字典树/" style="font-size: 10px;">字典树</a> <a href="/tags/并查集/" style="font-size: 10px;">并查集</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/搜索/" style="font-size: 16.67px;">搜索</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/模拟/" style="font-size: 11.67px;">模拟</a> <a href="/tags/爬虫/" style="font-size: 13.33px;">爬虫</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a> <a href="/tags/码风/" style="font-size: 10px;">码风</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 10px;">线段树</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/边压Trie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/闲聊/" style="font-size: 15px;">闲聊</a> <a href="/tags/随机化搜索/" style="font-size: 10px;">随机化搜索</a> <a href="/tags/项目/" style="font-size: 13.33px;">项目</a> <a href="/tags/颓废/" style="font-size: 15px;">颓废</a> <a href="/tags/题解/" style="font-size: 18.33px;">题解</a>
+    </div>
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2019-08/15-chong-xin-kai-shi/">重新开始</a>
+          </li>
+        
+          <li>
+            <a href="/2019-07/15-luogu5440/">LuoguP5440 - 【XR-2】奇迹</a>
+          </li>
+        
+          <li>
+            <a href="/2019-07/12-zai-oj-shang-chu-jiao-hu-ti/">技巧 - 在OJ上出交互题</a>
+          </li>
+        
+          <li>
+            <a href="/2019-07/11-luogu4008/">NOI2003 - 文本编辑器</a>
+          </li>
+        
+          <li>
+            <a href="/2019-07/09-luogu3396/">LuoguP3396 - 哈希冲突</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">&nbsp&nbsp&nbsp&nbsp本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+    <div class="nexmoe-copyright">
+        &copy; 2019 Ciyang
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+
+<script>
+    const getRealPath = (pathname, desc = false) => {
+        if (!pathname) {
+            pathname = window.location.pathname
+        }
+        let names = pathname.split("/")
+        if (desc === false) {
+            for (let i = names.length - 1; i >= 0; --i) {
+                let name = names[i].trim()
+                if (name.length > 0 && name !== "/" && name !== "index.html") {
+                    return name
+                }
+            }
+        } else {
+            for (let i = 0; i < names.length; ++i) {
+                let name = names[i].trim()
+                if (name.length > 0 && name !== "/" && name !== "index.html") {
+                    return name
+                }
+            }
+        }
+        return "/"
+    }
+    let links = document.querySelectorAll('.nexmoe-list-item');
+    let rootRealPath = getRealPath(window.location.pathname, true);
+    for (let link of links) {
+        let linkPath = link.getAttribute("href");
+        if (linkPath && getRealPath(linkPath, true) === rootRealPath) {
+            link.className = "active nexmoe-list-item mdui-list-item mdui-ripple";
+        }
+    }
+</script>
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-tab">
+            <a mdui-drawer="{target: '#drawer', swipe: true}">
+              <i class="mdui-icon material-icons">menu</i>
+            </a>
+          </div>
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="/medias/banner/8.jpg">
+        
+        <h1>NOIP2009 - Hankson 的趣味题</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年03月03日</a>
+    <a><i class="nexmoefont icon-areachart"></i>434 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
     
-        <link rel="stylesheet" href="/css/post.css">
-
-
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="d-none d-lg-block col-lg-2"></div>
-        <div class="col-lg-8 nopadding-md">
-            <div class="container nopadding-md">
-                <div class="py-5 z-depth-3 board">
-                    <div class="post-content markdown-body m-auto">
-                        <p>题目链接: <a href="https://www.luogu.org/problemnew/show/P1072" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P1072</a></p>
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/GCD/">GCD</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/数论/">数论</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
+    
+  </div>
+  <article>
+    <p>【LuoguP1072】【NOIP2009】Hankson 的趣味题<br>题目链接: <a href="https://www.luogu.org/problemnew/show/P1072" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P1072</a></p>
 <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>半个月没更新博客了, 一直忙于做题练习和学文化课, 不然快被劝退了</p>
 <p>最近学习一本通提高篇, 复习下之前学的GCD等数论知识</p>
+<a id="more"></a>
+
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>先从题目描述说起, 给出了a0, a1, b0, b1四个数</p>
 <p>求 $ gcd(x, a0) = a1 $ 且 $ lcm(x, b0) = b1 $ 中 x 的方案数 </p>
 <p>那么首先我们都知道两个很基础的东西</p>
@@ -161,135 +279,61 @@
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 
-                        <hr>
-                        <div>
-                            <p>
-                                
-                                    <span class="badge badge-light">#&nbsp;题解</span>
-                                    &nbsp;
-                                
-                                    <span class="badge badge-light">#&nbsp;Cpp</span>
-                                    &nbsp;
-                                
-                                    <span class="badge badge-light">#&nbsp;GCD</span>
-                                    &nbsp;
-                                
-                                    <span class="badge badge-light">#&nbsp;数论</span>
-                                    &nbsp;
-                                
-                            </p>
-                        </div>
-                        <br>
-                        
-                            <p class="note note-warning">本博客所有文章由作者 Ciyang 所有，转载请注明出处！</p>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="d-none d-lg-block col-lg-2 toc-container">
-            
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i> Toc:</p> 
-    <div id="tocbot"></div>
-  </div>
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Ciyang<br>
+<strong>本文链接：</strong><a href="https://xciyang.github.io/2019-03/03-luogu1072/" title="https://xciyang.github.io/2019-03/03-luogu1072/" target="_blank" rel="noopener">https://xciyang.github.io/2019-03/03-luogu1072/</a><br>
 
-        </div>
+  <strong>版权声明：</strong>本文一切解释权由作者 Ciyang 所有，转载请声明本文地址。
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NjA4Ni8yMjU5Nw==">
+    <script id="livere-comment-js">
+    (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+       if (typeof LivereTower === 'function') { return; }
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+       e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+    </script>
+</div>
+</section>
+</div>
     </div>
-</div>
-
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="comments" id="comments">
-    
-        <br><br>
-        
-        
-<div id="vcomments" style="width: 80%;margin: 0 auto;"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-   var notify = 'false' == true ? true : false;
-   var verify = 'true' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '#vcomments',
-            notify: notify,
-            verify: verify,
-            app_id: "7BQ3ob3WSCRNqx6hDwbdTSnG-gzGzoHsz",
-            app_key: "XIkONR2UXsu6jiyIL9VzPSuA",
-            placeholder: "水一下评论?",
-            avatar:"retro",
-            meta: ['nick','mail','link'],
-            pageSize: "10",
-            visitor: "true"
-        });
-    };
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://valine.js.org" rel="nofollow noopener">comments powered by Valine.</a></noscript>
-
-    
-</div>
-    
-</main>
-
-<footer class="mt-5">
-  <div class="text-center py-3">
-    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Ciyang</b></a>
-    <i class="iconfont icon-love"></i><br>
-    
   </div>
-</footer>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-  <!-- SCRIPTS -->
-  <script src="/lib/mdbootstrap/js/jquery-3.4.1.min.js"></script>
-  <script src="/lib/mdbootstrap/js/popper.min.js"></script>
-  <script src="/lib/mdbootstrap/js/bootstrap.min.js?v=4.3.1"></script>
-  <script src="/lib/mdbootstrap/js/mdb.min.js?v=4.8.7"></script>
-  <script src="/js/main.js"></script>
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1565872790514"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
   
-    
-      <script src="/lib/tocbot/tocbot.min.js?v=4.7.0"></script>
-    
-    <script src="/js/post.js"></script>
-  
-  
-    <script src="/lib/prettify/prettify.min.js?v=0.1.0"></script>
-    <script>
-      $(document).ready(function(){
-        $('pre').addClass('prettyprint linenums');
-        prettyPrint();
-      })
-    </script>
-  
-  
-    <script src="/lib/typed/typed.min.js?v=2.0.9"></script>
-    <script>
-        var typed = new Typed('#subtitle', {
-          strings: [
-            '  ',
-            "NOIP2009 - Hankson 的趣味题&nbsp;",
-        ],
-        cursorChar: "|",
-        typeSpeed: 50,
-        startDelay: 300, //开始之前延迟300毫秒
-        loop: false,
-        });
-        $(".typed-cursor").addClass("h2");
-    </script>
-  
-  
-    <script src="/lib/anchor/anchor.min.js?v=4.2.0"></script>
-    <script>
-      anchors.options = {
-        placement: "right",
-        visible: "false",
-        
-      };
-      anchors.add(".post-content > h1,h2,h3,h4,h5,h6");
-    </script>
-  
+
+
+
+
+
+
 </body>
+
+
 </html>
