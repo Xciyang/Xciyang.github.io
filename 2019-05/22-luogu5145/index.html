@@ -23,13 +23,13 @@
 <meta name="twitter:title" content="LuoguP5145 - 漂浮的鸭子">
 <meta name="twitter:description" content="【LuoguP5145】漂浮的鸭子题目链接: https://www.luogu.org/problemnew/show/P5145 前言最近颓的东西太多了, 终于又来做搜索题. 这题很水 随手交了个暴力随机化就A了.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.9/styles/hopscotch.css">
    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1565876232438">
-<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
+  <link rel="stylesheet" href="/css/style.css?v=1566092245768">
+</head>
 
 <body class="mdui-drawer-body-left">
   
@@ -66,6 +66,13 @@
             <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
             <div class="mdui-list-item-content">
                 友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search">
+            <i class="mdui-list-item-icon nexmoefont icon-telegram"></i>
+            <div class="mdui-list-item-content">
+                搜索
             </div>
         </a>
         
@@ -149,9 +156,21 @@
   </div>
 
   
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">访客量</h3>
+    <div class="nexmoe-widget" style="text-align: center;">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">
+            <style="text-align: center;">本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </style="text-align:></span>
+        <br>
+        <span id="busuanzi_container_page_pv">
+            本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+    </div>
+</div>
+  
 </aside>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv">&nbsp&nbsp&nbsp&nbsp本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 
     <div class="nexmoe-copyright">
         &copy; 2019 Ciyang
@@ -215,7 +234,7 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年05月22日</a>
-    <a><i class="nexmoefont icon-areachart"></i>540 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>560 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
@@ -233,72 +252,72 @@
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这道题正解思路非常妙, 代码比较短. 但我们能不能想一个更简单粗暴的方法呢?</p>
 <p>先交一下能被卡成接近 $ O(n^2) $ 的暴力, 对于每一个点跑一遍DFS, 如果能回到此点就更新答案, 再加一个玄学剪枝, 将这个环上所有点打标记, 这些点就不用再DFS了.</p>
 <p>开O2只有50分</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// luogu-judger-enable-o2</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">int</span> n<span class="token punctuation">,</span> tox<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> toy<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rex<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> tmpx<span class="token punctuation">,</span> ans<span class="token punctuation">,</span> walkpast<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> lw<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> nown<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">memcpy</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">,</span> lw<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> sum<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> to<span class="token operator">=</span> nown<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>walkpast<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        walkpast<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        sum<span class="token operator">+</span><span class="token operator">=</span> toy<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">,</span> to<span class="token operator">=</span> tox<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>to <span class="token operator">!=</span> nown<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token function">memcpy</span><span class="token punctuation">(</span>lw<span class="token punctuation">,</span> walkpast<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    ans<span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> cin <span class="token operator">>></span> tox<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>></span> toy<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> rex<span class="token punctuation">[</span>tox<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">=</span> i<span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>walkpast<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">dfs</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    cout <span class="token operator">&lt;&lt;</span> ans <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<pre><code class="cpp">// luogu-judger-enable-o2
+#include &lt;iostream&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+using namespace std;
+int n, tox[100001], toy[100001], rex[100001], tmpx, ans, walkpast[100001], lw[100001];
+void dfs(int nown) {
+    memcpy(walkpast, lw, sizeof(walkpast));
+    int sum= 0, to= nown;
+    while(!walkpast[to]) {
+        walkpast[to]= 1;
+        sum+= toy[to], to= tox[to];
+    }
+    if(to != nown) return;
+    memcpy(lw, walkpast, sizeof(walkpast));
+    ans= max(ans, sum);
+    return;
+}
+int main() {
+    cin &gt;&gt; n;
+    for(int i= 1; i &lt;= n; i++) cin &gt;&gt; tox[i] &gt;&gt; toy[i], rex[tox[i]]= i;
+    for(int i= 1; i &lt;= n; i++)
+        if(!walkpast[i]) dfs(i);
+    cout &lt;&lt; ans &lt;&lt; endl;
+    return 0;
+}</code></pre>
 <p>考虑优化, 其实复杂度是可以玄学过去的 <del>先把cin换成scnaf</del>.</p>
 <p>然后我加了判断有环, 但此点不在环上的一个小剪枝.</p>
-<pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">if</span><span class="token punctuation">(</span>to <span class="token operator">!=</span> nown<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        lw<span class="token punctuation">[</span>nown<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
+<pre><code class="cpp">    if(to != nown) {
+        lw[nown]= 1;
+        return;
+    }</code></pre>
 <p>通俗一点讲, 让以后到达这个点的鸭子都知道自己的水坑不在环里就不用继续搜了.</p>
 <p>要是还T怎么办, 那改一下搜索顺序说不定就A了, 为了防止从 N 到 1 一条链卡暴力的情况, 我选择随机起点, 再加一个卡时限.</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;time.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">int</span> n<span class="token punctuation">,</span> tox<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> toy<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rex<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> tmpx<span class="token punctuation">,</span> ans<span class="token punctuation">,</span> walkpast<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">,</span> lw<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> nown<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">memcpy</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">,</span> lw<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> sum<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> to<span class="token operator">=</span> nown<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>walkpast<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        walkpast<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        sum<span class="token operator">+</span><span class="token operator">=</span> toy<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">,</span> to<span class="token operator">=</span> tox<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>to <span class="token operator">!=</span> nown<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        lw<span class="token punctuation">[</span>nown<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">memcpy</span><span class="token punctuation">(</span>lw<span class="token punctuation">,</span> walkpast<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>walkpast<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    ans<span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span> tox <span class="token operator">+</span> i<span class="token punctuation">,</span> toy <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">,</span> rex<span class="token punctuation">[</span>tox<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">=</span> i<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">clock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> CLOCKS_PER_SEC <span class="token operator">*</span> <span class="token number">0.9</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> tmpx<span class="token operator">=</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>walkpast<span class="token punctuation">[</span>tmpx<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">dfs</span><span class="token punctuation">(</span>tmpx<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> ans<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdlib.h&gt;
+using namespace std;
+int n, tox[100001], toy[100001], rex[100001], tmpx, ans, walkpast[100001], lw[100001];
+void dfs(int nown) {
+    memcpy(walkpast, lw, sizeof(walkpast));
+    int sum= 0, to= nown;
+    while(!walkpast[to]) {
+        walkpast[to]= 1;
+        sum+= toy[to], to= tox[to];
+    }
+    if(to != nown) {
+        lw[nown]= 1;
+        return;
+    }
+    memcpy(lw, walkpast, sizeof(walkpast));
+    ans= max(ans, sum);
+    return;
+}
+int main() {
+    scanf(&quot;%d&quot;, &amp;n);
+    for(int i= 1; i &lt;= n; i++) scanf(&quot;%d%d&quot;, tox + i, toy + i), rex[tox[i]]= i;
+    while(clock() &lt; CLOCKS_PER_SEC * 0.9) {
+        int tmpx= rand() % n + 1;
+        if(!walkpast[tmpx]) dfs(tmpx);
+    }
+    printf(&quot;%d\n&quot;, ans);
+    return 0;
+}</code></pre>
 
   </article>
   
@@ -308,7 +327,7 @@
 <strong>本文作者：</strong>Ciyang<br>
 <strong>本文链接：</strong><a href="https://xciyang.github.io/2019-05/22-luogu5145/" title="https://xciyang.github.io/2019-05/22-luogu5145/" target="_blank" rel="noopener">https://xciyang.github.io/2019-05/22-luogu5145/</a><br>
 
-  <strong>版权声明：</strong>本文一切解释权由作者 Ciyang 所有，转载请声明本文地址。
+  <strong>版权声明：</strong>本文一切由权利由作者 Ciyang 所有，转载请声明本文地址。
 
 </div>
 
@@ -349,13 +368,14 @@
     <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.9/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1565876232353"></script>
+<script src="/js/app.js?v=1566092245745"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
   
+
 
 
 

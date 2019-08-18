@@ -26,13 +26,13 @@
 <meta name="twitter:description" content="用C++开发一个图片爬虫 Ⅲ ：URL预处理 【咕咕】封面图片来自网络，如有侵权将删除。 前言上一节说这节介绍WinHTTP，现在好像鸽子了。经过我再三思考后，还是先深入学习WinInet吧。 关于根据链接下载网页的各种方式在第一节已经介绍过了。这里再补充一下，还有一种方式是使用外部库libcurl，使用方便代码简洁，但我不把它当做我们主要学习的对象，因为它太过于简单。 这节可以说是个扩展篇，并不">
 <meta name="twitter:image" content="https://xciyang.github.io/images/spiKing5.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.9/styles/hopscotch.css">
    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1565876232432">
-<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
+  <link rel="stylesheet" href="/css/style.css?v=1566092245764">
+</head>
 
 <body class="mdui-drawer-body-left">
   
@@ -69,6 +69,13 @@
             <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
             <div class="mdui-list-item-content">
                 友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search">
+            <i class="mdui-list-item-icon nexmoefont icon-telegram"></i>
+            <div class="mdui-list-item-content">
+                搜索
             </div>
         </a>
         
@@ -152,9 +159,21 @@
   </div>
 
   
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">访客量</h3>
+    <div class="nexmoe-widget" style="text-align: center;">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">
+            <style="text-align: center;">本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </style="text-align:></span>
+        <br>
+        <span id="busuanzi_container_page_pv">
+            本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+    </div>
+</div>
+  
 </aside>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv">&nbsp&nbsp&nbsp&nbsp本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 
     <div class="nexmoe-copyright">
         &copy; 2019 Ciyang
@@ -213,7 +232,7 @@
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年06月03日</a>
     <a><i class="nexmoefont icon-areachart"></i>2.1k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 10 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/项目/">项目</a>
     
@@ -304,87 +323,87 @@
 <p>其他信息大家可以自行了解，对项目作用不大，我就不作介绍了。</p>
 <p>另外，本节含有大量string类的内容，但只要不是初学者都很熟悉了，因此不作理论上的介绍。</p>
 <h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>这部分理论易理解，但代码部分比较长。先给出本节所有的代码:</p>
-<pre class=" language-cpp"><code class="language-cpp">string <span class="token function">_trim</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    size_t start<span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">find_first_not_of</span><span class="token punctuation">(</span><span class="token string">" \n\r\t"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    size_t until<span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">find_last_not_of</span><span class="token punctuation">(</span><span class="token string">" \n\r\t"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    string<span class="token operator">::</span>const_iterator i<span class="token operator">=</span> start <span class="token operator">==</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> start<span class="token punctuation">;</span>
-    string<span class="token operator">::</span>const_iterator x<span class="token operator">=</span> until <span class="token operator">==</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> str<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> until <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">void</span> <span class="token function">parse_url</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>raw_url<span class="token punctuation">,</span> string <span class="token operator">&amp;</span>port<span class="token punctuation">,</span> string <span class="token operator">&amp;</span>domain<span class="token punctuation">,</span> string <span class="token operator">&amp;</span>path<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    string x<span class="token operator">=</span> <span class="token function">_trim</span><span class="token punctuation">(</span>raw_url<span class="token punctuation">)</span><span class="token punctuation">,</span> protocol<span class="token punctuation">,</span> query<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> offset<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    size_t pos1<span class="token punctuation">,</span> pos2<span class="token punctuation">,</span> pos3<span class="token punctuation">,</span> pos4<span class="token punctuation">;</span>
-    offset<span class="token operator">=</span> offset <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> x<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token string">"https://"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token number">8</span> <span class="token operator">:</span> offset<span class="token punctuation">;</span>
-    offset<span class="token operator">=</span> offset <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> x<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token string">"http://"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token number">7</span> <span class="token operator">:</span> offset<span class="token punctuation">;</span>
-    pos1<span class="token operator">=</span> x<span class="token punctuation">.</span><span class="token function">find_first_of</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> offset <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    path<span class="token operator">=</span> pos1 <span class="token operator">==</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> <span class="token string">""</span> <span class="token operator">:</span> x<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>pos1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    domain<span class="token operator">=</span> <span class="token function">string</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> offset<span class="token punctuation">,</span> pos1 <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> x<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> pos1 <span class="token operator">:</span> x<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    path<span class="token operator">=</span> <span class="token punctuation">(</span>pos2<span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"#"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> path<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> pos2<span class="token punctuation">)</span> <span class="token operator">:</span> path<span class="token punctuation">;</span>
-    port<span class="token operator">=</span> <span class="token punctuation">(</span>pos3<span class="token operator">=</span> domain<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">":"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> domain<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>pos3 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token string">"0"</span><span class="token punctuation">;</span>
-    domain<span class="token operator">=</span> domain<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> pos3 <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> pos3 <span class="token operator">:</span> domain<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    protocol<span class="token operator">=</span> offset <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">?</span> x<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> offset <span class="token operator">-</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
-    query<span class="token operator">=</span> <span class="token punctuation">(</span>pos4<span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"?"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> path<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>pos4 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
-    path<span class="token operator">=</span> pos4 <span class="token operator">!=</span> string<span class="token operator">::</span>npos <span class="token operator">?</span> path<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> pos4<span class="token punctuation">)</span> <span class="token operator">:</span> path<span class="token punctuation">;</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">void</span> <span class="token function">judgeUrlType</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>Url<span class="token punctuation">,</span> string <span class="token operator">&amp;</span>fileSuffix<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> byte Temp<span class="token punctuation">[</span>MAXBLOCKSIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    HINTERNET hSession<span class="token operator">=</span> <span class="token function">InternetOpenA</span><span class="token punctuation">(</span><span class="token string">"DownloadKit"</span><span class="token punctuation">,</span> INTERNET_OPEN_TYPE_PRECONFIG<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> hConnect<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> hRequest<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>hSession <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        INTERNET_PORT nPort<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        DWORD dwReadSize<span class="token operator">=</span> MAXBLOCKSIZE<span class="token punctuation">;</span>
-        string sPort<span class="token punctuation">,</span> sServer<span class="token punctuation">,</span> sObject<span class="token punctuation">;</span>
-        <span class="token function">parse_url</span><span class="token punctuation">(</span>Url<span class="token punctuation">,</span> sPort<span class="token punctuation">,</span> sServer<span class="token punctuation">,</span> sObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span>size_t i<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> sPort<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> nPort<span class="token operator">=</span> nPort <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> sPort<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'0'</span><span class="token punctuation">;</span>
-        hConnect<span class="token operator">=</span> <span class="token function">InternetConnectA</span><span class="token punctuation">(</span>hSession<span class="token punctuation">,</span> sServer<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nPort<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> INTERNET_SERVICE_HTTP<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>hConnect <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">goto</span> fail<span class="token punctuation">;</span>
-        hRequest<span class="token operator">=</span> <span class="token function">HttpOpenRequestA</span><span class="token punctuation">(</span>
-            hConnect<span class="token punctuation">,</span> <span class="token string">"GET"</span><span class="token punctuation">,</span> sObject<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> INTERNET_FLAG_KEEP_CONNECTION <span class="token operator">|</span> INTERNET_FLAG_NO_AUTH <span class="token operator">|</span> INTERNET_FLAG_NO_COOKIES <span class="token operator">|</span> INTERNET_FLAG_NO_UI <span class="token operator">|</span> INTERNET_FLAG_IGNORE_CERT_CN_INVALID <span class="token operator">|</span> INTERNET_FLAG_RELOAD<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>hRequest <span class="token operator">==</span> <span class="token constant">NULL</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">HttpSendRequest</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">goto</span> fail<span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">HttpQueryInfoA</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">,</span> HTTP_QUERY_RAW_HEADERS<span class="token punctuation">,</span> Temp<span class="token punctuation">,</span> <span class="token operator">&amp;</span>dwReadSize<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">goto</span> fail<span class="token punctuation">;</span>
-        Temp<span class="token punctuation">[</span>dwReadSize<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token string">'\0'</span><span class="token punctuation">;</span>
+<pre><code class="cpp">string _trim(const string &amp;str) {
+    size_t start= str.find_first_not_of(&quot; \n\r\t&quot;);
+    size_t until= str.find_last_not_of(&quot; \n\r\t&quot;);
+    string::const_iterator i= start == string::npos ? str.begin() : str.begin() + start;
+    string::const_iterator x= until == string::npos ? str.end() : str.begin() + until + 1;
+    return string(i, x);
+}
+void parse_url(const string &amp;raw_url, string &amp;port, string &amp;domain, string &amp;path) {
+    string x= _trim(raw_url), protocol, query;
+    int offset= 0;
+    size_t pos1, pos2, pos3, pos4;
+    offset= offset == 0 &amp;&amp; x.compare(0, 8, &quot;https://&quot;) == 0 ? 8 : offset;
+    offset= offset == 0 &amp;&amp; x.compare(0, 7, &quot;http://&quot;) == 0 ? 7 : offset;
+    pos1= x.find_first_of(&#39;/&#39;, offset + 1);
+    path= pos1 == string::npos ? &quot;&quot; : x.substr(pos1);
+    domain= string(x.begin() + offset, pos1 != string::npos ? x.begin() + pos1 : x.end());
+    path= (pos2= path.find(&quot;#&quot;)) != string::npos ? path.substr(0, pos2) : path;
+    port= (pos3= domain.find(&quot;:&quot;)) != string::npos ? domain.substr(pos3 + 1) : &quot;0&quot;;
+    domain= domain.substr(0, pos3 != string::npos ? pos3 : domain.length());
+    protocol= offset &gt; 0 ? x.substr(0, offset - 3) : &quot;&quot;;
+    query= (pos4= path.find(&quot;?&quot;)) != string::npos ? path.substr(pos4 + 1) : &quot;&quot;;
+    path= pos4 != string::npos ? path.substr(0, pos4) : path;
+    return;
+}
+void judgeUrlType(const char *Url, string &amp;fileSuffix) {
+    static byte Temp[MAXBLOCKSIZE];
+    HINTERNET hSession= InternetOpenA(&quot;DownloadKit&quot;, INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0), hConnect= 0, hRequest= 0;
+    if(hSession != NULL) {
+        INTERNET_PORT nPort= 0;
+        DWORD dwReadSize= MAXBLOCKSIZE;
+        string sPort, sServer, sObject;
+        parse_url(Url, sPort, sServer, sObject);
+        for(size_t i= 0; i &lt; sPort.size(); i++) nPort= nPort * 10 + sPort[i] - &#39;0&#39;;
+        hConnect= InternetConnectA(hSession, sServer.c_str(), nPort, NULL, NULL, INTERNET_SERVICE_HTTP, 0, NULL);
+        if(hConnect == NULL) goto fail;
+        hRequest= HttpOpenRequestA(
+            hConnect, &quot;GET&quot;, sObject.c_str(), NULL, NULL, NULL, INTERNET_FLAG_KEEP_CONNECTION | INTERNET_FLAG_NO_AUTH | INTERNET_FLAG_NO_COOKIES | INTERNET_FLAG_NO_UI | INTERNET_FLAG_IGNORE_CERT_CN_INVALID | INTERNET_FLAG_RELOAD, NULL);
+        if(hRequest == NULL || !HttpSendRequest(hRequest, NULL, 0, NULL, 0)) goto fail;
+        if(!HttpQueryInfoA(hRequest, HTTP_QUERY_RAW_HEADERS, Temp, &amp;dwReadSize, NULL)) goto fail;
+        Temp[dwReadSize]= &#39;\0&#39;;
 
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">long</span> i<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> dwReadSize<span class="token punctuation">;</span> i<span class="token operator">=</span> i <span class="token operator">+</span> <span class="token function">strlen</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token string">"Content-Type:"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span> Temp <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                fileSuffix<span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
-                fileSuffix<span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token string">"text/html"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"html"</span> <span class="token operator">:</span> fileSuffix<span class="token punctuation">;</span>
-                fileSuffix<span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token string">"image/png"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"png"</span> <span class="token operator">:</span> fileSuffix<span class="token punctuation">;</span>
-                fileSuffix<span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token string">"image/jpeg"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"jpg"</span> <span class="token operator">:</span> fileSuffix<span class="token punctuation">;</span>
-                fileSuffix<span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>Temp <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token string">"image/gif"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">"gif"</span> <span class="token operator">:</span> fileSuffix<span class="token punctuation">;</span>
-                <span class="token comment" spellcheck="true">// Add what you want</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>hConnect<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hConnect<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>hSession<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hSession<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-fail<span class="token operator">:</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hRequest<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>hConnect<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hConnect<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>hSession<span class="token punctuation">)</span> <span class="token function">InternetCloseHandle</span><span class="token punctuation">(</span>hSession<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Internet Error\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+        for(unsigned long i= 0; i &lt; dwReadSize; i= i + strlen((const char *)Temp + i) + 1) {
+            if(string((const char *)Temp + i).compare(0, 13, &quot;Content-Type:&quot;) == 0) {
+                printf(&quot;%s\n&quot;, Temp + i + 14);
+                fileSuffix= &quot;&quot;;
+                fileSuffix= (string((const char *)Temp + i + 14).compare(&quot;text/html&quot;) == 0) ? &quot;html&quot; : fileSuffix;
+                fileSuffix= (string((const char *)Temp + i + 14).compare(&quot;image/png&quot;) == 0) ? &quot;png&quot; : fileSuffix;
+                fileSuffix= (string((const char *)Temp + i + 14).compare(&quot;image/jpeg&quot;) == 0) ? &quot;jpg&quot; : fileSuffix;
+                fileSuffix= (string((const char *)Temp + i + 14).compare(&quot;image/gif&quot;) == 0) ? &quot;gif&quot; : fileSuffix;
+                // Add what you want
+                break;
+            }
+        }
+        if(hRequest) InternetCloseHandle(hRequest);
+        if(hConnect) InternetCloseHandle(hConnect);
+        if(hSession) InternetCloseHandle(hSession);
+        return;
+    }
+fail:
+    if(hRequest) InternetCloseHandle(hRequest);
+    if(hConnect) InternetCloseHandle(hConnect);
+    if(hSession) InternetCloseHandle(hSession);
+    printf(&quot;Internet Error\n&quot;);
+    return;
+}</code></pre>
 <p><em>_trim</em>函数作用为去除字符串的空白换行符。</p>
 <p><em>parse_url</em>函数作用为分解URL，分解为端口、域名和路径。</p>
 <p><em>judgeUrlType</em>函数作用为获得HTTP响应头并分析URL内容类型。</p>
 <h4 id="string"><a href="#string" class="headerlink" title="string"></a>string</h4><p>本节使用C++STL中的string类比较多，简单的大家都使用过，所以介绍一下几个比较陌生的函数。</p>
-<h5 id="find-first-not-of"><a href="#find-first-not-of" class="headerlink" title="find_first_not_of"></a>find_first_not_of</h5><pre class=" language-cpp"><code class="language-cpp">size_t <span class="token function">find_first_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> str<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
-size_t <span class="token function">find_first_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
-size_t <span class="token function">find_first_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s<span class="token punctuation">,</span> size_t pos<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
-size_t <span class="token function">find_first_not_of</span> <span class="token punctuation">(</span><span class="token keyword">char</span> c<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></code></pre>
+<h5 id="find-first-not-of"><a href="#find-first-not-of" class="headerlink" title="find_first_not_of"></a>find_first_not_of</h5><pre><code class="cpp">size_t find_first_not_of (const string&amp; str, size_t pos = 0) const;
+size_t find_first_not_of (const char* s, size_t pos = 0) const;
+size_t find_first_not_of (const char* s, size_t pos, size_t n) const;
+size_t find_first_not_of (char c, size_t pos = 0) const;</code></pre>
 <p><em>Return Value</em>即返回值，返回第一个不匹配字符的位置，如果没有不匹配字符则返回string::npos。若使用字符串作参数，则此处不匹配字符指参数中不包含的字符。</p>
-<h5 id="string-npos"><a href="#string-npos" class="headerlink" title="string::npos"></a>string::npos</h5><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">static</span> <span class="token keyword">const</span> size_t npos <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span></code></pre>
-<h5 id="find-last-not-of"><a href="#find-last-not-of" class="headerlink" title="find_last_not_of"></a>find_last_not_of</h5><pre class=" language-cpp"><code class="language-cpp">size_t <span class="token function">find_last_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> str<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> npos<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
-size_t <span class="token function">find_last_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> npos<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
-size_t <span class="token function">find_last_not_of</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s<span class="token punctuation">,</span> size_t pos<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
-size_t <span class="token function">find_last_not_of</span> <span class="token punctuation">(</span><span class="token keyword">char</span> c<span class="token punctuation">,</span> size_t pos <span class="token operator">=</span> npos<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></code></pre>
+<h5 id="string-npos"><a href="#string-npos" class="headerlink" title="string::npos"></a>string::npos</h5><pre><code class="cpp">static const size_t npos = -1;</code></pre>
+<h5 id="find-last-not-of"><a href="#find-last-not-of" class="headerlink" title="find_last_not_of"></a>find_last_not_of</h5><pre><code class="cpp">size_t find_last_not_of (const string&amp; str, size_t pos = npos) const;
+size_t find_last_not_of (const char* s, size_t pos = npos) const;
+size_t find_last_not_of (const char* s, size_t pos, size_t n) const;
+size_t find_last_not_of (char c, size_t pos = npos) const;</code></pre>
 <p><em>Return Value</em>即返回值，与find_first_not_of类似，返回最后一个不匹配字符的位置。</p>
-<h5 id="substr"><a href="#substr" class="headerlink" title="substr"></a>substr</h5><pre class=" language-cpp"><code class="language-cpp">string <span class="token function">substr</span> <span class="token punctuation">(</span>size_t pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> size_t len <span class="token operator">=</span> npos<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span></code></pre>
+<h5 id="substr"><a href="#substr" class="headerlink" title="substr"></a>substr</h5><pre><code class="cpp">string substr (size_t pos = 0, size_t len = npos) const;</code></pre>
 <p><em>Return Value</em>即返回值，返回从pos开始长度为len的子串。</p>
 <h4 id="InternetConnectA"><a href="#InternetConnectA" class="headerlink" title="InternetConnectA"></a>InternetConnectA</h4>
   </article>
@@ -395,7 +414,7 @@ size_t <span class="token function">find_last_not_of</span> <span class="token p
 <strong>本文作者：</strong>Ciyang<br>
 <strong>本文链接：</strong><a href="https://xciyang.github.io/2019-06/03-spiking3/" title="https://xciyang.github.io/2019-06/03-spiking3/" target="_blank" rel="noopener">https://xciyang.github.io/2019-06/03-spiking3/</a><br>
 
-  <strong>版权声明：</strong>本文一切解释权由作者 Ciyang 所有，转载请声明本文地址。
+  <strong>版权声明：</strong>本文一切由权利由作者 Ciyang 所有，转载请声明本文地址。
 
 </div>
 
@@ -429,13 +448,14 @@ size_t <span class="token function">find_last_not_of</span> <span class="token p
     <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.9/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1565876232353"></script>
+<script src="/js/app.js?v=1566092245745"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
   
+
 
 
 

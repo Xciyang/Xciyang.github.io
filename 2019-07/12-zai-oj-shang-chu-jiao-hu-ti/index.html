@@ -18,18 +18,18 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="有关在OJ上出交互题的一些技巧 本博客所指的OJ仅指SYZOJ，即搭建LOJ使用的在线评测系统。 SYZOJ源码链接(Github仓库): https://github.com/syzoj/syzoj">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T11:24:24.090Z">
+<meta property="og:updated_time" content="2019-08-17T23:13:35.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="技巧 - 在OJ上出交互题">
 <meta name="twitter:description" content="有关在OJ上出交互题的一些技巧 本博客所指的OJ仅指SYZOJ，即搭建LOJ使用的在线评测系统。 SYZOJ源码链接(Github仓库): https://github.com/syzoj/syzoj">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.9/styles/hopscotch.css">
    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1565876232405">
-<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
+  <link rel="stylesheet" href="/css/style.css?v=1566092245757">
+</head>
 
 <body class="mdui-drawer-body-left">
   
@@ -66,6 +66,13 @@
             <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
             <div class="mdui-list-item-content">
                 友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search">
+            <i class="mdui-list-item-icon nexmoefont icon-telegram"></i>
+            <div class="mdui-list-item-content">
+                搜索
             </div>
         </a>
         
@@ -149,9 +156,21 @@
   </div>
 
   
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">访客量</h3>
+    <div class="nexmoe-widget" style="text-align: center;">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">
+            <style="text-align: center;">本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </style="text-align:></span>
+        <br>
+        <span id="busuanzi_container_page_pv">
+            本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+    </div>
+</div>
+  
 </aside>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv">&nbsp&nbsp&nbsp&nbsp本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 
     <div class="nexmoe-copyright">
         &copy; 2019 Ciyang
@@ -241,56 +260,56 @@
 <h4 id="如何交互"><a href="#如何交互" class="headerlink" title="如何交互"></a>如何交互</h4><p>根据帮助，<code>交互通过输入输出进行</code>，那么意为选手程序使用std::cout输出给交互器程序，而交互器程序使用std::cin读取选手的输出，反过来也是如此。</p>
 <p>LOJ中交互题系统测试题<a href="https://loj.ac/problem/6" target="_blank" rel="noopener">Guess Number</a>可以自行了解一下。</p>
 <h4 id="输入文件"><a href="#输入文件" class="headerlink" title="输入文件"></a>输入文件</h4><p>根据帮助，<code>目录下会有 input 文件，表示该测试点的输入文件</code>，那么就需要用文件流操作，我选择使用std::ifstream来读取input文件。交互器从输入文件读取一个整数的实例：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;fstream></span></span>
-<span class="token keyword">int</span> n<span class="token punctuation">;</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    std<span class="token operator">::</span>ifstream <span class="token function">datin</span><span class="token punctuation">(</span><span class="token string">"input"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    datin <span class="token operator">>></span> n<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<pre><code class="cpp">#include &lt;fstream&gt;
+int n;
+int main() {
+    std::ifstream datin(&quot;input&quot;);
+    datin &gt;&gt; n;
+    return 0;
+}</code></pre>
 <h4 id="选手得分"><a href="#选手得分" class="headerlink" title="选手得分"></a>选手得分</h4><p><code>将选手得分写入 score.txt 文件中</code> 也是同理，使用std::ofstream打开score.txt文件，写入一个数即可。</p>
 <p>可以根据查询次数等信息来确定得分，支持部分正确（0 &lt;= 得分 &lt;= 100）。</p>
 <h4 id="额外信息"><a href="#额外信息" class="headerlink" title="额外信息"></a>额外信息</h4><p>继续看帮助，<code>将提供给用户的额外信息输出到标准错误输出（stderr）中</code>。额外信息就是测试点的反馈信息，我们常在传统题WA时看到<code>Files user_out and answer differ</code>。给出一个交互器判定选手输出的实例（不完整）：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token keyword">int</span> n<span class="token punctuation">,</span> ans<span class="token punctuation">;</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// main_code</span>
-    std<span class="token operator">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Wrong answer! The correct answer is "</span> <span class="token operator">&lt;&lt;</span> ans <span class="token operator">&lt;&lt;</span> <span class="token string">" ."</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<pre><code class="cpp">#include &lt;iostream&gt;
+int n, ans;
+int main() {
+    // main_code
+    std::cerr &lt;&lt; &quot;Wrong answer! The correct answer is &quot; &lt;&lt; ans &lt;&lt; &quot; .&quot; &lt;&lt; std::endl;
+    return 0;
+}</code></pre>
 <p>当WA时输出正确的答案以供选手参考，与Special Judge类似。</p>
 <h4 id="封装交互"><a href="#封装交互" class="headerlink" title="封装交互"></a>封装交互</h4><p>帮助最后一句，是可选的。我们可以封装标准输入输出的交互，我们对于C++而言，可以写一个头文件interactor.h。</p>
 <p>我们模拟一个很简单的题来示范interactor.h，选手输出两个数（代表一个坐标）与交互器进行交互，交互器返回一个数表示与终点的曼哈顿距离。</p>
 <p>代码如下（只是interactor.h）：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token keyword">int</span> <span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> x <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> y <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>flush<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> res<span class="token punctuation">;</span>
-    std<span class="token operator">::</span>cin <span class="token operator">>></span> res<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<pre><code class="cpp">#include &lt;iostream&gt;
+int query(int x, int y){
+    std::cout &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; y &lt;&lt; std::endl &lt;&lt; std::flush;
+    int res;
+    std::cin &gt;&gt; res;
+    return res;
+}</code></pre>
 <p>你可以把它当做附加源文件提供给选手，方便不太懂的选手交互。</p>
 <h4 id="数据判断"><a href="#数据判断" class="headerlink" title="数据判断"></a>数据判断</h4><p>在交互过程中，交互器需要面对选手提供的各种输出数据。这些数据可能不合法，为了节省代码，介绍一个assert函数，貌似testlib中有类似的函数。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span> <span class="token keyword">typename</span> T <span class="token operator">></span>
-<span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">assert</span><span class="token punctuation">(</span><span class="token keyword">const</span> T <span class="token operator">&amp;</span>condition<span class="token punctuation">,</span> <span class="token keyword">const</span> std<span class="token operator">::</span>string <span class="token operator">&amp;</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>condition<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token operator">::</span>cerr <span class="token operator">&lt;&lt;</span> message <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-        score <span class="token operator">&lt;&lt;</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<pre><code class="cpp">template &lt; typename T &gt;
+inline void assert(const T &amp;condition, const std::string &amp;message) {
+    if(!condition) {
+        std::cerr &lt;&lt; message &lt;&lt; std::endl;
+        score &lt;&lt; -1 &lt;&lt; std::endl;
+        exit(0);
+    }
+    return;
+}</code></pre>
 <p>此函数是模板函数，刚入门C++的人可能不太懂。对于这个函数来讲，模板就是为了适用所有类型。condition为一个表达式，message为提供的额外信息。</p>
 <p>判断选手输出是否为整数可以用以下代码，如果不是，cin就会出错，然后执行if中的语句（选手的输出等同于交互器的输入）。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
-<span class="token function">assert</span><span class="token punctuation">(</span>std<span class="token operator">::</span>cin <span class="token operator">>></span> x <span class="token operator">>></span> y<span class="token punctuation">,</span> <span class="token string">"Invalid `x` or `y`!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="cpp">int x, y;
+assert(std::cin &gt;&gt; x &gt;&gt; y, &quot;Invalid `x` or `y`!&quot;);</code></pre>
 <p>交互器判断选手输出的数的范围也是如此：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token function">assert</span><span class="token punctuation">(</span>x <span class="token operator">>=</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> x <span class="token operator">&lt;=</span> n <span class="token operator">&amp;&amp;</span> y <span class="token operator">>=</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> y <span class="token operator">&lt;=</span> n<span class="token punctuation">,</span> <span class="token string">"`x` and `y` must in [1, n]!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="cpp">assert(x &gt;= 1 &amp;&amp; x &lt;= n &amp;&amp; y &gt;= 1 &amp;&amp; y &lt;= n, &quot;`x` and `y` must in [1, n]!&quot;);</code></pre>
 <h4 id="data-yml"><a href="#data-yml" class="headerlink" title="data.yml"></a>data.yml</h4><p>写好标程、题面，造好数据之后，对于SYZOJ的交互题必须用data.yml来指明交互器。</p>
 <p>交互题与传统题的data.yml差别较小，只是增加交互器名称即可。使用C++11编写名为interactor.cpp的交互器，要在其中增加以下内容：</p>
-<pre class=" language-json"><code class="language-json">interactor<span class="token operator">:</span>
-  language<span class="token operator">:</span> cpp11
-  fileName<span class="token operator">:</span> interactor.cpp</code></pre>
+<pre><code class="json">interactor:
+  language: cpp11
+  fileName: interactor.cpp</code></pre>
 <p>然后数据文件的ZIP中需要包含interactor.cpp文件。</p>
 <h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>总体来说比较简单。交互题一般能增大难度、限制选手的算法，也是强制在线的一种实现方法。</p>
 
@@ -302,7 +321,7 @@
 <strong>本文作者：</strong>Ciyang<br>
 <strong>本文链接：</strong><a href="https://xciyang.github.io/2019-07/12-zai-oj-shang-chu-jiao-hu-ti/" title="https://xciyang.github.io/2019-07/12-zai-oj-shang-chu-jiao-hu-ti/" target="_blank" rel="noopener">https://xciyang.github.io/2019-07/12-zai-oj-shang-chu-jiao-hu-ti/</a><br>
 
-  <strong>版权声明：</strong>本文一切解释权由作者 Ciyang 所有，转载请声明本文地址。
+  <strong>版权声明：</strong>本文一切由权利由作者 Ciyang 所有，转载请声明本文地址。
 
 </div>
 
@@ -336,13 +355,14 @@
     <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.9/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1565876232353"></script>
+<script src="/js/app.js?v=1566092245745"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
   
+
 
 
 

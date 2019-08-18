@@ -27,13 +27,13 @@
 <meta name="twitter:description" content="【LuoguP2580】于是他错误的点名开始了题目链接: https://www.luogu.org/problemnew/show/P2580 前言这篇题解原来是我放到Luogu上的，打算搬过来，原地址: https://ciyang.blog.luogu.org/solution-p2580 当时是自己闲得无聊自创的算法，跑了最优解第3，Trie树中最快了 不过后来Luogu上的dalao告诉">
 <meta name="twitter:image" content="https://xciyang.github.io/images/P2580_1.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.9/styles/hopscotch.css">
    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1565876232497">
-<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css"></head>
+  <link rel="stylesheet" href="/css/style.css?v=1566092245780">
+</head>
 
 <body class="mdui-drawer-body-left">
   
@@ -70,6 +70,13 @@
             <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
             <div class="mdui-list-item-content">
                 友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search">
+            <i class="mdui-list-item-icon nexmoefont icon-telegram"></i>
+            <div class="mdui-list-item-content">
+                搜索
             </div>
         </a>
         
@@ -153,9 +160,21 @@
   </div>
 
   
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">访客量</h3>
+    <div class="nexmoe-widget" style="text-align: center;">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">
+            <style="text-align: center;">本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </style="text-align:></span>
+        <br>
+        <span id="busuanzi_container_page_pv">
+            本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+    </div>
+</div>
+  
 </aside>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv">&nbsp&nbsp&nbsp&nbsp本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 
     <div class="nexmoe-copyright">
         &copy; 2019 Ciyang
@@ -219,8 +238,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年02月16日</a>
-    <a><i class="nexmoefont icon-areachart"></i>2.1k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 10 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -251,59 +270,59 @@
 <p>边压Trie巧妙利用字符串指针,赋值、继承等操作只需要指针或长度变化就好了,因此插入最小复杂度是O(1),空间上也少了很多空指针. </p>
 <p>太多证明不如一句代码,我放上代码继续分析. </p>
 <h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>节点的结构体,原来的char变成了length和字符串指针:  </p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">define</span> clear(a) memset(a, 0, sizeof(a))</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> copy(a, b) memcpy(a, b, sizeof(a))</span>
-    <span class="token keyword">struct</span> Lumpy_Tnode <span class="token punctuation">{</span>
-        <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>pStr<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//指向当前存储字符串首元素</span>
-        <span class="token keyword">int</span> length<span class="token punctuation">,</span> isEnd<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//length存储字符串的长度 isEnd代表是否是结尾节点</span>
-        Lumpy_Tnode <span class="token operator">*</span>children<span class="token punctuation">[</span><span class="token number">26</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//26个子节点</span>
-        <span class="token keyword">inline</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            pStr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> length<span class="token operator">=</span> isEnd<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">inline</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            pStr<span class="token operator">=</span> str<span class="token punctuation">,</span> length<span class="token operator">=</span> len<span class="token punctuation">,</span> isEnd<span class="token operator">=</span> end<span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//构造函数</span>
-    <span class="token punctuation">}</span> mNode<span class="token punctuation">;</span></code></pre>
+<pre><code class="cpp">#define clear(a) memset(a, 0, sizeof(a))
+#define copy(a, b) memcpy(a, b, sizeof(a))
+    struct Lumpy_Tnode {
+        const char *pStr;
+        //指向当前存储字符串首元素
+        int length, isEnd;
+        //length存储字符串的长度 isEnd代表是否是结尾节点
+        Lumpy_Tnode *children[26];
+        //26个子节点
+        inline Lumpy_Tnode() {
+            pStr= 0, length= isEnd= 0, clear(children);
+        }
+        inline Lumpy_Tnode(const char *str, int len, int end) {
+            pStr= str, length= len, isEnd= end, clear(children);
+        }
+        //构造函数
+    } mNode;</code></pre>
 <h4 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h4><p>使用递归和循环,判断比较多,先看代码(看起来常数很大)      </p>
-<pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> Lumpy_Tnode <span class="token operator">*</span>bNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//str是指针,指向当前插入字符串的第一个元素</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//字符串长度为0代表结尾</span>
-        <span class="token comment" spellcheck="true">//其实是为了优化代码美观,当作递归边界</span>
-            bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">int</span> ch<span class="token operator">=</span> str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//子节点已存在</span>
-            bNode<span class="token operator">=</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token keyword">register</span> <span class="token keyword">int</span> sptr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token keyword">while</span><span class="token punctuation">(</span>sptr <span class="token operator">&lt;</span> length <span class="token operator">&amp;&amp;</span> sptr <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">&amp;&amp;</span> bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">++</span>sptr<span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//循环来找当前字符串和节点存储的字符串最长前缀</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>sptr <span class="token operator">!=</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//节点存储的字符串不是插入字符串的子串</span>
-                Lumpy_Tnode <span class="token operator">*</span>nNode<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>pStr <span class="token operator">+</span> sptr<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token comment" spellcheck="true">//拆树,运用字符串指针连续地址的特性来操作</span>
-                <span class="token function">copy</span><span class="token punctuation">(</span>nNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token comment" spellcheck="true">//继承原有子节点的各种信息</span>
-                bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">]</span><span class="token operator">=</span> nNode<span class="token punctuation">;</span>
-                <span class="token comment" spellcheck="true">//清空原有节点,重新初始化</span>
-            <span class="token punctuation">}</span>
-            bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token operator">=</span> sptr<span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//更新当前节点存储的字符串长度,从而更改当前存储的字符串</span>
-            <span class="token function">insert</span><span class="token punctuation">(</span>str <span class="token operator">+</span> sptr<span class="token punctuation">,</span> length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-            bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> length<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//不存在当前首字母的子节点,直接new并且赋值</span>
-            <span class="token comment" spellcheck="true">//因为是指针操作,所以不需要O(n)复制字符串,理论上复杂度O(3)?</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//调用方式:insert(插入字符串, 字符串长度, Trie根节点);</span></code></pre>
+<pre><code class="cpp">    inline void insert(const char *str, int length, Lumpy_Tnode *bNode) {
+    //str是指针,指向当前插入字符串的第一个元素
+        if(!length) {
+        //字符串长度为0代表结尾
+        //其实是为了优化代码美观,当作递归边界
+            bNode-&gt;isEnd= 1;
+            return;
+        }
+        int ch= str[0] - &#39;a&#39;;
+        if(bNode-&gt;children[ch]) {
+        //子节点已存在
+            bNode= bNode-&gt;children[ch];
+            register int sptr= 0;
+            while(sptr &lt; length &amp;&amp; sptr &lt; bNode-&gt;length &amp;&amp; bNode-&gt;pStr[sptr] == str[sptr]) ++sptr;
+            //循环来找当前字符串和节点存储的字符串最长前缀
+            if(sptr != bNode-&gt;length) {
+            //节点存储的字符串不是插入字符串的子串
+                Lumpy_Tnode *nNode= new Lumpy_Tnode(bNode-&gt;pStr + sptr, bNode-&gt;length - sptr, bNode-&gt;isEnd);
+                //拆树,运用字符串指针连续地址的特性来操作
+                copy(nNode-&gt;children, bNode-&gt;children), clear(bNode-&gt;children);
+                //继承原有子节点的各种信息
+                bNode-&gt;isEnd= 0, bNode-&gt;children[bNode-&gt;pStr[sptr] - &#39;a&#39;]= nNode;
+                //清空原有节点,重新初始化
+            }
+            bNode-&gt;length= sptr;
+            //更新当前节点存储的字符串长度,从而更改当前存储的字符串
+            insert(str + sptr, length - sptr, bNode);
+        }
+        else
+            bNode-&gt;children[ch]= new Lumpy_Tnode(str, length, 1);
+            //不存在当前首字母的子节点,直接new并且赋值
+            //因为是指针操作,所以不需要O(n)复制字符串,理论上复杂度O(3)?
+        return;
+    }
+    //调用方式:insert(插入字符串, 字符串长度, Trie根节点);</code></pre>
 <p>如果代码看懂了,第一反应可能认为指针操作有一些漏洞.</p>
 <p>的确插入的字符串在插入后就不能进行改变了,所以就只要开一个char[N][K]的数组来保存输入的字符串,K为最长字符串的长度. </p>
 <p>相比较空间复杂度总体仍然较小,其实是把原来每个节点存的char放到了一起,每个节点多了一个指针.</p>
@@ -321,107 +340,107 @@
 <p>清空ab的子节点,颜色改为黑(黑表示不为结尾节点),ab的首字母b子节点指向b.</p>
 <p>在我实现时,先更改长度使ab变为a,再向a中插入c.</p>
 <p>因为没有首字母为c的子节点,直接new一个新的.</p>
-<h4 id="查找操作"><a href="#查找操作" class="headerlink" title="查找操作"></a>查找操作</h4><pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> Lumpy_Tnode <span class="token operator">*</span>bNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//递归到查找的字符串长度为0</span>
-        <span class="token comment" spellcheck="true">//判断当前节点是否为结尾,是否是第一次查询</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>isEnd <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">int</span> ch<span class="token operator">=</span> str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            bNode<span class="token operator">=</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>length <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//自带剪枝,若当前查找字符串长度小于当前公共前缀,那么字典树中不存在当前查找的字符串</span>
-            <span class="token keyword">register</span> <span class="token keyword">int</span> sptr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token keyword">while</span><span class="token punctuation">(</span>sptr <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">&amp;&amp;</span> bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">++</span>sptr<span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>sptr <span class="token operator">!=</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//最长公共前缀必须是当前查找的字符串的子串</span>
-            <span class="token keyword">return</span> <span class="token function">find</span><span class="token punctuation">(</span>str <span class="token operator">+</span> sptr<span class="token punctuation">,</span> length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//没有子节点,字典树中不存在当前查找的字符串</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//调用方式:find(查询字符串, 字符串长度, Trie根节点);</span></code></pre>
+<h4 id="查找操作"><a href="#查找操作" class="headerlink" title="查找操作"></a>查找操作</h4><pre><code class="cpp">    inline int find(const char *str, int length, Lumpy_Tnode *bNode) {
+        if(!length) {
+        //递归到查找的字符串长度为0
+        //判断当前节点是否为结尾,是否是第一次查询
+            if(bNode-&gt;isEnd == 1) return bNode-&gt;isEnd++;
+            return bNode-&gt;isEnd;
+        }
+        int ch= str[0] - &#39;a&#39;;
+        if(bNode-&gt;children[ch]) {
+            bNode= bNode-&gt;children[ch];
+            if(length &lt; bNode-&gt;length) return 0;
+            //自带剪枝,若当前查找字符串长度小于当前公共前缀,那么字典树中不存在当前查找的字符串
+            register int sptr= 0;
+            while(sptr &lt; bNode-&gt;length &amp;&amp; bNode-&gt;pStr[sptr] == str[sptr]) ++sptr;
+            if(sptr != bNode-&gt;length) return 0;
+            //最长公共前缀必须是当前查找的字符串的子串
+            return find(str + sptr, length - sptr, bNode);
+        }
+        return 0;
+        //没有子节点,字典树中不存在当前查找的字符串
+    }
+    //调用方式:find(查询字符串, 字符串长度, Trie根节点);</code></pre>
 <p>比插入的代码简单多了,并且自带剪枝,所以比较快.</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>（开启O2） 用时: 127ms / 内存: 4248KB<br>（关闭O2） 用时: 144ms / 内存: 4128KB</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> clear(a) memset(a, 0, sizeof(a))</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> copy(a, b) memcpy(a, b, sizeof(a))</span>
-<span class="token keyword">struct</span> Lumpy_Trie <span class="token punctuation">{</span>
-    <span class="token keyword">struct</span> Lumpy_Tnode <span class="token punctuation">{</span>
-        <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>pStr<span class="token punctuation">;</span>
-        <span class="token keyword">int</span> length<span class="token punctuation">,</span> isEnd<span class="token punctuation">;</span>
-        Lumpy_Tnode <span class="token operator">*</span>children<span class="token punctuation">[</span><span class="token number">26</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">inline</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            pStr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> length<span class="token operator">=</span> isEnd<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">inline</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            pStr<span class="token operator">=</span> str<span class="token punctuation">,</span> length<span class="token operator">=</span> len<span class="token punctuation">,</span> isEnd<span class="token operator">=</span> end<span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span> mNode<span class="token punctuation">;</span>
-    <span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> Lumpy_Tnode <span class="token operator">*</span>bNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">int</span> ch<span class="token operator">=</span> str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            bNode<span class="token operator">=</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token keyword">register</span> <span class="token keyword">int</span> sptr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token keyword">while</span><span class="token punctuation">(</span>sptr <span class="token operator">&lt;</span> length <span class="token operator">&amp;&amp;</span> sptr <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">&amp;&amp;</span> bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">++</span>sptr<span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>sptr <span class="token operator">!=</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                Lumpy_Tnode <span class="token operator">*</span>nNode<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>pStr <span class="token operator">+</span> sptr<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">copy</span><span class="token punctuation">(</span>nNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">clear</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">]</span><span class="token operator">=</span> nNode<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token operator">=</span> sptr<span class="token punctuation">;</span>
-            <span class="token function">insert</span><span class="token punctuation">(</span>str <span class="token operator">+</span> sptr<span class="token punctuation">,</span> length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-            bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Lumpy_Tnode</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> length<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">,</span> Lumpy_Tnode <span class="token operator">*</span>bNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>length <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>isEnd <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> bNode<span class="token operator">-</span><span class="token operator">></span>isEnd<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">int</span> ch<span class="token operator">=</span> str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            bNode<span class="token operator">=</span> bNode<span class="token operator">-</span><span class="token operator">></span>children<span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>length <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token keyword">register</span> <span class="token keyword">int</span> sptr<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token keyword">while</span><span class="token punctuation">(</span>sptr <span class="token operator">&lt;</span> bNode<span class="token operator">-</span><span class="token operator">></span>length <span class="token operator">&amp;&amp;</span> bNode<span class="token operator">-</span><span class="token operator">></span>pStr<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>sptr<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">++</span>sptr<span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>sptr <span class="token operator">!=</span> bNode<span class="token operator">-</span><span class="token operator">></span>length<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> <span class="token function">find</span><span class="token punctuation">(</span>str <span class="token operator">+</span> sptr<span class="token punctuation">,</span> length <span class="token operator">-</span> sptr<span class="token punctuation">,</span> bNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span> t<span class="token punctuation">;</span>
-<span class="token keyword">char</span> allstr<span class="token punctuation">[</span><span class="token number">10001</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">51</span><span class="token punctuation">]</span><span class="token punctuation">,</span> tmp<span class="token punctuation">[</span><span class="token number">51</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> n<span class="token punctuation">;</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> allstr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        t<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>allstr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>allstr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">.</span>mNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">register</span> <span class="token keyword">int</span> i<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        j<span class="token operator">=</span> t<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>tmp<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">.</span>mNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">switch</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">case</span> <span class="token number">0</span><span class="token operator">:</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"WRONG\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token keyword">case</span> <span class="token number">1</span><span class="token operator">:</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"OK\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token keyword">case</span> <span class="token number">2</span><span class="token operator">:</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"REPEAT\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+using namespace std;
+#define clear(a) memset(a, 0, sizeof(a))
+#define copy(a, b) memcpy(a, b, sizeof(a))
+struct Lumpy_Trie {
+    struct Lumpy_Tnode {
+        const char *pStr;
+        int length, isEnd;
+        Lumpy_Tnode *children[26];
+        inline Lumpy_Tnode() {
+            pStr= 0, length= isEnd= 0, clear(children);
+        }
+        inline Lumpy_Tnode(const char *str, int len, int end) {
+            pStr= str, length= len, isEnd= end, clear(children);
+        }
+    } mNode;
+    inline void insert(const char *str, int length, Lumpy_Tnode *bNode) {
+        if(!length) {
+            bNode-&gt;isEnd= 1;
+            return;
+        }
+        int ch= str[0] - &#39;a&#39;;
+        if(bNode-&gt;children[ch]) {
+            bNode= bNode-&gt;children[ch];
+            register int sptr= 0;
+            while(sptr &lt; length &amp;&amp; sptr &lt; bNode-&gt;length &amp;&amp; bNode-&gt;pStr[sptr] == str[sptr]) ++sptr;
+            if(sptr != bNode-&gt;length) {
+                Lumpy_Tnode *nNode= new Lumpy_Tnode(bNode-&gt;pStr + sptr, bNode-&gt;length - sptr, bNode-&gt;isEnd);
+                copy(nNode-&gt;children, bNode-&gt;children), clear(bNode-&gt;children);
+                bNode-&gt;isEnd= 0, bNode-&gt;children[bNode-&gt;pStr[sptr] - &#39;a&#39;]= nNode;
+            }
+            bNode-&gt;length= sptr;
+            insert(str + sptr, length - sptr, bNode);
+        }
+        else
+            bNode-&gt;children[ch]= new Lumpy_Tnode(str, length, 1);
+        return;
+    }
+    inline int find(const char *str, int length, Lumpy_Tnode *bNode) {
+        if(length == 0) {
+            if(bNode-&gt;isEnd == 1) return bNode-&gt;isEnd++;
+            return bNode-&gt;isEnd;
+        }
+        int ch= str[0] - &#39;a&#39;;
+        if(bNode-&gt;children[ch]) {
+            bNode= bNode-&gt;children[ch];
+            if(length &lt; bNode-&gt;length) return 0;
+            register int sptr= 0;
+            while(sptr &lt; bNode-&gt;length &amp;&amp; bNode-&gt;pStr[sptr] == str[sptr]) ++sptr;
+            if(sptr != bNode-&gt;length) return 0;
+            return find(str + sptr, length - sptr, bNode);
+        }
+        return 0;
+    }
+} t;
+char allstr[10001][51], tmp[51];
+int n;
+int main() {
+    scanf(&quot;%d&quot;, &amp;n);
+    for(register int i= 0; i &lt; n; i++) {
+        scanf(&quot;%s&quot;, allstr[i]);
+        t.insert(allstr[i], strlen(allstr[i]), &amp;t.mNode);
+    }
+    scanf(&quot;%d&quot;, &amp;n);
+    for(register int i= 0, j; i &lt; n; i++) {
+        scanf(&quot;%s&quot;, tmp);
+        j= t.find(tmp, strlen(tmp), &amp;t.mNode);
+        switch(j) {
+            case 0: printf(&quot;WRONG\n&quot;); break;
+            case 1: printf(&quot;OK\n&quot;); break;
+            case 2: printf(&quot;REPEAT\n&quot;); break;
+        }
+    }
+    return 0;
+}</code></pre>
 <p>最需要注意的是输入的字符串insert后不能再更改那一块内存了不能更改了…</p>
 <h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>我写的常数可能挺大,希望dalao们试试各种卡常优化…  </p>
 
@@ -433,7 +452,7 @@
 <strong>本文作者：</strong>Ciyang<br>
 <strong>本文链接：</strong><a href="https://xciyang.github.io/2019-02/16-luogu2580/" title="https://xciyang.github.io/2019-02/16-luogu2580/" target="_blank" rel="noopener">https://xciyang.github.io/2019-02/16-luogu2580/</a><br>
 
-  <strong>版权声明：</strong>本文一切解释权由作者 Ciyang 所有，转载请声明本文地址。
+  <strong>版权声明：</strong>本文一切由权利由作者 Ciyang 所有，转载请声明本文地址。
 
 </div>
 
@@ -467,13 +486,14 @@
     <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.9/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1565876232353"></script>
+<script src="/js/app.js?v=1566092245745"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
   
+
 
 
 
