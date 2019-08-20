@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>LuoguP1456 - Monkey King</title>
+      <link href="/2019-08/20-luogu1456/"/>
+      <url>/2019-08/20-luogu1456/</url>
+      
+        <content type="html"><![CDATA[<p>【LuoguP1456】Monkey King<br>题目链接: <a href="https://www.luogu.org/problem/P1456" target="_blank" rel="noopener">https://www.luogu.org/problem/P1456</a></p><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>左偏树真是我见过最好写的（高级？）数据结构。</p><a id="more"></a><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这题其实就是个板子题。</p><p>看题意发现要维护大根堆，然后还有合并操作，那直接上左偏树。</p><p>话说左偏树找根的时候需要路径压缩，不然会被卡。所以直接上并查集，这样复杂度就正确了。</p><p>假设 X 和 Y 打架，我们先找他们的根 FX 和 FY 就是最牛叉的朋友，如果是一个人就输出-1，否则给 FX 和 FY的值都减半。</p><p>然后合并 FX 和 FY 的左右子树，视为将 FX 、FY 删去。</p><p>最后再把减半后的值当做一个子树再插入就完成了。</p><p>提醒一下，这题多组数据，我第一次交就被坑了。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="cpp">#include &lt;iostream&gt;#include &lt;stdio.h&gt;using namespace std;int n, m, v[100005], f[100005], l[100005], r[100005], d[100005];int tmpx, tmpy;inline int getf(int x) {    return f[x] == x ? x : f[x]= getf(f[x]);}int merge(int x, int y) {    if(!x || !y) return x + y;    if(v[x] &lt; v[y]) swap(x, y);    r[x]= merge(r[x], y), f[l[x]]= f[r[x]]= f[x]= x;    if(d[r[x]] &gt; d[l[x]]) swap(r[x], l[x]);    d[x]= d[r[x]] + 1;    return x;}int solve(int x, int y) {    x= getf(x), y= getf(y);    if(x == y) return -1;    v[x]&gt;&gt;= 1, v[y]&gt;&gt;= 1;    int newx= merge(l[x], r[x]), newy= merge(l[y], r[y]);    l[x]= r[x]= l[y]= r[y]= d[x]= d[y]= 0;    newx= merge(newx, x), newy= merge(newy, y), newx= merge(newx, newy);    return v[newx];}int main() {    while(cin &gt;&gt; n) {        for(int i= 1; i &lt;= n; i++) cin &gt;&gt; v[i], f[i]= i, l[i]= r[i]= d[i]= 0;        cin &gt;&gt; m;        for(int i= 1; i &lt;= m; i++) {            cin &gt;&gt; tmpx &gt;&gt; tmpy;            cout &lt;&lt; solve(tmpx, tmpy) &lt;&lt; endl;        }    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 题解 </tag>
+            
+            <tag> Cpp </tag>
+            
+            <tag> 左偏树 </tag>
+            
+            <tag> 并查集 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>重新开始</title>
       <link href="/2019-08/15-chong-xin-kai-shi/"/>
       <url>/2019-08/15-chong-xin-kai-shi/</url>
@@ -78,9 +109,9 @@
             
             <tag> 颓废 </tag>
             
-            <tag> 技巧 </tag>
-            
             <tag> 闲聊 </tag>
+            
+            <tag> 技巧 </tag>
             
         </tags>
       
