@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Daily Literary - 文艺日常</title>
+      <link href="/2019-08/21-literatureandart/"/>
+      <url>/2019-08/21-literatureandart/</url>
+      
+        <content type="html"><![CDATA[<p>最近更新: 2019.08.21</p><p>图片来源于网络，如有侵权请联系我。</p><p>日常收集文艺语句，来源于知乎、网页、原创。</p><a id="more"></a><ol><li><p>喜欢上一个人很容易，爱上一个人很难，但是忘掉一个人是最难的。</p></li><li><p>喜欢一样东西就不要问别人好不好看。这个世界上永远没有感同身受，真正能治愈自己的，只有你自己。</p></li></ol><hr><h4 id="关于本篇"><a href="#关于本篇" class="headerlink" title="关于本篇"></a>关于本篇</h4><p>持续更新，作者也不知道怎么回事就开了这个专栏。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 闲聊 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 闲聊 </tag>
+            
+            <tag> 语录 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>LuoguP1456 - Monkey King</title>
       <link href="/2019-08/20-luogu1456/"/>
       <url>/2019-08/20-luogu1456/</url>
@@ -107,11 +134,11 @@
             
             <tag> Cpp </tag>
             
-            <tag> 颓废 </tag>
+            <tag> 闲聊 </tag>
             
             <tag> 技巧 </tag>
             
-            <tag> 闲聊 </tag>
+            <tag> 颓废 </tag>
             
         </tags>
       
@@ -512,6 +539,8 @@
             
             <tag> Cpp </tag>
             
+            <tag> 分块 </tag>
+            
             <tag> 二分查找 </tag>
             
             <tag> ST表 </tag>
@@ -519,8 +548,6 @@
             <tag> 线段树 </tag>
             
             <tag> 前缀和 </tag>
-            
-            <tag> 分块 </tag>
             
         </tags>
       
