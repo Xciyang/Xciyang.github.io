@@ -25,9 +25,9 @@
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_8oulpdszqlx.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1566390339611">
+  <link rel="stylesheet" href="/css/style.css?v=1566435184491">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -91,6 +91,8 @@
             <i class="nexmoefont icon-QQ"></i>
         </a><a class="mdui-ripple" href="mailto:896681584@qq.com" target="_blank" mdui-tooltip="{content: '邮箱'}" style="color: rgb(123, 1, 255);background-color: rgba(123, 1, 255, .15);">
             <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="/rss.xml" target="_blank" mdui-tooltip="{content: 'RSS'}" style="color: rgb(2, 10, 56);background-color: rgba(2, 10, 56, .15);">
+            <i class="nexmoefont icon-rss"></i>
         </a>
     </div>
 </div>
@@ -224,13 +226,7 @@
         <a href="/2019-07/15-luogu5440/">
             <div class="nexmoe-post-cover mdui-ripple">
                 
-                <img id="coverback">
-                <script>
-                    var nowImg = document.getElementById('coverback');
-                    nowImg.id = 'coverback_old';
-                    var key = '20190715';
-                    nowImg.src = '/medias/banner/' + key % 9 + '.jpg';
-                </script>
+                <img id="190715" class="coverback" alt="LuoguP5440 - 【XR-2】奇迹">
                 
                 <h1>LuoguP5440 - 【XR-2】奇迹</h1>
             </div>
@@ -263,13 +259,7 @@
         <a href="/2019-05/22-luogu5145/">
             <div class="nexmoe-post-cover mdui-ripple">
                 
-                <img id="coverback">
-                <script>
-                    var nowImg = document.getElementById('coverback');
-                    nowImg.id = 'coverback_old';
-                    var key = '20190522';
-                    nowImg.src = '/medias/banner/' + key % 9 + '.jpg';
-                </script>
+                <img id="190522" class="coverback" alt="LuoguP5145 - 漂浮的鸭子">
                 
                 <h1>LuoguP5145 - 漂浮的鸭子</h1>
             </div>
@@ -300,13 +290,7 @@
         <a href="/2019-04/27-luogu2114/">
             <div class="nexmoe-post-cover mdui-ripple">
                 
-                <img id="coverback">
-                <script>
-                    var nowImg = document.getElementById('coverback');
-                    nowImg.id = 'coverback_old';
-                    var key = '20190427';
-                    nowImg.src = '/medias/banner/' + key % 9 + '.jpg';
-                </script>
+                <img id="190427" class="coverback" alt="NOI2014 - 起床困难综合症">
                 
                 <h1>NOI2014 - 起床困难综合症</h1>
             </div>
@@ -336,13 +320,7 @@
         <a href="/2019-04/24-luogu1041/">
             <div class="nexmoe-post-cover mdui-ripple">
                 
-                <img id="coverback">
-                <script>
-                    var nowImg = document.getElementById('coverback');
-                    nowImg.id = 'coverback_old';
-                    var key = '20190424';
-                    nowImg.src = '/medias/banner/' + key % 9 + '.jpg';
-                </script>
+                <img id="190424" class="coverback" alt="NOIP2003 - 传染病控制">
                 
                 <h1>NOIP2003 - 传染病控制</h1>
             </div>
@@ -373,13 +351,7 @@
         <a href="/2019-03/17-luogu4205/">
             <div class="nexmoe-post-cover mdui-ripple">
                 
-                <img id="coverback">
-                <script>
-                    var nowImg = document.getElementById('coverback');
-                    nowImg.id = 'coverback_old';
-                    var key = '20190317';
-                    nowImg.src = '/medias/banner/' + key % 9 + '.jpg';
-                </script>
+                <img id="190317" class="coverback" alt="NOI2005 - 智慧珠游戏">
                 
                 <h1>NOI2005 - 智慧珠游戏</h1>
             </div>
@@ -413,6 +385,13 @@
         </article>
     </div>
     
+    <script>
+        var imgList = document.getElementsByClassName('coverback');
+        for (var i = 0; i < imgList.length; i++) {
+            imgList[i].src = '/medias/banner/' + imgList[i].id % Number("12") + '.jpg';
+            imgList[i].id = '';
+        }
+    </script>
 </section>
 
     </div>
@@ -430,7 +409,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.9/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1566390339496"></script>
+<script src="/js/app.js?v=1566435184430"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
   
