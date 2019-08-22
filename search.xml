@@ -132,13 +132,13 @@
       
         <tags>
             
-            <tag> Cpp </tag>
-            
             <tag> 闲聊 </tag>
             
-            <tag> 技巧 </tag>
+            <tag> Cpp </tag>
             
             <tag> 颓废 </tag>
+            
+            <tag> 技巧 </tag>
             
         </tags>
       
@@ -539,6 +539,8 @@
             
             <tag> Cpp </tag>
             
+            <tag> 分块 </tag>
+            
             <tag> 二分查找 </tag>
             
             <tag> ST表 </tag>
@@ -546,8 +548,6 @@
             <tag> 线段树 </tag>
             
             <tag> 前缀和 </tag>
-            
-            <tag> 分块 </tag>
             
         </tags>
       
@@ -665,9 +665,9 @@
       
         <tags>
             
-            <tag> Cpp </tag>
-            
             <tag> 闲聊 </tag>
+            
+            <tag> Cpp </tag>
             
             <tag> 码风 </tag>
             
