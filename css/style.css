@@ -481,14 +481,23 @@ article code {
   font-size: 85%;
   padding: 0.2em 0.4em;
   border: 1px solid #d7dae2;
+  overflow-x: scroll;
 }
 article code::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  widows: 8px;
+  height: 8px;
 }
 article code::-webkit-scrollbar-thumb {
-  border-radius: 6px;
+  border-radius: 9px;
   background-color: #888;
+}
+article code::-webkit-scrollbar-thumb:hover {
+  border-radius: 9px;
+  background-color: #999;
+}
+article code::-webkit-scrollbar-thumb:active {
+  border-radius: 9px;
+  background-color: #998;
 }
 article pre {
   border-radius: 6px;
