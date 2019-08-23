@@ -6,7 +6,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="https://xciyang.github.io/"/>
-  <updated>2019-08-21T12:25:05.961Z</updated>
+  <updated>2019-08-23T00:13:31.106Z</updated>
   <id>https://xciyang.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>技巧 - 写一个应用于Luogu的油猴插件</title>
+    <link href="https://xciyang.github.io/2019-08/22-luogusearcher/"/>
+    <id>https://xciyang.github.io/2019-08/22-luogusearcher/</id>
+    <published>2019-08-22T13:10:57.000Z</published>
+    <updated>2019-08-23T00:13:31.106Z</updated>
+    
+    <content type="html"><![CDATA[<p>写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。</p><p>安装链接（插件发布地址）: <a href="https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher" target="_blank" rel="noopener">https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher</a></p><a id="more"></a><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>应同机房大佬要求，做一个洛谷快捷题目搜索的油猴插件。</p><h4 id="一些鲜为人知的历史"><a href="#一些鲜为人知的历史" class="headerlink" title="一些鲜为人知的历史"></a>一些鲜为人知的历史</h4><p>其实这个早在洛谷??.9版本（大概是18年底的一次UI更新）就写过一次了。</p><p>那段时间luogu把搜索框去掉了，以致于不能方便的搜索题目，才写了这个插件，并且使用luogu很早前搜索框的css。</p><p>过了半个月洛谷又更新了，然后右上角个人头像旁边多了搜索框。我当时直接退坑了，后来没多长时间插件就无法使用了。</p><h4 id="为什么要重构插件"><a href="#为什么要重构插件" class="headerlink" title="为什么要重构插件"></a>为什么要重构插件</h4><p>然后我发现洛谷新的搜索框非常不贴近人意（小声），然后同机房大佬又一次要求。</p><p>趁着没东西颓废一晚上颓了出来，恰好半年时间，我的JS、HTML能力已经大幅提高，所以这个插件做起来相当简单。</p><h4 id="那现在和半年前有什么区别"><a href="#那现在和半年前有什么区别" class="headerlink" title="那现在和半年前有什么区别"></a>那现在和半年前有什么区别</h4><p>首先洛谷把半年前已经废了的CSS都删了（包括半年前的搜索框CSS）。</p><p>并且洛谷的页面也有很大变化。误人子弟的说一句，好像洛谷现在是二次加载动态渲染？然后不用jQuery了？</p><p>然后是个人原因，现在的我有一定JS写代码能力，对一些基础语法比较熟练，熟悉很多方法。之前傻傻分不清jQuery和Web API的函数，只能一次一次测试来运用（哪个能用就用哪个）。</p><h3 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h3><p>可以先进入文章开头的链接查看介绍，也可以查看全部代码。</p><p>首先我们设定 F1 打开搜索框，若已打开就关闭，F1键码为112。注册按键：</p><pre><code class="js">document.onkeydown = function (event) { if (event.keyCode == 112) mainfunc(); };</code></pre><p>mainfunc 函数就是用来打开关闭对话框。但是这个页面本来没有对话框，该怎么打开呢？</p><p>那么就需要新建，新建需要在网页中插入HTML。根据经验，我们需要在页面加载完成之后才能插入HTML，否则有不可预料的BUG。判断网页是否加载完成：</p><pre><code class="js">if (document.readyState == &quot;complete&quot;) {    /*    Write your code here.    */}</code></pre><p>然后就是新建元素、改样式、插入到网页中，这些很语法基础就直接给出，相关函数请自行了解。</p><p>我们选择把元素加入到页面的app（洛谷设计的）中。初始化：</p><pre><code class="js">var newElement = document.createElement(&quot;div&quot;);newElement.id = &quot;CiyangSearch&quot;;newElement.innerHTML = &quot;&lt;input type = &#39;text&#39;&gt; | &lt;a&gt;&lt;i class = &#39;fas fa-search&#39;&gt;&lt;/i&gt;&lt;/a&gt; | &lt;a&gt;&lt;i class= &#39;fa fa-cog&#39;&gt;&lt;/i&gt;&lt;/a&gt;&quot;;newElement.style.position = &quot;fixed&quot;;newElement.style.zIndex = &quot;2&quot;;newElement.style.top = &quot;10%&quot;;newElement.style.left = &quot;30%&quot;;newElement.style.width = &quot;240px&quot;;newElement.style.backgroundColor = &quot;rgb(128,128,128)&quot;;var appElement = document.getElementById(&#39;app&#39;);appElement.appendChild(newElement);</code></pre><p>上面的代码就已经可以打开一个搜索框，还有搜索按钮和设置按钮，但非常丑陋。</p><p>只有搜索框但是不能进行搜索，所以要绑定点击搜索按钮和回车键，回车键的键码为13。注册函数：</p><pre><code class="js">newElement.children[0].onkeydown = function (event) {    if (event.keyCode == 13) {        var str = this.value;        /*        Write your code here.        */    }    return;};newElement.children[1].onclick = function () {    var str = newElement.children[0].value;    /*    Write your code here.    */    return;};</code></pre><p>str就是搜索框中输入的内容，获取后就可以跳转题目了。</p><p>我们想让它可自动识别是否为题目，如果是就打开题目页面，否则就打开题目列表进行搜索。</p><p>比如：输入P1001打开P1001题目页面，输入1001就进入题目列表搜索1001。</p><p>因为OI不学正则表达式，所以一般情况下我们想到if判断。这非常麻烦，会使代码复杂冗长，这个时候正则表达式就能大显身手了。</p><p>此处借鉴了另一个油猴插件<a href="https://greasyfork.org/zh-CN/scripts/388947-luogu-problem-jumper" target="_blank" rel="noopener">Luogu Problem Jumper</a>的匹配代码，应该是匹配洛谷题目最好的代码。</p><pre><code class="js">function judegeProblem(str) {    if (str.match(/AT[0-9]{1,4}/) == str) return true;    if (str.match(/CF[0-9]{1,4}[A-Z][0-9]{0,1}/) == str) return true;    if (str.match(/SP[0-9]{1,5}/) == str) return true;    if (str.match(/P[0-9]{4}/) == str) return true;    if (str.match(/UVA[0-9]{1,5}/) == str) return true;    if (str.match(/U[0-9]{1,6}/) == str) return true;    if (str.match(/T[0-9]{1,6}/) == str) return true;    return false;}</code></pre><p>接下来是打开页面，有两种方式，前者是从当前页跳转，后者是新标签页打开。</p><pre><code class="js">window.location = url;window.open(url);</code></pre><p>我们想要设计为用户选择首选方式，可首选其中一种方式，搜索时先输入 # 才能用优先级低的方式。</p><pre><code class="js">var dUrl = 1;/*A lot of code.*/function judgeURL(way, str) {    if (str.length == 0) return;    if (judegeProblem(str)) go(dUrl ^ way, &#39;/problemnew/show/&#39; + str);    else go(dUrl ^ way, &#39;/problem/list?keyword=&#39; + str);    return;}function go(k, url) {    if (k == 0) window.location = url;    else window.open(url);    removek();}</code></pre><p>dUrl设为1就是首选新标签页，way表示是否先输入了 # 。</p><p>再回到绑定按键、点击搜索按钮的地方，比较懒所以代码没有合并到一起：</p><pre><code class="js">newElement.children[0].onkeydown = function (event) {    if (event.keyCode == 13) {        var str = this.value;        if (str.length == 0) return;        if (str[0] == &#39;#&#39;) judgeURL(1, str.substring(1, str.length));        else judgeURL(0, str);    }    return;};newElement.children[1].onclick = function () {    var str = newElement.children[0].value;    if (str.length == 0) return;    if (str[0] == &#39;#&#39;) judgeURL(1, str.substring(1, str.length));    else judgeURL(0, str);    return;};</code></pre><p>主体基本完成，然后就是一些小功能。若打开搜索框，再次按下 F1 关闭。使设置打开页面方式更加可视化，完善设置按钮。</p><p>在 mainfuc 函数中，先加入一行代码：</p><pre><code class="js">if (removek()) return;</code></pre><p>之前我们为了方便，将搜索框整体的元素ID改为了CiyangSearch，可以直接根据此ID来获取控件。代码简单：</p><pre><code class="js">function removek() {    var search = document.getElementById(&quot;CiyangSearch&quot;);    if (search) {        search.parentNode.removeChild(search);        return true;    }    return false;}</code></pre><p>完善设置按钮也很简单，首先在 mainfunc 绑定按键、搜索按钮处理下加入一行代码：</p><pre><code class="js">newElement.children[2].onclick = function () { setLink(); };</code></pre><p>先介绍两个油猴自带的函数，GM_setValue和GM_getValue，可以非常方便的存储和读取数据，具体原理可以自行搜索。</p><p>点击设置按钮后跳出对话框，用户输入1或者0，设置首选方式。将之前的dUrl设置为读取数据。</p><pre><code class="js">var dUrl = GM_getValue(&quot;default_way&quot;);function setLink() {    var defaultWay = prompt(&quot;请输入首选打开网页方式，1 为新标签页，0为从当前页跳转。当前为&quot; + dUrl + &quot;，搜索先输入 # 可使用优先级低的方式。&quot;);    if (defaultWay == null) return;    if (defaultWay != &quot;0&quot; &amp;&amp; defaultWay != &quot;1&quot;) {        alert(&quot;您的输入有误&quot;);        return;    }    GM_setValue(&quot;default_way&quot;, defaultWay);    location.reload();}</code></pre><p>我们还有需要一个使搜索的输入框自动获得焦点的小特性，只要在元素（控件）插入页面后加入一行代码：</p><pre><code class="js">newElement.children[0].focus();</code></pre><h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>还有什么问题可以在博客或发布网站评论提出，也可以用社交软件联系我。</p><p>在greasyfork发布，链接：<a href="https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher" target="_blank" rel="noopener">https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。&lt;/p&gt;
+&lt;p&gt;安装链接（插件发布地址）: &lt;a href=&quot;https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技巧" scheme="https://xciyang.github.io/categories/%E6%8A%80%E5%B7%A7/"/>
+    
+    
+      <category term="技巧" scheme="https://xciyang.github.io/tags/%E6%8A%80%E5%B7%A7/"/>
+    
+      <category term="颓废" scheme="https://xciyang.github.io/tags/%E9%A2%93%E5%BA%9F/"/>
+    
+      <category term="JavaScript" scheme="https://xciyang.github.io/tags/JavaScript/"/>
+    
+      <category term="HTML" scheme="https://xciyang.github.io/tags/HTML/"/>
+    
+  </entry>
   
   <entry>
     <title>Daily Literary - 文艺日常</title>
@@ -65,9 +94,9 @@
     
       <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
     
-      <category term="左偏树" scheme="https://xciyang.github.io/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/"/>
-    
       <category term="并查集" scheme="https://xciyang.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
+    
+      <category term="左偏树" scheme="https://xciyang.github.io/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/"/>
     
   </entry>
   
@@ -146,13 +175,13 @@
       <category term="技巧" scheme="https://xciyang.github.io/categories/%E6%8A%80%E5%B7%A7/"/>
     
     
-      <category term="闲聊" scheme="https://xciyang.github.io/tags/%E9%97%B2%E8%81%8A/"/>
-    
       <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
     
-      <category term="颓废" scheme="https://xciyang.github.io/tags/%E9%A2%93%E5%BA%9F/"/>
+      <category term="闲聊" scheme="https://xciyang.github.io/tags/%E9%97%B2%E8%81%8A/"/>
     
       <category term="技巧" scheme="https://xciyang.github.io/tags/%E6%8A%80%E5%B7%A7/"/>
+    
+      <category term="颓废" scheme="https://xciyang.github.io/tags/%E9%A2%93%E5%BA%9F/"/>
     
   </entry>
   
@@ -587,35 +616,6 @@
       <category term="GCD" scheme="https://xciyang.github.io/tags/GCD/"/>
     
       <category term="数论" scheme="https://xciyang.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LuoguP2633 - Count on a tree</title>
-    <link href="https://xciyang.github.io/2019-02/18-luogu2633/"/>
-    <id>https://xciyang.github.io/2019-02/18-luogu2633/</id>
-    <published>2019-02-18T01:43:39.000Z</published>
-    <updated>2019-08-15T11:55:52.203Z</updated>
-    
-    <content type="html"><![CDATA[<p>【LuoguP2633】【SP10628】【BZOJ2588】Count on a tree 树上第 K 大<br>题目链接1: <a href="https://www.luogu.org/problemnew/show/P2633" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P2633</a><br>题目链接2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2588" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=2588</a><br>题目链接3: <a href="https://www.luogu.org/problemnew/show/SP10628" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/SP10628</a><br>题目链接4: <a href="https://www.spoj.com/problems/COT/" target="_blank" rel="noopener">https://www.spoj.com/problems/COT/</a></p><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本来是打算做 TJOI2018 - 异或 那道题的, 然后又看到这道题, 好像做这道题有助于那道题…然后就开始干</p><a id="more"></a><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这道题像是组合模板题…用倍增LCA + 主席树, 直接套模板就行了.</p><p>有一些需要注意的东西, 边的数组最好开大一点, 不然容易RE, 哪个算法写炸了也容易RE, 所以需要小心谨慎的写代码, 然而Ciyang的倍增写挂了…</p><p>主席树我写的指针版, 好像很罕见, 强烈安利, 虽然和数组版没有多大的区别.</p><p>对于这道题, 先预处理出LCA, 然后建个树（数组版不需要）</p><p>查询时把$ x $和$ y $之间的链提出来, 主席树上存的是前缀和, 那么就需要先求出$ lca(x,y) $</p><p>再根据数学上的某些原理（容斥?）求出</p><p>$$ Sum(x,y) = sum(x) + sum(y) - sum(lca(x,y)) - sum(lca(x,y)) - sum(f[lca(x,y)])$$</p><p>$ f[x] $ 代表 x 的父节点, 然后直接套主席树板子就行了</p><p>推荐两个STL必备黑科技, unique 和 lower_bound, 前者那个是给有序数组去重, 后者是有序数组二分查找. 一般都会了, 不会的百度把… </p><p>如果出现RE, 找不到原因, 可以去交<a href="https://www.luogu.org/problemnew/show/SP10628" target="_blank" rel="noopener">这道题</a>, 去掉强制在线, 如果WA就是算法问题了.再出现RE可能就是像我一样手残打错了一个数字之类的东西…</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>评测详情(未开O2): Accepted 100 用时: 1765ms / 内存: 76648KB</p><pre><code class="cpp">#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;using namespace std;inline int read() {    int e= 0, f= 1;    char ch= getchar();    while(ch &lt; &#39;0&#39; || ch &gt; &#39;9&#39;) {        if(ch == &#39;-&#39;) f= -1;        ch= getchar();    }    while(ch &gt;= &#39;0&#39; &amp;&amp; ch &lt;= &#39;9&#39;) e= e * 10 + ch - &#39;0&#39;, ch= getchar();    return e * f;}// READint n, m, d, vi[100005], lv[100005], edptr= 1, head[100005], tmpx, tmpy, tmpz;struct edge {    int to, nexty;} eds[400001];// 其实可以 100005 * 2void add(int a, int b) {    eds[edptr].to= b, eds[edptr].nexty= head[a];    head[a]= edptr++;    return;}// edgestruct NODE {    NODE *l, *r;    int v, sum;} * root[800005];// 其实可以 100005NODE *build(int l, int r) {    NODE *nptr= new NODE();    if(l != r) {        int mid= (l + r) &gt;&gt; 1;        nptr-&gt;l= build(l, mid), nptr-&gt;r= build(mid + 1, r);    }    return nptr;}NODE *update(int l, int r, int c, NODE *pre) {    NODE *nptr= new NODE();    nptr-&gt;l= pre-&gt;l, nptr-&gt;r= pre-&gt;r, nptr-&gt;sum= pre-&gt;sum + 1;    if(l != r) {        int mid= (l + r) &gt;&gt; 1;        if(c &lt;= mid)            nptr-&gt;l= update(l, mid, c, pre-&gt;l);        else            nptr-&gt;r= update(mid + 1, r, c, pre-&gt;r);    }    return nptr;}int query(NODE *ml, NODE *mr, NODE *xl, NODE *xr, int l, int r, int k) {    if(l == r) return l;    int qsum= mr-&gt;l-&gt;sum + ml-&gt;l-&gt;sum - xl-&gt;l-&gt;sum - xr-&gt;l-&gt;sum;    int mid= (l + r) &gt;&gt; 1;    if(qsum &gt;= k) return query(ml-&gt;l, mr-&gt;l, xl-&gt;l, xr-&gt;l, l, mid, k);    return query(ml-&gt;r, mr-&gt;r, xl-&gt;r, xr-&gt;r, mid + 1, r, k - qsum);}// treeint deep[100005], f[100005][21];void dfs(int nown, int fa) {    deep[nown]= deep[fa] + 1;    f[nown][0]= fa;    for(int i= 0; i &lt; 20; i++) f[nown][i + 1]= f[f[nown][i]][i];    // 从0开始...Ciyang写挂了,写成从1开始,然后交了好多遍也没改对    for(int i= head[nown], to; i; i= eds[i].nexty) {        to= eds[i].to;        if(to == fa) continue;        dfs(to, nown);    }    return;}void dfs2(int nown) {    root[nown]= update(1, n, lv[nown], root[f[nown][0]]);    for(int i= head[nown], to; i; i= eds[i].nexty) {        to= eds[i].to;        if(to == f[nown][0]) continue;        dfs2(to);    }    return;}int lca(int x, int y) {    if(deep[x] &lt; deep[y]) swap(x, y);    for(int i= 19; i &gt; -1; i--) {        if(deep[f[x][i]] &gt;= deep[y]) x= f[x][i];        if(x == y) return x;    }    for(int i= 19; i &gt; -1; i--)        if(f[x][i] != f[y][i]) x= f[x][i], y= f[y][i];    return f[x][0];}// LCAint lastans= 0, tmpc;int main() {    n= read(), m= read();    for(int i= 1; i &lt;= n; i++) vi[i]= read(), lv[i]= vi[i];    for(int i= 1; i &lt; n; i++) {        tmpx= read(), tmpy= read();        add(tmpx, tmpy), add(tmpy, tmpx);    }    root[0]= build(1, n);    sort(vi + 1, vi + n + 1);    d= unique(vi + 1, vi + n + 1) - vi - 1;    for(int i= 1; i &lt;= n; i++) lv[i]= lower_bound(vi + 1, vi + d + 1, lv[i]) - vi;    dfs(1, 0);    dfs2(1);    while(m--) {        tmpx= read(), tmpy= read(), tmpz= read();        tmpx^= lastans;        tmpc= lca(tmpx, tmpy);        lastans= vi[query(root[tmpx], root[tmpy], root[tmpc], root[f[tmpc][0]], 1, n, tmpz)];        printf(&quot;%d\n&quot;, lastans);    }    return 0;}// main</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;【LuoguP2633】【SP10628】【BZOJ2588】Count on a tree 树上第 K 大&lt;br&gt;题目链接1: &lt;a href=&quot;https://www.luogu.org/problemnew/show/P2633&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.luogu.org/problemnew/show/P2633&lt;/a&gt;&lt;br&gt;题目链接2: &lt;a href=&quot;https://www.lydsy.com/JudgeOnline/problem.php?id=2588&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.lydsy.com/JudgeOnline/problem.php?id=2588&lt;/a&gt;&lt;br&gt;题目链接3: &lt;a href=&quot;https://www.luogu.org/problemnew/show/SP10628&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.luogu.org/problemnew/show/SP10628&lt;/a&gt;&lt;br&gt;题目链接4: &lt;a href=&quot;https://www.spoj.com/problems/COT/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.spoj.com/problems/COT/&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;本来是打算做 TJOI2018 - 异或 那道题的, 然后又看到这道题, 好像做这道题有助于那道题…然后就开始干&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="题解" scheme="https://xciyang.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-      <category term="题解" scheme="https://xciyang.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-      <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
-    
-      <category term="LCA" scheme="https://xciyang.github.io/tags/LCA/"/>
-    
-      <category term="主席树" scheme="https://xciyang.github.io/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/"/>
     
   </entry>
   
