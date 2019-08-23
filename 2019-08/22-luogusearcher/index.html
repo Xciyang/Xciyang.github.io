@@ -11,14 +11,14 @@
 
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <meta name="description" content="写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。 安装链接（插件发布地址）: https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher">
-<meta name="keywords" content="技巧,颓废,JavaScript,HTML">
+<meta name="keywords" content="颓废,技巧,JavaScript,HTML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="技巧 - 写一个应用于Luogu的油猴插件">
 <meta property="og:url" content="https://xciyang.github.io/2019-08/22-luogusearcher/index.html">
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。 安装链接（插件发布地址）: https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-23T00:13:31.106Z">
+<meta property="og:updated_time" content="2019-08-23T11:42:32.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="技巧 - 写一个应用于Luogu的油猴插件">
 <meta name="twitter:description" content="写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。 安装链接（插件发布地址）: https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher">
@@ -29,7 +29,7 @@
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1566519372826">
+  <link rel="stylesheet" href="/css/style.css?v=1566560839894">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -235,8 +235,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月22日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1.8k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 8 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/技巧/">技巧</a>
     
@@ -382,8 +382,23 @@ function setLink() {
 }</code></pre>
 <p>我们还有需要一个使搜索的输入框自动获得焦点的小特性，只要在元素（控件）插入页面后加入一行代码：</p>
 <pre><code class="js">newElement.children[0].focus();</code></pre>
+<p>然后8.23美化了一下UI，具体就不给出了。增加了设置背景颜色，换汤不换药。其中较为重要的修改：</p>
+<pre><code class="js">var dUrl = GM_getValue(&quot;default_way&quot;), bgColor = GM_getValue(&quot;searcher_bg&quot;);
+if (bgColor == undefined) {
+    GM_setValue(&quot;searcher_bg&quot;, &quot;rgba(135,206,235,0.5)&quot;);
+    bgColor = &quot;rgba(135,206,235,0.5)&quot;;
+}
+newElement.innerHTML = &quot;&lt;input type = &#39;text&#39;&gt; | &lt;i class = &#39;fas fa-search&#39;&gt;&lt;/i&gt; | &lt;i class= &#39;fas fa-cog&#39;&gt;&lt;/i&gt; | &lt;i class =&#39;fas fa-crosshairs&#39;&gt;&lt;/i&gt; |&quot;;
+function setBGColor() {
+    var searcherBG = prompt(&quot;请输入背景颜色码，支持RGB和十六进制。当前为&quot; + bgColor + &quot;。&quot;, bgColor);
+    if (searcherBG == null) return;
+    GM_setValue(&quot;searcher_bg&quot;, searcherBG);
+    location.reload();
+}</code></pre>
+<p>分别处于代码各个位置，思路与设置打开方式类似，自行了解即可。</p>
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>还有什么问题可以在博客或发布网站评论提出，也可以用社交软件联系我。</p>
 <p>在greasyfork发布，链接：<a href="https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher" target="_blank" rel="noopener">https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher</a></p>
+<p>如果时间充足还会一直更新，有要求也可以提出。</p>
 
   </article>
   
@@ -430,7 +445,7 @@ function setLink() {
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.9/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1566519372816"></script>
+<script src="/js/app.js?v=1566560839882"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
   
