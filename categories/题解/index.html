@@ -5,6 +5,7 @@
   
   <title>分类：题解 - Ciyang’s Blog</title>
   <meta charset="UTF-8">
+  <meta name="description" content="一个半退役OI的文化课选手...">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -21,54 +22,66 @@
 <meta name="twitter:title" content="Ciyang’s Blog">
 <meta name="twitter:description" content="一个半退役OI的文化课选手...">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.9/styles/hopscotch.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/hopscotch.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
+  
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1566565580755">
+  <link rel="stylesheet" href="/css/style.css?v=1567432221232">
 </head>
 
 <body class="mdui-drawer-body-left">
   
-  <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Ciyang" class="mdui-btn mdui-btn-icon"><img src="/medias/avatar.jpg"></a>
+       </div>
+    </div>
+  </div>
   <div id="nexmoe-header">
-    <div class="nexmoe-drawer mdui-drawer" id="drawer">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
-        <a href="/">
-            <img src="/medias/avatar.jpg">
+        <a href="/" title="Ciyang">
+            <img src="/medias/avatar.jpg" alt="Ciyang">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>24</div>
-        <div><span>标签</span>33</div>
+        <div><span>文章</span>25</div>
+        <div><span>标签</span>35</div>
         <div><span>分类</span>4</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
             <div class="mdui-list-item-content">
                 首页
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/" title="关于">
             <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
             <div class="mdui-list-item-content">
                 关于
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/" title="友情链接">
             <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
             <div class="mdui-list-item-content">
                 友情链接
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search" title="搜索">
             <i class="mdui-list-item-icon nexmoefont icon-search"></i>
             <div class="mdui-list-item-content">
                 搜索
@@ -101,7 +114,45 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章分类</h3>
     <div class="nexmoe-widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技巧/">技巧</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲聊/">闲聊</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目/">项目</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/题解/">题解</a><span class="category-list-count">15</span></li></ul>
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/技巧/">技巧</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/闲聊/">闲聊</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/项目/">项目</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/题解/">题解</a>
+          <span class="category-list-count">16</span>
+        </li>
+
+        
+      </ul>
+
     </div>
   </div>
 
@@ -110,9 +161,10 @@
   
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">标签云</h3>
-    <div class="nexmoe-widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 12px;">STL</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/主席树/" style="font-size: 10px;">主席树</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/分块/" style="font-size: 14px;">分块</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 12px;">动态规划</a> <a href="/tags/块状链表/" style="font-size: 10px;">块状链表</a> <a href="/tags/字典树/" style="font-size: 10px;">字典树</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/并查集/" style="font-size: 12px;">并查集</a> <a href="/tags/技巧/" style="font-size: 12px;">技巧</a> <a href="/tags/搜索/" style="font-size: 16px;">搜索</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/模拟/" style="font-size: 12px;">模拟</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a> <a href="/tags/码风/" style="font-size: 10px;">码风</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 10px;">线段树</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a> <a href="/tags/边压Trie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/闲聊/" style="font-size: 16px;">闲聊</a> <a href="/tags/随机化搜索/" style="font-size: 10px;">随机化搜索</a> <a href="/tags/项目/" style="font-size: 14px;">项目</a> <a href="/tags/颓废/" style="font-size: 16px;">颓废</a> <a href="/tags/题解/" style="font-size: 18px;">题解</a>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 12px;">STL</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/主席树/" style="font-size: 10px;">主席树</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/分块/" style="font-size: 14px;">分块</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 12px;">动态规划</a> <a href="/tags/块状链表/" style="font-size: 10px;">块状链表</a> <a href="/tags/字典树/" style="font-size: 10px;">字典树</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/并查集/" style="font-size: 12px;">并查集</a> <a href="/tags/技巧/" style="font-size: 12px;">技巧</a> <a href="/tags/搜索/" style="font-size: 16px;">搜索</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/整除分块/" style="font-size: 10px;">整除分块</a> <a href="/tags/模拟/" style="font-size: 12px;">模拟</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a> <a href="/tags/码风/" style="font-size: 10px;">码风</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 10px;">线段树</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a> <a href="/tags/边压Trie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/闲聊/" style="font-size: 16px;">闲聊</a> <a href="/tags/随机化搜索/" style="font-size: 10px;">随机化搜索</a> <a href="/tags/项目/" style="font-size: 14px;">项目</a> <a href="/tags/颓废/" style="font-size: 16px;">颓废</a> <a href="/tags/题解/" style="font-size: 18px;">题解</a>
     </div>
+    
   </div>
 
   
@@ -120,7 +172,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
     </div>
   </div>
 
@@ -131,6 +183,10 @@
     <h3 class="nexmoe-widget-title">最新文章</h3>
     <div class="nexmoe-widget">
       <ul>
+        
+          <li>
+            <a href="/2019-09/02-luogu2522/">HAOI2011 - Problem b</a>
+          </li>
         
           <li>
             <a href="/2019-08/22-luogusearcher/">技巧 - 写一个应用于Luogu的油猴插件</a>
@@ -146,10 +202,6 @@
         
           <li>
             <a href="/2019-08/15-chong-xin-kai-shi/">重新开始</a>
-          </li>
-        
-          <li>
-            <a href="/2019-07/15-luogu5440/">LuoguP5440 - 【XR-2】奇迹</a>
           </li>
         
       </ul>
@@ -172,55 +224,46 @@
 </div>
   
 </aside>
-
     <div class="nexmoe-copyright">
         &copy; 2019 Ciyang
         Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
     </div>
 </div><!-- .nexmoe-drawer -->
-
-<script>
-    const getRealPath = (pathname, desc = false) => {
-        if (!pathname) {
-            pathname = window.location.pathname
-        }
-        let names = pathname.split("/")
-        if (desc === false) {
-            for (let i = names.length - 1; i >= 0; --i) {
-                let name = names[i].trim()
-                if (name.length > 0 && name !== "/" && name !== "index.html") {
-                    return name
-                }
-            }
-        } else {
-            for (let i = 0; i < names.length; ++i) {
-                let name = names[i].trim()
-                if (name.length > 0 && name !== "/" && name !== "index.html") {
-                    return name
-                }
-            }
-        }
-        return "/"
-    }
-    let links = document.querySelectorAll('.nexmoe-list-item');
-    let rootRealPath = getRealPath(window.location.pathname, true);
-    for (let link of links) {
-        let linkPath = link.getAttribute("href");
-        if (linkPath && getRealPath(linkPath, true) === rootRealPath) {
-            link.className = "active nexmoe-list-item mdui-list-item mdui-ripple";
-        }
-    }
-</script>
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-      <div class="nexmoe-tab">
-        <a mdui-drawer="{target: '#drawer', swipe: true}">
-          <i class="mdui-icon material-icons">menu</i>
+        <section class="nexmoe-posts" id="brand-waterfall">
+    
+    <div class="nexmoe-post">
+        <a href="/2019-09/02-luogu2522/">
+            <div class="nexmoe-post-cover mdui-ripple">
+                
+                <img id="190902" class="coverback" alt="HAOI2011 - Problem b">
+                
+                <h1>HAOI2011 - Problem b</h1>
+            </div>
         </a>
-      </div>
-      <section class="nexmoe-posts" id="brand-waterfall">
+        <div class="nexmoe-post-meta">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月02日</a>
+            <a><i class="nexmoefont icon-areachart"></i>882 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4
+                分钟</a>
+            
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
+            
+            
+            <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/整除分块/">整除分块</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/莫比乌斯反演/">莫比乌斯反演</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
+            
+        </div>
+        <article>
+            
+            <p>【LuoguP2522】【BZOJ2301】【HAOI2011】Problem b<br>题目链接1: <a href="https://www.luogu.org/problem/P2522" target="_blank" rel="noopener">https://www.luogu.org/problem/P2522</a><br>题目链接2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2301" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=2301</a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>机房很久前就人均会反演，今天我终于看懂是啥了。</p>
+<p>然后把整除分块理解透彻！</p>
+            
+        </article>
+    </div>
     
     <div class="nexmoe-post">
         <a href="/2019-08/20-luogu1456/">
@@ -241,7 +284,6 @@
             
             
             <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/左偏树/">左偏树</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/并查集/">并查集</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
-            
             
         </div>
         <article>
@@ -271,7 +313,6 @@
             
             
             <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/搜索/">搜索</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
-            
             
         </div>
         <article>
@@ -305,7 +346,6 @@
             
             <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/分块/">分块</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/块状链表/">块状链表</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
             
-            
         </div>
         <article>
             
@@ -334,7 +374,6 @@
             
             
             <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/分块/">分块</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
-            
             
         </div>
         <article>
@@ -366,7 +405,6 @@
             
             <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/STL/">STL</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/莫队/">莫队</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
             
-            
         </div>
         <article>
             
@@ -396,7 +434,6 @@
             
             
             <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/搜索/">搜索</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/随机化搜索/">随机化搜索</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
-            
             
         </div>
         <article>
@@ -428,7 +465,6 @@
             
             <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/搜索/">搜索</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/模拟/">模拟</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
             
-            
         </div>
         <article>
             
@@ -458,45 +494,12 @@
             
             <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/动态规划/">动态规划</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/搜索/">搜索</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
             
-            
         </div>
         <article>
             
             <p>【LuoguP1041】【NOIP2003】传染病控制<br>题目链接: <a href="https://www.luogu.org/problemnew/show/P1041" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P1041</a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这道题正解搜索, 然而可能有一些同学和我一样一开始觉得能用DP做的…推完递推式, 打完DP只有40, 然后也没有找出错误. 我这篇题解主要就来说一下这个DP的思路和错误.</p>
 <p>如果你已经懂了DFS思路, 可以理解一下错误DP的思想, 如果看不出错误, 很可能是你对这个题的题意还不够清楚.</p>
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2019-04/22-luoguat2657/">
-            <div class="nexmoe-post-cover mdui-ripple">
-                
-                <img id="190422" class="coverback" alt="AT2657 - Mole and Abandoned Mine">
-                
-                <h1>AT2657 - Mole and Abandoned Mine</h1>
-            </div>
-        </a>
-        <div class="nexmoe-post-meta">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2019年04月22日</a>
-            <a><i class="nexmoefont icon-areachart"></i>730 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3
-                分钟</a>
-            
-            <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
-            
-            
-            <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/动态规划/">动态规划</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/状压DP/">状压DP</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
-            
-            
-        </div>
-        <article>
-            
-            <p>【AT2657】【LuoguAT2657】Mole and Abandoned Mine<br>题目链接1: <a href="https://www.luogu.org/problemnew/show/AT2657" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/AT2657</a><br>题目链接2: <a href="https://www.luogu.org/jump/atcoder/2657" target="_blank" rel="noopener">https://www.luogu.org/jump/atcoder/2657</a></p>
-<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>时隔一月, 我又回来了写题解了. </p>
-<p>以后可能颓的时间会变少. 现在文化课好像更重要些, 还是要专心学习吧. </p>
-<p>本题是一个状压练手好题.</p>
             
         </article>
     </div>
@@ -526,11 +529,14 @@
     <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.9/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1566565580687"></script>
+<script src="/js/app.js?v=1567432221242"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
   
 
@@ -563,9 +569,22 @@
     })();
 </script>
 
-
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
-
 
 </html>

@@ -5,6 +5,7 @@
   
   <title>项目日记 - 开发图片爬虫 Ⅲ - Ciyang’s Blog</title>
   <meta charset="UTF-8">
+  <meta name="description" content="一个半退役OI的文化课选手...">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -26,54 +27,66 @@
 <meta name="twitter:description" content="用C++开发一个图片爬虫 Ⅲ ：URL预处理 【咕咕】封面图片来自网络，如有侵权将删除。 前言上一节说这节介绍WinHTTP，现在好像鸽子了。经过我再三思考后，还是先深入学习WinInet吧。 关于根据链接下载网页的各种方式在第一节已经介绍过了。这里再补充一下，还有一种方式是使用外部库libcurl，使用方便代码简洁，但我不把它当做我们主要学习的对象，因为它太过于简单。 这节可以说是个扩展篇，并不">
 <meta name="twitter:image" content="https://xciyang.github.io/images/spiKing5.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.9/styles/hopscotch.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/hopscotch.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
+  
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1566565580711">
+  <link rel="stylesheet" href="/css/style.css?v=1567432220857">
 </head>
 
 <body class="mdui-drawer-body-left">
   
-  <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Ciyang" class="mdui-btn mdui-btn-icon"><img src="/medias/avatar.jpg"></a>
+       </div>
+    </div>
+  </div>
   <div id="nexmoe-header">
-    <div class="nexmoe-drawer mdui-drawer" id="drawer">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
-        <a href="/">
-            <img src="/medias/avatar.jpg">
+        <a href="/" title="Ciyang">
+            <img src="/medias/avatar.jpg" alt="Ciyang">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>24</div>
-        <div><span>标签</span>33</div>
+        <div><span>文章</span>25</div>
+        <div><span>标签</span>35</div>
         <div><span>分类</span>4</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
             <div class="mdui-list-item-content">
                 首页
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/" title="关于">
             <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
             <div class="mdui-list-item-content">
                 关于
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/" title="友情链接">
             <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
             <div class="mdui-list-item-content">
                 友情链接
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search" title="搜索">
             <i class="mdui-list-item-icon nexmoefont icon-search"></i>
             <div class="mdui-list-item-content">
                 搜索
@@ -106,7 +119,45 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章分类</h3>
     <div class="nexmoe-widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技巧/">技巧</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲聊/">闲聊</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目/">项目</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/题解/">题解</a><span class="category-list-count">15</span></li></ul>
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/技巧/">技巧</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/闲聊/">闲聊</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/项目/">项目</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/题解/">题解</a>
+          <span class="category-list-count">16</span>
+        </li>
+
+        
+      </ul>
+
     </div>
   </div>
 
@@ -115,9 +166,10 @@
   
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">标签云</h3>
-    <div class="nexmoe-widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 12px;">STL</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/主席树/" style="font-size: 10px;">主席树</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/分块/" style="font-size: 14px;">分块</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 12px;">动态规划</a> <a href="/tags/块状链表/" style="font-size: 10px;">块状链表</a> <a href="/tags/字典树/" style="font-size: 10px;">字典树</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/并查集/" style="font-size: 12px;">并查集</a> <a href="/tags/技巧/" style="font-size: 12px;">技巧</a> <a href="/tags/搜索/" style="font-size: 16px;">搜索</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/模拟/" style="font-size: 12px;">模拟</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a> <a href="/tags/码风/" style="font-size: 10px;">码风</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 10px;">线段树</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a> <a href="/tags/边压Trie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/闲聊/" style="font-size: 16px;">闲聊</a> <a href="/tags/随机化搜索/" style="font-size: 10px;">随机化搜索</a> <a href="/tags/项目/" style="font-size: 14px;">项目</a> <a href="/tags/颓废/" style="font-size: 16px;">颓废</a> <a href="/tags/题解/" style="font-size: 18px;">题解</a>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 12px;">STL</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/主席树/" style="font-size: 10px;">主席树</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/分块/" style="font-size: 14px;">分块</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 12px;">动态规划</a> <a href="/tags/块状链表/" style="font-size: 10px;">块状链表</a> <a href="/tags/字典树/" style="font-size: 10px;">字典树</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/并查集/" style="font-size: 12px;">并查集</a> <a href="/tags/技巧/" style="font-size: 12px;">技巧</a> <a href="/tags/搜索/" style="font-size: 16px;">搜索</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/整除分块/" style="font-size: 10px;">整除分块</a> <a href="/tags/模拟/" style="font-size: 12px;">模拟</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a> <a href="/tags/码风/" style="font-size: 10px;">码风</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 10px;">线段树</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a> <a href="/tags/边压Trie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/闲聊/" style="font-size: 16px;">闲聊</a> <a href="/tags/随机化搜索/" style="font-size: 10px;">随机化搜索</a> <a href="/tags/项目/" style="font-size: 14px;">项目</a> <a href="/tags/颓废/" style="font-size: 16px;">颓废</a> <a href="/tags/题解/" style="font-size: 18px;">题解</a>
     </div>
+    
   </div>
 
   
@@ -125,7 +177,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
     </div>
   </div>
 
@@ -136,6 +188,10 @@
     <h3 class="nexmoe-widget-title">最新文章</h3>
     <div class="nexmoe-widget">
       <ul>
+        
+          <li>
+            <a href="/2019-09/02-luogu2522/">HAOI2011 - Problem b</a>
+          </li>
         
           <li>
             <a href="/2019-08/22-luogusearcher/">技巧 - 写一个应用于Luogu的油猴插件</a>
@@ -151,10 +207,6 @@
         
           <li>
             <a href="/2019-08/15-chong-xin-kai-shi/">重新开始</a>
-          </li>
-        
-          <li>
-            <a href="/2019-07/15-luogu5440/">LuoguP5440 - 【XR-2】奇迹</a>
           </li>
         
       </ul>
@@ -177,55 +229,16 @@
 </div>
   
 </aside>
-
     <div class="nexmoe-copyright">
         &copy; 2019 Ciyang
         Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
     </div>
 </div><!-- .nexmoe-drawer -->
-
-<script>
-    const getRealPath = (pathname, desc = false) => {
-        if (!pathname) {
-            pathname = window.location.pathname
-        }
-        let names = pathname.split("/")
-        if (desc === false) {
-            for (let i = names.length - 1; i >= 0; --i) {
-                let name = names[i].trim()
-                if (name.length > 0 && name !== "/" && name !== "index.html") {
-                    return name
-                }
-            }
-        } else {
-            for (let i = 0; i < names.length; ++i) {
-                let name = names[i].trim()
-                if (name.length > 0 && name !== "/" && name !== "index.html") {
-                    return name
-                }
-            }
-        }
-        return "/"
-    }
-    let links = document.querySelectorAll('.nexmoe-list-item');
-    let rootRealPath = getRealPath(window.location.pathname, true);
-    for (let link of links) {
-        let linkPath = link.getAttribute("href");
-        if (linkPath && getRealPath(linkPath, true) === rootRealPath) {
-            link.className = "active nexmoe-list-item mdui-list-item mdui-ripple";
-        }
-    }
-</script>
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-      <div class="nexmoe-tab">
-        <a mdui-drawer="{target: '#drawer', swipe: true}">
-          <i class="mdui-icon material-icons">menu</i>
-        </a>
-      </div>
-      <div class="nexmoe-post">
+        <div class="nexmoe-post">
   <div class="nexmoe-post-cover">
     
     <img src="/images/spiKing4.jpg">
@@ -249,7 +262,6 @@
 <p>关于根据链接下载网页的各种方式在第一节已经介绍过了。这里再补充一下，还有一种方式是使用外部库libcurl，使用方便代码简洁，但我不把它当做我们主要学习的对象，因为它太过于简单。</p>
 <p>这节可以说是个扩展篇，并不是这个项目优先考虑的内容。先介绍它主要是因为这部分东西更有意思，大家可能会更感兴趣。</p>
 <a id="more"></a>
-
 <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>这个预处理是我自己勉强定义的，所以大家可能不理解。</p>
 <p>通俗的说，URL预处理意为对一个URL链接本体进行处理，请大家不要误以为是对HTML网页内容进行分析。</p>
 <p>再说清楚一些，获取链接所指向的内容前，程序并不知道这个内容是什么类型的。也就是说，它可能是一个HTML也可能是图片，又或者是一个CSS文件。所以我们要对URL进行一定的预处理，然后判断文件后缀之类的。</p>
@@ -262,60 +274,64 @@
 </blockquote>
 <p>URL由多部分组成，详细说有9部分，我们一个一个介绍。有关资料部分来自于<a href="https://blog.csdn.net/u014686399/article/details/84726335" target="_blank" rel="noopener">going_han的博客</a>。</p>
 <p>一个URL的实例: <code>scheme://user:password@host:port/path;params?query#frag</code></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">编号</th>
-<th align="center">名称</th>
-<th align="left">介绍</th>
+<th style="text-align:center">编号</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:left">介绍</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="center">协议(protocol)</td>
-<td align="left">为进行网络中的数据交换而建立的规则、标准或约定。有时也叫scheme，常用的协议有http、https、ftp、file、mailto。</td>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">协议(protocol)</td>
+<td style="text-align:left">为进行网络中的数据交换而建立的规则、标准或约定。有时也叫scheme，常用的协议有http、https、ftp、file、mailto。</td>
 </tr>
 <tr>
-<td align="center">2</td>
-<td align="center">用户名(user)</td>
-<td align="left">一般用不到，为访问资源使用的用户名。</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">用户名(user)</td>
+<td style="text-align:left">一般用不到，为访问资源使用的用户名。</td>
 </tr>
 <tr>
-<td align="center">3</td>
-<td align="center">密码(password)</td>
-<td align="left">一般也用不到，为访问资源使用的密码。</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">密码(password)</td>
+<td style="text-align:left">一般也用不到，为访问资源使用的密码。</td>
 </tr>
 <tr>
-<td align="center">4</td>
-<td align="center">域名(domain)</td>
-<td align="left">域名（英语：Domain Name），简称域名、网域，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。有时也叫host，可以使用IP地址作为域名使用。</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">域名(domain)</td>
+<td style="text-align:left">域名（英语：Domain Name），简称域名、网域，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。有时也叫host，可以使用IP地址作为域名使用。</td>
 </tr>
 <tr>
-<td align="center">5</td>
-<td align="center">端口(port)</td>
-<td align="left">在网络技术中，端口（Port）有好几种意思。我们这里所指的端口不是指物理意义上的端口，而是特指TCP/IP协议中的端口，是逻辑意义上的端口。端口不是一个必须部分，如果省略将采用协议默认使用的端口。</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">端口(port)</td>
+<td style="text-align:left">在网络技术中，端口（Port）有好几种意思。我们这里所指的端口不是指物理意义上的端口，而是特指TCP/IP协议中的端口，是逻辑意义上的端口。端口不是一个必须部分，如果省略将采用协议默认使用的端口。</td>
 </tr>
 <tr>
-<td align="center">6</td>
-<td align="center">路径(path)</td>
-<td align="left">由零或多个“/”符号隔开的字符串，一般用来表示主机上的一个目录或文件地址。</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">路径(path)</td>
+<td style="text-align:left">由零或多个“/”符号隔开的字符串，一般用来表示主机上的一个目录或文件地址。</td>
 </tr>
 <tr>
-<td align="center">7</td>
-<td align="center">参数(params)</td>
-<td align="left">这是用于指定特殊参数的可选项。</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">参数(params)</td>
+<td style="text-align:left">这是用于指定特殊参数的可选项。</td>
 </tr>
 <tr>
-<td align="center">8</td>
-<td align="center">查询(query)</td>
-<td align="left">可选项。用于给动态网页传递参数，可有多个参数，用“&amp;”符号隔开，每个参数的名和值用“=”符号隔开。</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">查询(query)</td>
+<td style="text-align:left">可选项。用于给动态网页传递参数，可有多个参数，用“&amp;”符号隔开，每个参数的名和值用“=”符号隔开。</td>
 </tr>
 <tr>
-<td align="center">9</td>
-<td align="center">片段(frag)</td>
-<td align="left">主要用于对资源进行分类。例如一个网页中有多个名词解释，可使用fragment直接定位到某一名词解释。访问一个帮助文档时，文档的各个章节就可以表述为片段。</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">片段(frag)</td>
+<td style="text-align:left">主要用于对资源进行分类。例如一个网页中有多个名词解释，可使用fragment直接定位到某一名词解释。访问一个帮助文档时，文档的各个章节就可以表述为片段。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>所以分解URL有什么用呢？我们再简单了解一下HTTP访问的步骤，HTTP访问时会进行多步操作，其中有两步我想重点介绍一下，分别是：发送请求头(Request Headers)和接受响应头(Response Headers)。</p>
 <p>其实大家现在就可以直观的了解它，介绍一种方法。</p>
 <p>随便找一个可用网页（比如这篇博客） -&gt; 点击键盘上的F12，弹出开发人员调试工具 -&gt; 进入’Network’选项页 -&gt; 点击录制按钮（黑色的圆点），按钮变红色 -&gt; 刷新页面。</p>
@@ -326,7 +342,7 @@
 <p>其他信息大家可以自行了解，对项目作用不大，我就不作介绍了。</p>
 <p>另外，本节含有大量string类的内容，但只要不是初学者都很熟悉了，因此不作理论上的介绍。</p>
 <h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>这部分理论易理解，但代码部分比较长。先给出本节所有的代码:</p>
-<pre><code class="cpp">string _trim(const string &amp;str) {
+<pre><code class="lang-cpp">string _trim(const string &amp;str) {
     size_t start= str.find_first_not_of(&quot; \n\r\t&quot;);
     size_t until= str.find_last_not_of(&quot; \n\r\t&quot;);
     string::const_iterator i= start == string::npos ? str.begin() : str.begin() + start;
@@ -390,23 +406,28 @@ fail:
     if(hSession) InternetCloseHandle(hSession);
     printf(&quot;Internet Error\n&quot;);
     return;
-}</code></pre>
+}
+</code></pre>
 <p><em>_trim</em>函数作用为去除字符串的空白换行符。</p>
 <p><em>parse_url</em>函数作用为分解URL，分解为端口、域名和路径。</p>
 <p><em>judgeUrlType</em>函数作用为获得HTTP响应头并分析URL内容类型。</p>
 <h4 id="string"><a href="#string" class="headerlink" title="string"></a>string</h4><p>本节使用C++STL中的string类比较多，简单的大家都使用过，所以介绍一下几个比较陌生的函数。</p>
-<h5 id="find-first-not-of"><a href="#find-first-not-of" class="headerlink" title="find_first_not_of"></a>find_first_not_of</h5><pre><code class="cpp">size_t find_first_not_of (const string&amp; str, size_t pos = 0) const;
+<h5 id="find-first-not-of"><a href="#find-first-not-of" class="headerlink" title="find_first_not_of"></a>find_first_not_of</h5><pre><code class="lang-cpp">size_t find_first_not_of (const string&amp; str, size_t pos = 0) const;
 size_t find_first_not_of (const char* s, size_t pos = 0) const;
 size_t find_first_not_of (const char* s, size_t pos, size_t n) const;
-size_t find_first_not_of (char c, size_t pos = 0) const;</code></pre>
+size_t find_first_not_of (char c, size_t pos = 0) const;
+</code></pre>
 <p><em>Return Value</em>即返回值，返回第一个不匹配字符的位置，如果没有不匹配字符则返回string::npos。若使用字符串作参数，则此处不匹配字符指参数中不包含的字符。</p>
-<h5 id="string-npos"><a href="#string-npos" class="headerlink" title="string::npos"></a>string::npos</h5><pre><code class="cpp">static const size_t npos = -1;</code></pre>
-<h5 id="find-last-not-of"><a href="#find-last-not-of" class="headerlink" title="find_last_not_of"></a>find_last_not_of</h5><pre><code class="cpp">size_t find_last_not_of (const string&amp; str, size_t pos = npos) const;
+<h5 id="string-npos"><a href="#string-npos" class="headerlink" title="string::npos"></a>string::npos</h5><pre><code class="lang-cpp">static const size_t npos = -1;
+</code></pre>
+<h5 id="find-last-not-of"><a href="#find-last-not-of" class="headerlink" title="find_last_not_of"></a>find_last_not_of</h5><pre><code class="lang-cpp">size_t find_last_not_of (const string&amp; str, size_t pos = npos) const;
 size_t find_last_not_of (const char* s, size_t pos = npos) const;
 size_t find_last_not_of (const char* s, size_t pos, size_t n) const;
-size_t find_last_not_of (char c, size_t pos = npos) const;</code></pre>
+size_t find_last_not_of (char c, size_t pos = npos) const;
+</code></pre>
 <p><em>Return Value</em>即返回值，与find_first_not_of类似，返回最后一个不匹配字符的位置。</p>
-<h5 id="substr"><a href="#substr" class="headerlink" title="substr"></a>substr</h5><pre><code class="cpp">string substr (size_t pos = 0, size_t len = npos) const;</code></pre>
+<h5 id="substr"><a href="#substr" class="headerlink" title="substr"></a>substr</h5><pre><code class="lang-cpp">string substr (size_t pos = 0, size_t len = npos) const;
+</code></pre>
 <p><em>Return Value</em>即返回值，返回从pos开始长度为len的子串。</p>
 <h4 id="InternetConnectA"><a href="#InternetConnectA" class="headerlink" title="InternetConnectA"></a>InternetConnectA</h4>
   </article>
@@ -438,7 +459,6 @@ size_t find_last_not_of (char c, size_t pos = npos) const;</code></pre>
 </div>
 </section>
 </div>
-
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
@@ -451,11 +471,14 @@ size_t find_last_not_of (char c, size_t pos = npos) const;</code></pre>
     <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.9/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1566565580687"></script>
+<script src="/js/app.js?v=1567432220865"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
   
 
@@ -488,9 +511,22 @@ size_t find_last_not_of (char c, size_t pos = npos) const;</code></pre>
     })();
 </script>
 
-
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
-
 
 </html>

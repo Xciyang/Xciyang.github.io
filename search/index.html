@@ -5,6 +5,7 @@
   
   <title>搜索 - Ciyang’s Blog</title>
   <meta charset="UTF-8">
+  <meta name="description" content="一个半退役OI的文化课选手...">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -22,54 +23,66 @@
 <meta name="twitter:title" content="搜索">
 <meta name="twitter:description" content="一个半退役OI的文化课选手...">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.9/styles/hopscotch.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/hopscotch.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
+  
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1566565580689">
+  <link rel="stylesheet" href="/css/style.css?v=1567432220646">
 </head>
 
 <body class="mdui-drawer-body-left">
   
-  <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Ciyang" class="mdui-btn mdui-btn-icon"><img src="/medias/avatar.jpg"></a>
+       </div>
+    </div>
+  </div>
   <div id="nexmoe-header">
-    <div class="nexmoe-drawer mdui-drawer" id="drawer">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
-        <a href="/">
-            <img src="/medias/avatar.jpg">
+        <a href="/" title="Ciyang">
+            <img src="/medias/avatar.jpg" alt="Ciyang">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>24</div>
-        <div><span>标签</span>33</div>
+        <div><span>文章</span>25</div>
+        <div><span>标签</span>35</div>
         <div><span>分类</span>4</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
             <div class="mdui-list-item-content">
                 首页
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/" title="关于">
             <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
             <div class="mdui-list-item-content">
                 关于
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/" title="友情链接">
             <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
             <div class="mdui-list-item-content">
                 友情链接
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search" title="搜索">
             <i class="mdui-list-item-icon nexmoefont icon-search"></i>
             <div class="mdui-list-item-content">
                 搜索
@@ -102,7 +115,45 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章分类</h3>
     <div class="nexmoe-widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技巧/">技巧</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲聊/">闲聊</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目/">项目</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/题解/">题解</a><span class="category-list-count">15</span></li></ul>
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/技巧/">技巧</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/闲聊/">闲聊</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/项目/">项目</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/题解/">题解</a>
+          <span class="category-list-count">16</span>
+        </li>
+
+        
+      </ul>
+
     </div>
   </div>
 
@@ -111,9 +162,10 @@
   
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">标签云</h3>
-    <div class="nexmoe-widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 12px;">STL</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/主席树/" style="font-size: 10px;">主席树</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/分块/" style="font-size: 14px;">分块</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 12px;">动态规划</a> <a href="/tags/块状链表/" style="font-size: 10px;">块状链表</a> <a href="/tags/字典树/" style="font-size: 10px;">字典树</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/并查集/" style="font-size: 12px;">并查集</a> <a href="/tags/技巧/" style="font-size: 12px;">技巧</a> <a href="/tags/搜索/" style="font-size: 16px;">搜索</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/模拟/" style="font-size: 12px;">模拟</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a> <a href="/tags/码风/" style="font-size: 10px;">码风</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 10px;">线段树</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a> <a href="/tags/边压Trie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/闲聊/" style="font-size: 16px;">闲聊</a> <a href="/tags/随机化搜索/" style="font-size: 10px;">随机化搜索</a> <a href="/tags/项目/" style="font-size: 14px;">项目</a> <a href="/tags/颓废/" style="font-size: 16px;">颓废</a> <a href="/tags/题解/" style="font-size: 18px;">题解</a>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 12px;">STL</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/主席树/" style="font-size: 10px;">主席树</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/分块/" style="font-size: 14px;">分块</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 12px;">动态规划</a> <a href="/tags/块状链表/" style="font-size: 10px;">块状链表</a> <a href="/tags/字典树/" style="font-size: 10px;">字典树</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/并查集/" style="font-size: 12px;">并查集</a> <a href="/tags/技巧/" style="font-size: 12px;">技巧</a> <a href="/tags/搜索/" style="font-size: 16px;">搜索</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/整除分块/" style="font-size: 10px;">整除分块</a> <a href="/tags/模拟/" style="font-size: 12px;">模拟</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a> <a href="/tags/码风/" style="font-size: 10px;">码风</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 10px;">线段树</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a> <a href="/tags/边压Trie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/闲聊/" style="font-size: 16px;">闲聊</a> <a href="/tags/随机化搜索/" style="font-size: 10px;">随机化搜索</a> <a href="/tags/项目/" style="font-size: 14px;">项目</a> <a href="/tags/颓废/" style="font-size: 16px;">颓废</a> <a href="/tags/题解/" style="font-size: 18px;">题解</a>
     </div>
+    
   </div>
 
   
@@ -121,7 +173,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
     </div>
   </div>
 
@@ -132,6 +184,10 @@
     <h3 class="nexmoe-widget-title">最新文章</h3>
     <div class="nexmoe-widget">
       <ul>
+        
+          <li>
+            <a href="/2019-09/02-luogu2522/">HAOI2011 - Problem b</a>
+          </li>
         
           <li>
             <a href="/2019-08/22-luogusearcher/">技巧 - 写一个应用于Luogu的油猴插件</a>
@@ -147,10 +203,6 @@
         
           <li>
             <a href="/2019-08/15-chong-xin-kai-shi/">重新开始</a>
-          </li>
-        
-          <li>
-            <a href="/2019-07/15-luogu5440/">LuoguP5440 - 【XR-2】奇迹</a>
           </li>
         
       </ul>
@@ -173,60 +225,85 @@
 </div>
   
 </aside>
-
     <div class="nexmoe-copyright">
         &copy; 2019 Ciyang
         Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
     </div>
 </div><!-- .nexmoe-drawer -->
-
-<script>
-    const getRealPath = (pathname, desc = false) => {
-        if (!pathname) {
-            pathname = window.location.pathname
-        }
-        let names = pathname.split("/")
-        if (desc === false) {
-            for (let i = names.length - 1; i >= 0; --i) {
-                let name = names[i].trim()
-                if (name.length > 0 && name !== "/" && name !== "index.html") {
-                    return name
-                }
-            }
-        } else {
-            for (let i = 0; i < names.length; ++i) {
-                let name = names[i].trim()
-                if (name.length > 0 && name !== "/" && name !== "index.html") {
-                    return name
-                }
-            }
-        }
-        return "/"
-    }
-    let links = document.querySelectorAll('.nexmoe-list-item');
-    let rootRealPath = getRealPath(window.location.pathname, true);
-    for (let link of links) {
-        let linkPath = link.getAttribute("href");
-        if (linkPath && getRealPath(linkPath, true) === rootRealPath) {
-            link.className = "active nexmoe-list-item mdui-list-item mdui-ripple";
-        }
-    }
-</script>
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-      <div class="nexmoe-tab">
-        <a mdui-drawer="{target: '#drawer', swipe: true}">
-          <i class="mdui-icon material-icons">menu</i>
-        </a>
-      </div>
-      <div class="nexmoe-post">
+        <div class="nexmoe-post">
     <article>
         
     </article>
     <!-- 搜索遮罩框 -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+<style>
+    #searchModal {
+        min-height: 500px;
+        width: 100%;
+        background-color: #fafafa;
+        margin: auto;
+        overflow-y: auto;
+        border-radius: 2px;
+        will-change: top, opacity;
+    }
+
+    #searchInput {
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid #9e9e9e;
+        border-radius: 0;
+        outline: none;
+        height: 3rem;
+        width: 100%;
+        font-size: 16px;
+        margin: 0 0 8px 0;
+        padding: 0;
+    }
+
+    #searchModal .search-header .title {
+        padding: 0;
+        outline: none;
+        height: 3rem;
+        width: 100%;
+        font-size: 2rem;
+        color: #333;
+    }
+
+    #searchResult {
+        margin: -15px 0 10px 10px;
+    }
+
+    #searchResult .search-result-list {
+        margin-left: -8px;
+        padding-left: 0;
+        color: #666;
+    }
+
+    .search-result-list .search-result-title {
+        font-size: 1.4rem;
+        color: #42b983;
+    }
+
+    .search-result-list li {
+        border-bottom: 1px solid #e5e5e5;
+        padding: 15px 0 5px 0;
+    }
+
+    .search-result-list .search-keyword {
+        margin: 0 2px;
+        padding: 1px 5px 1px 4px;
+        border-radius: 2px;
+        background-color: #f2f2f2;
+        color: #e96900;
+        font-size: 0.9rem;
+        white-space: pre-wrap;
+    }
+</style>
 
 <div id="searchModal">
     <div class="modal-content">
@@ -237,7 +314,93 @@
         <div id="searchResult"></div>
     </div>
 </div>
-<script src="/js/search.js"></script>
+<script>
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var content_index = [];
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title != '' && data_content != '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i == 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start == 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    }
+</script>
 <script type="text/javascript">
     $(function () {
         searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
@@ -256,11 +419,14 @@
     <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.9/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1566565580687"></script>
+<script src="/js/app.js?v=1567432220664"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
   
 
@@ -293,9 +459,22 @@
     })();
 </script>
 
-
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
-
 
 </html>

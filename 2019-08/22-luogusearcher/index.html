@@ -5,13 +5,14 @@
   
   <title>技巧 - 写一个应用于Luogu的油猴插件 - Ciyang’s Blog</title>
   <meta charset="UTF-8">
+  <meta name="description" content="一个半退役OI的文化课选手...">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
 
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <meta name="description" content="写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。 安装链接（插件发布地址）: https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher">
-<meta name="keywords" content="技巧,颓废,JavaScript,HTML">
+<meta name="keywords" content="颓废,技巧,JavaScript,HTML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="技巧 - 写一个应用于Luogu的油猴插件">
 <meta property="og:url" content="https://xciyang.github.io/2019-08/22-luogusearcher/index.html">
@@ -23,54 +24,66 @@
 <meta name="twitter:title" content="技巧 - 写一个应用于Luogu的油猴插件">
 <meta name="twitter:description" content="写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。 安装链接（插件发布地址）: https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.9/styles/hopscotch.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/hopscotch.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
+  
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1566565580695">
+  <link rel="stylesheet" href="/css/style.css?v=1567432220720">
 </head>
 
 <body class="mdui-drawer-body-left">
   
-  <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Ciyang" class="mdui-btn mdui-btn-icon"><img src="/medias/avatar.jpg"></a>
+       </div>
+    </div>
+  </div>
   <div id="nexmoe-header">
-    <div class="nexmoe-drawer mdui-drawer" id="drawer">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
-        <a href="/">
-            <img src="/medias/avatar.jpg">
+        <a href="/" title="Ciyang">
+            <img src="/medias/avatar.jpg" alt="Ciyang">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>24</div>
-        <div><span>标签</span>33</div>
+        <div><span>文章</span>25</div>
+        <div><span>标签</span>35</div>
         <div><span>分类</span>4</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
             <div class="mdui-list-item-content">
                 首页
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/" title="关于">
             <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
             <div class="mdui-list-item-content">
                 关于
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/" title="友情链接">
             <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
             <div class="mdui-list-item-content">
                 友情链接
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search" title="搜索">
             <i class="mdui-list-item-icon nexmoefont icon-search"></i>
             <div class="mdui-list-item-content">
                 搜索
@@ -103,7 +116,45 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章分类</h3>
     <div class="nexmoe-widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技巧/">技巧</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲聊/">闲聊</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目/">项目</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/题解/">题解</a><span class="category-list-count">15</span></li></ul>
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/技巧/">技巧</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/闲聊/">闲聊</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/项目/">项目</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/题解/">题解</a>
+          <span class="category-list-count">16</span>
+        </li>
+
+        
+      </ul>
+
     </div>
   </div>
 
@@ -112,9 +163,10 @@
   
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">标签云</h3>
-    <div class="nexmoe-widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 12px;">STL</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/主席树/" style="font-size: 10px;">主席树</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/分块/" style="font-size: 14px;">分块</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 12px;">动态规划</a> <a href="/tags/块状链表/" style="font-size: 10px;">块状链表</a> <a href="/tags/字典树/" style="font-size: 10px;">字典树</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/并查集/" style="font-size: 12px;">并查集</a> <a href="/tags/技巧/" style="font-size: 12px;">技巧</a> <a href="/tags/搜索/" style="font-size: 16px;">搜索</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/模拟/" style="font-size: 12px;">模拟</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a> <a href="/tags/码风/" style="font-size: 10px;">码风</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 10px;">线段树</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a> <a href="/tags/边压Trie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/闲聊/" style="font-size: 16px;">闲聊</a> <a href="/tags/随机化搜索/" style="font-size: 10px;">随机化搜索</a> <a href="/tags/项目/" style="font-size: 14px;">项目</a> <a href="/tags/颓废/" style="font-size: 16px;">颓废</a> <a href="/tags/题解/" style="font-size: 18px;">题解</a>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 12px;">STL</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/主席树/" style="font-size: 10px;">主席树</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/分块/" style="font-size: 14px;">分块</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 12px;">动态规划</a> <a href="/tags/块状链表/" style="font-size: 10px;">块状链表</a> <a href="/tags/字典树/" style="font-size: 10px;">字典树</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/并查集/" style="font-size: 12px;">并查集</a> <a href="/tags/技巧/" style="font-size: 12px;">技巧</a> <a href="/tags/搜索/" style="font-size: 16px;">搜索</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/整除分块/" style="font-size: 10px;">整除分块</a> <a href="/tags/模拟/" style="font-size: 12px;">模拟</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a> <a href="/tags/码风/" style="font-size: 10px;">码风</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 10px;">线段树</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a> <a href="/tags/边压Trie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/闲聊/" style="font-size: 16px;">闲聊</a> <a href="/tags/随机化搜索/" style="font-size: 10px;">随机化搜索</a> <a href="/tags/项目/" style="font-size: 14px;">项目</a> <a href="/tags/颓废/" style="font-size: 16px;">颓废</a> <a href="/tags/题解/" style="font-size: 18px;">题解</a>
     </div>
+    
   </div>
 
   
@@ -122,7 +174,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
     </div>
   </div>
 
@@ -133,6 +185,10 @@
     <h3 class="nexmoe-widget-title">最新文章</h3>
     <div class="nexmoe-widget">
       <ul>
+        
+          <li>
+            <a href="/2019-09/02-luogu2522/">HAOI2011 - Problem b</a>
+          </li>
         
           <li>
             <a href="/2019-08/22-luogusearcher/">技巧 - 写一个应用于Luogu的油猴插件</a>
@@ -148,10 +204,6 @@
         
           <li>
             <a href="/2019-08/15-chong-xin-kai-shi/">重新开始</a>
-          </li>
-        
-          <li>
-            <a href="/2019-07/15-luogu5440/">LuoguP5440 - 【XR-2】奇迹</a>
           </li>
         
       </ul>
@@ -174,55 +226,16 @@
 </div>
   
 </aside>
-
     <div class="nexmoe-copyright">
         &copy; 2019 Ciyang
         Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
     </div>
 </div><!-- .nexmoe-drawer -->
-
-<script>
-    const getRealPath = (pathname, desc = false) => {
-        if (!pathname) {
-            pathname = window.location.pathname
-        }
-        let names = pathname.split("/")
-        if (desc === false) {
-            for (let i = names.length - 1; i >= 0; --i) {
-                let name = names[i].trim()
-                if (name.length > 0 && name !== "/" && name !== "index.html") {
-                    return name
-                }
-            }
-        } else {
-            for (let i = 0; i < names.length; ++i) {
-                let name = names[i].trim()
-                if (name.length > 0 && name !== "/" && name !== "index.html") {
-                    return name
-                }
-            }
-        }
-        return "/"
-    }
-    let links = document.querySelectorAll('.nexmoe-list-item');
-    let rootRealPath = getRealPath(window.location.pathname, true);
-    for (let link of links) {
-        let linkPath = link.getAttribute("href");
-        if (linkPath && getRealPath(linkPath, true) === rootRealPath) {
-            link.className = "active nexmoe-list-item mdui-list-item mdui-ripple";
-        }
-    }
-</script>
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-      <div class="nexmoe-tab">
-        <a mdui-drawer="{target: '#drawer', swipe: true}">
-          <i class="mdui-icon material-icons">menu</i>
-        </a>
-      </div>
-      <div class="nexmoe-post">
+        <div class="nexmoe-post">
   <div class="nexmoe-post-cover">
     
     <img id="coverback">
@@ -248,7 +261,6 @@
     <p>写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。</p>
 <p>安装链接（插件发布地址）: <a href="https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher" target="_blank" rel="noopener">https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher</a></p>
 <a id="more"></a>
-
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>应同机房大佬要求，做一个洛谷快捷题目搜索的油猴插件。</p>
 <h4 id="一些鲜为人知的历史"><a href="#一些鲜为人知的历史" class="headerlink" title="一些鲜为人知的历史"></a>一些鲜为人知的历史</h4><p>其实这个早在洛谷??.9版本（大概是18年底的一次UI更新）就写过一次了。</p>
 <p>那段时间luogu把搜索框去掉了，以致于不能方便的搜索题目，才写了这个插件，并且使用luogu很早前搜索框的css。</p>
@@ -260,17 +272,19 @@
 <p>然后是个人原因，现在的我有一定JS写代码能力，对一些基础语法比较熟练，熟悉很多方法。之前傻傻分不清jQuery和Web API的函数，只能一次一次测试来运用（哪个能用就用哪个）。</p>
 <h3 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h3><p>可以先进入文章开头的链接查看介绍，也可以查看全部代码。</p>
 <p>首先我们设定 F1 打开搜索框，若已打开就关闭，F1键码为112。注册按键：</p>
-<pre><code class="js">document.onkeydown = function (event) { if (event.keyCode == 112) mainfunc(); };</code></pre>
+<pre><code class="lang-js">document.onkeydown = function (event) { if (event.keyCode == 112) mainfunc(); };
+</code></pre>
 <p>mainfunc 函数就是用来打开关闭对话框。但是这个页面本来没有对话框，该怎么打开呢？</p>
 <p>那么就需要新建，新建需要在网页中插入HTML。根据经验，我们需要在页面加载完成之后才能插入HTML，否则有不可预料的BUG。判断网页是否加载完成：</p>
-<pre><code class="js">if (document.readyState == &quot;complete&quot;) {
+<pre><code class="lang-js">if (document.readyState == &quot;complete&quot;) {
     /*
     Write your code here.
     */
-}</code></pre>
+}
+</code></pre>
 <p>然后就是新建元素、改样式、插入到网页中，这些很语法基础就直接给出，相关函数请自行了解。</p>
 <p>我们选择把元素加入到页面的app（洛谷设计的）中。初始化：</p>
-<pre><code class="js">var newElement = document.createElement(&quot;div&quot;);
+<pre><code class="lang-js">var newElement = document.createElement(&quot;div&quot;);
 newElement.id = &quot;CiyangSearch&quot;;
 newElement.innerHTML = &quot;&lt;input type = &#39;text&#39;&gt; | &lt;a&gt;&lt;i class = &#39;fas fa-search&#39;&gt;&lt;/i&gt;&lt;/a&gt; | &lt;a&gt;&lt;i class= &#39;fa fa-cog&#39;&gt;&lt;/i&gt;&lt;/a&gt;&quot;;
 newElement.style.position = &quot;fixed&quot;;
@@ -280,10 +294,11 @@ newElement.style.left = &quot;30%&quot;;
 newElement.style.width = &quot;240px&quot;;
 newElement.style.backgroundColor = &quot;rgb(128,128,128)&quot;;
 var appElement = document.getElementById(&#39;app&#39;);
-appElement.appendChild(newElement);</code></pre>
+appElement.appendChild(newElement);
+</code></pre>
 <p>上面的代码就已经可以打开一个搜索框，还有搜索按钮和设置按钮，但非常丑陋。</p>
 <p>只有搜索框但是不能进行搜索，所以要绑定点击搜索按钮和回车键，回车键的键码为13。注册函数：</p>
-<pre><code class="js">newElement.children[0].onkeydown = function (event) {
+<pre><code class="lang-js">newElement.children[0].onkeydown = function (event) {
     if (event.keyCode == 13) {
         var str = this.value;
         /*
@@ -298,13 +313,14 @@ newElement.children[1].onclick = function () {
     Write your code here.
     */
     return;
-};</code></pre>
+};
+</code></pre>
 <p>str就是搜索框中输入的内容，获取后就可以跳转题目了。</p>
 <p>我们想让它可自动识别是否为题目，如果是就打开题目页面，否则就打开题目列表进行搜索。</p>
 <p>比如：输入P1001打开P1001题目页面，输入1001就进入题目列表搜索1001。</p>
 <p>因为OI不学正则表达式，所以一般情况下我们想到if判断。这非常麻烦，会使代码复杂冗长，这个时候正则表达式就能大显身手了。</p>
 <p>此处借鉴了另一个油猴插件<a href="https://greasyfork.org/zh-CN/scripts/388947-luogu-problem-jumper" target="_blank" rel="noopener">Luogu Problem Jumper</a>的匹配代码，应该是匹配洛谷题目最好的代码。</p>
-<pre><code class="js">function judegeProblem(str) {
+<pre><code class="lang-js">function judegeProblem(str) {
     if (str.match(/AT[0-9]{1,4}/) == str) return true;
     if (str.match(/CF[0-9]{1,4}[A-Z][0-9]{0,1}/) == str) return true;
     if (str.match(/SP[0-9]{1,5}/) == str) return true;
@@ -313,12 +329,14 @@ newElement.children[1].onclick = function () {
     if (str.match(/U[0-9]{1,6}/) == str) return true;
     if (str.match(/T[0-9]{1,6}/) == str) return true;
     return false;
-}</code></pre>
+}
+</code></pre>
 <p>接下来是打开页面，有两种方式，前者是从当前页跳转，后者是新标签页打开。</p>
-<pre><code class="js">window.location = url;
-window.open(url);</code></pre>
+<pre><code class="lang-js">window.location = url;
+window.open(url);
+</code></pre>
 <p>我们想要设计为用户选择首选方式，可首选其中一种方式，搜索时先输入 # 才能用优先级低的方式。</p>
-<pre><code class="js">var dUrl = 1;
+<pre><code class="lang-js">var dUrl = 1;
 /*
 
 A lot of code.
@@ -334,10 +352,11 @@ function go(k, url) {
     if (k == 0) window.location = url;
     else window.open(url);
     removek();
-}</code></pre>
+}
+</code></pre>
 <p>dUrl设为1就是首选新标签页，way表示是否先输入了 # 。</p>
 <p>再回到绑定按键、点击搜索按钮的地方，比较懒所以代码没有合并到一起：</p>
-<pre><code class="js">newElement.children[0].onkeydown = function (event) {
+<pre><code class="lang-js">newElement.children[0].onkeydown = function (event) {
     if (event.keyCode == 13) {
         var str = this.value;
         if (str.length == 0) return;
@@ -352,24 +371,28 @@ newElement.children[1].onclick = function () {
     if (str[0] == &#39;#&#39;) judgeURL(1, str.substring(1, str.length));
     else judgeURL(0, str);
     return;
-};</code></pre>
+};
+</code></pre>
 <p>主体基本完成，然后就是一些小功能。若打开搜索框，再次按下 F1 关闭。使设置打开页面方式更加可视化，完善设置按钮。</p>
 <p>在 mainfuc 函数中，先加入一行代码：</p>
-<pre><code class="js">if (removek()) return;</code></pre>
+<pre><code class="lang-js">if (removek()) return;
+</code></pre>
 <p>之前我们为了方便，将搜索框整体的元素ID改为了CiyangSearch，可以直接根据此ID来获取控件。代码简单：</p>
-<pre><code class="js">function removek() {
+<pre><code class="lang-js">function removek() {
     var search = document.getElementById(&quot;CiyangSearch&quot;);
     if (search) {
         search.parentNode.removeChild(search);
         return true;
     }
     return false;
-}</code></pre>
+}
+</code></pre>
 <p>完善设置按钮也很简单，首先在 mainfunc 绑定按键、搜索按钮处理下加入一行代码：</p>
-<pre><code class="js">newElement.children[2].onclick = function () { setLink(); };</code></pre>
+<pre><code class="lang-js">newElement.children[2].onclick = function () { setLink(); };
+</code></pre>
 <p>先介绍两个油猴自带的函数，GM_setValue和GM_getValue，可以非常方便的存储和读取数据，具体原理可以自行搜索。</p>
 <p>点击设置按钮后跳出对话框，用户输入1或者0，设置首选方式。将之前的dUrl设置为读取数据。</p>
-<pre><code class="js">var dUrl = GM_getValue(&quot;default_way&quot;);
+<pre><code class="lang-js">var dUrl = GM_getValue(&quot;default_way&quot;);
 function setLink() {
     var defaultWay = prompt(&quot;请输入首选打开网页方式，1 为新标签页，0为从当前页跳转。当前为&quot; + dUrl + &quot;，搜索先输入 # 可使用优先级低的方式。&quot;);
     if (defaultWay == null) return;
@@ -379,11 +402,13 @@ function setLink() {
     }
     GM_setValue(&quot;default_way&quot;, defaultWay);
     location.reload();
-}</code></pre>
+}
+</code></pre>
 <p>我们还有需要一个使搜索的输入框自动获得焦点的小特性，只要在元素（控件）插入页面后加入一行代码：</p>
-<pre><code class="js">newElement.children[0].focus();</code></pre>
+<pre><code class="lang-js">newElement.children[0].focus();
+</code></pre>
 <p>然后8.23美化了一下UI，具体就不给出了。增加了设置背景颜色，换汤不换药。其中较为重要的修改：</p>
-<pre><code class="js">var dUrl = GM_getValue(&quot;default_way&quot;), bgColor = GM_getValue(&quot;searcher_bg&quot;);
+<pre><code class="lang-js">var dUrl = GM_getValue(&quot;default_way&quot;), bgColor = GM_getValue(&quot;searcher_bg&quot;);
 if (bgColor == undefined) {
     GM_setValue(&quot;searcher_bg&quot;, &quot;rgba(135,206,235,0.5)&quot;);
     bgColor = &quot;rgba(135,206,235,0.5)&quot;;
@@ -394,7 +419,8 @@ function setBGColor() {
     if (searcherBG == null) return;
     GM_setValue(&quot;searcher_bg&quot;, searcherBG);
     location.reload();
-}</code></pre>
+}
+</code></pre>
 <p>分别处于代码各个位置，思路与设置打开方式类似，自行了解即可。</p>
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>还有什么问题可以在博客或发布网站评论提出，也可以用社交软件联系我。</p>
 <p>在greasyfork发布，链接：<a href="https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher" target="_blank" rel="noopener">https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher</a></p>
@@ -429,7 +455,6 @@ function setBGColor() {
 </div>
 </section>
 </div>
-
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
@@ -442,11 +467,14 @@ function setBGColor() {
     <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.9/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1566565580687"></script>
+<script src="/js/app.js?v=1567432220733"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
   
 
@@ -479,9 +507,22 @@ function setBGColor() {
     })();
 </script>
 
-
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
-
 
 </html>
