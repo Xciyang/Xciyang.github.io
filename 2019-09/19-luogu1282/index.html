@@ -3,7 +3,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
   
-  <title>标签：字典树 - Ciyang’s Blog</title>
+  <title>LuoguP1282 - 多米诺骨牌 - Ciyang’s Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="一个半退役OI的文化课选手...">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,16 +11,18 @@
   
 
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
-  <meta name="description" content="一个半退役OI的文化课选手...">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ciyang’s Blog">
-<meta property="og:url" content="https://xciyang.github.io/tags/字典树/index.html">
+  <meta name="description" content="【LuoguP1041】多米诺骨牌题目链接: https://www.luogu.org/problem/P1282 前言最近重点做动态规划。今天自己成功推出了两三道题，然后开始水多年未更新的博客？ 不能颓废！">
+<meta name="keywords" content="题解,Cpp,动态规划,背包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LuoguP1282 - 多米诺骨牌">
+<meta property="og:url" content="https://xciyang.github.io/2019-09/19-luogu1282/index.html">
 <meta property="og:site_name" content="Ciyang’s Blog">
-<meta property="og:description" content="一个半退役OI的文化课选手...">
+<meta property="og:description" content="【LuoguP1041】多米诺骨牌题目链接: https://www.luogu.org/problem/P1282 前言最近重点做动态规划。今天自己成功推出了两三道题，然后开始水多年未更新的博客？ 不能颓废！">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-19T12:15:59.848Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ciyang’s Blog">
-<meta name="twitter:description" content="一个半退役OI的文化课选手...">
+<meta name="twitter:title" content="LuoguP1282 - 多米诺骨牌">
+<meta name="twitter:description" content="【LuoguP1041】多米诺骨牌题目链接: https://www.luogu.org/problem/P1282 前言最近重点做动态规划。今天自己成功推出了两三道题，然后开始水多年未更新的博客？ 不能颓废！">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/hopscotch.css">
    
@@ -30,7 +32,7 @@
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1568895584481">
+  <link rel="stylesheet" href="/css/style.css?v=1568895583500">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -233,50 +235,101 @@
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-        <section class="nexmoe-posts" id="brand-waterfall">
+        <div class="nexmoe-post">
+  <div class="nexmoe-post-cover">
     
-    <div class="nexmoe-post">
-        <a href="/2019-02/16-luogu2580/">
-            <div class="nexmoe-post-cover mdui-ripple">
-                
-                <img id="190216" class="coverback" alt="LuoguP2580 - 于是他错误的点名开始了">
-                
-                <h1>LuoguP2580 - 于是他错误的点名开始了</h1>
-            </div>
-        </a>
-        <div class="nexmoe-post-meta">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2019年02月16日</a>
-            <a><i class="nexmoefont icon-areachart"></i>2.2k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 10
-                分钟</a>
-            
-            <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
-            
-            
-            <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/字典树/">字典树</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/边压Trie/">边压Trie</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
-            
-        </div>
-        <article>
-            
-            <p>【LuoguP2580】于是他错误的点名开始了<br>题目链接: <a href="https://www.luogu.org/problemnew/show/P2580" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P2580</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这篇题解原来是我放到Luogu上的，打算搬过来，原地址: <a href="https://ciyang.blog.luogu.org/solution-p2580" target="_blank" rel="noopener">https://ciyang.blog.luogu.org/solution-p2580</a></p>
-<p>当时是自己闲得无聊自创的算法，跑了最优解第3，Trie树中最快了</p>
-<p>不过后来Luogu上的dalao告诉我这个是边压Trie树，因此<del>人生失去意义</del></p>
-<p>此题解非正常字典树,推荐先学习普通的字典树并了解指针的使用</p>
-<p>代码还是之前的代码,名为Lumpy_Tnode.</p>
-            
-        </article>
-    </div>
-    
+    <img id="coverback">
     <script>
-        var imgList = document.getElementsByClassName('coverback');
-        for (var i = 0; i < imgList.length; i++) {
-            imgList[i].src = '/medias/banner/' + imgList[i].id % Number("12") + '.jpg';
-            imgList[i].id = '';
-        }
+      var nowImg = document.getElementById('coverback'), key = '190919';
+      nowImg.src = '/medias/banner/' + key % Number("12") + '.jpg';
     </script>
-</section>
+    
+    <h1>LuoguP1282 - 多米诺骨牌</h1>
+  </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月19日</a>
+    <a><i class="nexmoefont icon-areachart"></i>674 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+    
+    <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
+    
+    
+    <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/动态规划/">动态规划</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/背包/">背包</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
+    
+  </div>
+  <article>
+    <p>【LuoguP1041】多米诺骨牌<br>题目链接: <a href="https://www.luogu.org/problem/P1282" target="_blank" rel="noopener">https://www.luogu.org/problem/P1282</a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近重点做动态规划。今天自己成功推出了两三道题，然后开始水多年未更新的博客？</p>
+<p>不能颓废！</p>
+<a id="more"></a>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先看数据范围$(N &lt;= 1000, A_i/B_i &lt;= 6)$，那么搜索当然不可能，肯定是考虑动态规划。</p>
+<p>还是回归搜索上，比较好分析。一个牌只有两种状态，旋转与不旋转。我们只需要先找到最小差，再考虑最小旋转次数。</p>
+<p>再看数据范围，$O(6N^2)$不会超时。我们既要求最小差又要求最小最小旋转次数，又可知所有数的总和是确定的，不如就设个背包。</p>
+<p>$F[N(1000)][SUM(6000)]$表示处理到第N个点，上方块的和为SUM时最小的旋转次数。</p>
+<p>一开始除$F[0]$为0外都赋值为无穷大，然后转移$A_i$表示上方块,$B_i$表示下方块。</p>
+<script type="math/tex; mode=display">F[N][i] = min(F[N - 1][i - A_i], F[N - 1][i - B_i] + 1)</script><p>然后由于比较闲（怕超空间，然而并不会？）。显然，只要记录N-1的状态，就开了滚动数组$F[2][SUM]$。</p>
+<p>最后先找最小差，我们计算$X = \lfloor\frac{SUM}{2} \rfloor$。</p>
+<p>如果$SUM$为奇，那么上下差不可能为0，并且上方块和为$X$或$X + 1$时差都为1，因此再设置$Y = X + 1$。</p>
+<p>如果$SUM$为偶，那么上方块和为$X$时上下差就为0，$Y = X$。</p>
+<p>我们枚举一个数$i$，不断增大，表示一个范围（大概是这样）。</p>
+<p>判断$F[N][X + i]$和$F[N][Y - i]$是否有值，若有则输出小的那个。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>代码较丑，推荐自己写代码。</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+using namespace std;
+int n, a[1005], b[1005], c[1005], f[2][8000], sum;
+int main() {
+    cin &gt;&gt; n;
+    for(int i= 1; i &lt;= n; i++) cin &gt;&gt; a[i] &gt;&gt; b[i], c[i]= a[i] - b[i], sum+= a[i] + b[i];
+    memset(f, 0x3f, sizeof(f));
+    f[0][0]= 0;
+    for(int i= 1; i &lt;= n; i++) {
+        for(int j= 0; j &lt;= sum; j++) f[i &amp; 1][j]= 0x3f3f3f3f;
+        for(int j= sum; j &gt;= a[i]; j--) f[i &amp; 1][j]= f[(i &amp; 1) ^ 1][j - a[i]];
+        for(int j= sum; j &gt;= b[i]; j--) f[i &amp; 1][j]= min(f[i &amp; 1][j], f[(i &amp; 1) ^ 1][j - b[i]] + 1);
+    }
+    int res= 0x3f3f3f3f, sum1= sum / 2, sum2= sum1 + sum % 2;
+    for(int i= 0; i &lt; sum; i++) {
+        if(sum1 + i &gt; n &amp;&amp; sum2 - i &lt; 1) break;
+        res= min(f[n &amp; 1][sum1 + i], f[n &amp; 1][sum2 - i]);
+        if(f[n &amp; 1][sum1 + i] != 0x3f3f3f3f || f[n &amp; 1][sum2 - i] != 0x3f3f3f3f) break;
+    }
+    cout &lt;&lt; res &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>我的代码必须开8000，如果开8000以下好像会RE。</p>
 
+  </article>
+  
+  
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Ciyang<br>
+<strong>本文链接：</strong><a href="https://xciyang.github.io/2019-09/19-luogu1282/" title="https://xciyang.github.io/2019-09/19-luogu1282/" target="_blank" rel="noopener">https://xciyang.github.io/2019-09/19-luogu1282/</a><br>
+
+  <strong>版权声明：</strong>本文一切由权利由作者 Ciyang 所有，转载请声明本文地址。
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NjA4Ni8yMjU5Nw==">
+    <script id="livere-comment-js">
+    (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+       if (typeof LivereTower === 'function') { return; }
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+       e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+    </script>
+</div>
+</section>
+</div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
@@ -292,7 +345,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1568895584493"></script>
+<script src="/js/app.js?v=1568895583536"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
