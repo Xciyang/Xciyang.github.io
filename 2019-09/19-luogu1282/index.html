@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="【LuoguP1041】多米诺骨牌题目链接: https://www.luogu.org/problem/P1282 前言最近重点做动态规划。今天自己成功推出了两三道题，然后开始水多年未更新的博客？ 不能颓废！">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-19T12:15:59.848Z">
+<meta property="og:updated_time" content="2019-09-19T12:36:44.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LuoguP1282 - 多米诺骨牌">
 <meta name="twitter:description" content="【LuoguP1041】多米诺骨牌题目链接: https://www.luogu.org/problem/P1282 前言最近重点做动态规划。今天自己成功推出了两三道题，然后开始水多年未更新的博客？ 不能颓废！">
@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1568895583500">
+  <link rel="stylesheet" href="/css/style.css?v=1568971725834">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -248,7 +248,7 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月19日</a>
-    <a><i class="nexmoefont icon-areachart"></i>674 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>678 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
@@ -271,8 +271,8 @@
 <p>最后先找最小差，我们计算$X = \lfloor\frac{SUM}{2} \rfloor$。</p>
 <p>如果$SUM$为奇，那么上下差不可能为0，并且上方块和为$X$或$X + 1$时差都为1，因此再设置$Y = X + 1$。</p>
 <p>如果$SUM$为偶，那么上方块和为$X$时上下差就为0，$Y = X$。</p>
-<p>我们枚举一个数$i$，不断增大，表示一个范围（大概是这样）。</p>
-<p>判断$F[N][X + i]$和$F[N][Y - i]$是否有值，若有则输出小的那个。</p>
+<p>我们枚举一个数$i$从0开始，不断增大，表示一个范围（大概是这样）。</p>
+<p>判断$F[N][X - i]$和$F[N][Y + i]$是否有值，若有则输出小的那个。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>代码较丑，推荐自己写代码。</p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
@@ -345,7 +345,7 @@ int main() {
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1568895583536"></script>
+<script src="/js/app.js?v=1568971725854"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
