@@ -3,7 +3,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
   
-  <title>技巧 - 写一个应用于Luogu的油猴插件 - Ciyang’s Blog</title>
+  <title>NOIP2015 - 斗地主增强版 - Ciyang’s Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="一个半退役OI的文化课选手...">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,18 +11,18 @@
   
 
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
-  <meta name="description" content="写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。 安装链接（插件发布地址）: https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher">
-<meta name="keywords" content="技巧,颓废,JavaScript,HTML">
+  <meta name="description" content="【NOIP2015】【LuoguP2540】斗地主增强版题目链接: https://www.luogu.org/problem/P2540 前言暴力出奇迹，我是搜索小名士。 早在一年前就用贪心完成了普通版，然后现在忘了。 所以重新写一遍这道题，并且提高难度做增强版。看了仅剩的智商，我选择搜索。">
+<meta name="keywords" content="题解,Cpp,搜索,模拟">
 <meta property="og:type" content="article">
-<meta property="og:title" content="技巧 - 写一个应用于Luogu的油猴插件">
-<meta property="og:url" content="https://xciyang.github.io/2019-08/22-luogusearcher/index.html">
+<meta property="og:title" content="NOIP2015 - 斗地主增强版">
+<meta property="og:url" content="https://xciyang.github.io/2019-09/20-luogu2540/index.html">
 <meta property="og:site_name" content="Ciyang’s Blog">
-<meta property="og:description" content="写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。 安装链接（插件发布地址）: https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher">
+<meta property="og:description" content="【NOIP2015】【LuoguP2540】斗地主增强版题目链接: https://www.luogu.org/problem/P2540 前言暴力出奇迹，我是搜索小名士。 早在一年前就用贪心完成了普通版，然后现在忘了。 所以重新写一遍这道题，并且提高难度做增强版。看了仅剩的智商，我选择搜索。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-23T11:42:32.053Z">
+<meta property="og:updated_time" content="2019-09-20T14:01:55.618Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="技巧 - 写一个应用于Luogu的油猴插件">
-<meta name="twitter:description" content="写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。 安装链接（插件发布地址）: https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher">
+<meta name="twitter:title" content="NOIP2015 - 斗地主增强版">
+<meta name="twitter:description" content="【NOIP2015】【LuoguP2540】斗地主增强版题目链接: https://www.luogu.org/problem/P2540 前言暴力出奇迹，我是搜索小名士。 早在一年前就用贪心完成了普通版，然后现在忘了。 所以重新写一遍这道题，并且提高难度做增强版。看了仅剩的智商，我选择搜索。">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/hopscotch.css">
    
@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1568988129937">
+  <link rel="stylesheet" href="/css/style.css?v=1568988129876">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -240,191 +240,50 @@
     
     <img id="coverback">
     <script>
-      var nowImg = document.getElementById('coverback'), key = '190822';
+      var nowImg = document.getElementById('coverback'), key = '190920';
       nowImg.src = '/medias/banner/' + key % Number("12") + '.jpg';
     </script>
     
-    <h1>技巧 - 写一个应用于Luogu的油猴插件</h1>
+    <h1>NOIP2015 - 斗地主增强版</h1>
   </div>
   <div class="nexmoe-post-meta">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月22日</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月20日</a>
     <a><i class="nexmoefont icon-areachart"></i>2k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 10 分钟</a>
     
-    <a class="nexmoefont icon-appstore-fill -link" href="/categories/技巧/">技巧</a>
+    <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
     
-    <a class="nexmoefont icon-tag-fill -link" href="/tags/HTML/">HTML</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/JavaScript/">JavaScript</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/技巧/">技巧</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/颓废/">颓废</a>
+    <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/搜索/">搜索</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/模拟/">模拟</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
     
   </div>
   <article>
-    <p>写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。</p>
-<p>安装链接（插件发布地址）: <a href="https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher" target="_blank" rel="noopener">https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher</a></p>
+    <p>【NOIP2015】【LuoguP2540】斗地主增强版<br>题目链接: <a href="https://www.luogu.org/problem/P2540" target="_blank" rel="noopener">https://www.luogu.org/problem/P2540</a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>暴力出奇迹，<del>我是搜索小名士</del>。</p>
+<p>早在一年前就用贪心完成了普通版，然后现在忘了。</p>
+<p>所以重新写一遍这道题，并且提高难度做增强版。看了仅剩的智商，我选择搜索。</p>
 <a id="more"></a>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>应同机房大佬要求，做一个洛谷快捷题目搜索的油猴插件。</p>
-<h4 id="一些鲜为人知的历史"><a href="#一些鲜为人知的历史" class="headerlink" title="一些鲜为人知的历史"></a>一些鲜为人知的历史</h4><p>其实这个早在洛谷??.9版本（大概是18年底的一次UI更新）就写过一次了。</p>
-<p>那段时间luogu把搜索框去掉了，以致于不能方便的搜索题目，才写了这个插件，并且使用luogu很早前搜索框的css。</p>
-<p>过了半个月洛谷又更新了，然后右上角个人头像旁边多了搜索框。我当时直接退坑了，后来没多长时间插件就无法使用了。</p>
-<h4 id="为什么要重构插件"><a href="#为什么要重构插件" class="headerlink" title="为什么要重构插件"></a>为什么要重构插件</h4><p>然后我发现洛谷新的搜索框非常不贴近人意（小声），然后同机房大佬又一次要求。</p>
-<p>趁着没东西颓废一晚上颓了出来，恰好半年时间，我的JS、HTML能力已经大幅提高，所以这个插件做起来相当简单。</p>
-<h4 id="那现在和半年前有什么区别"><a href="#那现在和半年前有什么区别" class="headerlink" title="那现在和半年前有什么区别"></a>那现在和半年前有什么区别</h4><p>首先洛谷把半年前已经废了的CSS都删了（包括半年前的搜索框CSS）。</p>
-<p>并且洛谷的页面也有很大变化。误人子弟的说一句，好像洛谷现在是二次加载动态渲染？然后不用jQuery了？</p>
-<p>然后是个人原因，现在的我有一定JS写代码能力，对一些基础语法比较熟练，熟悉很多方法。之前傻傻分不清jQuery和Web API的函数，只能一次一次测试来运用（哪个能用就用哪个）。</p>
-<h3 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h3><p>可以先进入文章开头的链接查看介绍，也可以查看全部代码。</p>
-<p>首先我们设定 F1 打开搜索框，若已打开就关闭，F1键码为112。注册按键：</p>
-<pre><code class="lang-js">document.onkeydown = function (event) { if (event.keyCode == 112) mainfunc(); };
-</code></pre>
-<p>mainfunc 函数就是用来打开关闭对话框。但是这个页面本来没有对话框，该怎么打开呢？</p>
-<p>那么就需要新建，新建需要在网页中插入HTML。根据经验，我们需要在页面加载完成之后才能插入HTML，否则有不可预料的BUG。判断网页是否加载完成：</p>
-<pre><code class="lang-js">if (document.readyState == &quot;complete&quot;) {
-    /*
-    Write your code here.
-    */
-}
-</code></pre>
-<p>然后就是新建元素、改样式、插入到网页中，这些很语法基础就直接给出，相关函数请自行了解。</p>
-<p>我们选择把元素加入到页面的app（洛谷设计的）中。初始化：</p>
-<pre><code class="lang-js">var newElement = document.createElement(&quot;div&quot;);
-newElement.id = &quot;CiyangSearch&quot;;
-newElement.innerHTML = &quot;&lt;input type = &#39;text&#39;&gt; | &lt;a&gt;&lt;i class = &#39;fas fa-search&#39;&gt;&lt;/i&gt;&lt;/a&gt; | &lt;a&gt;&lt;i class= &#39;fa fa-cog&#39;&gt;&lt;/i&gt;&lt;/a&gt;&quot;;
-newElement.style.position = &quot;fixed&quot;;
-newElement.style.zIndex = &quot;2&quot;;
-newElement.style.top = &quot;10%&quot;;
-newElement.style.left = &quot;30%&quot;;
-newElement.style.width = &quot;240px&quot;;
-newElement.style.backgroundColor = &quot;rgb(128,128,128)&quot;;
-var appElement = document.getElementById(&#39;app&#39;);
-appElement.appendChild(newElement);
-</code></pre>
-<p>上面的代码就已经可以打开一个搜索框，还有搜索按钮和设置按钮，但非常丑陋。</p>
-<p>只有搜索框但是不能进行搜索，所以要绑定点击搜索按钮和回车键，回车键的键码为13。注册函数：</p>
-<pre><code class="lang-js">newElement.children[0].onkeydown = function (event) {
-    if (event.keyCode == 13) {
-        var str = this.value;
-        /*
-        Write your code here.
-        */
-    }
-    return;
-};
-newElement.children[1].onclick = function () {
-    var str = newElement.children[0].value;
-    /*
-    Write your code here.
-    */
-    return;
-};
-</code></pre>
-<p>str就是搜索框中输入的内容，获取后就可以跳转题目了。</p>
-<p>我们想让它可自动识别是否为题目，如果是就打开题目页面，否则就打开题目列表进行搜索。</p>
-<p>比如：输入P1001打开P1001题目页面，输入1001就进入题目列表搜索1001。</p>
-<p>因为OI不学正则表达式，所以一般情况下我们想到if判断。这非常麻烦，会使代码复杂冗长，这个时候正则表达式就能大显身手了。</p>
-<p>此处借鉴了另一个油猴插件<a href="https://greasyfork.org/zh-CN/scripts/388947-luogu-problem-jumper" target="_blank" rel="noopener">Luogu Problem Jumper</a>的匹配代码，应该是匹配洛谷题目最好的代码。</p>
-<pre><code class="lang-js">function judegeProblem(str) {
-    if (str.match(/AT[0-9]{1,4}/) == str) return true;
-    if (str.match(/CF[0-9]{1,4}[A-Z][0-9]{0,1}/) == str) return true;
-    if (str.match(/SP[0-9]{1,5}/) == str) return true;
-    if (str.match(/P[0-9]{4}/) == str) return true;
-    if (str.match(/UVA[0-9]{1,5}/) == str) return true;
-    if (str.match(/U[0-9]{1,6}/) == str) return true;
-    if (str.match(/T[0-9]{1,6}/) == str) return true;
-    return false;
-}
-</code></pre>
-<p>接下来是打开页面，有两种方式，前者是从当前页跳转，后者是新标签页打开。</p>
-<pre><code class="lang-js">window.location = url;
-window.open(url);
-</code></pre>
-<p>我们想要设计为用户选择首选方式，可首选其中一种方式，搜索时先输入 # 才能用优先级低的方式。</p>
-<pre><code class="lang-js">var dUrl = 1;
-/*
-
-A lot of code.
-
-*/
-function judgeURL(way, str) {
-    if (str.length == 0) return;
-    if (judegeProblem(str)) go(dUrl ^ way, &#39;/problemnew/show/&#39; + str);
-    else go(dUrl ^ way, &#39;/problem/list?keyword=&#39; + str);
-    return;
-}
-function go(k, url) {
-    if (k == 0) window.location = url;
-    else window.open(url);
-    removek();
-}
-</code></pre>
-<p>dUrl设为1就是首选新标签页，way表示是否先输入了 # 。</p>
-<p>再回到绑定按键、点击搜索按钮的地方，比较懒所以代码没有合并到一起：</p>
-<pre><code class="lang-js">newElement.children[0].onkeydown = function (event) {
-    if (event.keyCode == 13) {
-        var str = this.value;
-        if (str.length == 0) return;
-        if (str[0] == &#39;#&#39;) judgeURL(1, str.substring(1, str.length));
-        else judgeURL(0, str);
-    }
-    return;
-};
-newElement.children[1].onclick = function () {
-    var str = newElement.children[0].value;
-    if (str.length == 0) return;
-    if (str[0] == &#39;#&#39;) judgeURL(1, str.substring(1, str.length));
-    else judgeURL(0, str);
-    return;
-};
-</code></pre>
-<p>主体基本完成，然后就是一些小功能。若打开搜索框，再次按下 F1 关闭。使设置打开页面方式更加可视化，完善设置按钮。</p>
-<p>在 mainfuc 函数中，先加入一行代码：</p>
-<pre><code class="lang-js">if (removek()) return;
-</code></pre>
-<p>之前我们为了方便，将搜索框整体的元素ID改为了CiyangSearch，可以直接根据此ID来获取控件。代码简单：</p>
-<pre><code class="lang-js">function removek() {
-    var search = document.getElementById(&quot;CiyangSearch&quot;);
-    if (search) {
-        search.parentNode.removeChild(search);
-        return true;
-    }
-    return false;
-}
-</code></pre>
-<p>完善设置按钮也很简单，首先在 mainfunc 绑定按键、搜索按钮处理下加入一行代码：</p>
-<pre><code class="lang-js">newElement.children[2].onclick = function () { setLink(); };
-</code></pre>
-<p>先介绍两个油猴自带的函数，GM_setValue和GM_getValue，可以非常方便的存储和读取数据，具体原理可以自行搜索。</p>
-<p>点击设置按钮后跳出对话框，用户输入1或者0，设置首选方式。将之前的dUrl设置为读取数据。</p>
-<pre><code class="lang-js">var dUrl = GM_getValue(&quot;default_way&quot;);
-function setLink() {
-    var defaultWay = prompt(&quot;请输入首选打开网页方式，1 为新标签页，0为从当前页跳转。当前为&quot; + dUrl + &quot;，搜索先输入 # 可使用优先级低的方式。&quot;);
-    if (defaultWay == null) return;
-    if (defaultWay != &quot;0&quot; &amp;&amp; defaultWay != &quot;1&quot;) {
-        alert(&quot;您的输入有误&quot;);
-        return;
-    }
-    GM_setValue(&quot;default_way&quot;, defaultWay);
-    location.reload();
-}
-</code></pre>
-<p>我们还有需要一个使搜索的输入框自动获得焦点的小特性，只要在元素（控件）插入页面后加入一行代码：</p>
-<pre><code class="lang-js">newElement.children[0].focus();
-</code></pre>
-<p>然后8.23美化了一下UI，具体就不给出了。增加了设置背景颜色，换汤不换药。其中较为重要的修改：</p>
-<pre><code class="lang-js">var dUrl = GM_getValue(&quot;default_way&quot;), bgColor = GM_getValue(&quot;searcher_bg&quot;);
-if (bgColor == undefined) {
-    GM_setValue(&quot;searcher_bg&quot;, &quot;rgba(135,206,235,0.5)&quot;);
-    bgColor = &quot;rgba(135,206,235,0.5)&quot;;
-}
-newElement.innerHTML = &quot;&lt;input type = &#39;text&#39;&gt; | &lt;i class = &#39;fas fa-search&#39;&gt;&lt;/i&gt; | &lt;i class= &#39;fas fa-cog&#39;&gt;&lt;/i&gt; | &lt;i class =&#39;fas fa-crosshairs&#39;&gt;&lt;/i&gt; |&quot;;
-function setBGColor() {
-    var searcherBG = prompt(&quot;请输入背景颜色码，支持RGB和十六进制。当前为&quot; + bgColor + &quot;。&quot;, bgColor);
-    if (searcherBG == null) return;
-    GM_setValue(&quot;searcher_bg&quot;, searcherBG);
-    location.reload();
-}
-</code></pre>
-<p>分别处于代码各个位置，思路与设置打开方式类似，自行了解即可。</p>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>还有什么问题可以在博客或发布网站评论提出，也可以用社交软件联系我。</p>
-<p>在greasyfork发布，链接：<a href="https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher" target="_blank" rel="noopener">https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher</a></p>
-<p>如果时间充足还会一直更新，有要求也可以提出。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>其实我一开始没有想着去写100分的代码，因为爆搜的复杂度太大，然后这题好像我只会爆搜。</p>
+<h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>首先，很容易想到一种最纯粹的爆搜。每层都将当前剩余牌可行的情况全部枚举判断，然后打出一种可行的牌进入下一层继续搜索。</p>
+<pre><code>搜索是盲目的，我们考虑剪枝。    ——某金牌教练
+</code></pre><p>一个剪枝是搜索必备，如果当前答案大于或等于已知的最小答案，我们接下来的搜索一定不会更新答案，所以回到上一层。</p>
+<p>然后再继续想，可以加一个启发式剪枝，计算打出所有剩余牌的最大出牌次数。</p>
+<p>用肉眼就能推出，一副牌的最大出牌次数就是牌的数码种类数，两个王在此可以算一种。然后我们计算出当前最大出牌次数加上当前已出牌次数去更新答案，这样就会剪去接下来的一些较差的出牌方法。</p>
+<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><p>上面的方法必不能通过本题，不需要尝试也能猜测。所以还要继续剪枝。</p>
+<p>再稍微思考一下，我们每层搜索将全部出牌方法都枚举一遍过于暴力。我们发现，有些出牌方法自始至终永远不可行，并且可行的出牌方法一定越来越少。然后就想到了预处理，我们预处理出最开始的手牌的可行出牌方法。</p>
+<p>这里我的代码极其鬼畜，可能对代码能力有些要求。我用了一些自认为省空间，用起来舒服的方法。将可行方法的信息写成结构体，就不演示，代码中在讲讲。</p>
+<p>最关键的是，我们要计算每种方法的出牌数量，可用来后续我们继续优化。</p>
+<p>这些代码全部可在输入后搜索前执行，我是将这些可行方法放到了vector中。在搜索时，枚举vector的所有元素。再进行一次针对性判断，也就是判断需要打的那几张牌就够了。</p>
+<h4 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h4><p>我们说记录了每种方法的出牌数量。那我们从大到小排序，这样大概能优化时间，我也不知道。</p>
+<p>在这我们提个醒，如果你将王炸、对子、三张牌放入可行方法中，那你一定会TLE，因为我一开始就是这样。（实践出真知，但其实非加强版不需要，到这里已经通过了）</p>
+<p>我们每层搜索，只枚举上一层搜索枚举没有枚举到的就行了，这是个小剪枝。如果当前方法的出牌数大于当前剩余数量，就直接枚举下一个出牌方法，这也可算上个小剪枝。然后还要再次判断当前剩余的牌下这种方法是否可行。</p>
+<p>还有几个小的要点，我们不管是预处理，还是每层搜索都要用到一个小动态规划，用来求某个牌当左端点，可以连成（单、双、三）顺子的最大长度。鉴于这个题的难度，我相信大家都会这个小动归。</p>
+<p>然后还有几个提示，四带二可以带两个相同数码的对子（俗称炸弹），同理，可以带两个相同数码的一张牌（俗称对子）。然后1当14，大小王当15、16比较好写代码。</p>
+<p>经过多次提交更改调试，终于通过了本题。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>不开O2两秒多通过。</p>
+<p>```cpp</p>
+<h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <iostream></iostream></h1><h1 id="include-1"><a href="#include-1" class="headerlink" title="include "></a>include <stdio.h></stdio.h></h1><h1 id="include-2"><a href="#include-2" class="headerlink" title="include "></a>include <string.h></string.h></h1><h1 id="include-3"><a href="#include-3" class="headerlink" title="include "></a>include <vector></vector></h1><h1 id="include-4"><a href="#include-4" class="headerlink" title="include "></a>include <algorithm></algorithm></h1><p>using namespace std;<br>int T, n;<br>struct PAI {<br>    int num, col;<br>} ps[30];<br>// 记录牌的数码，颜色（没啥用）</p>
+<h1 id="define-SHUNZI-3"><a href="#define-SHUNZI-3" class="headerlink" title="define SHUNZI 3"></a>define SHUNZI 3</h1><h1 id="define-SANDAI-4"><a href="#define-SANDAI-4" class="headerlink" title="define SANDAI 4"></a>define SANDAI 4</h1><h1 id="define-SIDAI-5"><a href="#define-SIDAI-5" class="headerlink" title="define SIDAI 5"></a>define SIDAI 5</h1><p>//顺子、三带、四带<br>struct CP {<br>    // 记录出牌方法的信息<br>    int typ, l, r, k1, k2, siz;<br>    // typ 为宏定义的值<br>    // siz 为出牌数量<br>    // l r 多种使用。l：顺子左端点，其他为最多的那张牌。r：顺子右端点，其他为少的那张牌需要的个数<br>    // k1 k2 三带、四带使用，表示附带哪一（两）张牌。<br>    CP(int typ, int siz, int l= 0, int r= 0, int k1= 0, int k2= 0) {<br>        this-&gt;typ= typ, this-&gt;siz= siz, this-&gt;l= l, this-&gt;r= r, this-&gt;k1= k1, this-&gt;k2= k2;<br>    }<br>    inline int operator&lt;(const CP &amp;c2) const {<br>        return siz &gt; c2.siz;<br>    }<br>};<br>int pai[20], bestans, us3[20], us2[20], us1[20];<br>vector&lt; CP &gt; v;<br>void dfs(int nown, int nowa, int ls) {<br>    if(nowa &gt;= bestans) return;<br>    // 小剪枝<br>    bestans= min(bestans, nowa + nown);<br>    // 更新答案，全部单打（没什么用）<br>    if(!nown) return;<br>    int res= 0, us[4][20];<br>    memset(us, 0, sizeof(us));<br>    for(int i= 2; i &lt;= 16; i++) res+= (pai[i] != 0);<br>    if(pai[15] &amp;&amp; pai[16]) —res;<br>    // 15、16为大小王，主程序中有，大小王可以王炸<br>    bestans= min(bestans, nowa + res);<br>    // 再次更新答案（剪枝）<br>    for(int i= 14, cnt= 0; i &gt;= 2; i—) {<br>        if(pai[i] &lt; 1) continue;<br>        us[1][i]= us[1][i + 1] + 1;<br>        if(pai[i] &lt; 2) continue;<br>        us[2][i]= us[2][i + 1] + 1;<br>        if(pai[i] &lt; 3) continue;<br>        us[3][i]= us[3][i + 1] + 1;<br>    }<br>    // DP出可行的顺子长度<br>    for(int i= ls; i &lt; v.size(); i++) {<br>        if(v[i].siz &gt; nown) continue;<br>        switch(v[i].typ) {<br>            case SHUNZI: {<br>                if(v[i].r - v[i].l + 1 &gt; us[v[i].k1][v[i].l]) break;<br>                for(int j= v[i].l; j &lt;= v[i].r; j++) pai[j]-= v[i].k1;<br>                dfs(nown - v[i].siz, nowa + 1, i + 1);<br>                for(int j= v[i].l; j &lt;= v[i].r; j++) pai[j]+= v[i].k1;<br>                // 判断顺子<br>                break;<br>            }<br>            case SANDAI: {<br>                if(pai[v[i].l] &lt; 3 || pai[v[i].k1] &lt; v[i].r) break;<br>                pai[v[i].l]-= 3, pai[v[i].k1]-= v[i].r;<br>                dfs(nown - v[i].siz, nowa + 1, i + 1);<br>                pai[v[i].l]+= 3, pai[v[i].k1]+= v[i].r;<br>                // 判断三带<br>                break;<br>            }<br>            case SIDAI: {<br>                if(pai[v[i].l] &lt; 4) break;<br>                if(pai[v[i].k1] &lt; 1 || pai[v[i].k2] &lt; 1) break;<br>                if(v[i].r == 2 &amp;&amp; (pai[v[i].k1] &lt; 2 || pai[v[i].k2] &lt; 2)) break;<br>                // 都需要两张<br>                if(v[i].r == 2 &amp;&amp; v[i].k1 == v[i].k2 &amp;&amp; pai[v[i].k1] &lt; 4) break;<br>                // 两对相同数码<br>                if(v[i].r == 1 &amp;&amp; v[i].k1 == v[i].k2 &amp;&amp; pai[v[i].k1] &lt; 2) break;<br>                // 两张相同数码<br>                pai[v[i].l]-= 4;<br>                pai[v[i].k1]-= v[i].r;<br>                pai[v[i].k2]-= v[i].r;<br>                dfs(nown - v[i].siz, nowa + 1, i + 1);<br>                pai[v[i].l]+= 4;<br>                pai[v[i].k1]+= v[i].r;<br>                pai[v[i].k2]+= v[i].r;<br>                // 判断四带<br>            }<br>            default: break;<br>        }<br>    }<br>    return;<br>}<br>int main() {<br>    scanf(“%d%d”, &amp;T, &amp;n);<br>    while(T—) {<br>        memset(pai, 0, sizeof(pai)), bestans= 0x3f3f3f3f;<br>        for(int i= 1; i &lt;= n; i++) {<br>            scanf(“%d%d”, &amp;ps[i].num, &amp;ps[i].col);<br>            if(ps[i].num == 1) ps[i].num= 14;<br>            // 1 当 14<br>            if(ps[i].num == 0) ps[i].num= ps[i].col + 14;<br>            // 大小王当15、16<br>            ++pai[ps[i].num];<br>        }<br>        memset(us3, 0, sizeof(us3)), memset(us2, 0, sizeof(us2)), memset(us1, 0, sizeof(us1));<br>        v.clear();<br>        for(int i= 14; i &gt;= 3; i—) {<br>            if(pai[i] &lt; 1) continue;<br>            us1[i]= us1[i + 1] + 1;<br>            if(pai[i] &lt; 2) continue;<br>            us2[i]= us2[i + 1] + 1;<br>            if(pai[i] &lt; 3) continue;<br>            us3[i]= us3[i + 1] + 1;<br>        }<br>        // DP出顺子长度<br>        for(int i= 2; i &lt;= 16; i++) {<br>            for(int j= 5; j &lt;= us1[i]; j++) v.push_back(CP(SHUNZI, j, i, i + j - 1, 1));<br>            for(int j= 3; j &lt;= us2[i]; j++) v.push_back(CP(SHUNZI, j <em> 2, i, i + j - 1, 2));<br>            for(int j= 2; j &lt;= us3[i]; j++) v.push_back(CP(SHUNZI, j </em> 3, i, i + j - 1, 3));<br>            // i 当左端点的顺子<br>            if(pai[i] &lt; 3) continue;<br>            for(int j= 2; j &lt;= 16; j++) {<br>                if(i == j || !pai[j]) continue;<br>                v.push_back(CP(SANDAI, 4, i, 1, j));<br>                if(pai[j] &lt; 2) continue;<br>                v.push_back(CP(SANDAI, 5, i, 2, j));<br>            }<br>            // 三带<br>            if(pai[i] &lt; 4) continue;<br>            for(int j= 2; j &lt;= 16; j++) {<br>                if(i == j || !pai[j]) continue;<br>                for(int k= j + 1; k &lt;= 16; k++) {<br>                    if(i == k || !pai[k]) continue;<br>                    v.push_back(CP(SIDAI, 6, i, 1, j, k));<br>                    if(pai[j] &lt; 2 || pai[k] &lt; 2) continue;<br>                    v.push_back(CP(SIDAI, 8, i, 2, j, k));<br>                }<br>                if(pai[j] == 4) v.push_back(CP(SIDAI, 8, i, 2, j, j));<br>                if(pai[j] &gt; 2) v.push_back(CP(SIDAI, 6, i, 1, j, j));<br>            }<br>            // 四带<br>        }<br>        sort(v.begin(), v.end());<br>        // 排序<br>        dfs(n, 0, 0);<br>        cout &lt;&lt; bestans &lt;&lt; endl;<br>    }<br>    return 0;<br>}<br>···</p>
 
   </article>
   
@@ -432,7 +291,7 @@ function setBGColor() {
 <div class="nexmoe-post-copyright">
 <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
 <strong>本文作者：</strong>Ciyang<br>
-<strong>本文链接：</strong><a href="https://xciyang.github.io/2019-08/22-luogusearcher/" title="https://xciyang.github.io/2019-08/22-luogusearcher/" target="_blank" rel="noopener">https://xciyang.github.io/2019-08/22-luogusearcher/</a><br>
+<strong>本文链接：</strong><a href="https://xciyang.github.io/2019-09/20-luogu2540/" title="https://xciyang.github.io/2019-09/20-luogu2540/" target="_blank" rel="noopener">https://xciyang.github.io/2019-09/20-luogu2540/</a><br>
 
   <strong>版权声明：</strong>本文一切由权利由作者 Ciyang 所有，转载请声明本文地址。
 
@@ -470,7 +329,7 @@ function setBGColor() {
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1568988129955"></script>
+<script src="/js/app.js?v=1568988129895"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
