@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>NOIP2001 - 统计单词个数 - Ciyang’s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="一个半退役OI的文化课选手...">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <meta name="description" content="【NOIP2001】【LuoguP1026】统计单词个数题目链接: https://www.luogu.org/problem/P1026 前言这题要不是有DP标签我还真想不出这种思路。">
+<meta name="keywords" content="题解,Cpp,动态规划,字符串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP2001 - 统计单词个数">
+<meta property="og:url" content="https://xciyang.github.io/2019-09/25-luogu1026/index.html">
+<meta property="og:site_name" content="Ciyang’s Blog">
+<meta property="og:description" content="【NOIP2001】【LuoguP1026】统计单词个数题目链接: https://www.luogu.org/problem/P1026 前言这题要不是有DP标签我还真想不出这种思路。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-25T04:28:19.706Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOIP2001 - 统计单词个数">
+<meta name="twitter:description" content="【NOIP2001】【LuoguP1026】统计单词个数题目链接: https://www.luogu.org/problem/P1026 前言这题要不是有DP标签我还真想不出这种思路。">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/hopscotch.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1569385791676">
+</head>
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Ciyang" class="mdui-btn mdui-btn-icon"><img src="/medias/avatar.jpg"></a>
+      </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+    <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Ciyang">
+            <img src="/medias/avatar.jpg" alt="Ciyang">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>28</div>
+        <div><span>标签</span>37</div>
+        <div><span>分类</span>4</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search" title="搜索">
+            <i class="mdui-list-item-icon nexmoefont icon-search"></i>
+            <div class="mdui-list-item-content">
+                搜索
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://github.com/Xciyang" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://www.zhihu.com/people/ci-yang-ciyang" target="_blank" mdui-tooltip="{content: '知乎'}" style="color: rgb(123, 12, 57);background-color: rgba(123, 12, 57, .15);">
+            <i class="nexmoefont icon-zhihu"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/6068536" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=896681584&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(12, 2, 255);background-color: rgba(12, 2, 255, .15);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="mailto:896681584@qq.com" target="_blank" mdui-tooltip="{content: '邮箱'}" style="color: rgb(123, 1, 255);background-color: rgba(123, 1, 255, .15);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="/rss.xml" target="_blank" mdui-tooltip="{content: 'RSS'}" style="color: rgb(2, 10, 56);background-color: rgba(2, 10, 56, .15);">
+            <i class="nexmoefont icon-rss"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/技巧/">技巧</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/闲聊/">闲聊</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/项目/">项目</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/题解/">题解</a>
+          <span class="category-list-count">19</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.43px;">STL</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/主席树/" style="font-size: 10px;">主席树</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/分块/" style="font-size: 12.86px;">分块</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 14.29px;">动态规划</a> <a href="/tags/块状链表/" style="font-size: 10px;">块状链表</a> <a href="/tags/字典树/" style="font-size: 10px;">字典树</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/并查集/" style="font-size: 11.43px;">并查集</a> <a href="/tags/技巧/" style="font-size: 11.43px;">技巧</a> <a href="/tags/搜索/" style="font-size: 17.14px;">搜索</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/整除分块/" style="font-size: 10px;">整除分块</a> <a href="/tags/模拟/" style="font-size: 12.86px;">模拟</a> <a href="/tags/爬虫/" style="font-size: 12.86px;">爬虫</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a> <a href="/tags/码风/" style="font-size: 10px;">码风</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 10px;">线段树</a> <a href="/tags/背包/" style="font-size: 10px;">背包</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a> <a href="/tags/边压Trie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/闲聊/" style="font-size: 15.71px;">闲聊</a> <a href="/tags/随机化搜索/" style="font-size: 10px;">随机化搜索</a> <a href="/tags/项目/" style="font-size: 12.86px;">项目</a> <a href="/tags/颓废/" style="font-size: 15.71px;">颓废</a> <a href="/tags/题解/" style="font-size: 18.57px;">题解</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2019-09/25-luogu1026/">NOIP2001 - 统计单词个数</a>
+          </li>
+        
+          <li>
+            <a href="/2019-09/20-luogu2540/">NOIP2015 - 斗地主增强版</a>
+          </li>
+        
+          <li>
+            <a href="/2019-09/19-luogu1282/">LuoguP1282 - 多米诺骨牌</a>
+          </li>
+        
+          <li>
+            <a href="/2019-09/02-luogu2522/">HAOI2011 - Problem b</a>
+          </li>
+        
+          <li>
+            <a href="/2019-08/22-luogusearcher/">技巧 - 写一个应用于Luogu的油猴插件</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">访客量</h3>
+    <div class="nexmoe-widget" style="text-align: center;">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">
+            <style="text-align: center;">本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </style="text-align:></span>
+        <br>
+        <span id="busuanzi_container_page_pv">
+            本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+    </div>
+</div>
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 Ciyang
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+      <div class="nexmoe-post">
+  <div class="nexmoe-post-cover">
+    
+    <img id="coverback">
+    <script>
+      var nowImg = document.getElementById('coverback'), key = '190925';
+      nowImg.src = '/medias/banner/' + key % Number("12") + '.jpg';
+    </script>
+    
+    <h1>NOIP2001 - 统计单词个数</h1>
+  </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月25日</a>
+    <a><i class="nexmoefont icon-areachart"></i>706 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+    
+    <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
+    
+    
+    <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/动态规划/">动态规划</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/字符串/">字符串</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
+    
+  </div>
+  <article>
+    <p>【NOIP2001】【LuoguP1026】统计单词个数<br>题目链接: <a href="https://www.luogu.org/problem/P1026" target="_blank" rel="noopener">https://www.luogu.org/problem/P1026</a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这题要不是有DP标签我还真想不出这种思路。</p>
+<a id="more"></a>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先题目描述有点不清楚，结合样例更加好理解。差不多为，字符串长度不超过200，单词种类不超过6个，将字符串分40段求最大单词匹配总数。</p>
+<p>然后给出了一个性质，一个字符自能被当做一次首字符，所以就可以用线性做法。</p>
+<p>我们先预处理，求出每个单词在字符串中的所有匹配位置。那么如果几个单词重叠了该怎么办呢？</p>
+<p>很容易想到，字符串中某字符被当做首字母时，匹配最短的单词最优。因此我们可以求出字符串中每一个字符当首字母时的最短长度。</p>
+<p>如果使用string可以使用find函数，但输入时较为麻烦。所以我用char数组存储，并使用strstr函数。</p>
+<p>接下来考虑DP方程。（因为有DP标签，才会拼凑DP思路，考场上还真不一定想出DP解法）</p>
+<p>非常典型的设一个$F[N][K]$，表示处理到第N个字符，分割为K部分。</p>
+<p>先上经典转移方程进行修改。</p>
+<script type="math/tex; mode=display">F[i][j] = max(F[i - 1][j], f[i - 1][j - 1])</script><p>但你会发现这样没地方加入预处理出的最短长度。因为后面转移时，单词有可能从中间被切开，这样求出答案就是错了。</p>
+<p>然后就写了个鬼畜的方程，设$W_i$为字符串中第i字符当首字母时最短长度（如果不能匹配则无限大）。</p>
+<p>所以$i$会影响到$i + W_i$后的答案，使他们答案+1，取个max。</p>
+<p>然后我们以j为第一关键字，i为第二关键字枚举即可。因为我们分隔字符只会让答案变小，所以将方程改为。</p>
+<script type="math/tex; mode=display">F[i][j] = max(F[i][j], f[i - 1][j - 1])</script><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+using namespace std;
+int p, k, s, w[405], len[7], a[405], f[205][45];
+char tmps[405], zd[7][205];
+int main() {
+    cin &gt;&gt; p &gt;&gt; k;
+    for(int i= 0; i &lt; p; i++) cin &gt;&gt; (tmps + i * 20 + 1);
+    p*= 20;
+    memset(w, 0x3f, sizeof(w));
+    cin &gt;&gt; s;
+    for(int i= 1; i &lt;= s; i++) {
+        cin &gt;&gt; zd[i], len[i]= strlen(zd[i]);
+        char *st= strstr(tmps + 1, zd[i]);
+        while(st) {
+            w[st - tmps]= min(w[st - tmps], len[i]);
+            st= strstr(st + 1, zd[i]);
+        }
+    }
+    for(int l= 1; l &lt;= k; l++) {
+        for(int i= l; i &lt;= p; i++) {
+            f[i][l]= max(f[i][l], f[i - 1][l - 1]);
+            if(w[i] != 0x3f3f3f3f) {
+                for(int j= max(i + w[i] - 1, i + 1); j &lt;= p; j++) f[j][l]= max(f[j][l], f[i][l]) + 1;
+                if(w[i] == 1) ++f[i][l];
+            }
+        }
+    }
+    cout &lt;&lt; f[p][k] &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+
+  </article>
+  
+  
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Ciyang<br>
+<strong>本文链接：</strong><a href="https://xciyang.github.io/2019-09/25-luogu1026/" title="https://xciyang.github.io/2019-09/25-luogu1026/" target="_blank" rel="noopener">https://xciyang.github.io/2019-09/25-luogu1026/</a><br>
+
+  <strong>版权声明：</strong>本文一切由权利由作者 Ciyang 所有，转载请声明本文地址。
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NjA4Ni8yMjU5Nw==">
+    <script id="livere-comment-js">
+    (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+       if (typeof LivereTower === 'function') { return; }
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+       e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+    </script>
+</div>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1569385791696"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+  
+
+
+
+    <!-- Tencent Analytics -->
+<script>
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//tajs.qq.com/stats?sId=66465453";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+    <!-- 51.La Analytics -->
+<div hidden>
+  <script type="text/javascript" src="https://js.users.51.la/20284321.js"></script>
+</div>
+
+
+    <!-- baidu Analytics -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?c285bfd3ab71dfa2d08b9656991e938e';
+    var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+
+</html>

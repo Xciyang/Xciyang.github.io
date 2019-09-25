@@ -6,7 +6,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="https://xciyang.github.io/"/>
-  <updated>2019-09-21T02:46:04.614Z</updated>
+  <updated>2019-09-25T04:28:19.706Z</updated>
   <id>https://xciyang.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NOIP2001 - 统计单词个数</title>
+    <link href="https://xciyang.github.io/2019-09/25-luogu1026/"/>
+    <id>https://xciyang.github.io/2019-09/25-luogu1026/</id>
+    <published>2019-09-25T03:33:20.000Z</published>
+    <updated>2019-09-25T04:28:19.706Z</updated>
+    
+    <content type="html"><![CDATA[<p>【NOIP2001】【LuoguP1026】统计单词个数<br>题目链接: <a href="https://www.luogu.org/problem/P1026" target="_blank" rel="noopener">https://www.luogu.org/problem/P1026</a></p><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这题要不是有DP标签我还真想不出这种思路。</p><a id="more"></a><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先题目描述有点不清楚，结合样例更加好理解。差不多为，字符串长度不超过200，单词种类不超过6个，将字符串分40段求最大单词匹配总数。</p><p>然后给出了一个性质，一个字符自能被当做一次首字符，所以就可以用线性做法。</p><p>我们先预处理，求出每个单词在字符串中的所有匹配位置。那么如果几个单词重叠了该怎么办呢？</p><p>很容易想到，字符串中某字符被当做首字母时，匹配最短的单词最优。因此我们可以求出字符串中每一个字符当首字母时的最短长度。</p><p>如果使用string可以使用find函数，但输入时较为麻烦。所以我用char数组存储，并使用strstr函数。</p><p>接下来考虑DP方程。（因为有DP标签，才会拼凑DP思路，考场上还真不一定想出DP解法）</p><p>非常典型的设一个$F[N][K]$，表示处理到第N个字符，分割为K部分。</p><p>先上经典转移方程进行修改。</p><script type="math/tex; mode=display">F[i][j] = max(F[i - 1][j], f[i - 1][j - 1])</script><p>但你会发现这样没地方加入预处理出的最短长度。因为后面转移时，单词有可能从中间被切开，这样求出答案就是错了。</p><p>然后就写了个鬼畜的方程，设$W_i$为字符串中第i字符当首字母时最短长度（如果不能匹配则无限大）。</p><p>所以$i$会影响到$i + W_i$后的答案，使他们答案+1，取个max。</p><p>然后我们以j为第一关键字，i为第二关键字枚举即可。因为我们分隔字符只会让答案变小，所以将方程改为。</p><script type="math/tex; mode=display">F[i][j] = max(F[i][j], f[i - 1][j - 1])</script><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;string.h&gt;using namespace std;int p, k, s, w[405], len[7], a[405], f[205][45];char tmps[405], zd[7][205];int main() {    cin &gt;&gt; p &gt;&gt; k;    for(int i= 0; i &lt; p; i++) cin &gt;&gt; (tmps + i * 20 + 1);    p*= 20;    memset(w, 0x3f, sizeof(w));    cin &gt;&gt; s;    for(int i= 1; i &lt;= s; i++) {        cin &gt;&gt; zd[i], len[i]= strlen(zd[i]);        char *st= strstr(tmps + 1, zd[i]);        while(st) {            w[st - tmps]= min(w[st - tmps], len[i]);            st= strstr(st + 1, zd[i]);        }    }    for(int l= 1; l &lt;= k; l++) {        for(int i= l; i &lt;= p; i++) {            f[i][l]= max(f[i][l], f[i - 1][l - 1]);            if(w[i] != 0x3f3f3f3f) {                for(int j= max(i + w[i] - 1, i + 1); j &lt;= p; j++) f[j][l]= max(f[j][l], f[i][l]) + 1;                if(w[i] == 1) ++f[i][l];            }        }    }    cout &lt;&lt; f[p][k] &lt;&lt; endl;    return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【NOIP2001】【LuoguP1026】统计单词个数&lt;br&gt;题目链接: &lt;a href=&quot;https://www.luogu.org/problem/P1026&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.luogu.org/problem/P1026&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;这题要不是有DP标签我还真想不出这种思路。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="题解" scheme="https://xciyang.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+      <category term="题解" scheme="https://xciyang.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+      <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
+    
+      <category term="动态规划" scheme="https://xciyang.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+      <category term="字符串" scheme="https://xciyang.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>NOIP2015 - 斗地主增强版</title>
@@ -71,9 +100,9 @@
     
       <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
     
-      <category term="背包" scheme="https://xciyang.github.io/tags/%E8%83%8C%E5%8C%85/"/>
-    
       <category term="动态规划" scheme="https://xciyang.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+      <category term="背包" scheme="https://xciyang.github.io/tags/%E8%83%8C%E5%8C%85/"/>
     
   </entry>
   
@@ -126,9 +155,9 @@
       <category term="技巧" scheme="https://xciyang.github.io/categories/%E6%8A%80%E5%B7%A7/"/>
     
     
-      <category term="颓废" scheme="https://xciyang.github.io/tags/%E9%A2%93%E5%BA%9F/"/>
-    
       <category term="技巧" scheme="https://xciyang.github.io/tags/%E6%8A%80%E5%B7%A7/"/>
+    
+      <category term="颓废" scheme="https://xciyang.github.io/tags/%E9%A2%93%E5%BA%9F/"/>
     
       <category term="JavaScript" scheme="https://xciyang.github.io/tags/JavaScript/"/>
     
@@ -185,9 +214,9 @@
     
       <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
     
-      <category term="并查集" scheme="https://xciyang.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
-    
       <category term="左偏树" scheme="https://xciyang.github.io/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/"/>
+    
+      <category term="并查集" scheme="https://xciyang.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
     
   </entry>
   
@@ -270,9 +299,9 @@
     
       <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
     
-      <category term="颓废" scheme="https://xciyang.github.io/tags/%E9%A2%93%E5%BA%9F/"/>
-    
       <category term="技巧" scheme="https://xciyang.github.io/tags/%E6%8A%80%E5%B7%A7/"/>
+    
+      <category term="颓废" scheme="https://xciyang.github.io/tags/%E9%A2%93%E5%BA%9F/"/>
     
   </entry>
   
@@ -571,38 +600,6 @@
       <category term="动态规划" scheme="https://xciyang.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
       <category term="状压DP" scheme="https://xciyang.github.io/tags/%E7%8A%B6%E5%8E%8BDP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NOI2015 - 程序自动分析</title>
-    <link href="https://xciyang.github.io/2019-03/31-luogu1955/"/>
-    <id>https://xciyang.github.io/2019-03/31-luogu1955/</id>
-    <published>2019-03-31T05:16:35.000Z</published>
-    <updated>2019-08-15T11:55:20.188Z</updated>
-    
-    <content type="html"><![CDATA[<p>【LuoguP1955】【BZOJ4195】【NOI2015】程序自动分析<br>题目链接1: <a href="https://www.luogu.org/problemnew/show/P1955" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P1955</a><br>题目链接2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4195" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=4195</a></p><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>最近变得越来越颓废. 介于好长时间没更新博客, 强行水一篇题解.</p><p>这道题没看题解15分钟就A了, 真的有点水了…</p><a id="more"></a><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>题意大概就是有 N 个关系, 每个代表X1 = X2 或者 X1 ≠ X2, 求出这些关系能不能成立.</p><p>很容易就想到并查集, 先将相等的X合并, 然后判断不等关系的两个变量在不在一个并查集里就行了.那么就只需要排下序, 先进行合并操作再去判断.</p><p>判断不等关系过程中发现X1和X2在同一个并查集里, 那直接输出NO就行了.</p><p>然而X的下标可能会很大. 所以考虑离散化, 那么肯定直接上map.</p><p>输入的时候就离散化, 然后排个序, 打完合并和查询就AC了.</p><p>不过map常数巨大, 需要开O2稳过.</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>评测详情（O2）:<br>Accepted  100<br>用时: 1623ms / 内存: 11960KB</p><pre><code class="lang-cpp">#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;map&gt;#include &lt;algorithm&gt;using namespace std;int t, n, f[200001], mptr, cnt, flag;struct date {    int x, y, d;    bool operator&lt;(const date &amp;d2) const {        return d &gt; d2.d;    }} dat[100001];int query(int x) {    if(f[x] == x) return x;    return f[x]= query(f[x]);}map&lt; int, int &gt; m;int main() {    scanf(&quot;%d&quot;, &amp;t);    while(t--) {        scanf(&quot;%d&quot;, &amp;n);        mptr= cnt= flag= 0;        m.clear();        for(int i= 1; i &lt;= n; i++) {            scanf(&quot;%d%d%d&quot;, &amp;dat[i].x, &amp;dat[i].y, &amp;dat[i].d);            if(!m.count(dat[i].x)) m[dat[i].x]= ++mptr;            if(!m.count(dat[i].y)) m[dat[i].y]= ++mptr;            dat[i].x= m[dat[i].x], dat[i].y= m[dat[i].y];            cnt+= dat[i].d;        }        sort(dat + 1, dat + n + 1);        for(int i= 1; i &lt;= mptr; i++) f[i]= i;        for(int i= 1; i &lt;= cnt; i++) {            int fx= query(dat[i].x);            f[query(dat[i].y)]= fx;        }        for(int i= cnt + 1; i &lt;= n; i++) {            if(query(dat[i].x) == query(dat[i].y)) {                printf(&quot;NO\n&quot;);                flag= 1;                break;            }        }        if(!flag) printf(&quot;YES\n&quot;);    }    return 0;}</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;【LuoguP1955】【BZOJ4195】【NOI2015】程序自动分析&lt;br&gt;题目链接1: &lt;a href=&quot;https://www.luogu.org/problemnew/show/P1955&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.luogu.org/problemnew/show/P1955&lt;/a&gt;&lt;br&gt;题目链接2: &lt;a href=&quot;https://www.lydsy.com/JudgeOnline/problem.php?id=4195&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.lydsy.com/JudgeOnline/problem.php?id=4195&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h3&gt;&lt;p&gt;最近变得越来越颓废. 介于好长时间没更新博客, 强行水一篇题解.&lt;/p&gt;
-&lt;p&gt;这道题没看题解15分钟就A了, 真的有点水了…&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="题解" scheme="https://xciyang.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-      <category term="题解" scheme="https://xciyang.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-      <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
-    
-      <category term="并查集" scheme="https://xciyang.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
-    
-      <category term="STL" scheme="https://xciyang.github.io/tags/STL/"/>
-    
-      <category term="离散化" scheme="https://xciyang.github.io/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/"/>
     
   </entry>
   
