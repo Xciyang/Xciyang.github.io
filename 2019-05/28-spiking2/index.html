@@ -23,17 +23,19 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目日记 - 开发图片爬虫 Ⅱ">
 <meta name="twitter:description" content="用C++开发一个图片爬虫 Ⅱ ：编码转换 前言我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。 因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/hopscotch.css">
+  <script src="https://lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://lib.baomitu.com/mdui/0.4.3/css/mdui.min.css">
+  <link rel="stylesheet" href="https://lib.baomitu.com/highlight.js/9.15.10/styles/hopscotch.min.css">
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css">
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1569385791899">
+  <link rel="stylesheet" href="/css/style.css?v=1569407035777">
 </head>
+
 <body class="mdui-drawer-body-left">
   
   <div id="nexmoe-background">
@@ -252,7 +254,7 @@
     <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/爬虫/">爬虫</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/项目/">项目</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/颓废/">颓废</a>
     
   </div>
-  <article>
+  <article id="article">
     <p>用C++开发一个图片爬虫 Ⅱ ：编码转换</p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。</p>
 <p>因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。</p>
@@ -457,23 +459,23 @@
 </div>
 </section>
 </div>
+
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="https://lib.baomitu.com/mdui/0.4.3/js/mdui.min.js"></script>
  
-    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
 
  
-    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+    <script src="https://lib.baomitu.com/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1569385791908"></script>
-<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+<script src="/js/app.js?v=1569407035787"></script>
+<script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
@@ -510,7 +512,7 @@
     })();
 </script>
 
-  
+
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {

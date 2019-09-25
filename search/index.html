@@ -22,17 +22,19 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搜索">
 <meta name="twitter:description" content="一个半退役OI的文化课选手...">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/hopscotch.css">
+  <script src="https://lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://lib.baomitu.com/mdui/0.4.3/css/mdui.min.css">
+  <link rel="stylesheet" href="https://lib.baomitu.com/highlight.js/9.15.10/styles/hopscotch.min.css">
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css">
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1569385791637">
+  <link rel="stylesheet" href="/css/style.css?v=1569407035512">
 </head>
+
 <body class="mdui-drawer-body-left">
   
   <div id="nexmoe-background">
@@ -238,17 +240,14 @@
         
     </article>
     <!-- 搜索遮罩框 -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-
 <style>
     #searchModal {
-        min-height: 500px;
         width: 100%;
         background-color: #fafafa;
-        margin: auto;
         overflow-y: auto;
         border-radius: 2px;
         will-change: top, opacity;
+        text-align: center;
     }
 
     #searchInput {
@@ -264,13 +263,17 @@
         padding: 0;
     }
 
-    #searchModal .search-header .title {
+    #searchModal .title {
         padding: 0;
         outline: none;
         height: 3rem;
         width: 100%;
         font-size: 2rem;
         color: #333;
+    }
+
+    #searchModal i {
+        font-size: 2rem !important;
     }
 
     #searchResult {
@@ -294,25 +297,19 @@
     }
 
     .search-result-list .search-keyword {
-        margin: 0 2px;
-        padding: 1px 5px 1px 4px;
-        border-radius: 2px;
         background-color: #f2f2f2;
         color: #e96900;
-        font-size: 0.9rem;
         white-space: pre-wrap;
     }
 </style>
 
 <div id="searchModal">
     <div class="modal-content">
-        <div class="search-header">
-            <span class="title"><i class="nexmoefont icon-search1"></i>&nbsp搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
-        </div>
-        <div id="searchResult"></div>
+        <span class="title"><i class="nexmoefont icon-search1"></i>搜索</span>
+        <input type="search" id="searchInput" name="inp" placeholder="请输入搜索的关键字" class="search-input">
     </div>
 </div>
+<div id="searchResult"></div>
 <script>
     var searchFunc = function (path, search_id, content_id) {
         'use strict';
@@ -366,7 +363,7 @@
                         }
                         // show search results
                         if (isMatch) {
-                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data.title.trim() + "</a>";
                             var content = data.content.trim().replace(/<[^>]+>/g, "");
                             if (first_occur >= 0) {
                                 // cut out 100 characters
@@ -408,21 +405,20 @@
 </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="https://lib.baomitu.com/mdui/0.4.3/js/mdui.min.js"></script>
  
-    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
 
  
-    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+    <script src="https://lib.baomitu.com/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1569385791655"></script>
-<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+<script src="/js/app.js?v=1569407035528"></script>
+<script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
@@ -459,7 +455,7 @@
     })();
 </script>
 
-  
+
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
