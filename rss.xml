@@ -6,7 +6,7 @@
   <link href="/rss.xml" rel="self"/>
   
   <link href="https://xciyang.github.io/"/>
-  <updated>2019-09-25T04:28:19.706Z</updated>
+  <updated>2019-09-29T02:06:13.830Z</updated>
   <id>https://xciyang.github.io/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>比赛 - AtCoder Beginner Contest 142</title>
+    <link href="https://xciyang.github.io/2019-09/29-atbeginner142/"/>
+    <id>https://xciyang.github.io/2019-09/29-atbeginner142/</id>
+    <published>2019-09-29T00:10:39.000Z</published>
+    <updated>2019-09-29T02:06:13.830Z</updated>
+    
+    <content type="html"><![CDATA[<p>【AtCoder Beginner Contest 142】<br>比赛链接: <a href="https://atcoder.jp/contests/abc142" target="_blank" rel="noopener">https://atcoder.jp/contests/abc142</a></p><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这次比赛略水，真是上分的好比赛。作为仅有300+rating的我直接安排，AK比赛后直接上到900+。</p><p>比赛中有几个题对我还是比较有意义的。</p><a id="more"></a><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><h4 id="A"><a href="#A" class="headerlink" title="A"></a>A</h4><p>题意翻译：</p><p>给出一个数$N$，从$1~N$中随机抽取，求抽到奇数的概率。</p><p>这题还挺简单，再看数据范围$1 &lt;= N &lt;= 100$，太水了！</p><h4 id="B"><a href="#B" class="headerlink" title="B"></a>B</h4><p>题意翻译：</p><p>第一行给出一个数$N$代表一个数列的长度，再给出$K$。第二行给出数列各项的值。求数列中大于等于$K$的个数。</p><p>数据范围$1 &lt;= N &lt;= 10^5$，也很水，入门难度。</p><h4 id="C"><a href="#C" class="headerlink" title="C"></a>C</h4><p>题意翻译：</p><p>一个教室中有$N$名同学，给出每个同学到达教室时教室中的人$A_i$（包括自己），求出到达顺序。</p><p>数据范围$1 &lt;= N &lt;= 10^5$，正常范围。</p><p>直接上排序，按$A_i$从小到大排序，最后依次输出编号。</p><h4 id="D"><a href="#D" class="headerlink" title="D"></a>D</h4><p>这题看了好长时间才看懂题目。</p><p>题意翻译：</p><p>给出两个数$A$、$B$，求出两个数的共同约数集合的一个子集。这个子集满足各元素两两直接都互质，求出子集最多包含多少元素。</p><p>数据范围$1 &lt;= A,B &lt;= 10^{12}$。</p><p>看起来好像有点麻烦，但实际上我们先求出$C=gcd(A, B)$，那么$C$的约数就是两个数的共同约数。然后再分解质因数即可，题目转换为求一个较大的数的质因数个数。</p><p>核心代码：</p><pre><code class="lang-cpp">long long gcd(long long a, long long b) {    return b ? gcd(b, a % b) : a;}</code></pre><pre><code class="lang-cpp">long long ans= 1;for(long long i= 2; i * i &lt;= m; i++) {    if(m % i == 0) {        ++ans;        while(m % i == 0) m/= i;    }}if(m &gt; 1) ++ans;</code></pre><h4 id="E"><a href="#E" class="headerlink" title="E"></a>E</h4><p>题目到这已经不再那么水了。</p><p>题意翻译：</p><p>给出一个数$N$代表多少上锁的盒子，再给出一个数$M$代表有多少钥匙。每个钥匙需要花$A_i$来购买，可以打开$B_i$个盒子，分别为$C_{ij}$，一个钥匙可以多次使用。问打开所有盒子的最小花费，若无解输出-1。</p><p>数据范围$1 &lt;= N &lt;= 12$、$1 &lt;= M &lt;= 10^3$、$1 &lt;= A_i &lt;= 10^5$</p><p>一开始没看数据范围我以为是舞蹈链，差点自闭了。然后再看数据范围，$N$比较小，于是想到状压DP。</p><p>设置一个数组$F[1 &lt;&lt; N]$表示打开某些盒子的最小花费。</p><p>先枚举$M$个钥匙钥匙，对将钥匙能打开的盒子二进制压缩到数$X$，然后取最小值。</p><p>核心代码：</p><pre><code class="lang-cpp">int getx(int x) {    int res= 0;    for(int i= 1; i &lt;= b[x]; i++) res+= (1 &lt;&lt; (c[x][i] - 1));    return res;}</code></pre><p>然后再写转移方程，由于我比较傻，所以一开始写了$F[i | j] = min(F[i] + F[j])$，结果反而枚举的是$x = i | j$。看起来复杂度$2^{3N}$，然后确实TLE了。</p><p>然后我想把方程改为$F[i] = min(F[i], f[j] + f[i ^ j])$，现在想想好像枚举i,j就可以了，那样复杂度$2^{2N}$好像能过，可惜我比赛时没想这种方法。</p><p>我在比赛时用了更麻烦的方法，因为我想起了之前一道题，在初始化时枚举二进制所有子集全部更新。这样预处理复杂度最大$M * 2^{N}$能过，然后再DP。我就来Blog上擅用搜索引擎，搜到了<a href="https://xciyang.github.io/2019-04/22-luoguat2657/">AT2657 - Mole and Abandoned Mine</a>。</p><p>然后非常套路的预处理出每个数二进制下1的个数。</p><p>核心代码：</p><pre><code class="lang-cpp">int getg(int x) {    int res= 0;    while(x) ++res, x-= (x &amp; -x);    return res;}</code></pre><pre><code class="lang-cpp">int maxx= (1 &lt;&lt; n);for(int i= 0; i &lt; maxx; i++) w[i]= getg(i);memset(f, 0x3f, sizeof(f));for(int i= 1, j; i &lt;= m; i++) {    j= getx(i);    for(int k= j; k; k= (k - 1) &amp; j) f[k]= min(f[k], a[i]);}for(int i= 1; i &lt;= n; i++) {    for(int j= 0; j &lt; maxx; j++) {        if(w[j] != i) continue;        for(int k= 0; k &lt; maxx; k++) {            if(j == k || w[k] &gt;= i || (k &amp; (~j))) continue;            f[j]= min(f[j], f[k] + f[k ^ j]);        }    }}</code></pre><h4 id="F"><a href="#F" class="headerlink" title="F"></a>F</h4><p>终于到最后一题，比较激动。题目还挺复杂的。</p><p>题意翻译：</p><p>给出一个图G，有$N$个点，$M$条单向边，无自环和重边。求出一个子图包含$N’$个点，$M’$为这些点构成的边，满足所有点的入度和出度都为1。如果有多个子图，输出任意一个。输出$N’$和包含的点。无解输出-1。</p><p>数据范围$1 &lt;= N &lt;= 1000$、$1 &lt;= M &lt;= 2000$</p><p>感觉有点难，但毕竟SpecialJudge可以一试，可能会有简单做法。</p><p>先手膜一些图，发现暴力DFS可做。虽然是类似ACM的赛制，但剩余时间不多了，先打个试试吧。</p><p>再膜一下第三组数据，发现只要有环就一定有解。</p><p>因为入度出度为一，可以把这个图称为单环。我们从每个点DFS，让途中经过的点的所有能到达的点入度+1。这样DFS时，如果一个点入度已经大于1，那么从起始点开始一定不能与当前状态构成单环。所以我们每次DFS一个能到达的入度为1的点。点。再记录我们已经走过的点，如果又一次到达某点，那么一定形成了单环。如果某次更新时，途中走过的点的入度&gt;1了，那么这个点也不能与当前状态构成单环。</p><p>解释不清楚，核心代码：</p><pre><code class="lang-cpp">int n, m, tmpx, tmpy, r[1005], st[1005], ans[1005];vector&lt; int &gt; edg[1005];int dfs(int nown) {    if(st[nown]) return 1;    st[nown]= 1;    for(int i= 0; i &lt; edg[nown].size(); i++) {        ++r[edg[nown][i]];        if(r[edg[nown][i]] &gt; 1 &amp;&amp; st[edg[nown][i]]) {            for(int j= 0; j &lt;= i; j++) --r[edg[nown][j]];            st[nown]= 0;            return 0;        }    }    for(int i= 0; i &lt; edg[nown].size(); i++) {        if(r[edg[nown][i]] == 1 &amp;&amp; dfs(edg[nown][i])) {            ans[++ans[0]]= nown;            return 1;        }    }    for(int i= 0; i &lt; edg[nown].size(); i++) --r[edg[nown][i]];    st[nown]= 0;    return 0;}</code></pre><p>我一开始的做法是，枚举每个点为起始点跑一次DFS，直到找出答案，然后就TLE了几个点，但是AC了大部分就还能救。</p><p>既然DFS都是乱搞，那就再加一个随机化。本题时限2s，那么不到1.8s我们就继续DFS。</p><p>然后复杂度我也不太会证明，因为DFS复杂度也非常玄学。大概是O(能过)。最后输出答案我还sort了一遍，因为样例是排序好的。</p><p>核心代码：</p><pre><code class="lang-cpp">srand(time(0));while(clock() &lt; CLOCKS_PER_SEC * 1.8)    if(dfs(rand() % n + 1)) break;</code></pre><h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>仍犯了很多错误，A题一开始竟把奇数看成质数，D题枚举因数没开long long。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【AtCoder Beginner Contest 142】&lt;br&gt;比赛链接: &lt;a href=&quot;https://atcoder.jp/contests/abc142&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://atcoder.jp/contests/abc142&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;这次比赛略水，真是上分的好比赛。作为仅有300+rating的我直接安排，AK比赛后直接上到900+。&lt;/p&gt;
+&lt;p&gt;比赛中有几个题对我还是比较有意义的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="题解" scheme="https://xciyang.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+      <category term="题解" scheme="https://xciyang.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+      <category term="比赛" scheme="https://xciyang.github.io/tags/%E6%AF%94%E8%B5%9B/"/>
+    
+      <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
+    
+      <category term="状压DP" scheme="https://xciyang.github.io/tags/%E7%8A%B6%E5%8E%8BDP/"/>
+    
+      <category term="动态规划" scheme="https://xciyang.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+      <category term="随机化搜索" scheme="https://xciyang.github.io/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>NOIP2001 - 统计单词个数</title>
@@ -214,9 +248,9 @@
     
       <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
     
-      <category term="左偏树" scheme="https://xciyang.github.io/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/"/>
-    
       <category term="并查集" scheme="https://xciyang.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
+    
+      <category term="左偏树" scheme="https://xciyang.github.io/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/"/>
     
   </entry>
   
@@ -507,9 +541,9 @@
     
       <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
     
-      <category term="搜索" scheme="https://xciyang.github.io/tags/%E6%90%9C%E7%B4%A2/"/>
-    
       <category term="随机化搜索" scheme="https://xciyang.github.io/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/"/>
+    
+      <category term="搜索" scheme="https://xciyang.github.io/tags/%E6%90%9C%E7%B4%A2/"/>
     
   </entry>
   
@@ -569,37 +603,6 @@
       <category term="动态规划" scheme="https://xciyang.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
       <category term="搜索" scheme="https://xciyang.github.io/tags/%E6%90%9C%E7%B4%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AT2657 - Mole and Abandoned Mine</title>
-    <link href="https://xciyang.github.io/2019-04/22-luoguat2657/"/>
-    <id>https://xciyang.github.io/2019-04/22-luoguat2657/</id>
-    <published>2019-04-22T12:48:37.000Z</published>
-    <updated>2019-08-15T11:54:34.289Z</updated>
-    
-    <content type="html"><![CDATA[<p>【AT2657】【LuoguAT2657】Mole and Abandoned Mine<br>题目链接1: <a href="https://www.luogu.org/problemnew/show/AT2657" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/AT2657</a><br>题目链接2: <a href="https://www.luogu.org/jump/atcoder/2657" target="_blank" rel="noopener">https://www.luogu.org/jump/atcoder/2657</a></p><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>时隔一月, 我又回来了写题解了. </p><p>以后可能颓的时间会变少. 现在文化课好像更重要些, 还是要专心学习吧. </p><p>本题是一个状压练手好题.</p><a id="more"></a><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我再大致翻译描述一下题目, 我一开始因为没看样例就理解错了.</p><p>本题给出N点M边的无向图, 然后要割掉其中一些边, 使从1到N只有一条不经过重复顶点的边, 求删掉的边的边权和最小.</p><blockquote><p>重点是这条路径不需要经过所有点</p></blockquote><p>看数据范围, 只可能是状压或者暴力搜索, 然而难度说明只能是状压了.</p><p>很容易想到, 求删边边权最少, 相当于求留下边的边权和最大.</p><p>然而我没有想到具体怎么求, 搜到了一个<a href="https://www.cnblogs.com/lcxer/p/10719030.html" target="_blank" rel="noopener">大佬的题解</a>, 最终的图还有一个重要性质:</p><blockquote><p>每个点最多只与保留下来的那条路径上的一个点有边相连</p></blockquote><p>所以我们先预处理出所有的联通块中的边权和.</p><p>然后进行DP, 二维数组, 第一维为处理了哪些点, 第二维为到达哪个点(当前终点).</p><p>有两种转移, 一种是新处理一个点, 一种是将一个联通块与当前终点相连.</p><p>我从这道题还学习了一个新的二进制性质.枚举一个数二进制下的所有子集:</p><pre><code>int num = 59; // 某个数for(int i= num; i; i= (i - 1) &amp; num) {    // i 为 num 的一个二进制子集}</code></pre><p>比如（0101）的子集为（0101）,（0100）,（0001）,（0000）.</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;string.h&gt;using namespace std;int n, m, nn, edge[16][16], tmpx, tmpy, tmpz, sums;int blocks[1 &lt;&lt; 16], len, f[1 &lt;&lt; 16][16];int main() {    cin &gt;&gt; n &gt;&gt; m;    nn= 1 &lt;&lt; n;    for(int i= 1; i &lt;= m; i++) {        cin &gt;&gt; tmpx &gt;&gt; tmpy &gt;&gt; tmpz;        sums+= edge[tmpx][tmpy]= edge[tmpy][tmpx]= tmpz;    }    for(int i= 0; i &lt; nn; i++) {        for(int j= 1; j &lt;= n; j++) {            if(!(i &amp; (1 &lt;&lt; (j - 1))) &amp;&amp; !(blocks[i | (1 &lt;&lt; (j - 1))])) {                blocks[i | (1 &lt;&lt; (j - 1))]= blocks[i];                for(int k= 1; k &lt;= n; k++)                    if((i &amp; (1 &lt;&lt; (k - 1)))) blocks[i | (1 &lt;&lt; (j - 1))]+= edge[j][k];            }        }    }    memset(f, -1, sizeof(f));    f[1][1]= 0;    for(int i= 0; i &lt; nn; i++) {        for(int j= 1; j &lt;= n; j++) {            if(f[i][j] != -1 &amp;&amp; (i &amp; (1 &lt;&lt; (j - 1)))) {                for(int k= 1; k &lt;= n; k++)                    if(!(i &amp; (1 &lt;&lt; (k - 1))) &amp;&amp; edge[j][k]) f[i | (1 &lt;&lt; (k - 1))][k]= max(f[i | (1 &lt;&lt; (k - 1))][k], f[i][j] + edge[j][k]);                tmpx= ((nn - 1) ^ i) | (1 &lt;&lt; (j - 1));                for(int k= tmpx; k; k= (k - 1) &amp; tmpx)                    if(k &amp; (1 &lt;&lt; (j - 1))) f[i | k][j]= max(f[i | k][j], f[i][j] + blocks[k]);            }        }    }    cout &lt;&lt; sums - f[nn - 1][n] &lt;&lt; endl;    return 0;}</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;【AT2657】【LuoguAT2657】Mole and Abandoned Mine&lt;br&gt;题目链接1: &lt;a href=&quot;https://www.luogu.org/problemnew/show/AT2657&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.luogu.org/problemnew/show/AT2657&lt;/a&gt;&lt;br&gt;题目链接2: &lt;a href=&quot;https://www.luogu.org/jump/atcoder/2657&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.luogu.org/jump/atcoder/2657&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h3&gt;&lt;p&gt;时隔一月, 我又回来了写题解了. &lt;/p&gt;
-&lt;p&gt;以后可能颓的时间会变少. 现在文化课好像更重要些, 还是要专心学习吧. &lt;/p&gt;
-&lt;p&gt;本题是一个状压练手好题.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="题解" scheme="https://xciyang.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-      <category term="题解" scheme="https://xciyang.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-      <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
-    
-      <category term="动态规划" scheme="https://xciyang.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-      <category term="状压DP" scheme="https://xciyang.github.io/tags/%E7%8A%B6%E5%8E%8BDP/"/>
     
   </entry>
   
