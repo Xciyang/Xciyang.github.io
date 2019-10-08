@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1570515599047">
+  <link rel="stylesheet" href="/css/style.css?v=1570516079945">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -359,7 +359,7 @@ signed main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1570515599056"></script>
+<script src="/js/app.js?v=1570516079955"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 
@@ -397,6 +397,22 @@ signed main() {
     })();
 </script>
 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 
