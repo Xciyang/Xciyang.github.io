@@ -20,7 +20,7 @@
 <meta property="og:description" content="【LuoguP4205】【BZOJ1501】【NOI2005】智慧珠游戏题目链接1: https://www.luogu.org/problemnew/show/P4205题目链接2: https://www.lydsy.com/JudgeOnline/problem.php?id=1501 引言最近忙于各种事, 又有十天没写题解了, 好像这十天又变颓废了好多 实在学习不下去很酷很炫的算法, 特意">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.lydsy.com/JudgeOnline/images/1501_1.jpg">
-<meta property="og:updated_time" content="2019-08-15T11:56:40.604Z">
+<meta property="og:updated_time" content="2019-11-07T09:07:29.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NOI2005 - 智慧珠游戏">
 <meta name="twitter:description" content="【LuoguP4205】【BZOJ1501】【NOI2005】智慧珠游戏题目链接1: https://www.luogu.org/problemnew/show/P4205题目链接2: https://www.lydsy.com/JudgeOnline/problem.php?id=1501 引言最近忙于各种事, 又有十天没写题解了, 好像这十天又变颓废了好多 实在学习不下去很酷很炫的算法, 特意">
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385242">
+  <link rel="stylesheet" href="/css/style.css?v=1573122200140">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -252,7 +252,7 @@
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年03月17日</a>
     <a><i class="nexmoefont icon-areachart"></i>5.5k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 33 分钟</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 34 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -261,45 +261,55 @@
     
   </div>
   <article id="article">
-    <p>【LuoguP4205】【BZOJ1501】【NOI2005】智慧珠游戏<br>题目链接1: <a href="https://www.luogu.org/problemnew/show/P4205" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P4205</a><br>题目链接2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1501" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=1501</a></p>
-<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>最近忙于各种事, 又有十天没写题解了, 好像这十天又变颓废了好多</p>
-<p>实在学习不下去很酷很炫的算法, 特意找搜索模拟等类题, 然后看到了这道题</p>
-<p>做题的时候教练还在说:”不要看不起搜索…”</p>
-<p>然后因为看我做这道题, 旁边的大佬还作了一首诗</p>
-<pre><code>生命诚可贵
-搜索价更高
-若为暴力故
-二者皆可抛
+    <p>&#x3010;LuoguP4205&#x3011;&#x3010;BZOJ1501&#x3011;&#x3010;NOI2005&#x3011;&#x667A;&#x6167;&#x73E0;&#x6E38;&#x620F;<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;1: <a href="https://www.luogu.org/problemnew/show/P4205" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P4205</a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1501" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=1501</a></p>
+<h3><span id="&#x5F15;&#x8A00;">&#x5F15;&#x8A00;</span><a href="#&#x5F15;&#x8A00;" class="header-anchor"> </a></h3><p>&#x6700;&#x8FD1;&#x5FD9;&#x4E8E;&#x5404;&#x79CD;&#x4E8B;, &#x53C8;&#x6709;&#x5341;&#x5929;&#x6CA1;&#x5199;&#x9898;&#x89E3;&#x4E86;, &#x597D;&#x50CF;&#x8FD9;&#x5341;&#x5929;&#x53C8;&#x53D8;&#x9893;&#x5E9F;&#x4E86;&#x597D;&#x591A;</p>
+<p>&#x5B9E;&#x5728;&#x5B66;&#x4E60;&#x4E0D;&#x4E0B;&#x53BB;&#x5F88;&#x9177;&#x5F88;&#x70AB;&#x7684;&#x7B97;&#x6CD5;, &#x7279;&#x610F;&#x627E;&#x641C;&#x7D22;&#x6A21;&#x62DF;&#x7B49;&#x7C7B;&#x9898;, &#x7136;&#x540E;&#x770B;&#x5230;&#x4E86;&#x8FD9;&#x9053;&#x9898;</p>
+<p>&#x505A;&#x9898;&#x7684;&#x65F6;&#x5019;&#x6559;&#x7EC3;&#x8FD8;&#x5728;&#x8BF4;:&#x201D;&#x4E0D;&#x8981;&#x770B;&#x4E0D;&#x8D77;&#x641C;&#x7D22;&#x2026;&#x201D;</p>
+<p>&#x7136;&#x540E;&#x56E0;&#x4E3A;&#x770B;&#x6211;&#x505A;&#x8FD9;&#x9053;&#x9898;, &#x65C1;&#x8FB9;&#x7684;&#x5927;&#x4F6C;&#x8FD8;&#x4F5C;&#x4E86;&#x4E00;&#x9996;&#x8BD7;</p>
+<pre><code>&#x751F;&#x547D;&#x8BDA;&#x53EF;&#x8D35;
+&#x641C;&#x7D22;&#x4EF7;&#x66F4;&#x9AD8;
+&#x82E5;&#x4E3A;&#x66B4;&#x529B;&#x6545;
+&#x4E8C;&#x8005;&#x7686;&#x53EF;&#x629B;
     --Steve_Braveman
 </code></pre><a id="more"></a>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我就直接把题目描述的图搬过来了</p>
-<p><img src="https://www.lydsy.com/JudgeOnline/images/1501_1.jpg" alt="题目描述"></p>
-<p>一眼看上去就直接劝退, 当然其实也没那么严重, 好像还是可做的</p>
-<p>具体分析一下这道题, 所有的零件都允许旋转和翻转, 那么每种零件都有多种放置的方法</p>
-<p>所以我们就可以画一下不同的方法, 可以在草稿纸上或者上画图</p>
-<p>为了区别什么是不同的摆放方法, 就要确定搜索的方式, 我们枚举每一个点, 如果这个点当前没有被覆盖过, 那么我们就可以选择当前剩余的零件进行判断.</p>
-<p>我选择零件最左上角的那个珠子来填当前这个点, 因此有这些种不同的摆放方式</p>
-<pre><code>A: 4种
-B: 2种
-C: 8种
-D: 1种
-E: 4种
-F: 8种
-G: 4种
-H: 8种
-I: 8种
-J: 1种
-K: 4种
-L: 8种
-</code></pre><p>加起来的确有很多种, 然后就开始写DFS了.</p>
-<p>我写的还是比较暴力的, 暴力模拟, 只做了一些小的技巧.</p>
-<p>在某次DFS种, 第一次判断某条件时就把他以一个变量存起来, 起一个较为直观的变量名, 然后等下次判断就可以直接判断这个变量了.</p>
-<p>写的时候得有耐心, 确实是有想死的感觉.</p>
-<p>写完后, 你还是AC不了这道题, 会有一个点TLE. </p>
-<p>这个点是No solution…我先选择了卡时限, 到0.95s之后就输出无解</p>
-<p>但是事实证明不可行, 因为clock函数效率不高, 许多点的耗时飙升, 并导致另一个本来有解的却输出了无解…</p>
-<p>然后就考虑卡DFS次数, 我在本地试了一下, 10000000就不会错判无解了, 然后提交AC了</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>注释中A1代表A零件的第1种摆放方法, 以此类推</p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x5206;&#x6790;">&#x5206;&#x6790;</a></li>
+<li><a href="#&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x5206;&#x6790;">&#x5206;&#x6790;</span><a href="#&#x5206;&#x6790;" class="header-anchor"> </a></h3><p>&#x6211;&#x5C31;&#x76F4;&#x63A5;&#x628A;&#x9898;&#x76EE;&#x63CF;&#x8FF0;&#x7684;&#x56FE;&#x642C;&#x8FC7;&#x6765;&#x4E86;</p>
+<p><img src="https://www.lydsy.com/JudgeOnline/images/1501_1.jpg" alt="&#x9898;&#x76EE;&#x63CF;&#x8FF0;"></p>
+<p>&#x4E00;&#x773C;&#x770B;&#x4E0A;&#x53BB;&#x5C31;&#x76F4;&#x63A5;&#x529D;&#x9000;, &#x5F53;&#x7136;&#x5176;&#x5B9E;&#x4E5F;&#x6CA1;&#x90A3;&#x4E48;&#x4E25;&#x91CD;, &#x597D;&#x50CF;&#x8FD8;&#x662F;&#x53EF;&#x505A;&#x7684;</p>
+<p>&#x5177;&#x4F53;&#x5206;&#x6790;&#x4E00;&#x4E0B;&#x8FD9;&#x9053;&#x9898;, &#x6240;&#x6709;&#x7684;&#x96F6;&#x4EF6;&#x90FD;&#x5141;&#x8BB8;&#x65CB;&#x8F6C;&#x548C;&#x7FFB;&#x8F6C;, &#x90A3;&#x4E48;&#x6BCF;&#x79CD;&#x96F6;&#x4EF6;&#x90FD;&#x6709;&#x591A;&#x79CD;&#x653E;&#x7F6E;&#x7684;&#x65B9;&#x6CD5;</p>
+<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x753B;&#x4E00;&#x4E0B;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x6CD5;, &#x53EF;&#x4EE5;&#x5728;&#x8349;&#x7A3F;&#x7EB8;&#x4E0A;&#x6216;&#x8005;&#x4E0A;&#x753B;&#x56FE;</p>
+<p>&#x4E3A;&#x4E86;&#x533A;&#x522B;&#x4EC0;&#x4E48;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x6446;&#x653E;&#x65B9;&#x6CD5;, &#x5C31;&#x8981;&#x786E;&#x5B9A;&#x641C;&#x7D22;&#x7684;&#x65B9;&#x5F0F;, &#x6211;&#x4EEC;&#x679A;&#x4E3E;&#x6BCF;&#x4E00;&#x4E2A;&#x70B9;, &#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x70B9;&#x5F53;&#x524D;&#x6CA1;&#x6709;&#x88AB;&#x8986;&#x76D6;&#x8FC7;, &#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x5F53;&#x524D;&#x5269;&#x4F59;&#x7684;&#x96F6;&#x4EF6;&#x8FDB;&#x884C;&#x5224;&#x65AD;.</p>
+<p>&#x6211;&#x9009;&#x62E9;&#x96F6;&#x4EF6;&#x6700;&#x5DE6;&#x4E0A;&#x89D2;&#x7684;&#x90A3;&#x4E2A;&#x73E0;&#x5B50;&#x6765;&#x586B;&#x5F53;&#x524D;&#x8FD9;&#x4E2A;&#x70B9;, &#x56E0;&#x6B64;&#x6709;&#x8FD9;&#x4E9B;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x6446;&#x653E;&#x65B9;&#x5F0F;</p>
+<pre><code>A: 4&#x79CD;
+B: 2&#x79CD;
+C: 8&#x79CD;
+D: 1&#x79CD;
+E: 4&#x79CD;
+F: 8&#x79CD;
+G: 4&#x79CD;
+H: 8&#x79CD;
+I: 8&#x79CD;
+J: 1&#x79CD;
+K: 4&#x79CD;
+L: 8&#x79CD;
+</code></pre><p>&#x52A0;&#x8D77;&#x6765;&#x7684;&#x786E;&#x6709;&#x5F88;&#x591A;&#x79CD;, &#x7136;&#x540E;&#x5C31;&#x5F00;&#x59CB;&#x5199;DFS&#x4E86;.</p>
+<p>&#x6211;&#x5199;&#x7684;&#x8FD8;&#x662F;&#x6BD4;&#x8F83;&#x66B4;&#x529B;&#x7684;, &#x66B4;&#x529B;&#x6A21;&#x62DF;, &#x53EA;&#x505A;&#x4E86;&#x4E00;&#x4E9B;&#x5C0F;&#x7684;&#x6280;&#x5DE7;.</p>
+<p>&#x5728;&#x67D0;&#x6B21;DFS&#x79CD;, &#x7B2C;&#x4E00;&#x6B21;&#x5224;&#x65AD;&#x67D0;&#x6761;&#x4EF6;&#x65F6;&#x5C31;&#x628A;&#x4ED6;&#x4EE5;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x5B58;&#x8D77;&#x6765;, &#x8D77;&#x4E00;&#x4E2A;&#x8F83;&#x4E3A;&#x76F4;&#x89C2;&#x7684;&#x53D8;&#x91CF;&#x540D;, &#x7136;&#x540E;&#x7B49;&#x4E0B;&#x6B21;&#x5224;&#x65AD;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5224;&#x65AD;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x4E86;.</p>
+<p>&#x5199;&#x7684;&#x65F6;&#x5019;&#x5F97;&#x6709;&#x8010;&#x5FC3;, &#x786E;&#x5B9E;&#x662F;&#x6709;&#x60F3;&#x6B7B;&#x7684;&#x611F;&#x89C9;.</p>
+<p>&#x5199;&#x5B8C;&#x540E;, &#x4F60;&#x8FD8;&#x662F;AC&#x4E0D;&#x4E86;&#x8FD9;&#x9053;&#x9898;, &#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x70B9;TLE. </p>
+<p>&#x8FD9;&#x4E2A;&#x70B9;&#x662F;No solution&#x2026;&#x6211;&#x5148;&#x9009;&#x62E9;&#x4E86;&#x5361;&#x65F6;&#x9650;, &#x5230;0.95s&#x4E4B;&#x540E;&#x5C31;&#x8F93;&#x51FA;&#x65E0;&#x89E3;</p>
+<p>&#x4F46;&#x662F;&#x4E8B;&#x5B9E;&#x8BC1;&#x660E;&#x4E0D;&#x53EF;&#x884C;, &#x56E0;&#x4E3A;clock&#x51FD;&#x6570;&#x6548;&#x7387;&#x4E0D;&#x9AD8;, &#x8BB8;&#x591A;&#x70B9;&#x7684;&#x8017;&#x65F6;&#x98D9;&#x5347;, &#x5E76;&#x5BFC;&#x81F4;&#x53E6;&#x4E00;&#x4E2A;&#x672C;&#x6765;&#x6709;&#x89E3;&#x7684;&#x5374;&#x8F93;&#x51FA;&#x4E86;&#x65E0;&#x89E3;&#x2026;</p>
+<p>&#x7136;&#x540E;&#x5C31;&#x8003;&#x8651;&#x5361;DFS&#x6B21;&#x6570;, &#x6211;&#x5728;&#x672C;&#x5730;&#x8BD5;&#x4E86;&#x4E00;&#x4E0B;, 10000000&#x5C31;&#x4E0D;&#x4F1A;&#x9519;&#x5224;&#x65E0;&#x89E3;&#x4E86;, &#x7136;&#x540E;&#x63D0;&#x4EA4;AC&#x4E86;</p>
+<h3><span id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</span><a href="#&#x4EE3;&#x7801;" class="header-anchor"> </a></h3><p>&#x6CE8;&#x91CA;&#x4E2D;A1&#x4EE3;&#x8868;A&#x96F6;&#x4EF6;&#x7684;&#x7B2C;1&#x79CD;&#x6446;&#x653E;&#x65B9;&#x6CD5;, &#x4EE5;&#x6B64;&#x7C7B;&#x63A8;</p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;time.h&gt;
@@ -314,447 +324,447 @@ int dfs(int nowx, int nowy) {
     if(++cnt &gt; 10000000) return false;
     if(nowx == 11) return true;
     if(nowy == nowx + 1) return dfs(nowx + 1, 1);
-    if(inits[nowx][nowy] != &#39;.&#39;) return dfs(nowx, nowy + 1);
-    int right= (getlimit(nowx, nowy + 1) &amp;&amp; inits[nowx][nowy + 1] == &#39;.&#39;);
-    int rdown= (getlimit(nowx + 1, nowy + 1) &amp;&amp; inits[nowx + 1][nowy + 1] == &#39;.&#39;);
-    int down= (getlimit(nowx + 1, nowy) &amp;&amp; inits[nowx + 1][nowy] == &#39;.&#39;);
-    int dleft= (getlimit(nowx + 1, nowy - 1) &amp;&amp; inits[nowx + 1][nowy - 1] == &#39;.&#39;);
-    if(!chose[&#39;A&#39;]) {
-        chose[&#39;A&#39;]= true, inits[nowx][nowy]= &#39;A&#39;;
+    if(inits[nowx][nowy] != &apos;.&apos;) return dfs(nowx, nowy + 1);
+    int right= (getlimit(nowx, nowy + 1) &amp;&amp; inits[nowx][nowy + 1] == &apos;.&apos;);
+    int rdown= (getlimit(nowx + 1, nowy + 1) &amp;&amp; inits[nowx + 1][nowy + 1] == &apos;.&apos;);
+    int down= (getlimit(nowx + 1, nowy) &amp;&amp; inits[nowx + 1][nowy] == &apos;.&apos;);
+    int dleft= (getlimit(nowx + 1, nowy - 1) &amp;&amp; inits[nowx + 1][nowy - 1] == &apos;.&apos;);
+    if(!chose[&apos;A&apos;]) {
+        chose[&apos;A&apos;]= true, inits[nowx][nowy]= &apos;A&apos;;
         // A1
         if(right &amp;&amp; rdown) {
-            inits[nowx][nowy + 1]= &#39;A&#39;, inits[nowx + 1][nowy + 1]= &#39;A&#39;;
+            inits[nowx][nowy + 1]= &apos;A&apos;, inits[nowx + 1][nowy + 1]= &apos;A&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
         }
         // A2
         if(down &amp;&amp; dleft) {
-            inits[nowx + 1][nowy]= &#39;A&#39;, inits[nowx + 1][nowy - 1]= &#39;A&#39;;
+            inits[nowx + 1][nowy]= &apos;A&apos;, inits[nowx + 1][nowy - 1]= &apos;A&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;;
         }
         // A3
         if(down &amp;&amp; rdown) {
-            inits[nowx + 1][nowy]= &#39;A&#39;, inits[nowx + 1][nowy + 1]= &#39;A&#39;;
+            inits[nowx + 1][nowy]= &apos;A&apos;, inits[nowx + 1][nowy + 1]= &apos;A&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
         }
         // A4
         if(right &amp;&amp; down) {
-            inits[nowx][nowy + 1]= &#39;A&#39;, inits[nowx + 1][nowy]= &#39;A&#39;;
+            inits[nowx][nowy + 1]= &apos;A&apos;, inits[nowx + 1][nowy]= &apos;A&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;;
         }
-        chose[&#39;A&#39;]= false;
+        chose[&apos;A&apos;]= false;
     }
-    int ddown= (getlimit(nowx + 2, nowy) &amp;&amp; inits[nowx + 2][nowy] == &#39;.&#39;);
-    int dddown= (getlimit(nowx + 3, nowy) &amp;&amp; inits[nowx + 3][nowy] == &#39;.&#39;);
-    int rright= (getlimit(nowx, nowy + 2) &amp;&amp; inits[nowx][nowy + 2] == &#39;.&#39;);
-    int rrright= (getlimit(nowx, nowy + 3) &amp;&amp; inits[nowx][nowy + 3] == &#39;.&#39;);
-    if(!chose[&#39;B&#39;]) {
-        chose[&#39;B&#39;]= true, inits[nowx][nowy]= &#39;B&#39;;
+    int ddown= (getlimit(nowx + 2, nowy) &amp;&amp; inits[nowx + 2][nowy] == &apos;.&apos;);
+    int dddown= (getlimit(nowx + 3, nowy) &amp;&amp; inits[nowx + 3][nowy] == &apos;.&apos;);
+    int rright= (getlimit(nowx, nowy + 2) &amp;&amp; inits[nowx][nowy + 2] == &apos;.&apos;);
+    int rrright= (getlimit(nowx, nowy + 3) &amp;&amp; inits[nowx][nowy + 3] == &apos;.&apos;);
+    if(!chose[&apos;B&apos;]) {
+        chose[&apos;B&apos;]= true, inits[nowx][nowy]= &apos;B&apos;;
         // B1
         if(down &amp;&amp; ddown &amp;&amp; dddown) {
-            inits[nowx + 1][nowy]= &#39;B&#39;, inits[nowx + 2][nowy]= &#39;B&#39;, inits[nowx + 3][nowy]= &#39;B&#39;;
+            inits[nowx + 1][nowy]= &apos;B&apos;, inits[nowx + 2][nowy]= &apos;B&apos;, inits[nowx + 3][nowy]= &apos;B&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;;
         }
         // B2
         if(right &amp;&amp; rright &amp;&amp; rrright) {
-            inits[nowx][nowy + 1]= &#39;B&#39;, inits[nowx][nowy + 2]= &#39;B&#39;, inits[nowx][nowy + 3]= &#39;B&#39;;
+            inits[nowx][nowy + 1]= &apos;B&apos;, inits[nowx][nowy + 2]= &apos;B&apos;, inits[nowx][nowy + 3]= &apos;B&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 3]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 3]= &apos;.&apos;;
         }
-        chose[&#39;B&#39;]= false;
+        chose[&apos;B&apos;]= false;
     }
-    int rddown= (getlimit(nowx + 2, nowy + 1) &amp;&amp; inits[nowx + 2][nowy + 1] == &#39;.&#39;);
-    int dlleft= (getlimit(nowx + 1, nowy - 2) &amp;&amp; inits[nowx + 1][nowy - 2] == &#39;.&#39;);
-    int drright= (getlimit(nowx + 1, nowy + 2) &amp;&amp; inits[nowx + 1][nowy + 2] == &#39;.&#39;);
-    int ddleft= (getlimit(nowx + 2, nowy - 1) &amp;&amp; inits[nowx + 2][nowy - 1] == &#39;.&#39;);
-    if(!chose[&#39;C&#39;]) {
-        chose[&#39;C&#39;]= true, inits[nowx][nowy]= &#39;C&#39;;
+    int rddown= (getlimit(nowx + 2, nowy + 1) &amp;&amp; inits[nowx + 2][nowy + 1] == &apos;.&apos;);
+    int dlleft= (getlimit(nowx + 1, nowy - 2) &amp;&amp; inits[nowx + 1][nowy - 2] == &apos;.&apos;);
+    int drright= (getlimit(nowx + 1, nowy + 2) &amp;&amp; inits[nowx + 1][nowy + 2] == &apos;.&apos;);
+    int ddleft= (getlimit(nowx + 2, nowy - 1) &amp;&amp; inits[nowx + 2][nowy - 1] == &apos;.&apos;);
+    if(!chose[&apos;C&apos;]) {
+        chose[&apos;C&apos;]= true, inits[nowx][nowy]= &apos;C&apos;;
         // C1
         if(right &amp;&amp; rright &amp;&amp; down) {
-            inits[nowx][nowy + 1]= &#39;C&#39;, inits[nowx][nowy + 2]= &#39;C&#39;, inits[nowx + 1][nowy]= &#39;C&#39;;
+            inits[nowx][nowy + 1]= &apos;C&apos;, inits[nowx][nowy + 2]= &apos;C&apos;, inits[nowx + 1][nowy]= &apos;C&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;;
         }
         // C2
         if(right &amp;&amp; rdown &amp;&amp; rddown) {
-            inits[nowx][nowy + 1]= &#39;C&#39;, inits[nowx + 1][nowy + 1]= &#39;C&#39;, inits[nowx + 2][nowy + 1]= &#39;C&#39;;
+            inits[nowx][nowy + 1]= &apos;C&apos;, inits[nowx + 1][nowy + 1]= &apos;C&apos;, inits[nowx + 2][nowy + 1]= &apos;C&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
         }
         // C3
         if(down &amp;&amp; dleft &amp;&amp; dlleft) {
-            inits[nowx + 1][nowy]= &#39;C&#39;, inits[nowx + 1][nowy - 1]= &#39;C&#39;, inits[nowx + 1][nowy - 2]= &#39;C&#39;;
+            inits[nowx + 1][nowy]= &apos;C&apos;, inits[nowx + 1][nowy - 1]= &apos;C&apos;, inits[nowx + 1][nowy - 2]= &apos;C&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy - 2]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy - 2]= &apos;.&apos;;
         }
         // C4
         if(down &amp;&amp; ddown &amp;&amp; rddown) {
-            inits[nowx + 1][nowy]= &#39;C&#39;, inits[nowx + 2][nowy]= &#39;C&#39;, inits[nowx + 2][nowy + 1]= &#39;C&#39;;
+            inits[nowx + 1][nowy]= &apos;C&apos;, inits[nowx + 2][nowy]= &apos;C&apos;, inits[nowx + 2][nowy + 1]= &apos;C&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
         }
         // C5
         if(down &amp;&amp; rdown &amp;&amp; drright) {
-            inits[nowx + 1][nowy]= &#39;C&#39;, inits[nowx + 1][nowy + 1]= &#39;C&#39;, inits[nowx + 1][nowy + 2]= &#39;C&#39;;
+            inits[nowx + 1][nowy]= &apos;C&apos;, inits[nowx + 1][nowy + 1]= &apos;C&apos;, inits[nowx + 1][nowy + 2]= &apos;C&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
         }
         // C6
         if(right &amp;&amp; down &amp;&amp; ddown) {
-            inits[nowx][nowy + 1]= &#39;C&#39;, inits[nowx + 1][nowy]= &#39;C&#39;, inits[nowx + 2][nowy]= &#39;C&#39;;
+            inits[nowx][nowy + 1]= &apos;C&apos;, inits[nowx + 1][nowy]= &apos;C&apos;, inits[nowx + 2][nowy]= &apos;C&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;;
         }
         // C7
         if(right &amp;&amp; rright &amp;&amp; drright) {
-            inits[nowx][nowy + 1]= &#39;C&#39;, inits[nowx][nowy + 2]= &#39;C&#39;, inits[nowx + 1][nowy + 2]= &#39;C&#39;;
+            inits[nowx][nowy + 1]= &apos;C&apos;, inits[nowx][nowy + 2]= &apos;C&apos;, inits[nowx + 1][nowy + 2]= &apos;C&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
         }
         // C8
         if(down &amp;&amp; ddown &amp;&amp; ddleft) {
-            inits[nowx + 1][nowy]= &#39;C&#39;, inits[nowx + 2][nowy]= &#39;C&#39;, inits[nowx + 2][nowy - 1]= &#39;C&#39;;
+            inits[nowx + 1][nowy]= &apos;C&apos;, inits[nowx + 2][nowy]= &apos;C&apos;, inits[nowx + 2][nowy - 1]= &apos;C&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;;
         }
-        chose[&#39;C&#39;]= false;
+        chose[&apos;C&apos;]= false;
     }
-    if(!chose[&#39;D&#39;]) {
-        chose[&#39;D&#39;]= true, inits[nowx][nowy]= &#39;D&#39;;
+    if(!chose[&apos;D&apos;]) {
+        chose[&apos;D&apos;]= true, inits[nowx][nowy]= &apos;D&apos;;
         // D1
         if(right &amp;&amp; down &amp;&amp; rdown) {
-            inits[nowx + 1][nowy]= &#39;D&#39;, inits[nowx][nowy + 1]= &#39;D&#39;, inits[nowx + 1][nowy + 1]= &#39;D&#39;;
+            inits[nowx + 1][nowy]= &apos;D&apos;, inits[nowx][nowy + 1]= &apos;D&apos;, inits[nowx + 1][nowy + 1]= &apos;D&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
         }
-        chose[&#39;D&#39;]= false;
+        chose[&apos;D&apos;]= false;
     }
-    int ddrright= (getlimit(nowx + 2, nowy + 2) &amp;&amp; inits[nowx + 2][nowy + 2] == &#39;.&#39;);
-    int ddlleft= (getlimit(nowx + 2, nowy - 2) &amp;&amp; inits[nowx + 2][nowy - 2] == &#39;.&#39;);
-    if(!chose[&#39;E&#39;]) {
-        chose[&#39;E&#39;]= true, inits[nowx][nowy]= &#39;E&#39;;
+    int ddrright= (getlimit(nowx + 2, nowy + 2) &amp;&amp; inits[nowx + 2][nowy + 2] == &apos;.&apos;);
+    int ddlleft= (getlimit(nowx + 2, nowy - 2) &amp;&amp; inits[nowx + 2][nowy - 2] == &apos;.&apos;);
+    if(!chose[&apos;E&apos;]) {
+        chose[&apos;E&apos;]= true, inits[nowx][nowy]= &apos;E&apos;;
         // E1
         if(down &amp;&amp; ddown &amp;&amp; rddown &amp;&amp; ddrright) {
-            inits[nowx + 1][nowy]= &#39;E&#39;, inits[nowx + 2][nowy]= &#39;E&#39;, inits[nowx + 2][nowy + 1]= &#39;E&#39;, inits[nowx + 2][nowy + 2]= &#39;E&#39;;
+            inits[nowx + 1][nowy]= &apos;E&apos;, inits[nowx + 2][nowy]= &apos;E&apos;, inits[nowx + 2][nowy + 1]= &apos;E&apos;, inits[nowx + 2][nowy + 2]= &apos;E&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 2]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 2]= &apos;.&apos;;
         }
         // E2
         if(right &amp;&amp; rright &amp;&amp; down &amp;&amp; ddown) {
-            inits[nowx][nowy + 1]= &#39;E&#39;, inits[nowx][nowy + 2]= &#39;E&#39;, inits[nowx + 1][nowy]= &#39;E&#39;, inits[nowx + 2][nowy]= &#39;E&#39;;
+            inits[nowx][nowy + 1]= &apos;E&apos;, inits[nowx][nowy + 2]= &apos;E&apos;, inits[nowx + 1][nowy]= &apos;E&apos;, inits[nowx + 2][nowy]= &apos;E&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;;
         }
         // E3
         if(right &amp;&amp; rright &amp;&amp; drright &amp;&amp; ddrright) {
-            inits[nowx][nowy + 1]= &#39;E&#39;, inits[nowx][nowy + 2]= &#39;E&#39;, inits[nowx + 1][nowy + 2]= &#39;E&#39;, inits[nowx + 2][nowy + 2]= &#39;E&#39;;
+            inits[nowx][nowy + 1]= &apos;E&apos;, inits[nowx][nowy + 2]= &apos;E&apos;, inits[nowx + 1][nowy + 2]= &apos;E&apos;, inits[nowx + 2][nowy + 2]= &apos;E&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx + 2][nowy + 2]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx + 2][nowy + 2]= &apos;.&apos;;
         }
         // E4
         if(down &amp;&amp; ddown &amp;&amp; ddleft &amp;&amp; ddlleft) {
-            inits[nowx + 1][nowy]= &#39;E&#39;, inits[nowx + 2][nowy]= &#39;E&#39;, inits[nowx + 2][nowy - 1]= &#39;E&#39;, inits[nowx + 2][nowy - 2]= &#39;E&#39;;
+            inits[nowx + 1][nowy]= &apos;E&apos;, inits[nowx + 2][nowy]= &apos;E&apos;, inits[nowx + 2][nowy - 1]= &apos;E&apos;, inits[nowx + 2][nowy - 2]= &apos;E&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 2]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 2]= &apos;.&apos;;
         }
-        chose[&#39;E&#39;]= false;
+        chose[&apos;E&apos;]= false;
     }
-    if(!chose[&#39;F&#39;]) {
-        chose[&#39;F&#39;]= true, inits[nowx][nowy]= &#39;F&#39;;
+    if(!chose[&apos;F&apos;]) {
+        chose[&apos;F&apos;]= true, inits[nowx][nowy]= &apos;F&apos;;
         // F1
         if(right &amp;&amp; rright &amp;&amp; rrright &amp;&amp; rdown) {
-            inits[nowx][nowy + 1]= &#39;F&#39;, inits[nowx][nowy + 2]= &#39;F&#39;, inits[nowx][nowy + 3]= &#39;F&#39;, inits[nowx + 1][nowy + 1]= &#39;F&#39;;
+            inits[nowx][nowy + 1]= &apos;F&apos;, inits[nowx][nowy + 2]= &apos;F&apos;, inits[nowx][nowy + 3]= &apos;F&apos;, inits[nowx + 1][nowy + 1]= &apos;F&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 3]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 3]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
         }
         // F2
         if(down &amp;&amp; ddown &amp;&amp; dddown &amp;&amp; dleft) {
-            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 2][nowy]= &#39;F&#39;, inits[nowx + 3][nowy]= &#39;F&#39;, inits[nowx + 1][nowy - 1]= &#39;F&#39;;
+            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 2][nowy]= &apos;F&apos;, inits[nowx + 3][nowy]= &apos;F&apos;, inits[nowx + 1][nowy - 1]= &apos;F&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;;
         }
         // F3
         if(down &amp;&amp; dleft &amp;&amp; dlleft &amp;&amp; rdown) {
-            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 1][nowy - 1]= &#39;F&#39;, inits[nowx + 1][nowy - 2]= &#39;F&#39;, inits[nowx + 1][nowy + 1]= &#39;F&#39;;
+            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 1][nowy - 1]= &apos;F&apos;, inits[nowx + 1][nowy - 2]= &apos;F&apos;, inits[nowx + 1][nowy + 1]= &apos;F&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy - 2]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy - 2]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
         }
         // F4
         if(down &amp;&amp; ddown &amp;&amp; dddown &amp;&amp; rddown) {
-            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 2][nowy]= &#39;F&#39;, inits[nowx + 3][nowy]= &#39;F&#39;, inits[nowx + 2][nowy + 1]= &#39;F&#39;;
+            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 2][nowy]= &apos;F&apos;, inits[nowx + 3][nowy]= &apos;F&apos;, inits[nowx + 2][nowy + 1]= &apos;F&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
         }
         // F5
         if(down &amp;&amp; dleft &amp;&amp; rdown &amp;&amp; drright) {
-            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 1][nowy - 1]= &#39;F&#39;, inits[nowx + 1][nowy + 1]= &#39;F&#39;, inits[nowx + 1][nowy + 2]= &#39;F&#39;;
+            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 1][nowy - 1]= &apos;F&apos;, inits[nowx + 1][nowy + 1]= &apos;F&apos;, inits[nowx + 1][nowy + 2]= &apos;F&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
         }
         // F6
         if(down &amp;&amp; ddown &amp;&amp; ddleft &amp;&amp; dddown) {
-            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 2][nowy]= &#39;F&#39;, inits[nowx + 2][nowy - 1]= &#39;F&#39;, inits[nowx + 3][nowy]= &#39;F&#39;;
+            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 2][nowy]= &apos;F&apos;, inits[nowx + 2][nowy - 1]= &apos;F&apos;, inits[nowx + 3][nowy]= &apos;F&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;;
         }
         // F7
         if(right &amp;&amp; rright &amp;&amp; drright &amp;&amp; rrright) {
-            inits[nowx][nowy + 1]= &#39;F&#39;, inits[nowx][nowy + 2]= &#39;F&#39;, inits[nowx + 1][nowy + 2]= &#39;F&#39;, inits[nowx][nowy + 3]= &#39;F&#39;;
+            inits[nowx][nowy + 1]= &apos;F&apos;, inits[nowx][nowy + 2]= &apos;F&apos;, inits[nowx + 1][nowy + 2]= &apos;F&apos;, inits[nowx][nowy + 3]= &apos;F&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 3]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 3]= &apos;.&apos;;
         }
         // F8
         if(down &amp;&amp; rdown &amp;&amp; ddown &amp;&amp; dddown) {
-            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 1][nowy + 1]= &#39;F&#39;, inits[nowx + 2][nowy]= &#39;F&#39;, inits[nowx + 3][nowy]= &#39;F&#39;;
+            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 1][nowy + 1]= &apos;F&apos;, inits[nowx + 2][nowy]= &apos;F&apos;, inits[nowx + 3][nowy]= &apos;F&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;;
         }
-        chose[&#39;F&#39;]= false;
+        chose[&apos;F&apos;]= false;
     }
-    if(!chose[&#39;G&#39;]) {
-        chose[&#39;G&#39;]= true, inits[nowx][nowy]= &#39;G&#39;;
+    if(!chose[&apos;G&apos;]) {
+        chose[&apos;G&apos;]= true, inits[nowx][nowy]= &apos;G&apos;;
         // G1
         if(down &amp;&amp; right &amp;&amp; rright &amp;&amp; drright) {
-            inits[nowx + 1][nowy]= &#39;G&#39;, inits[nowx][nowy + 1]= &#39;G&#39;, inits[nowx][nowy + 2]= &#39;G&#39;, inits[nowx + 1][nowy + 2]= &#39;G&#39;;
+            inits[nowx + 1][nowy]= &apos;G&apos;, inits[nowx][nowy + 1]= &apos;G&apos;, inits[nowx][nowy + 2]= &apos;G&apos;, inits[nowx + 1][nowy + 2]= &apos;G&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
         }
         // G2
         if(right &amp;&amp; rdown &amp;&amp; rddown &amp;&amp; ddown) {
-            inits[nowx][nowy + 1]= &#39;G&#39;, inits[nowx + 1][nowy + 1]= &#39;G&#39;, inits[nowx + 2][nowy + 1]= &#39;G&#39;, inits[nowx + 2][nowy]= &#39;G&#39;;
+            inits[nowx][nowy + 1]= &apos;G&apos;, inits[nowx + 1][nowy + 1]= &apos;G&apos;, inits[nowx + 2][nowy + 1]= &apos;G&apos;, inits[nowx + 2][nowy]= &apos;G&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;;
         }
         // G3
         if(down &amp;&amp; rdown &amp;&amp; drright &amp;&amp; rright) {
-            inits[nowx + 1][nowy]= &#39;G&#39;, inits[nowx + 1][nowy + 1]= &#39;G&#39;, inits[nowx + 1][nowy + 2]= &#39;G&#39;, inits[nowx][nowy + 2]= &#39;G&#39;;
+            inits[nowx + 1][nowy]= &apos;G&apos;, inits[nowx + 1][nowy + 1]= &apos;G&apos;, inits[nowx + 1][nowy + 2]= &apos;G&apos;, inits[nowx][nowy + 2]= &apos;G&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;;
         }
         // G4
         if(right &amp;&amp; down &amp;&amp; ddown &amp;&amp; rddown) {
-            inits[nowx][nowy + 1]= &#39;G&#39;, inits[nowx + 1][nowy]= &#39;G&#39;, inits[nowx + 2][nowy]= &#39;G&#39;, inits[nowx + 2][nowy + 1]= &#39;G&#39;;
+            inits[nowx][nowy + 1]= &apos;G&apos;, inits[nowx + 1][nowy]= &apos;G&apos;, inits[nowx + 2][nowy]= &apos;G&apos;, inits[nowx + 2][nowy + 1]= &apos;G&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
         }
-        chose[&#39;G&#39;]= false;
+        chose[&apos;G&apos;]= false;
     }
-    if(!chose[&#39;H&#39;]) {
-        chose[&#39;H&#39;]= true, inits[nowx][nowy]= &#39;H&#39;;
+    if(!chose[&apos;H&apos;]) {
+        chose[&apos;H&apos;]= true, inits[nowx][nowy]= &apos;H&apos;;
         // H1
         if(right &amp;&amp; rright &amp;&amp; down &amp;&amp; rdown) {
-            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx][nowy + 2]= &#39;H&#39;, inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;;
+            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx][nowy + 2]= &apos;H&apos;, inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
         }
         // H2
         if(right &amp;&amp; down &amp;&amp; rdown &amp;&amp; rddown) {
-            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;, inits[nowx + 2][nowy + 1]= &#39;H&#39;;
+            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;, inits[nowx + 2][nowy + 1]= &apos;H&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
         }
         // H3
         if(right &amp;&amp; down &amp;&amp; rdown &amp;&amp; dleft) {
-            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy - 1]= &#39;H&#39;;
+            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy - 1]= &apos;H&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;;
         }
         // H4
         if(down &amp;&amp; rdown &amp;&amp; ddown &amp;&amp; rddown) {
-            inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;, inits[nowx + 2][nowy]= &#39;H&#39;, inits[nowx + 2][nowy + 1]= &#39;H&#39;;
+            inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;, inits[nowx + 2][nowy]= &apos;H&apos;, inits[nowx + 2][nowy + 1]= &apos;H&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
         }
         // H5
         if(right &amp;&amp; down &amp;&amp; rdown &amp;&amp; drright) {
-            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy + 2]= &#39;H&#39;;
+            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy + 2]= &apos;H&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
         }
         // H6
         if(down &amp;&amp; ddown &amp;&amp; dleft &amp;&amp; ddleft) {
-            inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 2][nowy]= &#39;H&#39;, inits[nowx + 1][nowy - 1]= &#39;H&#39;, inits[nowx + 2][nowy - 1]= &#39;H&#39;;
+            inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 2][nowy]= &apos;H&apos;, inits[nowx + 1][nowy - 1]= &apos;H&apos;, inits[nowx + 2][nowy - 1]= &apos;H&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;;
         }
         // H7
         if(right &amp;&amp; rright &amp;&amp; rdown &amp;&amp; drright) {
-            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx][nowy + 2]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy + 2]= &#39;H&#39;;
+            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx][nowy + 2]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy + 2]= &apos;H&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
         }
         // H8
         if(right &amp;&amp; down &amp;&amp; ddown &amp;&amp; rdown) {
-            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 2][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;;
+            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 2][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
         }
-        chose[&#39;H&#39;]= false;
+        chose[&apos;H&apos;]= false;
     }
-    int rrdright= (getlimit(nowx + 1, nowy + 3) &amp;&amp; inits[nowx + 1][nowy + 3] == &#39;.&#39;);
-    int ddldown= (getlimit(nowx + 3, nowy - 1) &amp;&amp; inits[nowx + 3][nowy - 1] == &#39;.&#39;);
-    int drddown= (getlimit(nowx + 3, nowy + 1) &amp;&amp; inits[nowx + 3][nowy + 1] == &#39;.&#39;);
-    if(!chose[&#39;I&#39;]) {
-        chose[&#39;I&#39;]= true, inits[nowx][nowy]= &#39;I&#39;;
+    int rrdright= (getlimit(nowx + 1, nowy + 3) &amp;&amp; inits[nowx + 1][nowy + 3] == &apos;.&apos;);
+    int ddldown= (getlimit(nowx + 3, nowy - 1) &amp;&amp; inits[nowx + 3][nowy - 1] == &apos;.&apos;);
+    int drddown= (getlimit(nowx + 3, nowy + 1) &amp;&amp; inits[nowx + 3][nowy + 1] == &apos;.&apos;);
+    if(!chose[&apos;I&apos;]) {
+        chose[&apos;I&apos;]= true, inits[nowx][nowy]= &apos;I&apos;;
         // I1
         if(right &amp;&amp; rright &amp;&amp; drright &amp;&amp; rrdright) {
-            inits[nowx][nowy + 1]= &#39;I&#39;, inits[nowx][nowy + 2]= &#39;I&#39;, inits[nowx + 1][nowy + 2]= &#39;I&#39;, inits[nowx + 1][nowy + 3]= &#39;I&#39;;
+            inits[nowx][nowy + 1]= &apos;I&apos;, inits[nowx][nowy + 2]= &apos;I&apos;, inits[nowx + 1][nowy + 2]= &apos;I&apos;, inits[nowx + 1][nowy + 3]= &apos;I&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 3]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 3]= &apos;.&apos;;
         }
         // I2
         if(down &amp;&amp; ddown &amp;&amp; ddleft &amp;&amp; ddldown) {
-            inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 2][nowy]= &#39;I&#39;, inits[nowx + 2][nowy - 1]= &#39;I&#39;, inits[nowx + 3][nowy - 1]= &#39;I&#39;;
+            inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 2][nowy]= &apos;I&apos;, inits[nowx + 2][nowy - 1]= &apos;I&apos;, inits[nowx + 3][nowy - 1]= &apos;I&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;, inits[nowx + 3][nowy - 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;, inits[nowx + 3][nowy - 1]= &apos;.&apos;;
         }
         // I3
         if(right &amp;&amp; rdown &amp;&amp; drright &amp;&amp; rrdright) {
-            inits[nowx][nowy + 1]= &#39;I&#39;, inits[nowx + 1][nowy + 1]= &#39;I&#39;, inits[nowx + 1][nowy + 2]= &#39;I&#39;, inits[nowx + 1][nowy + 3]= &#39;I&#39;;
+            inits[nowx][nowy + 1]= &apos;I&apos;, inits[nowx + 1][nowy + 1]= &apos;I&apos;, inits[nowx + 1][nowy + 2]= &apos;I&apos;, inits[nowx + 1][nowy + 3]= &apos;I&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 3]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 3]= &apos;.&apos;;
         }
         // I4
         if(down &amp;&amp; dleft &amp;&amp; ddleft &amp;&amp; ddldown) {
-            inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 1][nowy - 1]= &#39;I&#39;, inits[nowx + 2][nowy - 1]= &#39;I&#39;, inits[nowx + 3][nowy - 1]= &#39;I&#39;;
+            inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 1][nowy - 1]= &apos;I&apos;, inits[nowx + 2][nowy - 1]= &apos;I&apos;, inits[nowx + 3][nowy - 1]= &apos;I&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;, inits[nowx + 3][nowy - 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;, inits[nowx + 3][nowy - 1]= &apos;.&apos;;
         }
         // I5
         if(right &amp;&amp; down &amp;&amp; dleft &amp;&amp; dlleft) {
-            inits[nowx][nowy + 1]= &#39;I&#39;, inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 1][nowy - 1]= &#39;I&#39;, inits[nowx + 1][nowy - 2]= &#39;I&#39;;
+            inits[nowx][nowy + 1]= &apos;I&apos;, inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 1][nowy - 1]= &apos;I&apos;, inits[nowx + 1][nowy - 2]= &apos;I&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy - 2]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy - 2]= &apos;.&apos;;
         }
         // I6
         if(down &amp;&amp; rdown &amp;&amp; rddown &amp;&amp; drddown) {
-            inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 1][nowy + 1]= &#39;I&#39;, inits[nowx + 2][nowy + 1]= &#39;I&#39;, inits[nowx + 3][nowy + 1]= &#39;I&#39;;
+            inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 1][nowy + 1]= &apos;I&apos;, inits[nowx + 2][nowy + 1]= &apos;I&apos;, inits[nowx + 3][nowy + 1]= &apos;I&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 3][nowy + 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 3][nowy + 1]= &apos;.&apos;;
         }
         // I7
         if(right &amp;&amp; rright &amp;&amp; down &amp;&amp; dleft) {
-            inits[nowx][nowy + 1]= &#39;I&#39;, inits[nowx][nowy + 2]= &#39;I&#39;, inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 1][nowy - 1]= &#39;I&#39;;
+            inits[nowx][nowy + 1]= &apos;I&apos;, inits[nowx][nowy + 2]= &apos;I&apos;, inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 1][nowy - 1]= &apos;I&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;;
         }
         // I8
         if(down &amp;&amp; ddown &amp;&amp; rddown &amp;&amp; drddown) {
-            inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 2][nowy]= &#39;I&#39;, inits[nowx + 2][nowy + 1]= &#39;I&#39;, inits[nowx + 3][nowy + 1]= &#39;I&#39;;
+            inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 2][nowy]= &apos;I&apos;, inits[nowx + 2][nowy + 1]= &apos;I&apos;, inits[nowx + 3][nowy + 1]= &apos;I&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 3][nowy + 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 3][nowy + 1]= &apos;.&apos;;
         }
-        chose[&#39;I&#39;]= false;
+        chose[&apos;I&apos;]= false;
     }
-    if(!chose[&#39;J&#39;]) {
-        chose[&#39;J&#39;]= true, inits[nowx][nowy]= &#39;J&#39;;
+    if(!chose[&apos;J&apos;]) {
+        chose[&apos;J&apos;]= true, inits[nowx][nowy]= &apos;J&apos;;
         // J1
         if(down &amp;&amp; dleft &amp;&amp; rdown &amp;&amp; ddown) {
-            inits[nowx + 1][nowy]= &#39;J&#39;, inits[nowx + 1][nowy - 1]= &#39;J&#39;, inits[nowx + 1][nowy + 1]= &#39;J&#39;, inits[nowx + 2][nowy]= &#39;J&#39;;
+            inits[nowx + 1][nowy]= &apos;J&apos;, inits[nowx + 1][nowy - 1]= &apos;J&apos;, inits[nowx + 1][nowy + 1]= &apos;J&apos;, inits[nowx + 2][nowy]= &apos;J&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;;
         }
-        chose[&#39;J&#39;]= false;
+        chose[&apos;J&apos;]= false;
     }
-    if(!chose[&#39;K&#39;]) {
-        chose[&#39;K&#39;]= true, inits[nowx][nowy]= &#39;K&#39;;
+    if(!chose[&apos;K&apos;]) {
+        chose[&apos;K&apos;]= true, inits[nowx][nowy]= &apos;K&apos;;
         // K1
         if(down &amp;&amp; rdown &amp;&amp; rddown &amp;&amp; ddrright) {
-            inits[nowx + 1][nowy]= &#39;K&#39;, inits[nowx + 1][nowy + 1]= &#39;K&#39;, inits[nowx + 2][nowy + 1]= &#39;K&#39;, inits[nowx + 2][nowy + 2]= &#39;K&#39;;
+            inits[nowx + 1][nowy]= &apos;K&apos;, inits[nowx + 1][nowy + 1]= &apos;K&apos;, inits[nowx + 2][nowy + 1]= &apos;K&apos;, inits[nowx + 2][nowy + 2]= &apos;K&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 2]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 2]= &apos;.&apos;;
         }
         // K2
         if(right &amp;&amp; down &amp;&amp; dleft &amp;&amp; ddleft) {
-            inits[nowx][nowy + 1]= &#39;K&#39;, inits[nowx + 1][nowy]= &#39;K&#39;, inits[nowx + 1][nowy - 1]= &#39;K&#39;, inits[nowx + 2][nowy - 1]= &#39;K&#39;;
+            inits[nowx][nowy + 1]= &apos;K&apos;, inits[nowx + 1][nowy]= &apos;K&apos;, inits[nowx + 1][nowy - 1]= &apos;K&apos;, inits[nowx + 2][nowy - 1]= &apos;K&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;;
         }
         // K3
         if(right &amp;&amp; rdown &amp;&amp; drright &amp;&amp; ddrright) {
-            inits[nowx][nowy + 1]= &#39;K&#39;, inits[nowx + 1][nowy + 1]= &#39;K&#39;, inits[nowx + 1][nowy + 2]= &#39;K&#39;, inits[nowx + 2][nowy + 2]= &#39;K&#39;;
+            inits[nowx][nowy + 1]= &apos;K&apos;, inits[nowx + 1][nowy + 1]= &apos;K&apos;, inits[nowx + 1][nowy + 2]= &apos;K&apos;, inits[nowx + 2][nowy + 2]= &apos;K&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx + 2][nowy + 2]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx + 2][nowy + 2]= &apos;.&apos;;
         }
         // K4
         if(down &amp;&amp; dleft &amp;&amp; ddleft &amp;&amp; ddlleft) {
-            inits[nowx + 1][nowy]= &#39;K&#39;, inits[nowx + 1][nowy - 1]= &#39;K&#39;, inits[nowx + 2][nowy - 1]= &#39;K&#39;, inits[nowx + 2][nowy - 2]= &#39;K&#39;;
+            inits[nowx + 1][nowy]= &apos;K&apos;, inits[nowx + 1][nowy - 1]= &apos;K&apos;, inits[nowx + 2][nowy - 1]= &apos;K&apos;, inits[nowx + 2][nowy - 2]= &apos;K&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 2]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 2]= &apos;.&apos;;
         }
-        chose[&#39;K&#39;]= false;
+        chose[&apos;K&apos;]= false;
     }
-    int dllleft= (getlimit(nowx + 1, nowy - 3) &amp;&amp; inits[nowx + 1][nowy - 3] == &#39;.&#39;);
-    if(!chose[&#39;L&#39;]) {
-        chose[&#39;L&#39;]= true, inits[nowx][nowy]= &#39;L&#39;;
+    int dllleft= (getlimit(nowx + 1, nowy - 3) &amp;&amp; inits[nowx + 1][nowy - 3] == &apos;.&apos;);
+    if(!chose[&apos;L&apos;]) {
+        chose[&apos;L&apos;]= true, inits[nowx][nowy]= &apos;L&apos;;
         // L1
         if(right &amp;&amp; rright &amp;&amp; rrright &amp;&amp; down) {
-            inits[nowx][nowy + 1]= &#39;L&#39;, inits[nowx][nowy + 2]= &#39;L&#39;, inits[nowx][nowy + 3]= &#39;L&#39;, inits[nowx + 1][nowy]= &#39;L&#39;;
+            inits[nowx][nowy + 1]= &apos;L&apos;, inits[nowx][nowy + 2]= &apos;L&apos;, inits[nowx][nowy + 3]= &apos;L&apos;, inits[nowx + 1][nowy]= &apos;L&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 3]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 3]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;;
         }
         // L2
         if(right &amp;&amp; rdown &amp;&amp; rddown &amp;&amp; drddown) {
-            inits[nowx][nowy + 1]= &#39;L&#39;, inits[nowx + 1][nowy + 1]= &#39;L&#39;, inits[nowx + 2][nowy + 1]= &#39;L&#39;, inits[nowx + 3][nowy + 1]= &#39;L&#39;;
+            inits[nowx][nowy + 1]= &apos;L&apos;, inits[nowx + 1][nowy + 1]= &apos;L&apos;, inits[nowx + 2][nowy + 1]= &apos;L&apos;, inits[nowx + 3][nowy + 1]= &apos;L&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 3][nowy + 1]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 3][nowy + 1]= &apos;.&apos;;
         }
         // L3
         if(down &amp;&amp; dleft &amp;&amp; dlleft &amp;&amp; dllleft) {
-            inits[nowx + 1][nowy]= &#39;L&#39;, inits[nowx + 1][nowy - 1]= &#39;L&#39;, inits[nowx + 1][nowy - 2]= &#39;L&#39;, inits[nowx + 1][nowy - 3]= &#39;L&#39;;
+            inits[nowx + 1][nowy]= &apos;L&apos;, inits[nowx + 1][nowy - 1]= &apos;L&apos;, inits[nowx + 1][nowy - 2]= &apos;L&apos;, inits[nowx + 1][nowy - 3]= &apos;L&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy - 2]= &#39;.&#39;, inits[nowx + 1][nowy - 3]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy - 2]= &apos;.&apos;, inits[nowx + 1][nowy - 3]= &apos;.&apos;;
         }
         // L4
         if(down &amp;&amp; ddown &amp;&amp; dddown &amp;&amp; drddown) {
-            inits[nowx + 1][nowy]= &#39;L&#39;, inits[nowx + 2][nowy]= &#39;L&#39;, inits[nowx + 3][nowy]= &#39;L&#39;, inits[nowx + 3][nowy + 1]= &#39;L&#39;;
+            inits[nowx + 1][nowy]= &apos;L&apos;, inits[nowx + 2][nowy]= &apos;L&apos;, inits[nowx + 3][nowy]= &apos;L&apos;, inits[nowx + 3][nowy + 1]= &apos;L&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;, inits[nowx + 3][nowy + 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;, inits[nowx + 3][nowy + 1]= &apos;.&apos;;
         }
         // L5
         if(down &amp;&amp; rdown &amp;&amp; drright &amp;&amp; rrdright) {
-            inits[nowx + 1][nowy]= &#39;L&#39;, inits[nowx + 1][nowy + 1]= &#39;L&#39;, inits[nowx + 1][nowy + 2]= &#39;L&#39;, inits[nowx + 1][nowy + 3]= &#39;L&#39;;
+            inits[nowx + 1][nowy]= &apos;L&apos;, inits[nowx + 1][nowy + 1]= &apos;L&apos;, inits[nowx + 1][nowy + 2]= &apos;L&apos;, inits[nowx + 1][nowy + 3]= &apos;L&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 3]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 3]= &apos;.&apos;;
         }
         // L6
         if(down &amp;&amp; ddown &amp;&amp; dddown &amp;&amp; ddldown) {
-            inits[nowx + 1][nowy]= &#39;L&#39;, inits[nowx + 2][nowy]= &#39;L&#39;, inits[nowx + 3][nowy]= &#39;L&#39;, inits[nowx + 3][nowy - 1]= &#39;L&#39;;
+            inits[nowx + 1][nowy]= &apos;L&apos;, inits[nowx + 2][nowy]= &apos;L&apos;, inits[nowx + 3][nowy]= &apos;L&apos;, inits[nowx + 3][nowy - 1]= &apos;L&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;, inits[nowx + 3][nowy - 1]= &#39;.&#39;;
+            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;, inits[nowx + 3][nowy - 1]= &apos;.&apos;;
         }
         // L7
         if(right &amp;&amp; rright &amp;&amp; rrright &amp;&amp; rrdright) {
-            inits[nowx][nowy + 1]= &#39;L&#39;, inits[nowx][nowy + 2]= &#39;L&#39;, inits[nowx][nowy + 3]= &#39;L&#39;, inits[nowx + 1][nowy + 3]= &#39;L&#39;;
+            inits[nowx][nowy + 1]= &apos;L&apos;, inits[nowx][nowy + 2]= &apos;L&apos;, inits[nowx][nowy + 3]= &apos;L&apos;, inits[nowx + 1][nowy + 3]= &apos;L&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 3]= &#39;.&#39;, inits[nowx + 1][nowy + 3]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 3]= &apos;.&apos;, inits[nowx + 1][nowy + 3]= &apos;.&apos;;
         }
         // L8
         if(right &amp;&amp; down &amp;&amp; ddown &amp;&amp; dddown) {
-            inits[nowx][nowy + 1]= &#39;L&#39;, inits[nowx + 1][nowy]= &#39;L&#39;, inits[nowx + 2][nowy]= &#39;L&#39;, inits[nowx + 3][nowy]= &#39;L&#39;;
+            inits[nowx][nowy + 1]= &apos;L&apos;, inits[nowx + 1][nowy]= &apos;L&apos;, inits[nowx + 2][nowy]= &apos;L&apos;, inits[nowx + 3][nowy]= &apos;L&apos;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;;
+            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;;
         }
-        chose[&#39;L&#39;]= false;
+        chose[&apos;L&apos;]= false;
     }
-    inits[nowx][nowy]= &#39;.&#39;;
+    inits[nowx][nowy]= &apos;.&apos;;
     return false;
 }
 int main() {
     for(int i= 1; i &lt; 11; i++) {
         for(int j= 1; j &lt;= i; j++) {
             cin &gt;&gt; inits[i][j];
-            if(inits[i][j] != &#39;.&#39;) chose[(int)inits[i][j]]= 1;
+            if(inits[i][j] != &apos;.&apos;) chose[(int)inits[i][j]]= 1;
         }
     }
     if(dfs(1, 1)) {
         for(int i= 1; i &lt; 11; i++) {
             for(int j= 1; j &lt;= i; j++) putchar(inits[i][j]);
-            putchar(&#39;\n&#39;);
+            putchar(&apos;\n&apos;);
         }
     }
     else
@@ -807,7 +817,7 @@ int main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385264"></script>
+<script src="/js/app.js?v=1573122200150"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

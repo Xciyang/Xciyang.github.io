@@ -12,14 +12,14 @@
 
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <meta name="description" content="【LuoguP4085】【USACO17DEC】Haybale Feast题目链接: https://www.luogu.org/problemnew/show/P4085 引言好像教练说要考线段树和树状数组, 然后看到了这个题 这道题可以练习各种数据结构的基础操作… 我就浪费了大把时间用各种算法来A这道题">
-<meta name="keywords" content="题解,Cpp,分块,二分查找,ST表,线段树,前缀和">
+<meta name="keywords" content="题解,Cpp,二分查找,ST表,线段树,前缀和,分块">
 <meta property="og:type" content="article">
 <meta property="og:title" content="USACO17DEC - Haybale Feast">
 <meta property="og:url" content="https://xciyang.github.io/2019-03/07-luogu4085/index.html">
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="【LuoguP4085】【USACO17DEC】Haybale Feast题目链接: https://www.luogu.org/problemnew/show/P4085 引言好像教练说要考线段树和树状数组, 然后看到了这个题 这道题可以练习各种数据结构的基础操作… 我就浪费了大把时间用各种算法来A这道题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T11:56:45.548Z">
+<meta property="og:updated_time" content="2019-11-07T09:07:24.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="USACO17DEC - Haybale Feast">
 <meta name="twitter:description" content="【LuoguP4085】【USACO17DEC】Haybale Feast题目链接: https://www.luogu.org/problemnew/show/P4085 引言好像教练说要考线段树和树状数组, 然后看到了这个题 这道题可以练习各种数据结构的基础操作… 我就浪费了大把时间用各种算法来A这道题">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385268">
+  <link rel="stylesheet" href="/css/style.css?v=1573122200153">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -249,8 +249,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年03月07日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.1k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -259,29 +259,39 @@
     
   </div>
   <article id="article">
-    <p>【LuoguP4085】【USACO17DEC】Haybale Feast<br>题目链接: <a href="https://www.luogu.org/problemnew/show/P4085" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P4085</a></p>
-<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>好像教练说要考线段树和树状数组, 然后看到了这个题</p>
-<p>这道题可以练习各种数据结构的基础操作…</p>
-<p>我就浪费了大把时间用各种算法来A这道题</p>
+    <p>&#x3010;LuoguP4085&#x3011;&#x3010;USACO17DEC&#x3011;Haybale Feast<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;: <a href="https://www.luogu.org/problemnew/show/P4085" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P4085</a></p>
+<h3><span id="&#x5F15;&#x8A00;">&#x5F15;&#x8A00;</span><a href="#&#x5F15;&#x8A00;" class="header-anchor"> </a></h3><p>&#x597D;&#x50CF;&#x6559;&#x7EC3;&#x8BF4;&#x8981;&#x8003;&#x7EBF;&#x6BB5;&#x6811;&#x548C;&#x6811;&#x72B6;&#x6570;&#x7EC4;, &#x7136;&#x540E;&#x770B;&#x5230;&#x4E86;&#x8FD9;&#x4E2A;&#x9898;</p>
+<p>&#x8FD9;&#x9053;&#x9898;&#x53EF;&#x4EE5;&#x7EC3;&#x4E60;&#x5404;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7684;&#x57FA;&#x7840;&#x64CD;&#x4F5C;&#x2026;</p>
+<p>&#x6211;&#x5C31;&#x6D6A;&#x8D39;&#x4E86;&#x5927;&#x628A;&#x65F6;&#x95F4;&#x7528;&#x5404;&#x79CD;&#x7B97;&#x6CD5;&#x6765;A&#x8FD9;&#x9053;&#x9898;</p>
 <a id="more"></a>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>先看这个 $ \sum_{k=i}^{j} F_k \geqslant M $ </p>
-<p>这个一眼看上去就是前缀和了.静态的话直接普通的前缀和$ O(n) $ 预处理, $ O(1) $ 查询就行了,应该是时间复杂度最低的了.</p>
-<p>至于这个 $ max(S_i,S_{i+1},…,S_{j-1},S_j) $</p>
-<p>维护方法就比较多了,可以用线段树,分块,ST表,我没有写树状数组,因为太麻烦了.</p>
-<p>然后我就浪费了好多时间来用不同的算法A这道题…</p>
-<p>这道题还有一个性质, 关于找i和j, 不需要 $ O(n^2) $ 的复杂度来枚举区间, 我给出下面这个式子</p>
-<script type="math/tex; mode=display">max(s_i, s_{i + 1}, s_{i + 2}) <=  max(s_i, s_{i + 1}, s_{i + 2}, s_{i + 3})</script><p>这个式子根本不用推, 一眼看上去肯定就成立了</p>
-<p>那么根据这个性质, 我们枚举i的值, 只需要找到一个对应的j就行了,这个j一定是满足条件且最小的那个了</p>
-<p>满足条件只需要</p>
-<script type="math/tex; mode=display">Sumf_j - sumf_i >= m</script><p>注: Sumf代表f数组的前缀和</p>
-<p>那么我们可以用 $ O(logn) $ 的复杂度二分查询这个j了</p>
-<p>我们其实不需要自己写二分查找,根据上面的不等式,移一下项,就变成了</p>
-<script type="math/tex; mode=display">Sumf_j  >= m + sumf_i</script><p>然后使用STL自带的lower_bound函数就可以了</p>
-<p>维护区间最大值我建议写ST表, 毕竟静态查询时间复杂度 $ O(1) $, 你也可以写其他的, 我竟然写了三种数据结构.</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>这个代码是线段树 + 前缀和, 评测详情 418ms / 6MB </p>
-<p>ST_Table为ST表的代码, 评测详情 328ms / 9.53MB </p>
-<p>Sqrt为分块,实在没找到英文名, 评测详情 1049ms / 7.65MB </p>
-<p>m 和 前缀和要开long long, 其他的可以用int, 懒得话就全部 long long 吧</p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x5206;&#x6790;">&#x5206;&#x6790;</a></li>
+<li><a href="#&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x5206;&#x6790;">&#x5206;&#x6790;</span><a href="#&#x5206;&#x6790;" class="header-anchor"> </a></h3><p>&#x5148;&#x770B;&#x8FD9;&#x4E2A; $ \sum_{k=i}^{j} F_k \geqslant M $ </p>
+<p>&#x8FD9;&#x4E2A;&#x4E00;&#x773C;&#x770B;&#x4E0A;&#x53BB;&#x5C31;&#x662F;&#x524D;&#x7F00;&#x548C;&#x4E86;.&#x9759;&#x6001;&#x7684;&#x8BDD;&#x76F4;&#x63A5;&#x666E;&#x901A;&#x7684;&#x524D;&#x7F00;&#x548C;$ O(n) $ &#x9884;&#x5904;&#x7406;, $ O(1) $ &#x67E5;&#x8BE2;&#x5C31;&#x884C;&#x4E86;,&#x5E94;&#x8BE5;&#x662F;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x6700;&#x4F4E;&#x7684;&#x4E86;.</p>
+<p>&#x81F3;&#x4E8E;&#x8FD9;&#x4E2A; $ max(S_i,S_{i+1},&#x2026;,S_{j-1},S_j) $</p>
+<p>&#x7EF4;&#x62A4;&#x65B9;&#x6CD5;&#x5C31;&#x6BD4;&#x8F83;&#x591A;&#x4E86;,&#x53EF;&#x4EE5;&#x7528;&#x7EBF;&#x6BB5;&#x6811;,&#x5206;&#x5757;,ST&#x8868;,&#x6211;&#x6CA1;&#x6709;&#x5199;&#x6811;&#x72B6;&#x6570;&#x7EC4;,&#x56E0;&#x4E3A;&#x592A;&#x9EBB;&#x70E6;&#x4E86;.</p>
+<p>&#x7136;&#x540E;&#x6211;&#x5C31;&#x6D6A;&#x8D39;&#x4E86;&#x597D;&#x591A;&#x65F6;&#x95F4;&#x6765;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x7B97;&#x6CD5;A&#x8FD9;&#x9053;&#x9898;&#x2026;</p>
+<p>&#x8FD9;&#x9053;&#x9898;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x6027;&#x8D28;, &#x5173;&#x4E8E;&#x627E;i&#x548C;j, &#x4E0D;&#x9700;&#x8981; $ O(n^2) $ &#x7684;&#x590D;&#x6742;&#x5EA6;&#x6765;&#x679A;&#x4E3E;&#x533A;&#x95F4;, &#x6211;&#x7ED9;&#x51FA;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x5F0F;&#x5B50;</p>
+<script type="math/tex; mode=display">max(s_i, s_{i + 1}, s_{i + 2}) <=  max(s_i, s_{i + 1}, s_{i + 2}, s_{i + 3})</script><p>&#x8FD9;&#x4E2A;&#x5F0F;&#x5B50;&#x6839;&#x672C;&#x4E0D;&#x7528;&#x63A8;, &#x4E00;&#x773C;&#x770B;&#x4E0A;&#x53BB;&#x80AF;&#x5B9A;&#x5C31;&#x6210;&#x7ACB;&#x4E86;</p>
+<p>&#x90A3;&#x4E48;&#x6839;&#x636E;&#x8FD9;&#x4E2A;&#x6027;&#x8D28;, &#x6211;&#x4EEC;&#x679A;&#x4E3E;i&#x7684;&#x503C;, &#x53EA;&#x9700;&#x8981;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x5BF9;&#x5E94;&#x7684;j&#x5C31;&#x884C;&#x4E86;,&#x8FD9;&#x4E2A;j&#x4E00;&#x5B9A;&#x662F;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x4E14;&#x6700;&#x5C0F;&#x7684;&#x90A3;&#x4E2A;&#x4E86;</p>
+<p>&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x53EA;&#x9700;&#x8981;</p>
+<script type="math/tex; mode=display">Sumf_j - sumf_i >= m</script><p>&#x6CE8;: Sumf&#x4EE3;&#x8868;f&#x6570;&#x7EC4;&#x7684;&#x524D;&#x7F00;&#x548C;</p>
+<p>&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528; $ O(logn) $ &#x7684;&#x590D;&#x6742;&#x5EA6;&#x4E8C;&#x5206;&#x67E5;&#x8BE2;&#x8FD9;&#x4E2A;j&#x4E86;</p>
+<p>&#x6211;&#x4EEC;&#x5176;&#x5B9E;&#x4E0D;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5199;&#x4E8C;&#x5206;&#x67E5;&#x627E;,&#x6839;&#x636E;&#x4E0A;&#x9762;&#x7684;&#x4E0D;&#x7B49;&#x5F0F;,&#x79FB;&#x4E00;&#x4E0B;&#x9879;,&#x5C31;&#x53D8;&#x6210;&#x4E86;</p>
+<script type="math/tex; mode=display">Sumf_j  >= m + sumf_i</script><p>&#x7136;&#x540E;&#x4F7F;&#x7528;STL&#x81EA;&#x5E26;&#x7684;lower_bound&#x51FD;&#x6570;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;</p>
+<p>&#x7EF4;&#x62A4;&#x533A;&#x95F4;&#x6700;&#x5927;&#x503C;&#x6211;&#x5EFA;&#x8BAE;&#x5199;ST&#x8868;, &#x6BD5;&#x7ADF;&#x9759;&#x6001;&#x67E5;&#x8BE2;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6; $ O(1) $, &#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x5199;&#x5176;&#x4ED6;&#x7684;, &#x6211;&#x7ADF;&#x7136;&#x5199;&#x4E86;&#x4E09;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;.</p>
+<h3><span id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</span><a href="#&#x4EE3;&#x7801;" class="header-anchor"> </a></h3><p>&#x8FD9;&#x4E2A;&#x4EE3;&#x7801;&#x662F;&#x7EBF;&#x6BB5;&#x6811; + &#x524D;&#x7F00;&#x548C;, &#x8BC4;&#x6D4B;&#x8BE6;&#x60C5; 418ms / 6MB </p>
+<p>ST_Table&#x4E3A;ST&#x8868;&#x7684;&#x4EE3;&#x7801;, &#x8BC4;&#x6D4B;&#x8BE6;&#x60C5; 328ms / 9.53MB </p>
+<p>Sqrt&#x4E3A;&#x5206;&#x5757;,&#x5B9E;&#x5728;&#x6CA1;&#x627E;&#x5230;&#x82F1;&#x6587;&#x540D;, &#x8BC4;&#x6D4B;&#x8BE6;&#x60C5; 1049ms / 7.65MB </p>
+<p>m &#x548C; &#x524D;&#x7F00;&#x548C;&#x8981;&#x5F00;long long, &#x5176;&#x4ED6;&#x7684;&#x53EF;&#x4EE5;&#x7528;int, &#x61D2;&#x5F97;&#x8BDD;&#x5C31;&#x5168;&#x90E8; long long &#x5427;</p>
 <pre><code class="lang-cpp">
 #include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
@@ -427,7 +437,7 @@ int main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385282"></script>
+<script src="/js/app.js?v=1573122200166"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

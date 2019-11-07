@@ -12,14 +12,14 @@
 
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <meta name="description" content="有关在OJ上出交互题的一些技巧 本博客所指的OJ仅指SYZOJ，即搭建LOJ使用的在线评测系统。 SYZOJ源码链接(Github仓库): https://github.com/syzoj/syzoj">
-<meta name="keywords" content="闲聊,Cpp,技巧,颓废">
+<meta name="keywords" content="Cpp,闲聊,颓废,技巧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="技巧 - 在OJ上出交互题">
 <meta property="og:url" content="https://xciyang.github.io/2019-07/12-zai-oj-shang-chu-jiao-hu-ti/index.html">
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="有关在OJ上出交互题的一些技巧 本博客所指的OJ仅指SYZOJ，即搭建LOJ使用的在线评测系统。 SYZOJ源码链接(Github仓库): https://github.com/syzoj/syzoj">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-17T23:13:35.927Z">
+<meta property="og:updated_time" content="2019-11-07T09:05:44.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="技巧 - 在OJ上出交互题">
 <meta name="twitter:description" content="有关在OJ上出交互题的一些技巧 本博客所指的OJ仅指SYZOJ，即搭建LOJ使用的在线评测系统。 SYZOJ源码链接(Github仓库): https://github.com/syzoj/syzoj">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385068">
+  <link rel="stylesheet" href="/css/style.css?v=1573122200061">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -249,8 +249,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年07月12日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1.3k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.5k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/技巧/">技巧</a>
     
@@ -259,21 +259,41 @@
     
   </div>
   <article id="article">
-    <p>有关在OJ上出交互题的一些技巧</p>
-<p>本博客所指的OJ仅指SYZOJ，即搭建LOJ使用的在线评测系统。</p>
-<p>SYZOJ源码链接(Github仓库): <a href="https://github.com/syzoj/syzoj" target="_blank" rel="noopener">https://github.com/syzoj/syzoj</a></p>
+    <p>&#x6709;&#x5173;&#x5728;OJ&#x4E0A;&#x51FA;&#x4EA4;&#x4E92;&#x9898;&#x7684;&#x4E00;&#x4E9B;&#x6280;&#x5DE7;</p>
+<p>&#x672C;&#x535A;&#x5BA2;&#x6240;&#x6307;&#x7684;OJ&#x4EC5;&#x6307;SYZOJ&#xFF0C;&#x5373;&#x642D;&#x5EFA;LOJ&#x4F7F;&#x7528;&#x7684;&#x5728;&#x7EBF;&#x8BC4;&#x6D4B;&#x7CFB;&#x7EDF;&#x3002;</p>
+<p>SYZOJ&#x6E90;&#x7801;&#x94FE;&#x63A5;(Github&#x4ED3;&#x5E93;): <a href="https://github.com/syzoj/syzoj" target="_blank" rel="noopener">https://github.com/syzoj/syzoj</a></p>
 <a id="more"></a>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在校内使用SYZOJ搭建内网OJ已经有些时日了。其实之前就看到有交互题这一说，但一直没有去关注和了解。</p>
-<p>今天正颓废时，突然想起了交互题，然后开始便研究。</p>
-<p>本以为是testlib，现在才发现SYZOJ有自己特有的交互方式。</p>
-<h3 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h3><p>SYZOJ帮助中的原话如下：</p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x524D;&#x8A00;">&#x524D;&#x8A00;</a></li>
+<li><a href="#&#x6B63;&#x9898;">&#x6B63;&#x9898;</a><ul>
+<li><a href="#&#x5982;&#x4F55;&#x4EA4;&#x4E92;">&#x5982;&#x4F55;&#x4EA4;&#x4E92;</a></li>
+<li><a href="#&#x8F93;&#x5165;&#x6587;&#x4EF6;">&#x8F93;&#x5165;&#x6587;&#x4EF6;</a></li>
+<li><a href="#&#x9009;&#x624B;&#x5F97;&#x5206;">&#x9009;&#x624B;&#x5F97;&#x5206;</a></li>
+<li><a href="#&#x989D;&#x5916;&#x4FE1;&#x606F;">&#x989D;&#x5916;&#x4FE1;&#x606F;</a></li>
+<li><a href="#&#x5C01;&#x88C5;&#x4EA4;&#x4E92;">&#x5C01;&#x88C5;&#x4EA4;&#x4E92;</a></li>
+<li><a href="#&#x6570;&#x636E;&#x5224;&#x65AD;">&#x6570;&#x636E;&#x5224;&#x65AD;</a></li>
+<li><a href="#datayml">data.yml</a></li>
+</ul>
+</li>
+<li><a href="#&#x540E;&#x7EED;">&#x540E;&#x7EED;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x5728;&#x6821;&#x5185;&#x4F7F;&#x7528;SYZOJ&#x642D;&#x5EFA;&#x5185;&#x7F51;OJ&#x5DF2;&#x7ECF;&#x6709;&#x4E9B;&#x65F6;&#x65E5;&#x4E86;&#x3002;&#x5176;&#x5B9E;&#x4E4B;&#x524D;&#x5C31;&#x770B;&#x5230;&#x6709;&#x4EA4;&#x4E92;&#x9898;&#x8FD9;&#x4E00;&#x8BF4;&#xFF0C;&#x4F46;&#x4E00;&#x76F4;&#x6CA1;&#x6709;&#x53BB;&#x5173;&#x6CE8;&#x548C;&#x4E86;&#x89E3;&#x3002;</p>
+<p>&#x4ECA;&#x5929;&#x6B63;&#x9893;&#x5E9F;&#x65F6;&#xFF0C;&#x7A81;&#x7136;&#x60F3;&#x8D77;&#x4E86;&#x4EA4;&#x4E92;&#x9898;&#xFF0C;&#x7136;&#x540E;&#x5F00;&#x59CB;&#x4FBF;&#x7814;&#x7A76;&#x3002;</p>
+<p>&#x672C;&#x4EE5;&#x4E3A;&#x662F;testlib&#xFF0C;&#x73B0;&#x5728;&#x624D;&#x53D1;&#x73B0;SYZOJ&#x6709;&#x81EA;&#x5DF1;&#x7279;&#x6709;&#x7684;&#x4EA4;&#x4E92;&#x65B9;&#x5F0F;&#x3002;</p>
+<h3><span id="&#x6B63;&#x9898;">&#x6B63;&#x9898;</span><a href="#&#x6B63;&#x9898;" class="header-anchor"> </a></h3><p>SYZOJ&#x5E2E;&#x52A9;&#x4E2D;&#x7684;&#x539F;&#x8BDD;&#x5982;&#x4E0B;&#xFF1A;</p>
 <blockquote>
-<p>交互器和选手程序同时运行，交互器的标准输入和标准输出连接了选手程序的标准输出和标准输入 —— 交互通过输入输出进行。<br>交互器运行时，其目录下会有 input 文件，表示该测试点的输入文件。交互器运行结束后，需要将选手得分写入 score.txt 文件中，并将提供给用户的额外信息输出到标准错误输出（stderr）中。<br>如果您希望实现 NOI 试题风格的交互（选手通过函数调用与交互器交互），请编写一些头文件作为「附加源文件」并封装标准输入输出的交互。</p>
+<p>&#x4EA4;&#x4E92;&#x5668;&#x548C;&#x9009;&#x624B;&#x7A0B;&#x5E8F;&#x540C;&#x65F6;&#x8FD0;&#x884C;&#xFF0C;&#x4EA4;&#x4E92;&#x5668;&#x7684;&#x6807;&#x51C6;&#x8F93;&#x5165;&#x548C;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#x8FDE;&#x63A5;&#x4E86;&#x9009;&#x624B;&#x7A0B;&#x5E8F;&#x7684;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#x548C;&#x6807;&#x51C6;&#x8F93;&#x5165; &#x2014;&#x2014; &#x4EA4;&#x4E92;&#x901A;&#x8FC7;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x8FDB;&#x884C;&#x3002;<br>&#x4EA4;&#x4E92;&#x5668;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x5176;&#x76EE;&#x5F55;&#x4E0B;&#x4F1A;&#x6709; input &#x6587;&#x4EF6;&#xFF0C;&#x8868;&#x793A;&#x8BE5;&#x6D4B;&#x8BD5;&#x70B9;&#x7684;&#x8F93;&#x5165;&#x6587;&#x4EF6;&#x3002;&#x4EA4;&#x4E92;&#x5668;&#x8FD0;&#x884C;&#x7ED3;&#x675F;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x9009;&#x624B;&#x5F97;&#x5206;&#x5199;&#x5165; score.txt &#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x5E76;&#x5C06;&#x63D0;&#x4F9B;&#x7ED9;&#x7528;&#x6237;&#x7684;&#x989D;&#x5916;&#x4FE1;&#x606F;&#x8F93;&#x51FA;&#x5230;&#x6807;&#x51C6;&#x9519;&#x8BEF;&#x8F93;&#x51FA;&#xFF08;stderr&#xFF09;&#x4E2D;&#x3002;<br>&#x5982;&#x679C;&#x60A8;&#x5E0C;&#x671B;&#x5B9E;&#x73B0; NOI &#x8BD5;&#x9898;&#x98CE;&#x683C;&#x7684;&#x4EA4;&#x4E92;&#xFF08;&#x9009;&#x624B;&#x901A;&#x8FC7;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x4E0E;&#x4EA4;&#x4E92;&#x5668;&#x4EA4;&#x4E92;&#xFF09;&#xFF0C;&#x8BF7;&#x7F16;&#x5199;&#x4E00;&#x4E9B;&#x5934;&#x6587;&#x4EF6;&#x4F5C;&#x4E3A;&#x300C;&#x9644;&#x52A0;&#x6E90;&#x6587;&#x4EF6;&#x300D;&#x5E76;&#x5C01;&#x88C5;&#x6807;&#x51C6;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x7684;&#x4EA4;&#x4E92;&#x3002;</p>
 </blockquote>
-<p>要学习出交互题，前提是要会出一道传统题。对于出传统题就需要知道的知识就不予讲解。</p>
-<h4 id="如何交互"><a href="#如何交互" class="headerlink" title="如何交互"></a>如何交互</h4><p>根据帮助，<code>交互通过输入输出进行</code>，那么意为选手程序使用std::cout输出给交互器程序，而交互器程序使用std::cin读取选手的输出，反过来也是如此。</p>
-<p>LOJ中交互题系统测试题<a href="https://loj.ac/problem/6" target="_blank" rel="noopener">Guess Number</a>可以自行了解一下。</p>
-<h4 id="输入文件"><a href="#输入文件" class="headerlink" title="输入文件"></a>输入文件</h4><p>根据帮助，<code>目录下会有 input 文件，表示该测试点的输入文件</code>，那么就需要用文件流操作，我选择使用std::ifstream来读取input文件。交互器从输入文件读取一个整数的实例：</p>
+<p>&#x8981;&#x5B66;&#x4E60;&#x51FA;&#x4EA4;&#x4E92;&#x9898;&#xFF0C;&#x524D;&#x63D0;&#x662F;&#x8981;&#x4F1A;&#x51FA;&#x4E00;&#x9053;&#x4F20;&#x7EDF;&#x9898;&#x3002;&#x5BF9;&#x4E8E;&#x51FA;&#x4F20;&#x7EDF;&#x9898;&#x5C31;&#x9700;&#x8981;&#x77E5;&#x9053;&#x7684;&#x77E5;&#x8BC6;&#x5C31;&#x4E0D;&#x4E88;&#x8BB2;&#x89E3;&#x3002;</p>
+<h4><span id="&#x5982;&#x4F55;&#x4EA4;&#x4E92;">&#x5982;&#x4F55;&#x4EA4;&#x4E92;</span><a href="#&#x5982;&#x4F55;&#x4EA4;&#x4E92;" class="header-anchor"> </a></h4><p>&#x6839;&#x636E;&#x5E2E;&#x52A9;&#xFF0C;<code>&#x4EA4;&#x4E92;&#x901A;&#x8FC7;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x8FDB;&#x884C;</code>&#xFF0C;&#x90A3;&#x4E48;&#x610F;&#x4E3A;&#x9009;&#x624B;&#x7A0B;&#x5E8F;&#x4F7F;&#x7528;std::cout&#x8F93;&#x51FA;&#x7ED9;&#x4EA4;&#x4E92;&#x5668;&#x7A0B;&#x5E8F;&#xFF0C;&#x800C;&#x4EA4;&#x4E92;&#x5668;&#x7A0B;&#x5E8F;&#x4F7F;&#x7528;std::cin&#x8BFB;&#x53D6;&#x9009;&#x624B;&#x7684;&#x8F93;&#x51FA;&#xFF0C;&#x53CD;&#x8FC7;&#x6765;&#x4E5F;&#x662F;&#x5982;&#x6B64;&#x3002;</p>
+<p>LOJ&#x4E2D;&#x4EA4;&#x4E92;&#x9898;&#x7CFB;&#x7EDF;&#x6D4B;&#x8BD5;&#x9898;<a href="https://loj.ac/problem/6" target="_blank" rel="noopener">Guess Number</a>&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;&#x3002;</p>
+<h4><span id="&#x8F93;&#x5165;&#x6587;&#x4EF6;">&#x8F93;&#x5165;&#x6587;&#x4EF6;</span><a href="#&#x8F93;&#x5165;&#x6587;&#x4EF6;" class="header-anchor"> </a></h4><p>&#x6839;&#x636E;&#x5E2E;&#x52A9;&#xFF0C;<code>&#x76EE;&#x5F55;&#x4E0B;&#x4F1A;&#x6709; input &#x6587;&#x4EF6;&#xFF0C;&#x8868;&#x793A;&#x8BE5;&#x6D4B;&#x8BD5;&#x70B9;&#x7684;&#x8F93;&#x5165;&#x6587;&#x4EF6;</code>&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x9700;&#x8981;&#x7528;&#x6587;&#x4EF6;&#x6D41;&#x64CD;&#x4F5C;&#xFF0C;&#x6211;&#x9009;&#x62E9;&#x4F7F;&#x7528;std::ifstream&#x6765;&#x8BFB;&#x53D6;input&#x6587;&#x4EF6;&#x3002;&#x4EA4;&#x4E92;&#x5668;&#x4ECE;&#x8F93;&#x5165;&#x6587;&#x4EF6;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A;&#x6574;&#x6570;&#x7684;&#x5B9E;&#x4F8B;&#xFF1A;</p>
 <pre><code class="lang-cpp">#include &lt;fstream&gt;
 int n;
 int main() {
@@ -282,9 +302,9 @@ int main() {
     return 0;
 }
 </code></pre>
-<h4 id="选手得分"><a href="#选手得分" class="headerlink" title="选手得分"></a>选手得分</h4><p><code>将选手得分写入 score.txt 文件中</code> 也是同理，使用std::ofstream打开score.txt文件，写入一个数即可。</p>
-<p>可以根据查询次数等信息来确定得分，支持部分正确（0 &lt;= 得分 &lt;= 100）。</p>
-<h4 id="额外信息"><a href="#额外信息" class="headerlink" title="额外信息"></a>额外信息</h4><p>继续看帮助，<code>将提供给用户的额外信息输出到标准错误输出（stderr）中</code>。额外信息就是测试点的反馈信息，我们常在传统题WA时看到<code>Files user_out and answer differ</code>。给出一个交互器判定选手输出的实例（不完整）：</p>
+<h4><span id="&#x9009;&#x624B;&#x5F97;&#x5206;">&#x9009;&#x624B;&#x5F97;&#x5206;</span><a href="#&#x9009;&#x624B;&#x5F97;&#x5206;" class="header-anchor"> </a></h4><p><code>&#x5C06;&#x9009;&#x624B;&#x5F97;&#x5206;&#x5199;&#x5165; score.txt &#x6587;&#x4EF6;&#x4E2D;</code> &#x4E5F;&#x662F;&#x540C;&#x7406;&#xFF0C;&#x4F7F;&#x7528;std::ofstream&#x6253;&#x5F00;score.txt&#x6587;&#x4EF6;&#xFF0C;&#x5199;&#x5165;&#x4E00;&#x4E2A;&#x6570;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x67E5;&#x8BE2;&#x6B21;&#x6570;&#x7B49;&#x4FE1;&#x606F;&#x6765;&#x786E;&#x5B9A;&#x5F97;&#x5206;&#xFF0C;&#x652F;&#x6301;&#x90E8;&#x5206;&#x6B63;&#x786E;&#xFF08;0 &lt;= &#x5F97;&#x5206; &lt;= 100&#xFF09;&#x3002;</p>
+<h4><span id="&#x989D;&#x5916;&#x4FE1;&#x606F;">&#x989D;&#x5916;&#x4FE1;&#x606F;</span><a href="#&#x989D;&#x5916;&#x4FE1;&#x606F;" class="header-anchor"> </a></h4><p>&#x7EE7;&#x7EED;&#x770B;&#x5E2E;&#x52A9;&#xFF0C;<code>&#x5C06;&#x63D0;&#x4F9B;&#x7ED9;&#x7528;&#x6237;&#x7684;&#x989D;&#x5916;&#x4FE1;&#x606F;&#x8F93;&#x51FA;&#x5230;&#x6807;&#x51C6;&#x9519;&#x8BEF;&#x8F93;&#x51FA;&#xFF08;stderr&#xFF09;&#x4E2D;</code>&#x3002;&#x989D;&#x5916;&#x4FE1;&#x606F;&#x5C31;&#x662F;&#x6D4B;&#x8BD5;&#x70B9;&#x7684;&#x53CD;&#x9988;&#x4FE1;&#x606F;&#xFF0C;&#x6211;&#x4EEC;&#x5E38;&#x5728;&#x4F20;&#x7EDF;&#x9898;WA&#x65F6;&#x770B;&#x5230;<code>Files user_out and answer differ</code>&#x3002;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x4EA4;&#x4E92;&#x5668;&#x5224;&#x5B9A;&#x9009;&#x624B;&#x8F93;&#x51FA;&#x7684;&#x5B9E;&#x4F8B;&#xFF08;&#x4E0D;&#x5B8C;&#x6574;&#xFF09;&#xFF1A;</p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 int n, ans;
 int main() {
@@ -293,10 +313,10 @@ int main() {
     return 0;
 }
 </code></pre>
-<p>当WA时输出正确的答案以供选手参考，与Special Judge类似。</p>
-<h4 id="封装交互"><a href="#封装交互" class="headerlink" title="封装交互"></a>封装交互</h4><p>帮助最后一句，是可选的。我们可以封装标准输入输出的交互，我们对于C++而言，可以写一个头文件interactor.h。</p>
-<p>我们模拟一个很简单的题来示范interactor.h，选手输出两个数（代表一个坐标）与交互器进行交互，交互器返回一个数表示与终点的曼哈顿距离。</p>
-<p>代码如下（只是interactor.h）：</p>
+<p>&#x5F53;WA&#x65F6;&#x8F93;&#x51FA;&#x6B63;&#x786E;&#x7684;&#x7B54;&#x6848;&#x4EE5;&#x4F9B;&#x9009;&#x624B;&#x53C2;&#x8003;&#xFF0C;&#x4E0E;Special Judge&#x7C7B;&#x4F3C;&#x3002;</p>
+<h4><span id="&#x5C01;&#x88C5;&#x4EA4;&#x4E92;">&#x5C01;&#x88C5;&#x4EA4;&#x4E92;</span><a href="#&#x5C01;&#x88C5;&#x4EA4;&#x4E92;" class="header-anchor"> </a></h4><p>&#x5E2E;&#x52A9;&#x6700;&#x540E;&#x4E00;&#x53E5;&#xFF0C;&#x662F;&#x53EF;&#x9009;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C01;&#x88C5;&#x6807;&#x51C6;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#x7684;&#x4EA4;&#x4E92;&#xFF0C;&#x6211;&#x4EEC;&#x5BF9;&#x4E8E;C++&#x800C;&#x8A00;&#xFF0C;&#x53EF;&#x4EE5;&#x5199;&#x4E00;&#x4E2A;&#x5934;&#x6587;&#x4EF6;interactor.h&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x6A21;&#x62DF;&#x4E00;&#x4E2A;&#x5F88;&#x7B80;&#x5355;&#x7684;&#x9898;&#x6765;&#x793A;&#x8303;interactor.h&#xFF0C;&#x9009;&#x624B;&#x8F93;&#x51FA;&#x4E24;&#x4E2A;&#x6570;&#xFF08;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x5750;&#x6807;&#xFF09;&#x4E0E;&#x4EA4;&#x4E92;&#x5668;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#xFF0C;&#x4EA4;&#x4E92;&#x5668;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6570;&#x8868;&#x793A;&#x4E0E;&#x7EC8;&#x70B9;&#x7684;&#x66FC;&#x54C8;&#x987F;&#x8DDD;&#x79BB;&#x3002;</p>
+<p>&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF08;&#x53EA;&#x662F;interactor.h&#xFF09;&#xFF1A;</p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 int query(int x, int y){
     std::cout &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; y &lt;&lt; std::endl &lt;&lt; std::flush;
@@ -305,8 +325,8 @@ int query(int x, int y){
     return res;
 }
 </code></pre>
-<p>你可以把它当做附加源文件提供给选手，方便不太懂的选手交互。</p>
-<h4 id="数据判断"><a href="#数据判断" class="headerlink" title="数据判断"></a>数据判断</h4><p>在交互过程中，交互器需要面对选手提供的各种输出数据。这些数据可能不合法，为了节省代码，介绍一个assert函数，貌似testlib中有类似的函数。</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x628A;&#x5B83;&#x5F53;&#x505A;&#x9644;&#x52A0;&#x6E90;&#x6587;&#x4EF6;&#x63D0;&#x4F9B;&#x7ED9;&#x9009;&#x624B;&#xFF0C;&#x65B9;&#x4FBF;&#x4E0D;&#x592A;&#x61C2;&#x7684;&#x9009;&#x624B;&#x4EA4;&#x4E92;&#x3002;</p>
+<h4><span id="&#x6570;&#x636E;&#x5224;&#x65AD;">&#x6570;&#x636E;&#x5224;&#x65AD;</span><a href="#&#x6570;&#x636E;&#x5224;&#x65AD;" class="header-anchor"> </a></h4><p>&#x5728;&#x4EA4;&#x4E92;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4EA4;&#x4E92;&#x5668;&#x9700;&#x8981;&#x9762;&#x5BF9;&#x9009;&#x624B;&#x63D0;&#x4F9B;&#x7684;&#x5404;&#x79CD;&#x8F93;&#x51FA;&#x6570;&#x636E;&#x3002;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x53EF;&#x80FD;&#x4E0D;&#x5408;&#x6CD5;&#xFF0C;&#x4E3A;&#x4E86;&#x8282;&#x7701;&#x4EE3;&#x7801;&#xFF0C;&#x4ECB;&#x7ECD;&#x4E00;&#x4E2A;assert&#x51FD;&#x6570;&#xFF0C;&#x8C8C;&#x4F3C;testlib&#x4E2D;&#x6709;&#x7C7B;&#x4F3C;&#x7684;&#x51FD;&#x6570;&#x3002;</p>
 <pre><code class="lang-cpp">template &lt; typename T &gt;
 inline void assert(const T &amp;condition, const std::string &amp;message) {
     if(!condition) {
@@ -317,22 +337,22 @@ inline void assert(const T &amp;condition, const std::string &amp;message) {
     return;
 }
 </code></pre>
-<p>此函数是模板函数，刚入门C++的人可能不太懂。对于这个函数来讲，模板就是为了适用所有类型。condition为一个表达式，message为提供的额外信息。</p>
-<p>判断选手输出是否为整数可以用以下代码，如果不是，cin就会出错，然后执行if中的语句（选手的输出等同于交互器的输入）。</p>
+<p>&#x6B64;&#x51FD;&#x6570;&#x662F;&#x6A21;&#x677F;&#x51FD;&#x6570;&#xFF0C;&#x521A;&#x5165;&#x95E8;C++&#x7684;&#x4EBA;&#x53EF;&#x80FD;&#x4E0D;&#x592A;&#x61C2;&#x3002;&#x5BF9;&#x4E8E;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x6765;&#x8BB2;&#xFF0C;&#x6A21;&#x677F;&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x9002;&#x7528;&#x6240;&#x6709;&#x7C7B;&#x578B;&#x3002;condition&#x4E3A;&#x4E00;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;message&#x4E3A;&#x63D0;&#x4F9B;&#x7684;&#x989D;&#x5916;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x5224;&#x65AD;&#x9009;&#x624B;&#x8F93;&#x51FA;&#x662F;&#x5426;&#x4E3A;&#x6574;&#x6570;&#x53EF;&#x4EE5;&#x7528;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x662F;&#xFF0C;cin&#x5C31;&#x4F1A;&#x51FA;&#x9519;&#xFF0C;&#x7136;&#x540E;&#x6267;&#x884C;if&#x4E2D;&#x7684;&#x8BED;&#x53E5;&#xFF08;&#x9009;&#x624B;&#x7684;&#x8F93;&#x51FA;&#x7B49;&#x540C;&#x4E8E;&#x4EA4;&#x4E92;&#x5668;&#x7684;&#x8F93;&#x5165;&#xFF09;&#x3002;</p>
 <pre><code class="lang-cpp">int x, y;
 assert(std::cin &gt;&gt; x &gt;&gt; y, &quot;Invalid `x` or `y`!&quot;);
 </code></pre>
-<p>交互器判断选手输出的数的范围也是如此：</p>
+<p>&#x4EA4;&#x4E92;&#x5668;&#x5224;&#x65AD;&#x9009;&#x624B;&#x8F93;&#x51FA;&#x7684;&#x6570;&#x7684;&#x8303;&#x56F4;&#x4E5F;&#x662F;&#x5982;&#x6B64;&#xFF1A;</p>
 <pre><code class="lang-cpp">assert(x &gt;= 1 &amp;&amp; x &lt;= n &amp;&amp; y &gt;= 1 &amp;&amp; y &lt;= n, &quot;`x` and `y` must in [1, n]!&quot;);
 </code></pre>
-<h4 id="data-yml"><a href="#data-yml" class="headerlink" title="data.yml"></a>data.yml</h4><p>写好标程、题面，造好数据之后，对于SYZOJ的交互题必须用data.yml来指明交互器。</p>
-<p>交互题与传统题的data.yml差别较小，只是增加交互器名称即可。使用C++11编写名为interactor.cpp的交互器，要在其中增加以下内容：</p>
+<h4><span id="datayml">data.yml</span><a href="#datayml" class="header-anchor"> </a></h4><p>&#x5199;&#x597D;&#x6807;&#x7A0B;&#x3001;&#x9898;&#x9762;&#xFF0C;&#x9020;&#x597D;&#x6570;&#x636E;&#x4E4B;&#x540E;&#xFF0C;&#x5BF9;&#x4E8E;SYZOJ&#x7684;&#x4EA4;&#x4E92;&#x9898;&#x5FC5;&#x987B;&#x7528;data.yml&#x6765;&#x6307;&#x660E;&#x4EA4;&#x4E92;&#x5668;&#x3002;</p>
+<p>&#x4EA4;&#x4E92;&#x9898;&#x4E0E;&#x4F20;&#x7EDF;&#x9898;&#x7684;data.yml&#x5DEE;&#x522B;&#x8F83;&#x5C0F;&#xFF0C;&#x53EA;&#x662F;&#x589E;&#x52A0;&#x4EA4;&#x4E92;&#x5668;&#x540D;&#x79F0;&#x5373;&#x53EF;&#x3002;&#x4F7F;&#x7528;C++11&#x7F16;&#x5199;&#x540D;&#x4E3A;interactor.cpp&#x7684;&#x4EA4;&#x4E92;&#x5668;&#xFF0C;&#x8981;&#x5728;&#x5176;&#x4E2D;&#x589E;&#x52A0;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
 <pre><code class="lang-json">interactor:
   language: cpp11
   fileName: interactor.cpp
 </code></pre>
-<p>然后数据文件的ZIP中需要包含interactor.cpp文件。</p>
-<h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>总体来说比较简单。交互题一般能增大难度、限制选手的算法，也是强制在线的一种实现方法。</p>
+<p>&#x7136;&#x540E;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x7684;ZIP&#x4E2D;&#x9700;&#x8981;&#x5305;&#x542B;interactor.cpp&#x6587;&#x4EF6;&#x3002;</p>
+<h3><span id="&#x540E;&#x7EED;">&#x540E;&#x7EED;</span><a href="#&#x540E;&#x7EED;" class="header-anchor"> </a></h3><p>&#x603B;&#x4F53;&#x6765;&#x8BF4;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#x3002;&#x4EA4;&#x4E92;&#x9898;&#x4E00;&#x822C;&#x80FD;&#x589E;&#x5927;&#x96BE;&#x5EA6;&#x3001;&#x9650;&#x5236;&#x9009;&#x624B;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x4E5F;&#x662F;&#x5F3A;&#x5236;&#x5728;&#x7EBF;&#x7684;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x3002;</p>
 
   </article>
   
@@ -378,7 +398,7 @@ assert(std::cin &gt;&gt; x &gt;&gt; y, &quot;Invalid `x` or `y`!&quot;);
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385078"></script>
+<script src="/js/app.js?v=1573122200074"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

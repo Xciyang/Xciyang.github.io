@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="【LuoguP2633】【SP10628】【BZOJ2588】Count on a tree 树上第 K 大题目链接1: https://www.luogu.org/problemnew/show/P2633题目链接2: https://www.lydsy.com/JudgeOnline/problem.php?id=2588题目链接3: https://www.luogu.org/problem">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T11:55:52.203Z">
+<meta property="og:updated_time" content="2019-11-07T09:07:02.614Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LuoguP2633 - Count on a tree">
 <meta name="twitter:description" content="【LuoguP2633】【SP10628】【BZOJ2588】Count on a tree 树上第 K 大题目链接1: https://www.luogu.org/problemnew/show/P2633题目链接2: https://www.lydsy.com/JudgeOnline/problem.php?id=2588题目链接3: https://www.luogu.org/problem">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385300">
+  <link rel="stylesheet" href="/css/style.css?v=1573122200521">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -250,7 +250,7 @@
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年02月18日</a>
     <a><i class="nexmoefont icon-areachart"></i>1.1k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -259,19 +259,29 @@
     
   </div>
   <article id="article">
-    <p>【LuoguP2633】【SP10628】【BZOJ2588】Count on a tree 树上第 K 大<br>题目链接1: <a href="https://www.luogu.org/problemnew/show/P2633" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P2633</a><br>题目链接2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2588" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=2588</a><br>题目链接3: <a href="https://www.luogu.org/problemnew/show/SP10628" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/SP10628</a><br>题目链接4: <a href="https://www.spoj.com/problems/COT/" target="_blank" rel="noopener">https://www.spoj.com/problems/COT/</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本来是打算做 TJOI2018 - 异或 那道题的, 然后又看到这道题, 好像做这道题有助于那道题…然后就开始干</p>
+    <p>&#x3010;LuoguP2633&#x3011;&#x3010;SP10628&#x3011;&#x3010;BZOJ2588&#x3011;Count on a tree &#x6811;&#x4E0A;&#x7B2C; K &#x5927;<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;1: <a href="https://www.luogu.org/problemnew/show/P2633" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P2633</a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2588" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=2588</a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;3: <a href="https://www.luogu.org/problemnew/show/SP10628" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/SP10628</a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;4: <a href="https://www.spoj.com/problems/COT/" target="_blank" rel="noopener">https://www.spoj.com/problems/COT/</a></p>
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x672C;&#x6765;&#x662F;&#x6253;&#x7B97;&#x505A; TJOI2018 - &#x5F02;&#x6216; &#x90A3;&#x9053;&#x9898;&#x7684;, &#x7136;&#x540E;&#x53C8;&#x770B;&#x5230;&#x8FD9;&#x9053;&#x9898;, &#x597D;&#x50CF;&#x505A;&#x8FD9;&#x9053;&#x9898;&#x6709;&#x52A9;&#x4E8E;&#x90A3;&#x9053;&#x9898;&#x2026;&#x7136;&#x540E;&#x5C31;&#x5F00;&#x59CB;&#x5E72;</p>
 <a id="more"></a>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这道题像是组合模板题…用倍增LCA + 主席树, 直接套模板就行了.</p>
-<p>有一些需要注意的东西, 边的数组最好开大一点, 不然容易RE, 哪个算法写炸了也容易RE, 所以需要小心谨慎的写代码, 然而Ciyang的倍增写挂了…</p>
-<p>主席树我写的指针版, 好像很罕见, 强烈安利, 虽然和数组版没有多大的区别.</p>
-<p>对于这道题, 先预处理出LCA, 然后建个树（数组版不需要）</p>
-<p>查询时把$ x $和$ y $之间的链提出来, 主席树上存的是前缀和, 那么就需要先求出$ lca(x,y) $</p>
-<p>再根据数学上的某些原理（容斥?）求出</p>
-<script type="math/tex; mode=display">Sum(x,y) = sum(x) + sum(y) - sum(lca(x,y)) - sum(lca(x,y)) - sum(f[lca(x,y)])</script><p>$ f[x] $ 代表 x 的父节点, 然后直接套主席树板子就行了</p>
-<p>推荐两个STL必备黑科技, unique 和 lower_bound, 前者那个是给有序数组去重, 后者是有序数组二分查找. 一般都会了, 不会的百度把… </p>
-<p>如果出现RE, 找不到原因, 可以去交<a href="https://www.luogu.org/problemnew/show/SP10628" target="_blank" rel="noopener">这道题</a>, 去掉强制在线, 如果WA就是算法问题了.再出现RE可能就是像我一样手残打错了一个数字之类的东西…</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>评测详情(未开O2): Accepted 100 用时: 1765ms / 内存: 76648KB</p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x5206;&#x6790;">&#x5206;&#x6790;</a></li>
+<li><a href="#&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x5206;&#x6790;">&#x5206;&#x6790;</span><a href="#&#x5206;&#x6790;" class="header-anchor"> </a></h3><p>&#x8FD9;&#x9053;&#x9898;&#x50CF;&#x662F;&#x7EC4;&#x5408;&#x6A21;&#x677F;&#x9898;&#x2026;&#x7528;&#x500D;&#x589E;LCA + &#x4E3B;&#x5E2D;&#x6811;, &#x76F4;&#x63A5;&#x5957;&#x6A21;&#x677F;&#x5C31;&#x884C;&#x4E86;.</p>
+<p>&#x6709;&#x4E00;&#x4E9B;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E1C;&#x897F;, &#x8FB9;&#x7684;&#x6570;&#x7EC4;&#x6700;&#x597D;&#x5F00;&#x5927;&#x4E00;&#x70B9;, &#x4E0D;&#x7136;&#x5BB9;&#x6613;RE, &#x54EA;&#x4E2A;&#x7B97;&#x6CD5;&#x5199;&#x70B8;&#x4E86;&#x4E5F;&#x5BB9;&#x6613;RE, &#x6240;&#x4EE5;&#x9700;&#x8981;&#x5C0F;&#x5FC3;&#x8C28;&#x614E;&#x7684;&#x5199;&#x4EE3;&#x7801;, &#x7136;&#x800C;Ciyang&#x7684;&#x500D;&#x589E;&#x5199;&#x6302;&#x4E86;&#x2026;</p>
+<p>&#x4E3B;&#x5E2D;&#x6811;&#x6211;&#x5199;&#x7684;&#x6307;&#x9488;&#x7248;, &#x597D;&#x50CF;&#x5F88;&#x7F55;&#x89C1;, &#x5F3A;&#x70C8;&#x5B89;&#x5229;, &#x867D;&#x7136;&#x548C;&#x6570;&#x7EC4;&#x7248;&#x6CA1;&#x6709;&#x591A;&#x5927;&#x7684;&#x533A;&#x522B;.</p>
+<p>&#x5BF9;&#x4E8E;&#x8FD9;&#x9053;&#x9898;, &#x5148;&#x9884;&#x5904;&#x7406;&#x51FA;LCA, &#x7136;&#x540E;&#x5EFA;&#x4E2A;&#x6811;&#xFF08;&#x6570;&#x7EC4;&#x7248;&#x4E0D;&#x9700;&#x8981;&#xFF09;</p>
+<p>&#x67E5;&#x8BE2;&#x65F6;&#x628A;$ x $&#x548C;$ y $&#x4E4B;&#x95F4;&#x7684;&#x94FE;&#x63D0;&#x51FA;&#x6765;, &#x4E3B;&#x5E2D;&#x6811;&#x4E0A;&#x5B58;&#x7684;&#x662F;&#x524D;&#x7F00;&#x548C;, &#x90A3;&#x4E48;&#x5C31;&#x9700;&#x8981;&#x5148;&#x6C42;&#x51FA;$ lca(x,y) $</p>
+<p>&#x518D;&#x6839;&#x636E;&#x6570;&#x5B66;&#x4E0A;&#x7684;&#x67D0;&#x4E9B;&#x539F;&#x7406;&#xFF08;&#x5BB9;&#x65A5;?&#xFF09;&#x6C42;&#x51FA;</p>
+<script type="math/tex; mode=display">Sum(x,y) = sum(x) + sum(y) - sum(lca(x,y)) - sum(lca(x,y)) - sum(f[lca(x,y)])</script><p>$ f[x] $ &#x4EE3;&#x8868; x &#x7684;&#x7236;&#x8282;&#x70B9;, &#x7136;&#x540E;&#x76F4;&#x63A5;&#x5957;&#x4E3B;&#x5E2D;&#x6811;&#x677F;&#x5B50;&#x5C31;&#x884C;&#x4E86;</p>
+<p>&#x63A8;&#x8350;&#x4E24;&#x4E2A;STL&#x5FC5;&#x5907;&#x9ED1;&#x79D1;&#x6280;, unique &#x548C; lower_bound, &#x524D;&#x8005;&#x90A3;&#x4E2A;&#x662F;&#x7ED9;&#x6709;&#x5E8F;&#x6570;&#x7EC4;&#x53BB;&#x91CD;, &#x540E;&#x8005;&#x662F;&#x6709;&#x5E8F;&#x6570;&#x7EC4;&#x4E8C;&#x5206;&#x67E5;&#x627E;. &#x4E00;&#x822C;&#x90FD;&#x4F1A;&#x4E86;, &#x4E0D;&#x4F1A;&#x7684;&#x767E;&#x5EA6;&#x628A;&#x2026; </p>
+<p>&#x5982;&#x679C;&#x51FA;&#x73B0;RE, &#x627E;&#x4E0D;&#x5230;&#x539F;&#x56E0;, &#x53EF;&#x4EE5;&#x53BB;&#x4EA4;<a href="https://www.luogu.org/problemnew/show/SP10628" target="_blank" rel="noopener">&#x8FD9;&#x9053;&#x9898;</a>, &#x53BB;&#x6389;&#x5F3A;&#x5236;&#x5728;&#x7EBF;, &#x5982;&#x679C;WA&#x5C31;&#x662F;&#x7B97;&#x6CD5;&#x95EE;&#x9898;&#x4E86;.&#x518D;&#x51FA;&#x73B0;RE&#x53EF;&#x80FD;&#x5C31;&#x662F;&#x50CF;&#x6211;&#x4E00;&#x6837;&#x624B;&#x6B8B;&#x6253;&#x9519;&#x4E86;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x4E4B;&#x7C7B;&#x7684;&#x4E1C;&#x897F;&#x2026;</p>
+<h3><span id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</span><a href="#&#x4EE3;&#x7801;" class="header-anchor"> </a></h3><p>&#x8BC4;&#x6D4B;&#x8BE6;&#x60C5;(&#x672A;&#x5F00;O2): Accepted 100 &#x7528;&#x65F6;: 1765ms / &#x5185;&#x5B58;: 76648KB</p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;algorithm&gt;
@@ -279,11 +289,11 @@ using namespace std;
 inline int read() {
     int e= 0, f= 1;
     char ch= getchar();
-    while(ch &lt; &#39;0&#39; || ch &gt; &#39;9&#39;) {
-        if(ch == &#39;-&#39;) f= -1;
+    while(ch &lt; &apos;0&apos; || ch &gt; &apos;9&apos;) {
+        if(ch == &apos;-&apos;) f= -1;
         ch= getchar();
     }
-    while(ch &gt;= &#39;0&#39; &amp;&amp; ch &lt;= &#39;9&#39;) e= e * 10 + ch - &#39;0&#39;, ch= getchar();
+    while(ch &gt;= &apos;0&apos; &amp;&amp; ch &lt;= &apos;9&apos;) e= e * 10 + ch - &apos;0&apos;, ch= getchar();
     return e * f;
 }
 // READ
@@ -291,7 +301,7 @@ int n, m, d, vi[100005], lv[100005], edptr= 1, head[100005], tmpx, tmpy, tmpz;
 struct edge {
     int to, nexty;
 } eds[400001];
-// 其实可以 100005 * 2
+// &#x5176;&#x5B9E;&#x53EF;&#x4EE5; 100005 * 2
 void add(int a, int b) {
     eds[edptr].to= b, eds[edptr].nexty= head[a];
     head[a]= edptr++;
@@ -302,7 +312,7 @@ struct NODE {
     NODE *l, *r;
     int v, sum;
 } * root[800005];
-// 其实可以 100005
+// &#x5176;&#x5B9E;&#x53EF;&#x4EE5; 100005
 NODE *build(int l, int r) {
     NODE *nptr= new NODE();
     if(l != r) {
@@ -336,7 +346,7 @@ void dfs(int nown, int fa) {
     deep[nown]= deep[fa] + 1;
     f[nown][0]= fa;
     for(int i= 0; i &lt; 20; i++) f[nown][i + 1]= f[f[nown][i]][i];
-    // 从0开始...Ciyang写挂了,写成从1开始,然后交了好多遍也没改对
+    // &#x4ECE;0&#x5F00;&#x59CB;...Ciyang&#x5199;&#x6302;&#x4E86;,&#x5199;&#x6210;&#x4ECE;1&#x5F00;&#x59CB;,&#x7136;&#x540E;&#x4EA4;&#x4E86;&#x597D;&#x591A;&#x904D;&#x4E5F;&#x6CA1;&#x6539;&#x5BF9;
     for(int i= head[nown], to; i; i= eds[i].nexty) {
         to= eds[i].to;
         if(to == fa) continue;
@@ -434,7 +444,7 @@ int main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385311"></script>
+<script src="/js/app.js?v=1573122200545"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

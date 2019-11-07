@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="【AtCoder Beginner Contest 142】比赛链接: https://atcoder.jp/contests/abc142 前言这次比赛略水，真是上分的好比赛。作为仅有300+rating的我直接安排，AK比赛后直接上到900+。 比赛中有几个题对我还是比较有意义的。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-29T02:11:48.468Z">
+<meta property="og:updated_time" content="2019-11-07T09:04:52.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="比赛 - AtCoder Beginner Contest 142">
 <meta name="twitter:description" content="【AtCoder Beginner Contest 142】比赛链接: https://atcoder.jp/contests/abc142 前言这次比赛略水，真是上分的好比赛。作为仅有300+rating的我直接安排，AK比赛后直接上到900+。 比赛中有几个题对我还是比较有意义的。">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960384916">
+  <link rel="stylesheet" href="/css/style.css?v=1573122199832">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -249,8 +249,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月29日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1.7k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.9k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 11 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -259,26 +259,44 @@
     
   </div>
   <article id="article">
-    <p>【AtCoder Beginner Contest 142】<br>比赛链接: <a href="https://atcoder.jp/contests/abc142" target="_blank" rel="noopener">https://atcoder.jp/contests/abc142</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这次比赛略水，真是上分的好比赛。作为仅有300+rating的我直接安排，AK比赛后直接上到900+。</p>
-<p>比赛中有几个题对我还是比较有意义的。</p>
+    <p>&#x3010;AtCoder Beginner Contest 142&#x3011;<br>&#x6BD4;&#x8D5B;&#x94FE;&#x63A5;: <a href="https://atcoder.jp/contests/abc142" target="_blank" rel="noopener">https://atcoder.jp/contests/abc142</a></p>
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x8FD9;&#x6B21;&#x6BD4;&#x8D5B;&#x7565;&#x6C34;&#xFF0C;&#x771F;&#x662F;&#x4E0A;&#x5206;&#x7684;&#x597D;&#x6BD4;&#x8D5B;&#x3002;&#x4F5C;&#x4E3A;&#x4EC5;&#x6709;300+rating&#x7684;&#x6211;&#x76F4;&#x63A5;&#x5B89;&#x6392;&#xFF0C;AK&#x6BD4;&#x8D5B;&#x540E;&#x76F4;&#x63A5;&#x4E0A;&#x5230;900+&#x3002;</p>
+<p>&#x6BD4;&#x8D5B;&#x4E2D;&#x6709;&#x51E0;&#x4E2A;&#x9898;&#x5BF9;&#x6211;&#x8FD8;&#x662F;&#x6BD4;&#x8F83;&#x6709;&#x610F;&#x4E49;&#x7684;&#x3002;</p>
 <a id="more"></a>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><h4 id="A"><a href="#A" class="headerlink" title="A"></a>A</h4><p>题意翻译：</p>
-<p>给出一个数$N$，从$1~N$中随机抽取，求抽到奇数的概率。</p>
-<p>这题还挺简单，再看数据范围$1 &lt;= N &lt;= 100$，太水了！</p>
-<h4 id="B"><a href="#B" class="headerlink" title="B"></a>B</h4><p>题意翻译：</p>
-<p>第一行给出一个数$N$代表一个数列的长度，再给出$K$。第二行给出数列各项的值。求数列中大于等于$K$的个数。</p>
-<p>数据范围$1 &lt;= N &lt;= 10^5$，也很水，入门难度。</p>
-<h4 id="C"><a href="#C" class="headerlink" title="C"></a>C</h4><p>题意翻译：</p>
-<p>一个教室中有$N$名同学，给出每个同学到达教室时教室中的人$A_i$（包括自己），求出到达顺序。</p>
-<p>数据范围$1 &lt;= N &lt;= 10^5$，正常范围。</p>
-<p>直接上排序，按$A_i$从小到大排序，最后依次输出编号。</p>
-<h4 id="D"><a href="#D" class="headerlink" title="D"></a>D</h4><p>这题看了好长时间才看懂题目。</p>
-<p>题意翻译：</p>
-<p>给出两个数$A$、$B$，求出两个数的共同约数集合的一个子集。这个子集满足各元素两两直接都互质，求出子集最多包含多少元素。</p>
-<p>数据范围$1 &lt;= A,B &lt;= 10^{12}$。</p>
-<p>看起来好像有点麻烦，但实际上我们先求出$C=gcd(A, B)$，那么$C$的约数就是两个数的共同约数。然后再分解质因数即可，题目转换为求一个较大的数的质因数个数。</p>
-<p>核心代码：</p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x9898;&#x89E3;">&#x9898;&#x89E3;</a><ul>
+<li><a href="#a">A</a></li>
+<li><a href="#b">B</a></li>
+<li><a href="#c">C</a></li>
+<li><a href="#d">D</a></li>
+<li><a href="#e">E</a></li>
+<li><a href="#f">F</a></li>
+</ul>
+</li>
+<li><a href="#&#x540E;&#x8BB0;">&#x540E;&#x8BB0;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x9898;&#x89E3;">&#x9898;&#x89E3;</span><a href="#&#x9898;&#x89E3;" class="header-anchor"> </a></h3><h4><span id="a">A</span><a href="#a" class="header-anchor"> </a></h4><p>&#x9898;&#x610F;&#x7FFB;&#x8BD1;&#xFF1A;</p>
+<p>&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x6570;$N$&#xFF0C;&#x4ECE;$1~N$&#x4E2D;&#x968F;&#x673A;&#x62BD;&#x53D6;&#xFF0C;&#x6C42;&#x62BD;&#x5230;&#x5947;&#x6570;&#x7684;&#x6982;&#x7387;&#x3002;</p>
+<p>&#x8FD9;&#x9898;&#x8FD8;&#x633A;&#x7B80;&#x5355;&#xFF0C;&#x518D;&#x770B;&#x6570;&#x636E;&#x8303;&#x56F4;$1 &lt;= N &lt;= 100$&#xFF0C;&#x592A;&#x6C34;&#x4E86;&#xFF01;</p>
+<h4><span id="b">B</span><a href="#b" class="header-anchor"> </a></h4><p>&#x9898;&#x610F;&#x7FFB;&#x8BD1;&#xFF1A;</p>
+<p>&#x7B2C;&#x4E00;&#x884C;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x6570;$N$&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x6570;&#x5217;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x518D;&#x7ED9;&#x51FA;$K$&#x3002;&#x7B2C;&#x4E8C;&#x884C;&#x7ED9;&#x51FA;&#x6570;&#x5217;&#x5404;&#x9879;&#x7684;&#x503C;&#x3002;&#x6C42;&#x6570;&#x5217;&#x4E2D;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;$K$&#x7684;&#x4E2A;&#x6570;&#x3002;</p>
+<p>&#x6570;&#x636E;&#x8303;&#x56F4;$1 &lt;= N &lt;= 10^5$&#xFF0C;&#x4E5F;&#x5F88;&#x6C34;&#xFF0C;&#x5165;&#x95E8;&#x96BE;&#x5EA6;&#x3002;</p>
+<h4><span id="c">C</span><a href="#c" class="header-anchor"> </a></h4><p>&#x9898;&#x610F;&#x7FFB;&#x8BD1;&#xFF1A;</p>
+<p>&#x4E00;&#x4E2A;&#x6559;&#x5BA4;&#x4E2D;&#x6709;$N$&#x540D;&#x540C;&#x5B66;&#xFF0C;&#x7ED9;&#x51FA;&#x6BCF;&#x4E2A;&#x540C;&#x5B66;&#x5230;&#x8FBE;&#x6559;&#x5BA4;&#x65F6;&#x6559;&#x5BA4;&#x4E2D;&#x7684;&#x4EBA;$A_i$&#xFF08;&#x5305;&#x62EC;&#x81EA;&#x5DF1;&#xFF09;&#xFF0C;&#x6C42;&#x51FA;&#x5230;&#x8FBE;&#x987A;&#x5E8F;&#x3002;</p>
+<p>&#x6570;&#x636E;&#x8303;&#x56F4;$1 &lt;= N &lt;= 10^5$&#xFF0C;&#x6B63;&#x5E38;&#x8303;&#x56F4;&#x3002;</p>
+<p>&#x76F4;&#x63A5;&#x4E0A;&#x6392;&#x5E8F;&#xFF0C;&#x6309;$A_i$&#x4ECE;&#x5C0F;&#x5230;&#x5927;&#x6392;&#x5E8F;&#xFF0C;&#x6700;&#x540E;&#x4F9D;&#x6B21;&#x8F93;&#x51FA;&#x7F16;&#x53F7;&#x3002;</p>
+<h4><span id="d">D</span><a href="#d" class="header-anchor"> </a></h4><p>&#x8FD9;&#x9898;&#x770B;&#x4E86;&#x597D;&#x957F;&#x65F6;&#x95F4;&#x624D;&#x770B;&#x61C2;&#x9898;&#x76EE;&#x3002;</p>
+<p>&#x9898;&#x610F;&#x7FFB;&#x8BD1;&#xFF1A;</p>
+<p>&#x7ED9;&#x51FA;&#x4E24;&#x4E2A;&#x6570;$A$&#x3001;$B$&#xFF0C;&#x6C42;&#x51FA;&#x4E24;&#x4E2A;&#x6570;&#x7684;&#x5171;&#x540C;&#x7EA6;&#x6570;&#x96C6;&#x5408;&#x7684;&#x4E00;&#x4E2A;&#x5B50;&#x96C6;&#x3002;&#x8FD9;&#x4E2A;&#x5B50;&#x96C6;&#x6EE1;&#x8DB3;&#x5404;&#x5143;&#x7D20;&#x4E24;&#x4E24;&#x76F4;&#x63A5;&#x90FD;&#x4E92;&#x8D28;&#xFF0C;&#x6C42;&#x51FA;&#x5B50;&#x96C6;&#x6700;&#x591A;&#x5305;&#x542B;&#x591A;&#x5C11;&#x5143;&#x7D20;&#x3002;</p>
+<p>&#x6570;&#x636E;&#x8303;&#x56F4;$1 &lt;= A,B &lt;= 10^{12}$&#x3002;</p>
+<p>&#x770B;&#x8D77;&#x6765;&#x597D;&#x50CF;&#x6709;&#x70B9;&#x9EBB;&#x70E6;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x4E0A;&#x6211;&#x4EEC;&#x5148;&#x6C42;&#x51FA;$C=gcd(A, B)$&#xFF0C;&#x90A3;&#x4E48;$C$&#x7684;&#x7EA6;&#x6570;&#x5C31;&#x662F;&#x4E24;&#x4E2A;&#x6570;&#x7684;&#x5171;&#x540C;&#x7EA6;&#x6570;&#x3002;&#x7136;&#x540E;&#x518D;&#x5206;&#x89E3;&#x8D28;&#x56E0;&#x6570;&#x5373;&#x53EF;&#xFF0C;&#x9898;&#x76EE;&#x8F6C;&#x6362;&#x4E3A;&#x6C42;&#x4E00;&#x4E2A;&#x8F83;&#x5927;&#x7684;&#x6570;&#x7684;&#x8D28;&#x56E0;&#x6570;&#x4E2A;&#x6570;&#x3002;</p>
+<p>&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#xFF1A;</p>
 <pre><code class="lang-cpp">long long gcd(long long a, long long b) {
     return b ? gcd(b, a % b) : a;
 }
@@ -292,25 +310,25 @@ for(long long i= 2; i * i &lt;= m; i++) {
 }
 if(m &gt; 1) ++ans;
 </code></pre>
-<h4 id="E"><a href="#E" class="headerlink" title="E"></a>E</h4><p>题目到这已经不再那么水了。</p>
-<p>题意翻译：</p>
-<p>给出一个数$N$代表多少上锁的盒子，再给出一个数$M$代表有多少钥匙。每个钥匙需要花$A_i$来购买，可以打开$B_i$个盒子，分别为$C_{ij}$，一个钥匙可以多次使用。问打开所有盒子的最小花费，若无解输出-1。</p>
-<p>数据范围$1 &lt;= N &lt;= 12$、$1 &lt;= M &lt;= 10^3$、$1 &lt;= A_i &lt;= 10^5$</p>
-<p>一开始没看数据范围我以为是舞蹈链，差点自闭了。然后再看数据范围，$N$比较小，于是想到状压DP。</p>
-<p>设置一个数组$F[1 &lt;&lt; N]$表示打开某些盒子的最小花费。</p>
-<p>先枚举$M$个钥匙钥匙，对将钥匙能打开的盒子二进制压缩到数$X$，然后取最小值。</p>
-<p>核心代码：</p>
+<h4><span id="e">E</span><a href="#e" class="header-anchor"> </a></h4><p>&#x9898;&#x76EE;&#x5230;&#x8FD9;&#x5DF2;&#x7ECF;&#x4E0D;&#x518D;&#x90A3;&#x4E48;&#x6C34;&#x4E86;&#x3002;</p>
+<p>&#x9898;&#x610F;&#x7FFB;&#x8BD1;&#xFF1A;</p>
+<p>&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x6570;$N$&#x4EE3;&#x8868;&#x591A;&#x5C11;&#x4E0A;&#x9501;&#x7684;&#x76D2;&#x5B50;&#xFF0C;&#x518D;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x6570;$M$&#x4EE3;&#x8868;&#x6709;&#x591A;&#x5C11;&#x94A5;&#x5319;&#x3002;&#x6BCF;&#x4E2A;&#x94A5;&#x5319;&#x9700;&#x8981;&#x82B1;$A_i$&#x6765;&#x8D2D;&#x4E70;&#xFF0C;&#x53EF;&#x4EE5;&#x6253;&#x5F00;$B_i$&#x4E2A;&#x76D2;&#x5B50;&#xFF0C;&#x5206;&#x522B;&#x4E3A;$C_{ij}$&#xFF0C;&#x4E00;&#x4E2A;&#x94A5;&#x5319;&#x53EF;&#x4EE5;&#x591A;&#x6B21;&#x4F7F;&#x7528;&#x3002;&#x95EE;&#x6253;&#x5F00;&#x6240;&#x6709;&#x76D2;&#x5B50;&#x7684;&#x6700;&#x5C0F;&#x82B1;&#x8D39;&#xFF0C;&#x82E5;&#x65E0;&#x89E3;&#x8F93;&#x51FA;-1&#x3002;</p>
+<p>&#x6570;&#x636E;&#x8303;&#x56F4;$1 &lt;= N &lt;= 12$&#x3001;$1 &lt;= M &lt;= 10^3$&#x3001;$1 &lt;= A_i &lt;= 10^5$</p>
+<p>&#x4E00;&#x5F00;&#x59CB;&#x6CA1;&#x770B;&#x6570;&#x636E;&#x8303;&#x56F4;&#x6211;&#x4EE5;&#x4E3A;&#x662F;&#x821E;&#x8E48;&#x94FE;&#xFF0C;&#x5DEE;&#x70B9;&#x81EA;&#x95ED;&#x4E86;&#x3002;&#x7136;&#x540E;&#x518D;&#x770B;&#x6570;&#x636E;&#x8303;&#x56F4;&#xFF0C;$N$&#x6BD4;&#x8F83;&#x5C0F;&#xFF0C;&#x4E8E;&#x662F;&#x60F3;&#x5230;&#x72B6;&#x538B;DP&#x3002;</p>
+<p>&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;$F[1 &lt;&lt; N]$&#x8868;&#x793A;&#x6253;&#x5F00;&#x67D0;&#x4E9B;&#x76D2;&#x5B50;&#x7684;&#x6700;&#x5C0F;&#x82B1;&#x8D39;&#x3002;</p>
+<p>&#x5148;&#x679A;&#x4E3E;$M$&#x4E2A;&#x94A5;&#x5319;&#x94A5;&#x5319;&#xFF0C;&#x5BF9;&#x5C06;&#x94A5;&#x5319;&#x80FD;&#x6253;&#x5F00;&#x7684;&#x76D2;&#x5B50;&#x4E8C;&#x8FDB;&#x5236;&#x538B;&#x7F29;&#x5230;&#x6570;$X$&#xFF0C;&#x7136;&#x540E;&#x53D6;&#x6700;&#x5C0F;&#x503C;&#x3002;</p>
+<p>&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#xFF1A;</p>
 <pre><code class="lang-cpp">int getx(int x) {
     int res= 0;
     for(int i= 1; i &lt;= b[x]; i++) res+= (1 &lt;&lt; (c[x][i] - 1));
     return res;
 }
 </code></pre>
-<p>然后再写转移方程，由于我比较傻，所以一开始写了$F[i | j] = min(F[i] + F[j])$，结果反而枚举的是$x = i | j$。看起来复杂度$2^{3N}$，然后确实TLE了。</p>
-<p>然后我想把方程改为$F[i] = min(F[i], f[j] + f[i ^ j])$，现在想想好像枚举i,j就可以了，那样复杂度$2^{2N}$好像能过，可惜我比赛时没想这种方法。</p>
-<p>我在比赛时用了更麻烦的方法，因为我想起了之前一道题，在初始化时枚举二进制所有子集全部更新。这样预处理复杂度最大$M * 2^{N}$能过，然后再DP。我就来Blog上擅用搜索引擎，搜到了<a href="https://xciyang.github.io/2019-04/22-luoguat2657/">AT2657 - Mole and Abandoned Mine</a>。</p>
-<p>然后非常套路的预处理出每个数二进制下1的个数。</p>
-<p>核心代码：</p>
+<p>&#x7136;&#x540E;&#x518D;&#x5199;&#x8F6C;&#x79FB;&#x65B9;&#x7A0B;&#xFF0C;&#x7531;&#x4E8E;&#x6211;&#x6BD4;&#x8F83;&#x50BB;&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x5F00;&#x59CB;&#x5199;&#x4E86;$F[i | j] = min(F[i] + F[j])$&#xFF0C;&#x7ED3;&#x679C;&#x53CD;&#x800C;&#x679A;&#x4E3E;&#x7684;&#x662F;$x = i | j$&#x3002;&#x770B;&#x8D77;&#x6765;&#x590D;&#x6742;&#x5EA6;$2^{3N}$&#xFF0C;&#x7136;&#x540E;&#x786E;&#x5B9E;TLE&#x4E86;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x6211;&#x60F3;&#x628A;&#x65B9;&#x7A0B;&#x6539;&#x4E3A;$F[i] = min(F[i], f[j] + f[i ^ j])$&#xFF0C;&#x73B0;&#x5728;&#x60F3;&#x60F3;&#x597D;&#x50CF;&#x679A;&#x4E3E;i,j&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x90A3;&#x6837;&#x590D;&#x6742;&#x5EA6;$2^{2N}$&#x597D;&#x50CF;&#x80FD;&#x8FC7;&#xFF0C;&#x53EF;&#x60DC;&#x6211;&#x6BD4;&#x8D5B;&#x65F6;&#x6CA1;&#x60F3;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x6211;&#x5728;&#x6BD4;&#x8D5B;&#x65F6;&#x7528;&#x4E86;&#x66F4;&#x9EBB;&#x70E6;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x60F3;&#x8D77;&#x4E86;&#x4E4B;&#x524D;&#x4E00;&#x9053;&#x9898;&#xFF0C;&#x5728;&#x521D;&#x59CB;&#x5316;&#x65F6;&#x679A;&#x4E3E;&#x4E8C;&#x8FDB;&#x5236;&#x6240;&#x6709;&#x5B50;&#x96C6;&#x5168;&#x90E8;&#x66F4;&#x65B0;&#x3002;&#x8FD9;&#x6837;&#x9884;&#x5904;&#x7406;&#x590D;&#x6742;&#x5EA6;&#x6700;&#x5927;$M * 2^{N}$&#x80FD;&#x8FC7;&#xFF0C;&#x7136;&#x540E;&#x518D;DP&#x3002;&#x6211;&#x5C31;&#x6765;Blog&#x4E0A;&#x64C5;&#x7528;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#xFF0C;&#x641C;&#x5230;&#x4E86;<a href="https://xciyang.github.io/2019-04/22-luoguat2657/">AT2657 - Mole and Abandoned Mine</a>&#x3002;</p>
+<p>&#x7136;&#x540E;&#x975E;&#x5E38;&#x5957;&#x8DEF;&#x7684;&#x9884;&#x5904;&#x7406;&#x51FA;&#x6BCF;&#x4E2A;&#x6570;&#x4E8C;&#x8FDB;&#x5236;&#x4E0B;1&#x7684;&#x4E2A;&#x6570;&#x3002;</p>
+<p>&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#xFF1A;</p>
 <pre><code class="lang-cpp">int getg(int x) {
     int res= 0;
     while(x) ++res, x-= (x &amp; -x);
@@ -334,15 +352,15 @@ for(int i= 1; i &lt;= n; i++) {
     }
 }
 </code></pre>
-<h4 id="F"><a href="#F" class="headerlink" title="F"></a>F</h4><p>终于到最后一题，比较激动。题目还挺复杂的。</p>
-<p>题意翻译：</p>
-<p>给出一个图G，有$N$个点，$M$条单向边，无自环和重边。求出一个子图包含$N’$个点，$M’$为这些点构成的边，满足所有点的入度和出度都为1。如果有多个子图，输出任意一个。输出$N’$和包含的点。无解输出-1。</p>
-<p>数据范围$1 &lt;= N &lt;= 1000$、$1 &lt;= M &lt;= 2000$</p>
-<p>感觉有点难，但毕竟SpecialJudge可以一试，可能会有简单做法。</p>
-<p>先手膜一些图，发现暴力DFS可做。虽然是类似ACM的赛制，但剩余时间不多了，先打个试试吧。</p>
-<p>再膜一下第三组数据，发现只要有环就一定有解。</p>
-<p>因为入度出度为一，可以把这个图称为单环。我们从每个点DFS，让途中经过的点的所有能到达的点入度+1。这样DFS时，如果一个点入度已经大于1，那么从起始点开始一定不能与当前状态构成单环。所以我们每次DFS一个能到达的入度为1的点。点。再记录我们已经走过的点，如果又一次到达某点，那么一定形成了单环。如果某次更新时，途中走过的点的入度&gt;1了，那么这个点也不能与当前状态构成单环。</p>
-<p>解释不清楚，核心代码：</p>
+<h4><span id="f">F</span><a href="#f" class="header-anchor"> </a></h4><p>&#x7EC8;&#x4E8E;&#x5230;&#x6700;&#x540E;&#x4E00;&#x9898;&#xFF0C;&#x6BD4;&#x8F83;&#x6FC0;&#x52A8;&#x3002;&#x9898;&#x76EE;&#x8FD8;&#x633A;&#x590D;&#x6742;&#x7684;&#x3002;</p>
+<p>&#x9898;&#x610F;&#x7FFB;&#x8BD1;&#xFF1A;</p>
+<p>&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x56FE;G&#xFF0C;&#x6709;$N$&#x4E2A;&#x70B9;&#xFF0C;$M$&#x6761;&#x5355;&#x5411;&#x8FB9;&#xFF0C;&#x65E0;&#x81EA;&#x73AF;&#x548C;&#x91CD;&#x8FB9;&#x3002;&#x6C42;&#x51FA;&#x4E00;&#x4E2A;&#x5B50;&#x56FE;&#x5305;&#x542B;$N&#x2019;$&#x4E2A;&#x70B9;&#xFF0C;$M&#x2019;$&#x4E3A;&#x8FD9;&#x4E9B;&#x70B9;&#x6784;&#x6210;&#x7684;&#x8FB9;&#xFF0C;&#x6EE1;&#x8DB3;&#x6240;&#x6709;&#x70B9;&#x7684;&#x5165;&#x5EA6;&#x548C;&#x51FA;&#x5EA6;&#x90FD;&#x4E3A;1&#x3002;&#x5982;&#x679C;&#x6709;&#x591A;&#x4E2A;&#x5B50;&#x56FE;&#xFF0C;&#x8F93;&#x51FA;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x3002;&#x8F93;&#x51FA;$N&#x2019;$&#x548C;&#x5305;&#x542B;&#x7684;&#x70B9;&#x3002;&#x65E0;&#x89E3;&#x8F93;&#x51FA;-1&#x3002;</p>
+<p>&#x6570;&#x636E;&#x8303;&#x56F4;$1 &lt;= N &lt;= 1000$&#x3001;$1 &lt;= M &lt;= 2000$</p>
+<p>&#x611F;&#x89C9;&#x6709;&#x70B9;&#x96BE;&#xFF0C;&#x4F46;&#x6BD5;&#x7ADF;SpecialJudge&#x53EF;&#x4EE5;&#x4E00;&#x8BD5;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x7B80;&#x5355;&#x505A;&#x6CD5;&#x3002;</p>
+<p>&#x5148;&#x624B;&#x819C;&#x4E00;&#x4E9B;&#x56FE;&#xFF0C;&#x53D1;&#x73B0;&#x66B4;&#x529B;DFS&#x53EF;&#x505A;&#x3002;&#x867D;&#x7136;&#x662F;&#x7C7B;&#x4F3C;ACM&#x7684;&#x8D5B;&#x5236;&#xFF0C;&#x4F46;&#x5269;&#x4F59;&#x65F6;&#x95F4;&#x4E0D;&#x591A;&#x4E86;&#xFF0C;&#x5148;&#x6253;&#x4E2A;&#x8BD5;&#x8BD5;&#x5427;&#x3002;</p>
+<p>&#x518D;&#x819C;&#x4E00;&#x4E0B;&#x7B2C;&#x4E09;&#x7EC4;&#x6570;&#x636E;&#xFF0C;&#x53D1;&#x73B0;&#x53EA;&#x8981;&#x6709;&#x73AF;&#x5C31;&#x4E00;&#x5B9A;&#x6709;&#x89E3;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x5165;&#x5EA6;&#x51FA;&#x5EA6;&#x4E3A;&#x4E00;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x8FD9;&#x4E2A;&#x56FE;&#x79F0;&#x4E3A;&#x5355;&#x73AF;&#x3002;&#x6211;&#x4EEC;&#x4ECE;&#x6BCF;&#x4E2A;&#x70B9;DFS&#xFF0C;&#x8BA9;&#x9014;&#x4E2D;&#x7ECF;&#x8FC7;&#x7684;&#x70B9;&#x7684;&#x6240;&#x6709;&#x80FD;&#x5230;&#x8FBE;&#x7684;&#x70B9;&#x5165;&#x5EA6;+1&#x3002;&#x8FD9;&#x6837;DFS&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x70B9;&#x5165;&#x5EA6;&#x5DF2;&#x7ECF;&#x5927;&#x4E8E;1&#xFF0C;&#x90A3;&#x4E48;&#x4ECE;&#x8D77;&#x59CB;&#x70B9;&#x5F00;&#x59CB;&#x4E00;&#x5B9A;&#x4E0D;&#x80FD;&#x4E0E;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x6784;&#x6210;&#x5355;&#x73AF;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x6BCF;&#x6B21;DFS&#x4E00;&#x4E2A;&#x80FD;&#x5230;&#x8FBE;&#x7684;&#x5165;&#x5EA6;&#x4E3A;1&#x7684;&#x70B9;&#x3002;&#x70B9;&#x3002;&#x518D;&#x8BB0;&#x5F55;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x8D70;&#x8FC7;&#x7684;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x53C8;&#x4E00;&#x6B21;&#x5230;&#x8FBE;&#x67D0;&#x70B9;&#xFF0C;&#x90A3;&#x4E48;&#x4E00;&#x5B9A;&#x5F62;&#x6210;&#x4E86;&#x5355;&#x73AF;&#x3002;&#x5982;&#x679C;&#x67D0;&#x6B21;&#x66F4;&#x65B0;&#x65F6;&#xFF0C;&#x9014;&#x4E2D;&#x8D70;&#x8FC7;&#x7684;&#x70B9;&#x7684;&#x5165;&#x5EA6;&gt;1&#x4E86;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x70B9;&#x4E5F;&#x4E0D;&#x80FD;&#x4E0E;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x6784;&#x6210;&#x5355;&#x73AF;&#x3002;</p>
+<p>&#x89E3;&#x91CA;&#x4E0D;&#x6E05;&#x695A;&#xFF0C;&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#xFF1A;</p>
 <pre><code class="lang-cpp">int n, m, tmpx, tmpy, r[1005], st[1005], ans[1005];
 vector&lt; int &gt; edg[1005];
 int dfs(int nown) {
@@ -367,15 +385,15 @@ int dfs(int nown) {
     return 0;
 }
 </code></pre>
-<p>我一开始的做法是，枚举每个点为起始点跑一次DFS，直到找出答案，然后就TLE了几个点，但是AC了大部分就还能救。</p>
-<p>既然DFS都是乱搞，那就再加一个随机化。本题时限2s，那么不到1.8s我们就继续DFS。</p>
-<p>然后复杂度我也不太会证明，因为DFS复杂度也非常玄学。大概是O(能过)。最后输出答案我还sort了一遍，因为样例是排序好的。</p>
-<p>核心代码：</p>
+<p>&#x6211;&#x4E00;&#x5F00;&#x59CB;&#x7684;&#x505A;&#x6CD5;&#x662F;&#xFF0C;&#x679A;&#x4E3E;&#x6BCF;&#x4E2A;&#x70B9;&#x4E3A;&#x8D77;&#x59CB;&#x70B9;&#x8DD1;&#x4E00;&#x6B21;DFS&#xFF0C;&#x76F4;&#x5230;&#x627E;&#x51FA;&#x7B54;&#x6848;&#xFF0C;&#x7136;&#x540E;&#x5C31;TLE&#x4E86;&#x51E0;&#x4E2A;&#x70B9;&#xFF0C;&#x4F46;&#x662F;AC&#x4E86;&#x5927;&#x90E8;&#x5206;&#x5C31;&#x8FD8;&#x80FD;&#x6551;&#x3002;</p>
+<p>&#x65E2;&#x7136;DFS&#x90FD;&#x662F;&#x4E71;&#x641E;&#xFF0C;&#x90A3;&#x5C31;&#x518D;&#x52A0;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x5316;&#x3002;&#x672C;&#x9898;&#x65F6;&#x9650;2s&#xFF0C;&#x90A3;&#x4E48;&#x4E0D;&#x5230;1.8s&#x6211;&#x4EEC;&#x5C31;&#x7EE7;&#x7EED;DFS&#x3002;</p>
+<p>&#x7136;&#x540E;&#x590D;&#x6742;&#x5EA6;&#x6211;&#x4E5F;&#x4E0D;&#x592A;&#x4F1A;&#x8BC1;&#x660E;&#xFF0C;&#x56E0;&#x4E3A;DFS&#x590D;&#x6742;&#x5EA6;&#x4E5F;&#x975E;&#x5E38;&#x7384;&#x5B66;&#x3002;&#x5927;&#x6982;&#x662F;O(&#x80FD;&#x8FC7;)&#x3002;&#x6700;&#x540E;&#x8F93;&#x51FA;&#x7B54;&#x6848;&#x6211;&#x8FD8;sort&#x4E86;&#x4E00;&#x904D;&#xFF0C;&#x56E0;&#x4E3A;&#x6837;&#x4F8B;&#x662F;&#x6392;&#x5E8F;&#x597D;&#x7684;&#x3002;</p>
+<p>&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#xFF1A;</p>
 <pre><code class="lang-cpp">srand(time(0));
 while(clock() &lt; CLOCKS_PER_SEC * 1.8)
     if(dfs(rand() % n + 1)) break;
 </code></pre>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>仍犯了很多错误，A题一开始竟把奇数看成质数，D题枚举因数没开long long。</p>
+<h3><span id="&#x540E;&#x8BB0;">&#x540E;&#x8BB0;</span><a href="#&#x540E;&#x8BB0;" class="header-anchor"> </a></h3><p>&#x4ECD;&#x72AF;&#x4E86;&#x5F88;&#x591A;&#x9519;&#x8BEF;&#xFF0C;A&#x9898;&#x4E00;&#x5F00;&#x59CB;&#x7ADF;&#x628A;&#x5947;&#x6570;&#x770B;&#x6210;&#x8D28;&#x6570;&#xFF0C;D&#x9898;&#x679A;&#x4E3E;&#x56E0;&#x6570;&#x6CA1;&#x5F00;long long&#x3002;</p>
 
   </article>
   
@@ -421,7 +439,7 @@ while(clock() &lt; CLOCKS_PER_SEC * 1.8)
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960384928"></script>
+<script src="/js/app.js?v=1573122199845"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

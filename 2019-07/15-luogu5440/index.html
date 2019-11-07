@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="【LuoguP5440】【XR-2】奇迹题目链接: https://www.luogu.org/problemnew/show/P5440 前言 不要学那些很酷很炫的算法，不要看不起那些基础算法，比如说搜索。  然后我就天天做搜索，最后退役。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-17T23:13:29.986Z">
+<meta property="og:updated_time" content="2019-11-07T09:07:41.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LuoguP5440 - 【XR-2】奇迹">
 <meta name="twitter:description" content="【LuoguP5440】【XR-2】奇迹题目链接: https://www.luogu.org/problemnew/show/P5440 前言 不要学那些很酷很炫的算法，不要看不起那些基础算法，比如说搜索。  然后我就天天做搜索，最后退役。">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385054">
+  <link rel="stylesheet" href="/css/style.css?v=1573122199957">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -250,7 +250,7 @@
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年07月15日</a>
     <a><i class="nexmoefont icon-areachart"></i>1.3k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 8 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -259,58 +259,68 @@
     
   </div>
   <article id="article">
-    <p>【LuoguP5440】【XR-2】奇迹<br>题目链接: <a href="https://www.luogu.org/problemnew/show/P5440" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P5440</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>不要学那些很酷很炫的算法，不要看不起那些基础算法，比如说搜索。</p>
+    <p>&#x3010;LuoguP5440&#x3011;&#x3010;XR-2&#x3011;&#x5947;&#x8FF9;<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;: <a href="https://www.luogu.org/problemnew/show/P5440" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P5440</a></p>
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><blockquote>
+<p>&#x4E0D;&#x8981;&#x5B66;&#x90A3;&#x4E9B;&#x5F88;&#x9177;&#x5F88;&#x70AB;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x4E0D;&#x8981;&#x770B;&#x4E0D;&#x8D77;&#x90A3;&#x4E9B;&#x57FA;&#x7840;&#x7B97;&#x6CD5;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;&#x641C;&#x7D22;&#x3002;</p>
 </blockquote>
-<p>然后我就天天做搜索，最后退役。</p>
+<p>&#x7136;&#x540E;&#x6211;&#x5C31;&#x5929;&#x5929;&#x505A;&#x641C;&#x7D22;&#xFF0C;&#x6700;&#x540E;&#x9000;&#x5F79;&#x3002;</p>
 <a id="more"></a>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>正解搜索或暴力枚举，代码区已经几乎是相同的思路，只是有些大佬有很多优化，效率快，但是特批有很多并且极其复杂。经对比我觉得我的代码可视性还是不错的，并且没有乱七八糟的特判，可以说是常规DFS代码+筛质数优化的代码。</p>
-<p>下面说一下思路。首先题目很好理解，一个有效日期，日、月+日、年+月+日组成的数字均为质数，那就先不考虑优化，直接上模拟。</p>
-<p>按DFS的常规模板（自己总结出来的），先有一个参数，代表搜索到哪一位。在本题中就是日期的第几位数字，我选择的顺序为：日-&gt;月-&gt;年，这样可以逐层判断，而且效率较高代码优雅。</p>
-<p>第二个参数，是为了方便和小幅提升效率，我们把已经枚举完的位编成一个整数$ x $，然后日就是 x % 100 ，月就是 x % 10000 /  100 ，年就是x / 10000<br>。</p>
-<p>这道题中还需要考虑到特殊情况，是否必须为闰年或大月。我为了方便，当成两个参数来传递，现在想想好像可以改一个。因为一个只考虑年份，一个只考虑月份。DFS带详细注释代码如下，自己觉得算得上优雅。</p>
-<pre><code class="lang-cpp">// 调用方法: dfs(8, 0, 0, 0)
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x5206;&#x6790;">&#x5206;&#x6790;</a></li>
+<li><a href="#&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x5206;&#x6790;">&#x5206;&#x6790;</span><a href="#&#x5206;&#x6790;" class="header-anchor"> </a></h3><p>&#x6B63;&#x89E3;&#x641C;&#x7D22;&#x6216;&#x66B4;&#x529B;&#x679A;&#x4E3E;&#xFF0C;&#x4EE3;&#x7801;&#x533A;&#x5DF2;&#x7ECF;&#x51E0;&#x4E4E;&#x662F;&#x76F8;&#x540C;&#x7684;&#x601D;&#x8DEF;&#xFF0C;&#x53EA;&#x662F;&#x6709;&#x4E9B;&#x5927;&#x4F6C;&#x6709;&#x5F88;&#x591A;&#x4F18;&#x5316;&#xFF0C;&#x6548;&#x7387;&#x5FEB;&#xFF0C;&#x4F46;&#x662F;&#x7279;&#x6279;&#x6709;&#x5F88;&#x591A;&#x5E76;&#x4E14;&#x6781;&#x5176;&#x590D;&#x6742;&#x3002;&#x7ECF;&#x5BF9;&#x6BD4;&#x6211;&#x89C9;&#x5F97;&#x6211;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x89C6;&#x6027;&#x8FD8;&#x662F;&#x4E0D;&#x9519;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x6CA1;&#x6709;&#x4E71;&#x4E03;&#x516B;&#x7CDF;&#x7684;&#x7279;&#x5224;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;&#x662F;&#x5E38;&#x89C4;DFS&#x4EE3;&#x7801;+&#x7B5B;&#x8D28;&#x6570;&#x4F18;&#x5316;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x8BF4;&#x4E00;&#x4E0B;&#x601D;&#x8DEF;&#x3002;&#x9996;&#x5148;&#x9898;&#x76EE;&#x5F88;&#x597D;&#x7406;&#x89E3;&#xFF0C;&#x4E00;&#x4E2A;&#x6709;&#x6548;&#x65E5;&#x671F;&#xFF0C;&#x65E5;&#x3001;&#x6708;+&#x65E5;&#x3001;&#x5E74;+&#x6708;+&#x65E5;&#x7EC4;&#x6210;&#x7684;&#x6570;&#x5B57;&#x5747;&#x4E3A;&#x8D28;&#x6570;&#xFF0C;&#x90A3;&#x5C31;&#x5148;&#x4E0D;&#x8003;&#x8651;&#x4F18;&#x5316;&#xFF0C;&#x76F4;&#x63A5;&#x4E0A;&#x6A21;&#x62DF;&#x3002;</p>
+<p>&#x6309;DFS&#x7684;&#x5E38;&#x89C4;&#x6A21;&#x677F;&#xFF08;&#x81EA;&#x5DF1;&#x603B;&#x7ED3;&#x51FA;&#x6765;&#x7684;&#xFF09;&#xFF0C;&#x5148;&#x6709;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x4EE3;&#x8868;&#x641C;&#x7D22;&#x5230;&#x54EA;&#x4E00;&#x4F4D;&#x3002;&#x5728;&#x672C;&#x9898;&#x4E2D;&#x5C31;&#x662F;&#x65E5;&#x671F;&#x7684;&#x7B2C;&#x51E0;&#x4F4D;&#x6570;&#x5B57;&#xFF0C;&#x6211;&#x9009;&#x62E9;&#x7684;&#x987A;&#x5E8F;&#x4E3A;&#xFF1A;&#x65E5;-&gt;&#x6708;-&gt;&#x5E74;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x9010;&#x5C42;&#x5224;&#x65AD;&#xFF0C;&#x800C;&#x4E14;&#x6548;&#x7387;&#x8F83;&#x9AD8;&#x4EE3;&#x7801;&#x4F18;&#x96C5;&#x3002;</p>
+<p>&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x662F;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x548C;&#x5C0F;&#x5E45;&#x63D0;&#x5347;&#x6548;&#x7387;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x5DF2;&#x7ECF;&#x679A;&#x4E3E;&#x5B8C;&#x7684;&#x4F4D;&#x7F16;&#x6210;&#x4E00;&#x4E2A;&#x6574;&#x6570;$ x $&#xFF0C;&#x7136;&#x540E;&#x65E5;&#x5C31;&#x662F; x % 100 &#xFF0C;&#x6708;&#x5C31;&#x662F; x % 10000 /  100 &#xFF0C;&#x5E74;&#x5C31;&#x662F;x / 10000<br>&#x3002;</p>
+<p>&#x8FD9;&#x9053;&#x9898;&#x4E2D;&#x8FD8;&#x9700;&#x8981;&#x8003;&#x8651;&#x5230;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#xFF0C;&#x662F;&#x5426;&#x5FC5;&#x987B;&#x4E3A;&#x95F0;&#x5E74;&#x6216;&#x5927;&#x6708;&#x3002;&#x6211;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#xFF0C;&#x5F53;&#x6210;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x6765;&#x4F20;&#x9012;&#xFF0C;&#x73B0;&#x5728;&#x60F3;&#x60F3;&#x597D;&#x50CF;&#x53EF;&#x4EE5;&#x6539;&#x4E00;&#x4E2A;&#x3002;&#x56E0;&#x4E3A;&#x4E00;&#x4E2A;&#x53EA;&#x8003;&#x8651;&#x5E74;&#x4EFD;&#xFF0C;&#x4E00;&#x4E2A;&#x53EA;&#x8003;&#x8651;&#x6708;&#x4EFD;&#x3002;DFS&#x5E26;&#x8BE6;&#x7EC6;&#x6CE8;&#x91CA;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF0C;&#x81EA;&#x5DF1;&#x89C9;&#x5F97;&#x7B97;&#x5F97;&#x4E0A;&#x4F18;&#x96C5;&#x3002;</p>
+<pre><code class="lang-cpp">// &#x8C03;&#x7528;&#x65B9;&#x6CD5;: dfs(8, 0, 0, 0)
 int dfs(int nown, int num, int rn, int jy) {
     if(nown == 0) {
-    // 日期全部枚举完
+    // &#x65E5;&#x671F;&#x5168;&#x90E8;&#x679A;&#x4E3E;&#x5B8C;
         if(num / 10000 == 0) return 0;
-    // 非常关键，0不能当年份（我一开始没加就得10分）
+    // &#x975E;&#x5E38;&#x5173;&#x952E;&#xFF0C;0&#x4E0D;&#x80FD;&#x5F53;&#x5E74;&#x4EFD;&#xFF08;&#x6211;&#x4E00;&#x5F00;&#x59CB;&#x6CA1;&#x52A0;&#x5C31;&#x5F97;10&#x5206;&#xFF09;
         if(rn &amp;&amp; pdrn(num / 10000) == 0) return 0;
-    // 如果必须为闰年就判断年份
+    // &#x5982;&#x679C;&#x5FC5;&#x987B;&#x4E3A;&#x95F0;&#x5E74;&#x5C31;&#x5224;&#x65AD;&#x5E74;&#x4EFD;
         return pdzs(num);
-    // 总日期还得为质数
+    // &#x603B;&#x65E5;&#x671F;&#x8FD8;&#x5F97;&#x4E3A;&#x8D28;&#x6570;
     }
     if(nown == 6) {
-    // 枚举完日
+    // &#x679A;&#x4E3E;&#x5B8C;&#x65E5;
         if(num == 0 || num &gt; 31 || !pdzs(num)) return 0;
-    // 如果是等于0日、31日以上或不是质数就return
+    // &#x5982;&#x679C;&#x662F;&#x7B49;&#x4E8E;0&#x65E5;&#x3001;31&#x65E5;&#x4EE5;&#x4E0A;&#x6216;&#x4E0D;&#x662F;&#x8D28;&#x6570;&#x5C31;return
         if(num == 31) jy= 1;
-    // 如果是31日就必须为大月
+    // &#x5982;&#x679C;&#x662F;31&#x65E5;&#x5C31;&#x5FC5;&#x987B;&#x4E3A;&#x5927;&#x6708;
     }
     if(nown == 4) {
-    // 判断完日、月
+    // &#x5224;&#x65AD;&#x5B8C;&#x65E5;&#x3001;&#x6708;
         if(num &lt; 32 || num &gt; 1231 || !pdzs(num)) return 0;
-    // 如果是等于0月、13月以上或不是质数就return
+    // &#x5982;&#x679C;&#x662F;&#x7B49;&#x4E8E;0&#x6708;&#x3001;13&#x6708;&#x4EE5;&#x4E0A;&#x6216;&#x4E0D;&#x662F;&#x8D28;&#x6570;&#x5C31;return
         if(jy &amp;&amp; !yue[num / 100]) return 0;
-    // 如果必须为大月就判断月份num / 100，yue数组代表是否为大月
+    // &#x5982;&#x679C;&#x5FC5;&#x987B;&#x4E3A;&#x5927;&#x6708;&#x5C31;&#x5224;&#x65AD;&#x6708;&#x4EFD;num / 100&#xFF0C;yue&#x6570;&#x7EC4;&#x4EE3;&#x8868;&#x662F;&#x5426;&#x4E3A;&#x5927;&#x6708;
         if(num / 100 == 2) {
             if(num % 100 &gt; 29) return 0;
-        // 2月最多29天
+        // 2&#x6708;&#x6700;&#x591A;29&#x5929;
             if(num % 100 == 29) rn= 1;
-        // 如果是2月29日就必须为闰年
+        // &#x5982;&#x679C;&#x662F;2&#x6708;29&#x65E5;&#x5C31;&#x5FC5;&#x987B;&#x4E3A;&#x95F0;&#x5E74;
         }
     }
     if(a[nown] != -1) return dfs(nown - 1, a[nown] * p10[8 - nown] + num, rn, jy);
-    // 如果输入给出就直接进入下一层，p10数组相当于pow10
+    // &#x5982;&#x679C;&#x8F93;&#x5165;&#x7ED9;&#x51FA;&#x5C31;&#x76F4;&#x63A5;&#x8FDB;&#x5165;&#x4E0B;&#x4E00;&#x5C42;&#xFF0C;p10&#x6570;&#x7EC4;&#x76F8;&#x5F53;&#x4E8E;pow10
     int res= 0;
     for(int i= 0; i &lt;= 9; i++) res+= dfs(nown - 1, i * p10[8 - nown] + num, rn, jy);
-    // 枚举0~9为此位
+    // &#x679A;&#x4E3E;0~9&#x4E3A;&#x6B64;&#x4F4D;
     return res;
 }
 </code></pre>
-<p>如果是用复杂度为$ O(\sqrt{n}) $ 的判断质数就只有90分，所以还得用线性筛预处理出$  \sqrt{100000000} = 10000 $ 以内的质数，然后我们判断质数就对这些数取模就行了，具体原理不再解释。</p>
-<pre><code class="lang-cpp">// 筛10005以内的质数
+<p>&#x5982;&#x679C;&#x662F;&#x7528;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$ O(\sqrt{n}) $ &#x7684;&#x5224;&#x65AD;&#x8D28;&#x6570;&#x5C31;&#x53EA;&#x6709;90&#x5206;&#xFF0C;&#x6240;&#x4EE5;&#x8FD8;&#x5F97;&#x7528;&#x7EBF;&#x6027;&#x7B5B;&#x9884;&#x5904;&#x7406;&#x51FA;$  \sqrt{100000000} = 10000 $ &#x4EE5;&#x5185;&#x7684;&#x8D28;&#x6570;&#xFF0C;&#x7136;&#x540E;&#x6211;&#x4EEC;&#x5224;&#x65AD;&#x8D28;&#x6570;&#x5C31;&#x5BF9;&#x8FD9;&#x4E9B;&#x6570;&#x53D6;&#x6A21;&#x5C31;&#x884C;&#x4E86;&#xFF0C;&#x5177;&#x4F53;&#x539F;&#x7406;&#x4E0D;&#x518D;&#x89E3;&#x91CA;&#x3002;</p>
+<pre><code class="lang-cpp">// &#x7B5B;10005&#x4EE5;&#x5185;&#x7684;&#x8D28;&#x6570;
 inline void init() {
     flag[1]= 1;
     for(int i= 2; i &lt; 10005; i++) {
@@ -323,7 +333,7 @@ inline void init() {
     }
     return;
 }
-// 判断质数
+// &#x5224;&#x65AD;&#x8D28;&#x6570;
 inline int pdzs(int x) {
     if(x &lt; 2) return 0;
     for(int i= 1; i &lt;= tot; i++)
@@ -331,8 +341,8 @@ inline int pdzs(int x) {
     return 1;
 }
 </code></pre>
-<p>然后就可以愉快的AC了，总代码只有70行且简单优雅。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
+<p>&#x7136;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x6109;&#x5FEB;&#x7684;AC&#x4E86;&#xFF0C;&#x603B;&#x4EE3;&#x7801;&#x53EA;&#x6709;70&#x884C;&#x4E14;&#x7B80;&#x5355;&#x4F18;&#x96C5;&#x3002;</p>
+<h3><span id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</span><a href="#&#x4EE3;&#x7801;" class="header-anchor"> </a></h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;math.h&gt;
 using namespace std;
@@ -386,19 +396,19 @@ int dfs(int nown, int num, int rn, int jy) {
 }
 char get() {
     char ch= getchar();
-    while((ch &lt; &#39;0&#39; || ch &gt; &#39;9&#39;) &amp;&amp; ch != &#39;-&#39;) ch= getchar();
+    while((ch &lt; &apos;0&apos; || ch &gt; &apos;9&apos;) &amp;&amp; ch != &apos;-&apos;) ch= getchar();
     return ch;
 }
 void put(int x) {
     if(x &gt; 9) put(x / 10);
-    putchar(&#39;0&#39; + x % 10);
+    putchar(&apos;0&apos; + x % 10);
     return;
 }
 int main() {
     init(), cin &gt;&gt; n;
     while(n--) {
-        for(int i= 1; i &lt;= 8; i++) tmpc= get(), a[i]= (tmpc == &#39;-&#39; ? -1 : tmpc - &#39;0&#39;);
-        put(dfs(8, 0, 0, 0)), putchar(&#39;\n&#39;);
+        for(int i= 1; i &lt;= 8; i++) tmpc= get(), a[i]= (tmpc == &apos;-&apos; ? -1 : tmpc - &apos;0&apos;);
+        put(dfs(8, 0, 0, 0)), putchar(&apos;\n&apos;);
     }
     return 0;
 }
@@ -448,7 +458,7 @@ int main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385063"></script>
+<script src="/js/app.js?v=1573122199968"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

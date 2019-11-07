@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="【LuoguP4008】【BZOJ1507】【NOI2003】文本编辑器 Editor题目链接1: https://www.luogu.org/problemnew/show/P4008题目链接2: https://www.lydsy.com/JudgeOnline/problem.php?id=1507 前言这题放在任务计划里已经有些时日了，又拿出来看了看题面。原本是练习Splay用的，但因为不">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-17T23:14:10.682Z">
+<meta property="og:updated_time" content="2019-11-07T09:07:19.358Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NOI2003 - 文本编辑器">
 <meta name="twitter:description" content="【LuoguP4008】【BZOJ1507】【NOI2003】文本编辑器 Editor题目链接1: https://www.luogu.org/problemnew/show/P4008题目链接2: https://www.lydsy.com/JudgeOnline/problem.php?id=1507 前言这题放在任务计划里已经有些时日了，又拿出来看了看题面。原本是练习Splay用的，但因为不">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385081">
+  <link rel="stylesheet" href="/css/style.css?v=1573122199986">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -249,8 +249,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年07月11日</a>
-    <a><i class="nexmoefont icon-areachart"></i>2.4k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 11 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.6k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 16 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -259,33 +259,51 @@
     
   </div>
   <article id="article">
-    <p>【LuoguP4008】【BZOJ1507】【NOI2003】文本编辑器 Editor<br>题目链接1: <a href="https://www.luogu.org/problemnew/show/P4008" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P4008</a><br>题目链接2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1507" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=1507</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这题放在任务计划里已经有些时日了，又拿出来看了看题面。原本是练习Splay用的，但因为不够熟练和懒得缘故，一直不想动手写。看了题解，发现了一个思路简单，代码较为暴力的数据结构——“块状链表”。</p>
+    <p>&#x3010;LuoguP4008&#x3011;&#x3010;BZOJ1507&#x3011;&#x3010;NOI2003&#x3011;&#x6587;&#x672C;&#x7F16;&#x8F91;&#x5668; Editor<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;1: <a href="https://www.luogu.org/problemnew/show/P4008" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P4008</a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1507" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=1507</a></p>
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x8FD9;&#x9898;&#x653E;&#x5728;&#x4EFB;&#x52A1;&#x8BA1;&#x5212;&#x91CC;&#x5DF2;&#x7ECF;&#x6709;&#x4E9B;&#x65F6;&#x65E5;&#x4E86;&#xFF0C;&#x53C8;&#x62FF;&#x51FA;&#x6765;&#x770B;&#x4E86;&#x770B;&#x9898;&#x9762;&#x3002;&#x539F;&#x672C;&#x662F;&#x7EC3;&#x4E60;Splay&#x7528;&#x7684;&#xFF0C;&#x4F46;&#x56E0;&#x4E3A;&#x4E0D;&#x591F;&#x719F;&#x7EC3;&#x548C;&#x61D2;&#x5F97;&#x7F18;&#x6545;&#xFF0C;&#x4E00;&#x76F4;&#x4E0D;&#x60F3;&#x52A8;&#x624B;&#x5199;&#x3002;&#x770B;&#x4E86;&#x9898;&#x89E3;&#xFF0C;&#x53D1;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;&#x601D;&#x8DEF;&#x7B80;&#x5355;&#xFF0C;&#x4EE3;&#x7801;&#x8F83;&#x4E3A;&#x66B4;&#x529B;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x2014;&#x2014;&#x201C;&#x5757;&#x72B6;&#x94FE;&#x8868;&#x201D;&#x3002;</p>
 <a id="more"></a>
-<p>然后就愉快的做（抄）完了，首先感谢<a href="https://www.cnblogs.com/HenryHuang-Never-Settle/p/10803406.html" target="_blank" rel="noopener">@HenryHuang的题解</a>，他的题解使我学习块状链表得到了很大帮助。</p>
-<p>我才不会告诉你很久以前我以为这是STL中string的练手题。</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先这道题有一个光标，只需用一个变量就可以维护光标。</p>
-<p>然后就只剩下Insert、Delete、Get操作了，一般我们都会想到平衡树（Splay），但是难理解且代码复杂。</p>
-<p>首先我们都听说过甚至用过链表，STL中的list就是使用链表实现。这种数据结构只能$ O(1) $获得首节点和尾结点，需要逐个遍历才能获得中间的节点。</p>
-<p>不过链表也有优点，由于它的结构为一条链，每个节点维护了前节点指针和后节点指针，因此向中间插入一个数的复杂度为$ O(1) $。</p>
-<p>然而对于这道题，使用链表并不可行，数据范围太大。</p>
-<p>还有一个最简单最常见的数据结构，名叫数组。这个数据结构支持$ O(1) $访问。STL中有封装好的类数组数据结构vector，其中有封装好的函数insert用来插入操作。</p>
-<p>对于数组，插入操作只需要2次memcpy函数，一次赋值操作就能完成，但是复杂度是极高的。每次插入的理论最大复杂度是 $ O(\frac{n}{2}) $</p>
-<p>那么这题就不能投机取巧了吗？万一把数组和链表通过一定方式结合起来，复杂度不就会均衡了吗？</p>
-<p>众所周知，优化暴力的方法有很多，其中分块（根号）算法就非常热门。那么我们让数组的大小$ \sqrt{n} $，然后将这些数组通过链表链接起来，那复杂度不就均衡了吗。</p>
-<p>这种数据结构就是我使用的——块状链表。首先是定义一个结构体，用来存储某一节点的信息。我们只需要维护一个指向下一元素指针即可。</p>
-<p>题目中说明了最大数据范围：</p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x5206;&#x6790;">&#x5206;&#x6790;</a><ul>
+<li><a href="#&#x5185;&#x5B58;&#x6C60;">&#x5185;&#x5B58;&#x6C60;</a></li>
+<li><a href="#split">Split</a></li>
+<li><a href="#add">Add</a></li>
+<li><a href="#merge">Merge</a></li>
+<li><a href="#&#x4F55;&#x65F6;&#x7EF4;&#x62A4;">&#x4F55;&#x65F6;&#x7EF4;&#x62A4;</a></li>
+<li><a href="#&#x5BF9;&#x4E8E;&#x672C;&#x9898;">&#x5BF9;&#x4E8E;&#x672C;&#x9898;</a></li>
+</ul>
+</li>
+<li><a href="#&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<p>&#x7136;&#x540E;&#x5C31;&#x6109;&#x5FEB;&#x7684;&#x505A;&#xFF08;&#x6284;&#xFF09;&#x5B8C;&#x4E86;&#xFF0C;&#x9996;&#x5148;&#x611F;&#x8C22;<a href="https://www.cnblogs.com/HenryHuang-Never-Settle/p/10803406.html" target="_blank" rel="noopener">@HenryHuang&#x7684;&#x9898;&#x89E3;</a>&#xFF0C;&#x4ED6;&#x7684;&#x9898;&#x89E3;&#x4F7F;&#x6211;&#x5B66;&#x4E60;&#x5757;&#x72B6;&#x94FE;&#x8868;&#x5F97;&#x5230;&#x4E86;&#x5F88;&#x5927;&#x5E2E;&#x52A9;&#x3002;</p>
+<p>&#x6211;&#x624D;&#x4E0D;&#x4F1A;&#x544A;&#x8BC9;&#x4F60;&#x5F88;&#x4E45;&#x4EE5;&#x524D;&#x6211;&#x4EE5;&#x4E3A;&#x8FD9;&#x662F;STL&#x4E2D;string&#x7684;&#x7EC3;&#x624B;&#x9898;&#x3002;</p>
+<h3><span id="&#x5206;&#x6790;">&#x5206;&#x6790;</span><a href="#&#x5206;&#x6790;" class="header-anchor"> </a></h3><p>&#x9996;&#x5148;&#x8FD9;&#x9053;&#x9898;&#x6709;&#x4E00;&#x4E2A;&#x5149;&#x6807;&#xFF0C;&#x53EA;&#x9700;&#x7528;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x5C31;&#x53EF;&#x4EE5;&#x7EF4;&#x62A4;&#x5149;&#x6807;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x5C31;&#x53EA;&#x5269;&#x4E0B;Insert&#x3001;Delete&#x3001;Get&#x64CD;&#x4F5C;&#x4E86;&#xFF0C;&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x90FD;&#x4F1A;&#x60F3;&#x5230;&#x5E73;&#x8861;&#x6811;&#xFF08;Splay&#xFF09;&#xFF0C;&#x4F46;&#x662F;&#x96BE;&#x7406;&#x89E3;&#x4E14;&#x4EE3;&#x7801;&#x590D;&#x6742;&#x3002;</p>
+<p>&#x9996;&#x5148;&#x6211;&#x4EEC;&#x90FD;&#x542C;&#x8BF4;&#x8FC7;&#x751A;&#x81F3;&#x7528;&#x8FC7;&#x94FE;&#x8868;&#xFF0C;STL&#x4E2D;&#x7684;list&#x5C31;&#x662F;&#x4F7F;&#x7528;&#x94FE;&#x8868;&#x5B9E;&#x73B0;&#x3002;&#x8FD9;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x53EA;&#x80FD;$ O(1) $&#x83B7;&#x5F97;&#x9996;&#x8282;&#x70B9;&#x548C;&#x5C3E;&#x7ED3;&#x70B9;&#xFF0C;&#x9700;&#x8981;&#x9010;&#x4E2A;&#x904D;&#x5386;&#x624D;&#x80FD;&#x83B7;&#x5F97;&#x4E2D;&#x95F4;&#x7684;&#x8282;&#x70B9;&#x3002;</p>
+<p>&#x4E0D;&#x8FC7;&#x94FE;&#x8868;&#x4E5F;&#x6709;&#x4F18;&#x70B9;&#xFF0C;&#x7531;&#x4E8E;&#x5B83;&#x7684;&#x7ED3;&#x6784;&#x4E3A;&#x4E00;&#x6761;&#x94FE;&#xFF0C;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7EF4;&#x62A4;&#x4E86;&#x524D;&#x8282;&#x70B9;&#x6307;&#x9488;&#x548C;&#x540E;&#x8282;&#x70B9;&#x6307;&#x9488;&#xFF0C;&#x56E0;&#x6B64;&#x5411;&#x4E2D;&#x95F4;&#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x6570;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$ O(1) $&#x3002;</p>
+<p>&#x7136;&#x800C;&#x5BF9;&#x4E8E;&#x8FD9;&#x9053;&#x9898;&#xFF0C;&#x4F7F;&#x7528;&#x94FE;&#x8868;&#x5E76;&#x4E0D;&#x53EF;&#x884C;&#xFF0C;&#x6570;&#x636E;&#x8303;&#x56F4;&#x592A;&#x5927;&#x3002;</p>
+<p>&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x6700;&#x7B80;&#x5355;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x540D;&#x53EB;&#x6570;&#x7EC4;&#x3002;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x652F;&#x6301;$ O(1) $&#x8BBF;&#x95EE;&#x3002;STL&#x4E2D;&#x6709;&#x5C01;&#x88C5;&#x597D;&#x7684;&#x7C7B;&#x6570;&#x7EC4;&#x6570;&#x636E;&#x7ED3;&#x6784;vector&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x5C01;&#x88C5;&#x597D;&#x7684;&#x51FD;&#x6570;insert&#x7528;&#x6765;&#x63D2;&#x5165;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x6570;&#x7EC4;&#xFF0C;&#x63D2;&#x5165;&#x64CD;&#x4F5C;&#x53EA;&#x9700;&#x8981;2&#x6B21;memcpy&#x51FD;&#x6570;&#xFF0C;&#x4E00;&#x6B21;&#x8D4B;&#x503C;&#x64CD;&#x4F5C;&#x5C31;&#x80FD;&#x5B8C;&#x6210;&#xFF0C;&#x4F46;&#x662F;&#x590D;&#x6742;&#x5EA6;&#x662F;&#x6781;&#x9AD8;&#x7684;&#x3002;&#x6BCF;&#x6B21;&#x63D2;&#x5165;&#x7684;&#x7406;&#x8BBA;&#x6700;&#x5927;&#x590D;&#x6742;&#x5EA6;&#x662F; $ O(\frac{n}{2}) $</p>
+<p>&#x90A3;&#x4E48;&#x8FD9;&#x9898;&#x5C31;&#x4E0D;&#x80FD;&#x6295;&#x673A;&#x53D6;&#x5DE7;&#x4E86;&#x5417;&#xFF1F;&#x4E07;&#x4E00;&#x628A;&#x6570;&#x7EC4;&#x548C;&#x94FE;&#x8868;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x65B9;&#x5F0F;&#x7ED3;&#x5408;&#x8D77;&#x6765;&#xFF0C;&#x590D;&#x6742;&#x5EA6;&#x4E0D;&#x5C31;&#x4F1A;&#x5747;&#x8861;&#x4E86;&#x5417;&#xFF1F;</p>
+<p>&#x4F17;&#x6240;&#x5468;&#x77E5;&#xFF0C;&#x4F18;&#x5316;&#x66B4;&#x529B;&#x7684;&#x65B9;&#x6CD5;&#x6709;&#x5F88;&#x591A;&#xFF0C;&#x5176;&#x4E2D;&#x5206;&#x5757;&#xFF08;&#x6839;&#x53F7;&#xFF09;&#x7B97;&#x6CD5;&#x5C31;&#x975E;&#x5E38;&#x70ED;&#x95E8;&#x3002;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x8BA9;&#x6570;&#x7EC4;&#x7684;&#x5927;&#x5C0F;$ \sqrt{n} $&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8FD9;&#x4E9B;&#x6570;&#x7EC4;&#x901A;&#x8FC7;&#x94FE;&#x8868;&#x94FE;&#x63A5;&#x8D77;&#x6765;&#xFF0C;&#x90A3;&#x590D;&#x6742;&#x5EA6;&#x4E0D;&#x5C31;&#x5747;&#x8861;&#x4E86;&#x5417;&#x3002;</p>
+<p>&#x8FD9;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x5C31;&#x662F;&#x6211;&#x4F7F;&#x7528;&#x7684;&#x2014;&#x2014;&#x5757;&#x72B6;&#x94FE;&#x8868;&#x3002;&#x9996;&#x5148;&#x662F;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#xFF0C;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x67D0;&#x4E00;&#x8282;&#x70B9;&#x7684;&#x4FE1;&#x606F;&#x3002;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;&#x6307;&#x5411;&#x4E0B;&#x4E00;&#x5143;&#x7D20;&#x6307;&#x9488;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x9898;&#x76EE;&#x4E2D;&#x8BF4;&#x660E;&#x4E86;&#x6700;&#x5927;&#x6570;&#x636E;&#x8303;&#x56F4;&#xFF1A;</p>
 <blockquote>
-<p>所有 INSERT 插入的字符数之和不超过 2M（1M=1024*1024 字节） ，正确的输出文件长度不超过 3M 字节。</p>
+<p>&#x6240;&#x6709; INSERT &#x63D2;&#x5165;&#x7684;&#x5B57;&#x7B26;&#x6570;&#x4E4B;&#x548C;&#x4E0D;&#x8D85;&#x8FC7; 2M&#xFF08;1M=1024*1024 &#x5B57;&#x8282;&#xFF09; &#xFF0C;&#x6B63;&#x786E;&#x7684;&#x8F93;&#x51FA;&#x6587;&#x4EF6;&#x957F;&#x5EA6;&#x4E0D;&#x8D85;&#x8FC7; 3M &#x5B57;&#x8282;&#x3002;</p>
 </blockquote>
-<p>所以我设置每个块的大小为1300，其实块大小在一定范围内即可。在这范围内，块大小和效率只有微小的关系。</p>
+<p>&#x6240;&#x4EE5;&#x6211;&#x8BBE;&#x7F6E;&#x6BCF;&#x4E2A;&#x5757;&#x7684;&#x5927;&#x5C0F;&#x4E3A;1300&#xFF0C;&#x5176;&#x5B9E;&#x5757;&#x5927;&#x5C0F;&#x5728;&#x4E00;&#x5B9A;&#x8303;&#x56F4;&#x5185;&#x5373;&#x53EF;&#x3002;&#x5728;&#x8FD9;&#x8303;&#x56F4;&#x5185;&#xFF0C;&#x5757;&#x5927;&#x5C0F;&#x548C;&#x6548;&#x7387;&#x53EA;&#x6709;&#x5FAE;&#x5C0F;&#x7684;&#x5173;&#x7CFB;&#x3002;</p>
 <pre><code class="lang-cpp">const int sqrtn= 1300;
 struct BLOCK {
     int siz, nxt;
     char ch[sqrtn &lt;&lt; 1];
 } b[sqrtn &lt;&lt; 2];
 </code></pre>
-<h4 id="内存池"><a href="#内存池" class="headerlink" title="内存池"></a>内存池</h4><p>为了节点数组循环利用，学习原题解的做法，使用内存池。注意，程序开始时需要初始化内存池。</p>
+<h4><span id="&#x5185;&#x5B58;&#x6C60;">&#x5185;&#x5B58;&#x6C60;</span><a href="#&#x5185;&#x5B58;&#x6C60;" class="header-anchor"> </a></h4><p>&#x4E3A;&#x4E86;&#x8282;&#x70B9;&#x6570;&#x7EC4;&#x5FAA;&#x73AF;&#x5229;&#x7528;&#xFF0C;&#x5B66;&#x4E60;&#x539F;&#x9898;&#x89E3;&#x7684;&#x505A;&#x6CD5;&#xFF0C;&#x4F7F;&#x7528;&#x5185;&#x5B58;&#x6C60;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x7A0B;&#x5E8F;&#x5F00;&#x59CB;&#x65F6;&#x9700;&#x8981;&#x521D;&#x59CB;&#x5316;&#x5185;&#x5B58;&#x6C60;&#x3002;</p>
 <pre><code class="lang-cpp">int blocks[sqrtn &lt;&lt; 2], bp, cur;
 inline int newb() {
     return blocks[bp++];
@@ -295,9 +313,9 @@ inline void delb(int x) {
     return;
 }
 </code></pre>
-<p>肯定会有人问，块状链表怎么维护呢？这是最核心的部分。</p>
-<h4 id="Split"><a href="#Split" class="headerlink" title="Split"></a>Split</h4><p>当某一个块较大时我们需要分裂成两个块。在某些操作（插入、删除等）时，我们可以先从光标位置分裂这个块，然后就可以很方便的对后面的内容进行操作。</p>
-<pre><code class="lang-cpp">// x 代表块编号，p代表分裂的位置（相对于块x）
+<p>&#x80AF;&#x5B9A;&#x4F1A;&#x6709;&#x4EBA;&#x95EE;&#xFF0C;&#x5757;&#x72B6;&#x94FE;&#x8868;&#x600E;&#x4E48;&#x7EF4;&#x62A4;&#x5462;&#xFF1F;&#x8FD9;&#x662F;&#x6700;&#x6838;&#x5FC3;&#x7684;&#x90E8;&#x5206;&#x3002;</p>
+<h4><span id="split">Split</span><a href="#split" class="header-anchor"> </a></h4><p>&#x5F53;&#x67D0;&#x4E00;&#x4E2A;&#x5757;&#x8F83;&#x5927;&#x65F6;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5206;&#x88C2;&#x6210;&#x4E24;&#x4E2A;&#x5757;&#x3002;&#x5728;&#x67D0;&#x4E9B;&#x64CD;&#x4F5C;&#xFF08;&#x63D2;&#x5165;&#x3001;&#x5220;&#x9664;&#x7B49;&#xFF09;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5148;&#x4ECE;&#x5149;&#x6807;&#x4F4D;&#x7F6E;&#x5206;&#x88C2;&#x8FD9;&#x4E2A;&#x5757;&#xFF0C;&#x7136;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x5BF9;&#x540E;&#x9762;&#x7684;&#x5185;&#x5BB9;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;</p>
+<pre><code class="lang-cpp">// x &#x4EE3;&#x8868;&#x5757;&#x7F16;&#x53F7;&#xFF0C;p&#x4EE3;&#x8868;&#x5206;&#x88C2;&#x7684;&#x4F4D;&#x7F6E;&#xFF08;&#x76F8;&#x5BF9;&#x4E8E;&#x5757;x&#xFF09;
 void split(int x, int p) {
     if(x == -1 || p == b[x].siz) return;
     add(x, newb(), b[x].ch + p, b[x].siz - p);
@@ -305,45 +323,45 @@ void split(int x, int p) {
     return;
 }
 </code></pre>
-<h4 id="Add"><a href="#Add" class="headerlink" title="Add"></a>Add</h4><p>上面的split函数中用到了add，这个函数是用来在某一块后面插入一个块。但add函数用作插入，那样就不能维护块状链表的性质了。</p>
-<p>add函数与链表的插入类似，只不过赋值变成了memcpy函数。</p>
-<pre><code class="lang-cpp">// x 代表块编号
-// y 常为一个未初始的块
-// st 为块 y 中的内容
-// siz 为 st 的长度
+<h4><span id="add">Add</span><a href="#add" class="header-anchor"> </a></h4><p>&#x4E0A;&#x9762;&#x7684;split&#x51FD;&#x6570;&#x4E2D;&#x7528;&#x5230;&#x4E86;add&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x662F;&#x7528;&#x6765;&#x5728;&#x67D0;&#x4E00;&#x5757;&#x540E;&#x9762;&#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x5757;&#x3002;&#x4F46;add&#x51FD;&#x6570;&#x7528;&#x4F5C;&#x63D2;&#x5165;&#xFF0C;&#x90A3;&#x6837;&#x5C31;&#x4E0D;&#x80FD;&#x7EF4;&#x62A4;&#x5757;&#x72B6;&#x94FE;&#x8868;&#x7684;&#x6027;&#x8D28;&#x4E86;&#x3002;</p>
+<p>add&#x51FD;&#x6570;&#x4E0E;&#x94FE;&#x8868;&#x7684;&#x63D2;&#x5165;&#x7C7B;&#x4F3C;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x8D4B;&#x503C;&#x53D8;&#x6210;&#x4E86;memcpy&#x51FD;&#x6570;&#x3002;</p>
+<pre><code class="lang-cpp">// x &#x4EE3;&#x8868;&#x5757;&#x7F16;&#x53F7;
+// y &#x5E38;&#x4E3A;&#x4E00;&#x4E2A;&#x672A;&#x521D;&#x59CB;&#x7684;&#x5757;
+// st &#x4E3A;&#x5757; y &#x4E2D;&#x7684;&#x5185;&#x5BB9;
+// siz &#x4E3A; st &#x7684;&#x957F;&#x5EA6;
 inline void add(int x, int y, char *st, int siz) {
     if(y != -1) b[y].nxt= b[x].nxt, b[y].siz= siz, memcpy(b[y].ch, st, siz);
     b[x].nxt= y;
     return;
 }
 </code></pre>
-<h4 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h4><p>如果两个相邻的块都很小，那么维护时就要需要合并。我选择将靠后的块合并到靠前的块中，这样比较简单。</p>
-<pre><code class="lang-cpp">// x 代表块的编号
-// y 代表合并到 x 的块的编号
+<h4><span id="merge">Merge</span><a href="#merge" class="header-anchor"> </a></h4><p>&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x76F8;&#x90BB;&#x7684;&#x5757;&#x90FD;&#x5F88;&#x5C0F;&#xFF0C;&#x90A3;&#x4E48;&#x7EF4;&#x62A4;&#x65F6;&#x5C31;&#x8981;&#x9700;&#x8981;&#x5408;&#x5E76;&#x3002;&#x6211;&#x9009;&#x62E9;&#x5C06;&#x9760;&#x540E;&#x7684;&#x5757;&#x5408;&#x5E76;&#x5230;&#x9760;&#x524D;&#x7684;&#x5757;&#x4E2D;&#xFF0C;&#x8FD9;&#x6837;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#x3002;</p>
+<pre><code class="lang-cpp">// x &#x4EE3;&#x8868;&#x5757;&#x7684;&#x7F16;&#x53F7;
+// y &#x4EE3;&#x8868;&#x5408;&#x5E76;&#x5230; x &#x7684;&#x5757;&#x7684;&#x7F16;&#x53F7;
 void merge(int x, int y) {
     memcpy(b[x].ch + b[x].siz, b[y].ch, b[y].siz);
     b[x].siz+= b[y].siz, b[x].nxt= b[y].nxt, delb(y);
     return;
 }
 </code></pre>
-<h4 id="何时维护"><a href="#何时维护" class="headerlink" title="何时维护"></a>何时维护</h4><p>其实我学习的时候，一开始也对维护有些不解。虽然知道了如何维护，但没有具体的思路，不知道什么时候需要维护。</p>
-<p>根据前人的题解，维护只需要部分维护，即在插入和删除操作之后，维护相关的块。只要保证相邻两块大小之和大于$ \sqrt{n} $，每块大小不超过$ \sqrt{n} $，并且不考虑当块较大时的分裂操作，可以保证块的数量控制在 $ [\sqrt{n},\sqrt{2n}] $ 范围内。</p>
-<p>这里再次感谢<a href="https://www.cnblogs.com/HenryHuang-Never-Settle/p/10803406.html" target="_blank" rel="noopener">@HenryHuang的题解</a>所给予的帮助。</p>
-<h4 id="对于本题"><a href="#对于本题" class="headerlink" title="对于本题"></a>对于本题</h4><p>本题中有插入和删除操作，两者类似。先得到光标当前所属的块，将此块在光标位置分裂。</p>
-<p>对于插入，N 代表要插入的字符串长度。我们在分裂的位置先插入$ \frac{N}{\sqrt{n}} $个长度为$ \sqrt{n} $的块，剩下不足$ \sqrt{n} $长度的再独自插入，因为思路简单就不做解释。然后判断大小合并分裂位置前的块$ x $与$ x $的next块，合并刚插入的最后一个块$ y $与$ y $的next块。</p>
-<p>对于删除，N 代表要删除的长度。在分裂的位置后逐个删除回收即可，如果最后一个块的长度大于剩余删除数，就再次分裂最后一个块，然后删除。</p>
-<p>这部分代码将最后给出，先给出遍历块查找当前光标位置的代码。</p>
-<pre><code class="lang-cpp">// x 为要找的位置，
-// 因为 x 也是一个引用，最后将赋值为相对于块res的位置
+<h4><span id="&#x4F55;&#x65F6;&#x7EF4;&#x62A4;">&#x4F55;&#x65F6;&#x7EF4;&#x62A4;</span><a href="#&#x4F55;&#x65F6;&#x7EF4;&#x62A4;" class="header-anchor"> </a></h4><p>&#x5176;&#x5B9E;&#x6211;&#x5B66;&#x4E60;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E00;&#x5F00;&#x59CB;&#x4E5F;&#x5BF9;&#x7EF4;&#x62A4;&#x6709;&#x4E9B;&#x4E0D;&#x89E3;&#x3002;&#x867D;&#x7136;&#x77E5;&#x9053;&#x4E86;&#x5982;&#x4F55;&#x7EF4;&#x62A4;&#xFF0C;&#x4F46;&#x6CA1;&#x6709;&#x5177;&#x4F53;&#x7684;&#x601D;&#x8DEF;&#xFF0C;&#x4E0D;&#x77E5;&#x9053;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x9700;&#x8981;&#x7EF4;&#x62A4;&#x3002;</p>
+<p>&#x6839;&#x636E;&#x524D;&#x4EBA;&#x7684;&#x9898;&#x89E3;&#xFF0C;&#x7EF4;&#x62A4;&#x53EA;&#x9700;&#x8981;&#x90E8;&#x5206;&#x7EF4;&#x62A4;&#xFF0C;&#x5373;&#x5728;&#x63D2;&#x5165;&#x548C;&#x5220;&#x9664;&#x64CD;&#x4F5C;&#x4E4B;&#x540E;&#xFF0C;&#x7EF4;&#x62A4;&#x76F8;&#x5173;&#x7684;&#x5757;&#x3002;&#x53EA;&#x8981;&#x4FDD;&#x8BC1;&#x76F8;&#x90BB;&#x4E24;&#x5757;&#x5927;&#x5C0F;&#x4E4B;&#x548C;&#x5927;&#x4E8E;$ \sqrt{n} $&#xFF0C;&#x6BCF;&#x5757;&#x5927;&#x5C0F;&#x4E0D;&#x8D85;&#x8FC7;$ \sqrt{n} $&#xFF0C;&#x5E76;&#x4E14;&#x4E0D;&#x8003;&#x8651;&#x5F53;&#x5757;&#x8F83;&#x5927;&#x65F6;&#x7684;&#x5206;&#x88C2;&#x64CD;&#x4F5C;&#xFF0C;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x5757;&#x7684;&#x6570;&#x91CF;&#x63A7;&#x5236;&#x5728; $ [\sqrt{n},\sqrt{2n}] $ &#x8303;&#x56F4;&#x5185;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x518D;&#x6B21;&#x611F;&#x8C22;<a href="https://www.cnblogs.com/HenryHuang-Never-Settle/p/10803406.html" target="_blank" rel="noopener">@HenryHuang&#x7684;&#x9898;&#x89E3;</a>&#x6240;&#x7ED9;&#x4E88;&#x7684;&#x5E2E;&#x52A9;&#x3002;</p>
+<h4><span id="&#x5BF9;&#x4E8E;&#x672C;&#x9898;">&#x5BF9;&#x4E8E;&#x672C;&#x9898;</span><a href="#&#x5BF9;&#x4E8E;&#x672C;&#x9898;" class="header-anchor"> </a></h4><p>&#x672C;&#x9898;&#x4E2D;&#x6709;&#x63D2;&#x5165;&#x548C;&#x5220;&#x9664;&#x64CD;&#x4F5C;&#xFF0C;&#x4E24;&#x8005;&#x7C7B;&#x4F3C;&#x3002;&#x5148;&#x5F97;&#x5230;&#x5149;&#x6807;&#x5F53;&#x524D;&#x6240;&#x5C5E;&#x7684;&#x5757;&#xFF0C;&#x5C06;&#x6B64;&#x5757;&#x5728;&#x5149;&#x6807;&#x4F4D;&#x7F6E;&#x5206;&#x88C2;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x63D2;&#x5165;&#xFF0C;N &#x4EE3;&#x8868;&#x8981;&#x63D2;&#x5165;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;&#x3002;&#x6211;&#x4EEC;&#x5728;&#x5206;&#x88C2;&#x7684;&#x4F4D;&#x7F6E;&#x5148;&#x63D2;&#x5165;$ \frac{N}{\sqrt{n}} $&#x4E2A;&#x957F;&#x5EA6;&#x4E3A;$ \sqrt{n} $&#x7684;&#x5757;&#xFF0C;&#x5269;&#x4E0B;&#x4E0D;&#x8DB3;$ \sqrt{n} $&#x957F;&#x5EA6;&#x7684;&#x518D;&#x72EC;&#x81EA;&#x63D2;&#x5165;&#xFF0C;&#x56E0;&#x4E3A;&#x601D;&#x8DEF;&#x7B80;&#x5355;&#x5C31;&#x4E0D;&#x505A;&#x89E3;&#x91CA;&#x3002;&#x7136;&#x540E;&#x5224;&#x65AD;&#x5927;&#x5C0F;&#x5408;&#x5E76;&#x5206;&#x88C2;&#x4F4D;&#x7F6E;&#x524D;&#x7684;&#x5757;$ x $&#x4E0E;$ x $&#x7684;next&#x5757;&#xFF0C;&#x5408;&#x5E76;&#x521A;&#x63D2;&#x5165;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5757;$ y $&#x4E0E;$ y $&#x7684;next&#x5757;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x5220;&#x9664;&#xFF0C;N &#x4EE3;&#x8868;&#x8981;&#x5220;&#x9664;&#x7684;&#x957F;&#x5EA6;&#x3002;&#x5728;&#x5206;&#x88C2;&#x7684;&#x4F4D;&#x7F6E;&#x540E;&#x9010;&#x4E2A;&#x5220;&#x9664;&#x56DE;&#x6536;&#x5373;&#x53EF;&#xFF0C;&#x5982;&#x679C;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5757;&#x7684;&#x957F;&#x5EA6;&#x5927;&#x4E8E;&#x5269;&#x4F59;&#x5220;&#x9664;&#x6570;&#xFF0C;&#x5C31;&#x518D;&#x6B21;&#x5206;&#x88C2;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5757;&#xFF0C;&#x7136;&#x540E;&#x5220;&#x9664;&#x3002;</p>
+<p>&#x8FD9;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x5C06;&#x6700;&#x540E;&#x7ED9;&#x51FA;&#xFF0C;&#x5148;&#x7ED9;&#x51FA;&#x904D;&#x5386;&#x5757;&#x67E5;&#x627E;&#x5F53;&#x524D;&#x5149;&#x6807;&#x4F4D;&#x7F6E;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
+<pre><code class="lang-cpp">// x &#x4E3A;&#x8981;&#x627E;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;
+// &#x56E0;&#x4E3A; x &#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#xFF0C;&#x6700;&#x540E;&#x5C06;&#x8D4B;&#x503C;&#x4E3A;&#x76F8;&#x5BF9;&#x4E8E;&#x5757;res&#x7684;&#x4F4D;&#x7F6E;
 inline int pos(int &amp;x) {
     int res= 0;
     while(res != -1 &amp;&amp; b[res].siz &lt; x) x-= b[res].siz, res= b[res].nxt;
     return res;
 }
 </code></pre>
-<p>对于Get操作更简单，不需要分裂操作，我为了方便直接在函数中输出了。推荐学习者自行构思，有助于对块状链表的理解。</p>
-<p>提示，此题读入较大，建议使用极速IO优化。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
+<p>&#x5BF9;&#x4E8E;Get&#x64CD;&#x4F5C;&#x66F4;&#x7B80;&#x5355;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5206;&#x88C2;&#x64CD;&#x4F5C;&#xFF0C;&#x6211;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x76F4;&#x63A5;&#x5728;&#x51FD;&#x6570;&#x4E2D;&#x8F93;&#x51FA;&#x4E86;&#x3002;&#x63A8;&#x8350;&#x5B66;&#x4E60;&#x8005;&#x81EA;&#x884C;&#x6784;&#x601D;&#xFF0C;&#x6709;&#x52A9;&#x4E8E;&#x5BF9;&#x5757;&#x72B6;&#x94FE;&#x8868;&#x7684;&#x7406;&#x89E3;&#x3002;</p>
+<p>&#x63D0;&#x793A;&#xFF0C;&#x6B64;&#x9898;&#x8BFB;&#x5165;&#x8F83;&#x5927;&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x6781;&#x901F;IO&#x4F18;&#x5316;&#x3002;</p>
+<h3><span id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</span><a href="#&#x4EE3;&#x7801;" class="header-anchor"> </a></h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 using namespace std;
@@ -366,8 +384,8 @@ struct IOBUF {
 int read() {
     int e= 0;
     char ch= getchar();
-    while(ch &lt; &#39;0&#39; || ch &gt; &#39;9&#39;) ch= getchar();
-    while(ch &gt;= &#39;0&#39; &amp;&amp; ch &lt;= &#39;9&#39;) e= e * 10 + ch - &#39;0&#39;, ch= getchar();
+    while(ch &lt; &apos;0&apos; || ch &gt; &apos;9&apos;) ch= getchar();
+    while(ch &gt;= &apos;0&apos; &amp;&amp; ch &lt;= &apos;9&apos;) e= e * 10 + ch - &apos;0&apos;, ch= getchar();
     return e;
 }
 const int sqrtn= 1300;
@@ -441,12 +459,12 @@ void get(int w, int siz) {
         nowp= b[nowp].nxt, mins= min(siz, b[nowp].siz), siz-= mins;
         for(int i= 0; i &lt; mins; i++) putchar(b[nowp].ch[i]);
     }
-    putchar(&#39;\n&#39;);
+    putchar(&apos;\n&apos;);
     return;
 }
 char readopt() {
     char ch= getchar();
-    while(ch != &#39;M&#39; &amp;&amp; ch != &#39;I&#39; &amp;&amp; ch != &#39;D&#39; &amp;&amp; ch != &#39;G&#39; &amp;&amp; ch != &#39;P&#39; &amp;&amp; ch != &#39;N&#39;) ch= getchar();
+    while(ch != &apos;M&apos; &amp;&amp; ch != &apos;I&apos; &amp;&amp; ch != &apos;D&apos; &amp;&amp; ch != &apos;G&apos; &amp;&amp; ch != &apos;P&apos; &amp;&amp; ch != &apos;N&apos;) ch= getchar();
     return ch;
 }
 int m, n;
@@ -455,10 +473,10 @@ int main() {
     init(), m= read();
     while(m--) {
         switch(readopt()) {
-            case &#39;M&#39;: cur= read(); break;
-            case &#39;P&#39;: --cur; break;
-            case &#39;N&#39;: ++cur; break;
-            case &#39;I&#39;: {
+            case &apos;M&apos;: cur= read(); break;
+            case &apos;P&apos;: --cur; break;
+            case &apos;N&apos;: ++cur; break;
+            case &apos;I&apos;: {
                 n= read();
                 for(int i= 0; i &lt; n; i++) {
                     str[i]= getchar();
@@ -467,12 +485,12 @@ int main() {
                 insert(cur, n, str);
                 break;
             }
-            case &#39;D&#39;: {
+            case &apos;D&apos;: {
                 n= read();
                 erase(cur, n);
                 break;
             }
-            case &#39;G&#39;: {
+            case &apos;G&apos;: {
                 n= read();
                 get(cur, n);
                 break;
@@ -528,7 +546,7 @@ int main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385091"></script>
+<script src="/js/app.js?v=1573122199996"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

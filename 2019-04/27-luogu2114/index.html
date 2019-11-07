@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="【LuoguP2114】【BZOJ3668】【UOJ2】【VijosP1864】【NOI2014】起床困难综合症题目链接1: https://www.luogu.org/problemnew/show/P2114题目链接2: https://www.lydsy.com/JudgeOnline/problem.php?id=3668题目链接3: http://uoj.ac/problem/2题目链接">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T11:58:38.173Z">
+<meta property="og:updated_time" content="2019-11-07T09:06:42.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NOI2014 - 起床困难综合症">
 <meta name="twitter:description" content="【LuoguP2114】【BZOJ3668】【UOJ2】【VijosP1864】【NOI2014】起床困难综合症题目链接1: https://www.luogu.org/problemnew/show/P2114题目链接2: https://www.lydsy.com/JudgeOnline/problem.php?id=3668题目链接3: http://uoj.ac/problem/2题目链接">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385175">
+  <link rel="stylesheet" href="/css/style.css?v=1573122200078">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -249,8 +249,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年04月27日</a>
-    <a><i class="nexmoefont icon-areachart"></i>710 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>731 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -259,23 +259,33 @@
     
   </div>
   <article id="article">
-    <p>【LuoguP2114】【BZOJ3668】【UOJ2】【VijosP1864】【NOI2014】起床困难综合症<br>题目链接1: <a href="https://www.luogu.org/problemnew/show/P2114" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P2114</a><br>题目链接2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=3668" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=3668</a><br>题目链接3: <a href="http://uoj.ac/problem/2" target="_blank" rel="noopener">http://uoj.ac/problem/2</a><br>题目链接4: <a href="https://vijos.org/p/1864" target="_blank" rel="noopener">https://vijos.org/p/1864</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>用了一个原创的做法, 模拟配合搜索, 非常玄学的过了这道题. 好像还没有这种做法的题解.</p>
+    <p>&#x3010;LuoguP2114&#x3011;&#x3010;BZOJ3668&#x3011;&#x3010;UOJ2&#x3011;&#x3010;VijosP1864&#x3011;&#x3010;NOI2014&#x3011;&#x8D77;&#x5E8A;&#x56F0;&#x96BE;&#x7EFC;&#x5408;&#x75C7;<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;1: <a href="https://www.luogu.org/problemnew/show/P2114" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P2114</a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=3668" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=3668</a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;3: <a href="http://uoj.ac/problem/2" target="_blank" rel="noopener">http://uoj.ac/problem/2</a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;4: <a href="https://vijos.org/p/1864" target="_blank" rel="noopener">https://vijos.org/p/1864</a></p>
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x539F;&#x521B;&#x7684;&#x505A;&#x6CD5;, &#x6A21;&#x62DF;&#x914D;&#x5408;&#x641C;&#x7D22;, &#x975E;&#x5E38;&#x7384;&#x5B66;&#x7684;&#x8FC7;&#x4E86;&#x8FD9;&#x9053;&#x9898;. &#x597D;&#x50CF;&#x8FD8;&#x6CA1;&#x6709;&#x8FD9;&#x79CD;&#x505A;&#x6CD5;&#x7684;&#x9898;&#x89E3;.</p>
 <a id="more"></a>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>题意比较好理解, 当我看到这句话:</p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x5206;&#x6790;">&#x5206;&#x6790;</a></li>
+<li><a href="#&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x5206;&#x6790;">&#x5206;&#x6790;</span><a href="#&#x5206;&#x6790;" class="header-anchor"> </a></h3><p>&#x9898;&#x610F;&#x6BD4;&#x8F83;&#x597D;&#x7406;&#x89E3;, &#x5F53;&#x6211;&#x770B;&#x5230;&#x8FD9;&#x53E5;&#x8BDD;:</p>
 <blockquote>
-<p>最终受到的伤害为对方初始攻击力x依次经过所有n扇防御门后转变得到的攻击力</p>
+<p>&#x6700;&#x7EC8;&#x53D7;&#x5230;&#x7684;&#x4F24;&#x5BB3;&#x4E3A;&#x5BF9;&#x65B9;&#x521D;&#x59CB;&#x653B;&#x51FB;&#x529B;x&#x4F9D;&#x6B21;&#x7ECF;&#x8FC7;&#x6240;&#x6709;n&#x6247;&#x9632;&#x5FA1;&#x95E8;&#x540E;&#x8F6C;&#x53D8;&#x5F97;&#x5230;&#x7684;&#x653B;&#x51FB;&#x529B;</p>
 </blockquote>
-<p>依次经过N扇门是重点, 大大降低了这道题的难度. </p>
-<p>由此想到最为暴力的方法, 从1到M枚举每一个数, 然后模拟N个操作, 算出每个数最后的伤害取个最大. 复杂度$ O(NM) $ 太大了.</p>
-<p>然后考虑到位运算的性质, 我们只需要求出每一个二进制位上的变化就行了, 然后再把这些位组合起来, 求出一个初始不大于M但最终最大的数. 这个组合可以用搜索, 复杂度大概是 $ O(N \log t + t) $</p>
-<p>看数据范围, $\log t$ 比30小, 我使用一个数组$ num[31][2] $, 第一维代表二进制的位数, 第二维代表初始为 0 还是 1, 初始化这个数组.</p>
-<p>然后可以$ O(n \log t) $ 在线预处理, 直接模拟就行了. 预处理后的num数组就是每一个二进制位的变化. </p>
-<p>然后就是求最终那个数, 因为M不是一个二的次幂, 所以不能循环求解, 但是可以用搜索.</p>
-<p>如果学过01Trie, 上面的操作可以和它很相似, 求异或最大和本题的搜索的思路也类似. 然后加个条件判断和最优化剪枝就能完美通过本题了.</p>
-<p>然后开int貌似会炸, 需要开long long, 但是最终答案应该是不会超int.</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>未吸氧评测详情: Accepted  100</p>
-<p>用时: 371ms / 内存: 932KB</p>
+<p>&#x4F9D;&#x6B21;&#x7ECF;&#x8FC7;N&#x6247;&#x95E8;&#x662F;&#x91CD;&#x70B9;, &#x5927;&#x5927;&#x964D;&#x4F4E;&#x4E86;&#x8FD9;&#x9053;&#x9898;&#x7684;&#x96BE;&#x5EA6;. </p>
+<p>&#x7531;&#x6B64;&#x60F3;&#x5230;&#x6700;&#x4E3A;&#x66B4;&#x529B;&#x7684;&#x65B9;&#x6CD5;, &#x4ECE;1&#x5230;M&#x679A;&#x4E3E;&#x6BCF;&#x4E00;&#x4E2A;&#x6570;, &#x7136;&#x540E;&#x6A21;&#x62DF;N&#x4E2A;&#x64CD;&#x4F5C;, &#x7B97;&#x51FA;&#x6BCF;&#x4E2A;&#x6570;&#x6700;&#x540E;&#x7684;&#x4F24;&#x5BB3;&#x53D6;&#x4E2A;&#x6700;&#x5927;. &#x590D;&#x6742;&#x5EA6;$ O(NM) $ &#x592A;&#x5927;&#x4E86;.</p>
+<p>&#x7136;&#x540E;&#x8003;&#x8651;&#x5230;&#x4F4D;&#x8FD0;&#x7B97;&#x7684;&#x6027;&#x8D28;, &#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x6C42;&#x51FA;&#x6BCF;&#x4E00;&#x4E2A;&#x4E8C;&#x8FDB;&#x5236;&#x4F4D;&#x4E0A;&#x7684;&#x53D8;&#x5316;&#x5C31;&#x884C;&#x4E86;, &#x7136;&#x540E;&#x518D;&#x628A;&#x8FD9;&#x4E9B;&#x4F4D;&#x7EC4;&#x5408;&#x8D77;&#x6765;, &#x6C42;&#x51FA;&#x4E00;&#x4E2A;&#x521D;&#x59CB;&#x4E0D;&#x5927;&#x4E8E;M&#x4F46;&#x6700;&#x7EC8;&#x6700;&#x5927;&#x7684;&#x6570;. &#x8FD9;&#x4E2A;&#x7EC4;&#x5408;&#x53EF;&#x4EE5;&#x7528;&#x641C;&#x7D22;, &#x590D;&#x6742;&#x5EA6;&#x5927;&#x6982;&#x662F; $ O(N \log t + t) $</p>
+<p>&#x770B;&#x6570;&#x636E;&#x8303;&#x56F4;, $\log t$ &#x6BD4;30&#x5C0F;, &#x6211;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;$ num[31][2] $, &#x7B2C;&#x4E00;&#x7EF4;&#x4EE3;&#x8868;&#x4E8C;&#x8FDB;&#x5236;&#x7684;&#x4F4D;&#x6570;, &#x7B2C;&#x4E8C;&#x7EF4;&#x4EE3;&#x8868;&#x521D;&#x59CB;&#x4E3A; 0 &#x8FD8;&#x662F; 1, &#x521D;&#x59CB;&#x5316;&#x8FD9;&#x4E2A;&#x6570;&#x7EC4;.</p>
+<p>&#x7136;&#x540E;&#x53EF;&#x4EE5;$ O(n \log t) $ &#x5728;&#x7EBF;&#x9884;&#x5904;&#x7406;, &#x76F4;&#x63A5;&#x6A21;&#x62DF;&#x5C31;&#x884C;&#x4E86;. &#x9884;&#x5904;&#x7406;&#x540E;&#x7684;num&#x6570;&#x7EC4;&#x5C31;&#x662F;&#x6BCF;&#x4E00;&#x4E2A;&#x4E8C;&#x8FDB;&#x5236;&#x4F4D;&#x7684;&#x53D8;&#x5316;. </p>
+<p>&#x7136;&#x540E;&#x5C31;&#x662F;&#x6C42;&#x6700;&#x7EC8;&#x90A3;&#x4E2A;&#x6570;, &#x56E0;&#x4E3A;M&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x4E8C;&#x7684;&#x6B21;&#x5E42;, &#x6240;&#x4EE5;&#x4E0D;&#x80FD;&#x5FAA;&#x73AF;&#x6C42;&#x89E3;, &#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x7528;&#x641C;&#x7D22;.</p>
+<p>&#x5982;&#x679C;&#x5B66;&#x8FC7;01Trie, &#x4E0A;&#x9762;&#x7684;&#x64CD;&#x4F5C;&#x53EF;&#x4EE5;&#x548C;&#x5B83;&#x5F88;&#x76F8;&#x4F3C;, &#x6C42;&#x5F02;&#x6216;&#x6700;&#x5927;&#x548C;&#x672C;&#x9898;&#x7684;&#x641C;&#x7D22;&#x7684;&#x601D;&#x8DEF;&#x4E5F;&#x7C7B;&#x4F3C;. &#x7136;&#x540E;&#x52A0;&#x4E2A;&#x6761;&#x4EF6;&#x5224;&#x65AD;&#x548C;&#x6700;&#x4F18;&#x5316;&#x526A;&#x679D;&#x5C31;&#x80FD;&#x5B8C;&#x7F8E;&#x901A;&#x8FC7;&#x672C;&#x9898;&#x4E86;.</p>
+<p>&#x7136;&#x540E;&#x5F00;int&#x8C8C;&#x4F3C;&#x4F1A;&#x70B8;, &#x9700;&#x8981;&#x5F00;long long, &#x4F46;&#x662F;&#x6700;&#x7EC8;&#x7B54;&#x6848;&#x5E94;&#x8BE5;&#x662F;&#x4E0D;&#x4F1A;&#x8D85;int.</p>
+<h3><span id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</span><a href="#&#x4EE3;&#x7801;" class="header-anchor"> </a></h3><p>&#x672A;&#x5438;&#x6C27;&#x8BC4;&#x6D4B;&#x8BE6;&#x60C5;: Accepted  100</p>
+<p>&#x7528;&#x65F6;: 371ms / &#x5185;&#x5B58;: 932KB</p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;limits.h&gt;
@@ -301,9 +311,9 @@ signed main() {
         cin &gt;&gt; tmps &gt;&gt; tmpx;
         for(int j= 0; j &lt; 31; j++) {
             int ch= (tmpx &gt;&gt; j) &amp; 1;
-            if(tmps[0] == &#39;A&#39;)
+            if(tmps[0] == &apos;A&apos;)
                 num[j][0]&amp;= ch, num[j][1]&amp;= ch;
-            else if(tmps[0] == &#39;O&#39;)
+            else if(tmps[0] == &apos;O&apos;)
                 num[j][0]|= ch, num[j][1]|= ch;
             else
                 num[j][0]^= ch, num[j][1]^= ch;
@@ -359,7 +369,7 @@ signed main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385189"></script>
+<script src="/js/app.js?v=1573122200088"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

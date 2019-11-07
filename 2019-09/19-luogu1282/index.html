@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="【LuoguP1041】多米诺骨牌题目链接: https://www.luogu.org/problem/P1282 前言最近重点做动态规划。今天自己成功推出了两三道题，然后开始水多年未更新的博客？ 不能颓废！">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-21T02:24:57.582Z">
+<meta property="og:updated_time" content="2019-11-07T09:06:29.564Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LuoguP1282 - 多米诺骨牌">
 <meta name="twitter:description" content="【LuoguP1041】多米诺骨牌题目链接: https://www.luogu.org/problem/P1282 前言最近重点做动态规划。今天自己成功推出了两三道题，然后开始水多年未更新的博客？ 不能颓废！">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960384963">
+  <link rel="stylesheet" href="/css/style.css?v=1573122199881">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -249,8 +249,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月19日</a>
-    <a><i class="nexmoefont icon-areachart"></i>678 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>739 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -259,22 +259,33 @@
     
   </div>
   <article id="article">
-    <p>【LuoguP1041】多米诺骨牌<br>题目链接: <a href="https://www.luogu.org/problem/P1282" target="_blank" rel="noopener">https://www.luogu.org/problem/P1282</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近重点做动态规划。今天自己成功推出了两三道题，然后开始水多年未更新的博客？</p>
-<p>不能颓废！</p>
+    <p>&#x3010;LuoguP1041&#x3011;&#x591A;&#x7C73;&#x8BFA;&#x9AA8;&#x724C;<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;: <a href="https://www.luogu.org/problem/P1282" target="_blank" rel="noopener">https://www.luogu.org/problem/P1282</a></p>
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x6700;&#x8FD1;&#x91CD;&#x70B9;&#x505A;&#x52A8;&#x6001;&#x89C4;&#x5212;&#x3002;&#x4ECA;&#x5929;&#x81EA;&#x5DF1;&#x6210;&#x529F;&#x63A8;&#x51FA;&#x4E86;&#x4E24;&#x4E09;&#x9053;&#x9898;&#xFF0C;&#x7136;&#x540E;&#x5F00;&#x59CB;&#x6C34;&#x591A;&#x5E74;&#x672A;&#x66F4;&#x65B0;&#x7684;&#x535A;&#x5BA2;&#xFF1F;</p>
+<p>&#x4E0D;&#x80FD;&#x9893;&#x5E9F;&#xFF01;</p>
 <a id="more"></a>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先看数据范围$(N &lt;= 1000, A_i/B_i &lt;= 6)$，那么搜索当然不可能，肯定是考虑动态规划。</p>
-<p>还是回归搜索上，比较好分析。一个牌只有两种状态，旋转与不旋转。我们只需要先找到最小差，再考虑最小旋转次数。</p>
-<p>再看数据范围，$O(6N^2)$不会超时。我们既要求最小差又要求最小最小旋转次数，又可知所有数的总和是确定的，不如就设个背包。</p>
-<p>$F[N(1000)][SUM(6000)]$表示处理到第N个点，上方块的和为SUM时最小的旋转次数。</p>
-<p>一开始除$F[0]$为0外都赋值为无穷大，然后转移$A_i$表示上方块,$B_i$表示下方块。</p>
-<script type="math/tex; mode=display">F[N][i] = min(F[N - 1][i - A_i], F[N - 1][i - B_i] + 1)</script><p>然后由于比较闲（怕超空间，然而并不会？）。显然，只要记录N-1的状态，就开了滚动数组$F[2][SUM]$。</p>
-<p>最后先找最小差，我们计算$X = \lfloor\frac{SUM}{2} \rfloor$。</p>
-<p>如果$SUM$为奇，那么上下差不可能为0，并且上方块和为$X$或$X + 1$时差都为1，因此再设置$Y = X + 1$。</p>
-<p>如果$SUM$为偶，那么上方块和为$X$时上下差就为0，$Y = X$。</p>
-<p>我们枚举一个数$i$从0开始，不断增大，表示一个范围（大概是这样）。</p>
-<p>判断$F[N][X - i]$和$F[N][Y + i]$是否有值，若有则输出小的那个。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>代码较丑，推荐自己写代码。</p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x5206;&#x6790;">&#x5206;&#x6790;</a></li>
+<li><a href="#&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</a></li>
+<li><a href="#&#x540E;&#x8BB0;">&#x540E;&#x8BB0;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x5206;&#x6790;">&#x5206;&#x6790;</span><a href="#&#x5206;&#x6790;" class="header-anchor"> </a></h3><p>&#x9996;&#x5148;&#x770B;&#x6570;&#x636E;&#x8303;&#x56F4;$(N &lt;= 1000, A_i/B_i &lt;= 6)$&#xFF0C;&#x90A3;&#x4E48;&#x641C;&#x7D22;&#x5F53;&#x7136;&#x4E0D;&#x53EF;&#x80FD;&#xFF0C;&#x80AF;&#x5B9A;&#x662F;&#x8003;&#x8651;&#x52A8;&#x6001;&#x89C4;&#x5212;&#x3002;</p>
+<p>&#x8FD8;&#x662F;&#x56DE;&#x5F52;&#x641C;&#x7D22;&#x4E0A;&#xFF0C;&#x6BD4;&#x8F83;&#x597D;&#x5206;&#x6790;&#x3002;&#x4E00;&#x4E2A;&#x724C;&#x53EA;&#x6709;&#x4E24;&#x79CD;&#x72B6;&#x6001;&#xFF0C;&#x65CB;&#x8F6C;&#x4E0E;&#x4E0D;&#x65CB;&#x8F6C;&#x3002;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x5148;&#x627E;&#x5230;&#x6700;&#x5C0F;&#x5DEE;&#xFF0C;&#x518D;&#x8003;&#x8651;&#x6700;&#x5C0F;&#x65CB;&#x8F6C;&#x6B21;&#x6570;&#x3002;</p>
+<p>&#x518D;&#x770B;&#x6570;&#x636E;&#x8303;&#x56F4;&#xFF0C;$O(6N^2)$&#x4E0D;&#x4F1A;&#x8D85;&#x65F6;&#x3002;&#x6211;&#x4EEC;&#x65E2;&#x8981;&#x6C42;&#x6700;&#x5C0F;&#x5DEE;&#x53C8;&#x8981;&#x6C42;&#x6700;&#x5C0F;&#x6700;&#x5C0F;&#x65CB;&#x8F6C;&#x6B21;&#x6570;&#xFF0C;&#x53C8;&#x53EF;&#x77E5;&#x6240;&#x6709;&#x6570;&#x7684;&#x603B;&#x548C;&#x662F;&#x786E;&#x5B9A;&#x7684;&#xFF0C;&#x4E0D;&#x5982;&#x5C31;&#x8BBE;&#x4E2A;&#x80CC;&#x5305;&#x3002;</p>
+<p>$F[N(1000)][SUM(6000)]$&#x8868;&#x793A;&#x5904;&#x7406;&#x5230;&#x7B2C;N&#x4E2A;&#x70B9;&#xFF0C;&#x4E0A;&#x65B9;&#x5757;&#x7684;&#x548C;&#x4E3A;SUM&#x65F6;&#x6700;&#x5C0F;&#x7684;&#x65CB;&#x8F6C;&#x6B21;&#x6570;&#x3002;</p>
+<p>&#x4E00;&#x5F00;&#x59CB;&#x9664;$F[0]$&#x4E3A;0&#x5916;&#x90FD;&#x8D4B;&#x503C;&#x4E3A;&#x65E0;&#x7A77;&#x5927;&#xFF0C;&#x7136;&#x540E;&#x8F6C;&#x79FB;$A_i$&#x8868;&#x793A;&#x4E0A;&#x65B9;&#x5757;,$B_i$&#x8868;&#x793A;&#x4E0B;&#x65B9;&#x5757;&#x3002;</p>
+<script type="math/tex; mode=display">F[N][i] = min(F[N - 1][i - A_i], F[N - 1][i - B_i] + 1)</script><p>&#x7136;&#x540E;&#x7531;&#x4E8E;&#x6BD4;&#x8F83;&#x95F2;&#xFF08;&#x6015;&#x8D85;&#x7A7A;&#x95F4;&#xFF0C;&#x7136;&#x800C;&#x5E76;&#x4E0D;&#x4F1A;&#xFF1F;&#xFF09;&#x3002;&#x663E;&#x7136;&#xFF0C;&#x53EA;&#x8981;&#x8BB0;&#x5F55;N-1&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x5C31;&#x5F00;&#x4E86;&#x6EDA;&#x52A8;&#x6570;&#x7EC4;$F[2][SUM]$&#x3002;</p>
+<p>&#x6700;&#x540E;&#x5148;&#x627E;&#x6700;&#x5C0F;&#x5DEE;&#xFF0C;&#x6211;&#x4EEC;&#x8BA1;&#x7B97;$X = \lfloor\frac{SUM}{2} \rfloor$&#x3002;</p>
+<p>&#x5982;&#x679C;$SUM$&#x4E3A;&#x5947;&#xFF0C;&#x90A3;&#x4E48;&#x4E0A;&#x4E0B;&#x5DEE;&#x4E0D;&#x53EF;&#x80FD;&#x4E3A;0&#xFF0C;&#x5E76;&#x4E14;&#x4E0A;&#x65B9;&#x5757;&#x548C;&#x4E3A;$X$&#x6216;$X + 1$&#x65F6;&#x5DEE;&#x90FD;&#x4E3A;1&#xFF0C;&#x56E0;&#x6B64;&#x518D;&#x8BBE;&#x7F6E;$Y = X + 1$&#x3002;</p>
+<p>&#x5982;&#x679C;$SUM$&#x4E3A;&#x5076;&#xFF0C;&#x90A3;&#x4E48;&#x4E0A;&#x65B9;&#x5757;&#x548C;&#x4E3A;$X$&#x65F6;&#x4E0A;&#x4E0B;&#x5DEE;&#x5C31;&#x4E3A;0&#xFF0C;$Y = X$&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x679A;&#x4E3E;&#x4E00;&#x4E2A;&#x6570;$i$&#x4ECE;0&#x5F00;&#x59CB;&#xFF0C;&#x4E0D;&#x65AD;&#x589E;&#x5927;&#xFF0C;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x8303;&#x56F4;&#xFF08;&#x5927;&#x6982;&#x662F;&#x8FD9;&#x6837;&#xFF09;&#x3002;</p>
+<p>&#x5224;&#x65AD;$F[N][X - i]$&#x548C;$F[N][Y + i]$&#x662F;&#x5426;&#x6709;&#x503C;&#xFF0C;&#x82E5;&#x6709;&#x5219;&#x8F93;&#x51FA;&#x5C0F;&#x7684;&#x90A3;&#x4E2A;&#x3002;</p>
+<h3><span id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</span><a href="#&#x4EE3;&#x7801;" class="header-anchor"> </a></h3><p>&#x4EE3;&#x7801;&#x8F83;&#x4E11;&#xFF0C;&#x63A8;&#x8350;&#x81EA;&#x5DF1;&#x5199;&#x4EE3;&#x7801;&#x3002;</p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
@@ -300,7 +311,7 @@ int main() {
     return 0;
 }
 </code></pre>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>我的代码必须开8000，如果开8000以下好像会RE。</p>
+<h3><span id="&#x540E;&#x8BB0;">&#x540E;&#x8BB0;</span><a href="#&#x540E;&#x8BB0;" class="header-anchor"> </a></h3><p>&#x6211;&#x7684;&#x4EE3;&#x7801;&#x5FC5;&#x987B;&#x5F00;8000&#xFF0C;&#x5982;&#x679C;&#x5F00;8000&#x4EE5;&#x4E0B;&#x597D;&#x50CF;&#x4F1A;RE&#x3002;</p>
 
   </article>
   
@@ -346,7 +357,7 @@ int main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960384975"></script>
+<script src="/js/app.js?v=1573122199894"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

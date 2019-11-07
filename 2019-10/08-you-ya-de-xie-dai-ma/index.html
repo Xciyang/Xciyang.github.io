@@ -12,7 +12,7 @@
 
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <meta name="description" content="本篇分享写代码相关的一些技巧，可用且不仅用于OIer。 相关内容：DevC++、Visual Studio Code、MinGW、Git、Github">
-<meta name="keywords" content="闲聊,Cpp,技巧,颓废">
+<meta name="keywords" content="Cpp,闲聊,颓废,技巧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="技巧 - 如何优雅的写代码">
 <meta property="og:url" content="https://xciyang.github.io/2019-10/08-you-ya-de-xie-dai-ma/index.html">
@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://xciyang.github.io/images/Code1.jpg">
 <meta property="og:image" content="https://xciyang.github.io/images/Code2.jpg">
 <meta property="og:image" content="https://xciyang.github.io/images/Code3.jpg">
-<meta property="og:updated_time" content="2019-10-09T23:11:18.690Z">
+<meta property="og:updated_time" content="2019-11-07T09:04:58.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="技巧 - 如何优雅的写代码">
 <meta name="twitter:description" content="本篇分享写代码相关的一些技巧，可用且不仅用于OIer。 相关内容：DevC++、Visual Studio Code、MinGW、Git、Github">
@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960384897">
+  <link rel="stylesheet" href="/css/style.css?v=1573122199807">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -253,8 +253,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年10月08日</a>
-    <a><i class="nexmoefont icon-areachart"></i>2.9k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 13 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>3.3k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 20 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/技巧/">技巧</a>
     
@@ -263,40 +263,103 @@
     
   </div>
   <article id="article">
-    <p>本篇分享写代码相关的一些技巧，可用且不仅用于OIer。</p>
-<p>相关内容：DevC++、Visual Studio Code、MinGW、Git、Github</p>
+    <p>&#x672C;&#x7BC7;&#x5206;&#x4EAB;&#x5199;&#x4EE3;&#x7801;&#x76F8;&#x5173;&#x7684;&#x4E00;&#x4E9B;&#x6280;&#x5DE7;&#xFF0C;&#x53EF;&#x7528;&#x4E14;&#x4E0D;&#x4EC5;&#x7528;&#x4E8E;OIer&#x3002;</p>
+<p>&#x76F8;&#x5173;&#x5185;&#x5BB9;&#xFF1A;DevC++&#x3001;Visual Studio Code&#x3001;MinGW&#x3001;Git&#x3001;Github</p>
 <a id="more"></a>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>临退役，将自己写代码一年多的经验分享给后人。可能用处不大，也可以当个说明书看。</p>
-<p>内容仅供参考。</p>
-<h2 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h2><h3 id="DevC"><a href="#DevC" class="headerlink" title="DevC++"></a>DevC++</h3><p>适合初学者使用，优点是上手容易、功能均衡，即可用来写题，也可用来写简单项目。</p>
-<p>然而缺点也很多，自带mingw版本较低，调试能力较低，经常卡死，各种BUG。</p>
-<p>写题这个上手就会，还是有一些技巧的。这里默认使用5.11版本，应该是最新版。</p>
-<p>并且CSP好像只能用这个编辑器。</p>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>此编辑器一般来说无需配置就能使用。</p>
-<h4 id="代码补全"><a href="#代码补全" class="headerlink" title="代码补全"></a>代码补全</h4><p>其实一直是存在的，然而使用的快捷键和输入法冲突了，你只能等待自动出代码补全。<strong>其实可以手动更改！</strong></p>
-<p>步骤：工具-&gt;快捷键选项-&gt;Show Code Completion，将快捷键改成你想要的。</p>
-<p>在写代码时按下快捷键即可弹出补全对话框进行选择，当然有时会出现BUG。</p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x524D;&#x8A00;">&#x524D;&#x8A00;</a></li>
+<li><a href="#&#x7F16;&#x8F91;&#x5668;">&#x7F16;&#x8F91;&#x5668;</a><ul>
+<li><a href="#devc">DevC++</a><ul>
+<li><a href="#&#x914D;&#x7F6E;">&#x914D;&#x7F6E;</a></li>
+<li><a href="#&#x4EE3;&#x7801;&#x8865;&#x5168;">&#x4EE3;&#x7801;&#x8865;&#x5168;</a></li>
+<li><a href="#astyle">AStyle</a></li>
+<li><a href="#&#x4EE3;&#x7801;&#x6A21;&#x677F;">&#x4EE3;&#x7801;&#x6A21;&#x677F;</a></li>
+<li><a href="#&#x7F3A;&#x7701;&#x6E90;">&#x7F3A;&#x7701;&#x6E90;</a></li>
+<li><a href="#&#x7F16;&#x8BD1;&#x5668;&#x9009;&#x9879;">&#x7F16;&#x8BD1;&#x5668;&#x9009;&#x9879;</a></li>
+</ul>
+</li>
+<li><a href="#visual-studio-code">Visual Studio Code</a><ul>
+<li><a href="#&#x57FA;&#x672C;&#x63D2;&#x4EF6;">&#x57FA;&#x672C;&#x63D2;&#x4EF6;</a></li>
+</ul>
+</li>
+<li><a href="#&#x7F16;&#x5199;&#x8C03;&#x8BD5;c">&#x7F16;&#x5199;&#x8C03;&#x8BD5;C++</a><ul>
+<li><a href="#&#x7F16;&#x5199;&#x8FD0;&#x884C;c">&#x7F16;&#x5199;&#x8FD0;&#x884C;C++</a></li>
+<li><a href="#&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x5316;">&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x5316;</a></li>
+<li><a href="#&#x76F8;&#x5173;&#x95EE;&#x9898;">&#x76F8;&#x5173;&#x95EE;&#x9898;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#&#x7F16;&#x8BD1;&#x5668;">&#x7F16;&#x8BD1;&#x5668;</a><ul>
+<li><a href="#mingw">MinGW</a><ul>
+<li><a href="#&#x4E0B;&#x8F7D;&#x65B9;&#x5F0F;">&#x4E0B;&#x8F7D;&#x65B9;&#x5F0F;</a></li>
+<li><a href="#&#x73AF;&#x5883;&#x53D8;&#x91CF;">&#x73AF;&#x5883;&#x53D8;&#x91CF;</a></li>
+<li><a href="#&#x7F16;&#x8BD1;&#x6307;&#x4EE4;">&#x7F16;&#x8BD1;&#x6307;&#x4EE4;</a></li>
+<li><a href="#&#x76F8;&#x5173;&#x95EE;&#x9898;-1">&#x76F8;&#x5173;&#x95EE;&#x9898;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;">&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</a><ul>
+<li><a href="#git">Git</a><ul>
+<li><a href="#&#x4E0B;&#x8F7D;&#x65B9;&#x5F0F;-1">&#x4E0B;&#x8F7D;&#x65B9;&#x5F0F;</a></li>
+<li><a href="#&#x57FA;&#x672C;&#x547D;&#x4EE4;">&#x57FA;&#x672C;&#x547D;&#x4EE4;</a></li>
+</ul>
+</li>
+<li><a href="#github">Github</a><ul>
+<li><a href="#&#x5EFA;&#x7ACB;&#x4ED3;&#x5E93;">&#x5EFA;&#x7ACB;&#x4ED3;&#x5E93;</a></li>
+<li><a href="#ssh&#x914D;&#x7F6E;">ssh&#x914D;&#x7F6E;</a></li>
+<li><a href="#&#x589E;&#x52A0;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;">&#x589E;&#x52A0;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</a></li>
+<li><a href="#&#x66F4;&#x65B0;&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x62C9;&#x53D6;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;">&#x66F4;&#x65B0;&#x672C;&#x5730;&#x4ED3;&#x5E93;/&#x62C9;&#x53D6;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</a></li>
+<li><a href="#&#x6682;&#x5B58;&#x66F4;&#x6539;">&#x6682;&#x5B58;&#x66F4;&#x6539;</a></li>
+<li><a href="#&#x67E5;&#x770B;&#x5F53;&#x524D;&#x72B6;&#x6001;">&#x67E5;&#x770B;&#x5F53;&#x524D;&#x72B6;&#x6001;</a></li>
+<li><a href="#&#x63D0;&#x4EA4;">&#x63D0;&#x4EA4;</a></li>
+<li><a href="#&#x63A8;&#x9001;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;">&#x63A8;&#x9001;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</a></li>
+</ul>
+</li>
+<li><a href="#&#x66F4;&#x591A;">&#x66F4;&#x591A;</a></li>
+<li><a href="#&#x76F8;&#x5173;&#x95EE;&#x9898;-2">&#x76F8;&#x5173;&#x95EE;&#x9898;</a></li>
+</ul>
+</li>
+<li><a href="#&#x6700;&#x540E;">&#x6700;&#x540E;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h2><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h2><p>&#x4E34;&#x9000;&#x5F79;&#xFF0C;&#x5C06;&#x81EA;&#x5DF1;&#x5199;&#x4EE3;&#x7801;&#x4E00;&#x5E74;&#x591A;&#x7684;&#x7ECF;&#x9A8C;&#x5206;&#x4EAB;&#x7ED9;&#x540E;&#x4EBA;&#x3002;&#x53EF;&#x80FD;&#x7528;&#x5904;&#x4E0D;&#x5927;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5F53;&#x4E2A;&#x8BF4;&#x660E;&#x4E66;&#x770B;&#x3002;</p>
+<p>&#x5185;&#x5BB9;&#x4EC5;&#x4F9B;&#x53C2;&#x8003;&#x3002;</p>
+<h2><span id="&#x7F16;&#x8F91;&#x5668;">&#x7F16;&#x8F91;&#x5668;</span><a href="#&#x7F16;&#x8F91;&#x5668;" class="header-anchor"> </a></h2><h3><span id="devc">DevC++</span><a href="#devc" class="header-anchor"> </a></h3><p>&#x9002;&#x5408;&#x521D;&#x5B66;&#x8005;&#x4F7F;&#x7528;&#xFF0C;&#x4F18;&#x70B9;&#x662F;&#x4E0A;&#x624B;&#x5BB9;&#x6613;&#x3001;&#x529F;&#x80FD;&#x5747;&#x8861;&#xFF0C;&#x5373;&#x53EF;&#x7528;&#x6765;&#x5199;&#x9898;&#xFF0C;&#x4E5F;&#x53EF;&#x7528;&#x6765;&#x5199;&#x7B80;&#x5355;&#x9879;&#x76EE;&#x3002;</p>
+<p>&#x7136;&#x800C;&#x7F3A;&#x70B9;&#x4E5F;&#x5F88;&#x591A;&#xFF0C;&#x81EA;&#x5E26;mingw&#x7248;&#x672C;&#x8F83;&#x4F4E;&#xFF0C;&#x8C03;&#x8BD5;&#x80FD;&#x529B;&#x8F83;&#x4F4E;&#xFF0C;&#x7ECF;&#x5E38;&#x5361;&#x6B7B;&#xFF0C;&#x5404;&#x79CD;BUG&#x3002;</p>
+<p>&#x5199;&#x9898;&#x8FD9;&#x4E2A;&#x4E0A;&#x624B;&#x5C31;&#x4F1A;&#xFF0C;&#x8FD8;&#x662F;&#x6709;&#x4E00;&#x4E9B;&#x6280;&#x5DE7;&#x7684;&#x3002;&#x8FD9;&#x91CC;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;5.11&#x7248;&#x672C;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x6700;&#x65B0;&#x7248;&#x3002;</p>
+<p>&#x5E76;&#x4E14;CSP&#x597D;&#x50CF;&#x53EA;&#x80FD;&#x7528;&#x8FD9;&#x4E2A;&#x7F16;&#x8F91;&#x5668;&#x3002;</p>
+<h4><span id="&#x914D;&#x7F6E;">&#x914D;&#x7F6E;</span><a href="#&#x914D;&#x7F6E;" class="header-anchor"> </a></h4><p>&#x6B64;&#x7F16;&#x8F91;&#x5668;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x65E0;&#x9700;&#x914D;&#x7F6E;&#x5C31;&#x80FD;&#x4F7F;&#x7528;&#x3002;</p>
+<h4><span id="&#x4EE3;&#x7801;&#x8865;&#x5168;">&#x4EE3;&#x7801;&#x8865;&#x5168;</span><a href="#&#x4EE3;&#x7801;&#x8865;&#x5168;" class="header-anchor"> </a></h4><p>&#x5176;&#x5B9E;&#x4E00;&#x76F4;&#x662F;&#x5B58;&#x5728;&#x7684;&#xFF0C;&#x7136;&#x800C;&#x4F7F;&#x7528;&#x7684;&#x5FEB;&#x6377;&#x952E;&#x548C;&#x8F93;&#x5165;&#x6CD5;&#x51B2;&#x7A81;&#x4E86;&#xFF0C;&#x4F60;&#x53EA;&#x80FD;&#x7B49;&#x5F85;&#x81EA;&#x52A8;&#x51FA;&#x4EE3;&#x7801;&#x8865;&#x5168;&#x3002;<strong>&#x5176;&#x5B9E;&#x53EF;&#x4EE5;&#x624B;&#x52A8;&#x66F4;&#x6539;&#xFF01;</strong></p>
+<p>&#x6B65;&#x9AA4;&#xFF1A;&#x5DE5;&#x5177;-&gt;&#x5FEB;&#x6377;&#x952E;&#x9009;&#x9879;-&gt;Show Code Completion&#xFF0C;&#x5C06;&#x5FEB;&#x6377;&#x952E;&#x6539;&#x6210;&#x4F60;&#x60F3;&#x8981;&#x7684;&#x3002;</p>
+<p>&#x5728;&#x5199;&#x4EE3;&#x7801;&#x65F6;&#x6309;&#x4E0B;&#x5FEB;&#x6377;&#x952E;&#x5373;&#x53EF;&#x5F39;&#x51FA;&#x8865;&#x5168;&#x5BF9;&#x8BDD;&#x6846;&#x8FDB;&#x884C;&#x9009;&#x62E9;&#xFF0C;&#x5F53;&#x7136;&#x6709;&#x65F6;&#x4F1A;&#x51FA;&#x73B0;BUG&#x3002;</p>
 <p><img src="/images/Code1.jpg" alt="Code Completion"></p>
-<h4 id="AStyle"><a href="#AStyle" class="headerlink" title="AStyle"></a>AStyle</h4><p>代码格式化工具，能简单格式化代码。<strong>默认快捷键Ctrl+Shift+A。</strong></p>
-<p>步骤：Astyle-&gt;格式化选项，支持多种风格，可以自行了解。</p>
-<h4 id="代码模板"><a href="#代码模板" class="headerlink" title="代码模板"></a>代码模板</h4><p>提供了大量代码模板，可以自己添加删除，软件自带一些模板。</p>
-<p>先说如何更改，步骤：工具-&gt;编辑器属性-&gt;代码-&gt;插入，先点击添加再写代码，其中<code>*|*</code>代表待填位置。点击移除可以移除不想要的。</p>
-<p>那么如何使用？<strong>软件左上角</strong></p>
+<h4><span id="astyle">AStyle</span><a href="#astyle" class="header-anchor"> </a></h4><p>&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x5316;&#x5DE5;&#x5177;&#xFF0C;&#x80FD;&#x7B80;&#x5355;&#x683C;&#x5F0F;&#x5316;&#x4EE3;&#x7801;&#x3002;<strong>&#x9ED8;&#x8BA4;&#x5FEB;&#x6377;&#x952E;Ctrl+Shift+A&#x3002;</strong></p>
+<p>&#x6B65;&#x9AA4;&#xFF1A;Astyle-&gt;&#x683C;&#x5F0F;&#x5316;&#x9009;&#x9879;&#xFF0C;&#x652F;&#x6301;&#x591A;&#x79CD;&#x98CE;&#x683C;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x4E86;&#x89E3;&#x3002;</p>
+<h4><span id="&#x4EE3;&#x7801;&#x6A21;&#x677F;">&#x4EE3;&#x7801;&#x6A21;&#x677F;</span><a href="#&#x4EE3;&#x7801;&#x6A21;&#x677F;" class="header-anchor"> </a></h4><p>&#x63D0;&#x4F9B;&#x4E86;&#x5927;&#x91CF;&#x4EE3;&#x7801;&#x6A21;&#x677F;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x6DFB;&#x52A0;&#x5220;&#x9664;&#xFF0C;&#x8F6F;&#x4EF6;&#x81EA;&#x5E26;&#x4E00;&#x4E9B;&#x6A21;&#x677F;&#x3002;</p>
+<p>&#x5148;&#x8BF4;&#x5982;&#x4F55;&#x66F4;&#x6539;&#xFF0C;&#x6B65;&#x9AA4;&#xFF1A;&#x5DE5;&#x5177;-&gt;&#x7F16;&#x8F91;&#x5668;&#x5C5E;&#x6027;-&gt;&#x4EE3;&#x7801;-&gt;&#x63D2;&#x5165;&#xFF0C;&#x5148;&#x70B9;&#x51FB;&#x6DFB;&#x52A0;&#x518D;&#x5199;&#x4EE3;&#x7801;&#xFF0C;&#x5176;&#x4E2D;<code>*|*</code>&#x4EE3;&#x8868;&#x5F85;&#x586B;&#x4F4D;&#x7F6E;&#x3002;&#x70B9;&#x51FB;&#x79FB;&#x9664;&#x53EF;&#x4EE5;&#x79FB;&#x9664;&#x4E0D;&#x60F3;&#x8981;&#x7684;&#x3002;</p>
+<p>&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#xFF1F;<strong>&#x8F6F;&#x4EF6;&#x5DE6;&#x4E0A;&#x89D2;</strong></p>
 <p><img src="/images/Code2.jpg" alt="Code Template"></p>
-<p>自带的几个模板在写项目时经常使用。</p>
-<h4 id="缺省源"><a href="#缺省源" class="headerlink" title="缺省源"></a>缺省源</h4><p>在原来机房盛行DevC++时非常热门，应该说非常好用了。创建空文件自动写入缺省源内容，缺点就是如果缺省源出锅，写的程序都将出现相同问题。</p>
-<p>步骤：工具-&gt;编辑器属性-&gt;代码-&gt;缺省源，更改后确定即可。</p>
-<h4 id="编译器选项"><a href="#编译器选项" class="headerlink" title="编译器选项"></a>编译器选项</h4><p>如果想自己加高版本的编译器，就这样做吧。</p>
-<p>步骤：工具-&gt;编译选项-&gt;由文件夹添加编译器设置-&gt;选择文件夹（你下载的mingw)，这样是最方便的。</p>
-<h3 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h3><p>非常好的一款编辑器，优点是功能全面、可扩展性高、打开文件速度快、手感极佳、安装较方便。</p>
-<p>当然也有一点缺点和问题，对C++的支持仍需改进，GDB调试监视变量需要优化，文件夹及文件名不支持汉字，写项目不易配置。</p>
-<p>但是我还是非常推荐，写前端、JS非常好用。</p>
-<h4 id="基本插件"><a href="#基本插件" class="headerlink" title="基本插件"></a>基本插件</h4><p>Chinese language简体中文支持，自己选择一个喜欢的图标主题、主题。</p>
-<h3 id="编写调试C"><a href="#编写调试C" class="headerlink" title="编写调试C++"></a>编写调试C++</h3><p>首先需要下载扩展C/C++，才能正常编写调试C++。</p>
-<p>然后进行配置，如果你不使用调试可以使用另一种方法。</p>
-<p>先创建一个文件夹并通过vscode打开，下载mingw，此文章后面会给出下载地址。</p>
-<p>然后在当前打开的文件夹下创建一个名为.vscode的文件夹（若未自动创建），再创建一个名为c_cpp_properties.json的文件，然而这步现在似乎可有可无，不过做了也没有坏处。</p>
-<p>将以下内容写入c_cpp_properties.json文件：</p>
+<p>&#x81EA;&#x5E26;&#x7684;&#x51E0;&#x4E2A;&#x6A21;&#x677F;&#x5728;&#x5199;&#x9879;&#x76EE;&#x65F6;&#x7ECF;&#x5E38;&#x4F7F;&#x7528;&#x3002;</p>
+<h4><span id="&#x7F3A;&#x7701;&#x6E90;">&#x7F3A;&#x7701;&#x6E90;</span><a href="#&#x7F3A;&#x7701;&#x6E90;" class="header-anchor"> </a></h4><p>&#x5728;&#x539F;&#x6765;&#x673A;&#x623F;&#x76DB;&#x884C;DevC++&#x65F6;&#x975E;&#x5E38;&#x70ED;&#x95E8;&#xFF0C;&#x5E94;&#x8BE5;&#x8BF4;&#x975E;&#x5E38;&#x597D;&#x7528;&#x4E86;&#x3002;&#x521B;&#x5EFA;&#x7A7A;&#x6587;&#x4EF6;&#x81EA;&#x52A8;&#x5199;&#x5165;&#x7F3A;&#x7701;&#x6E90;&#x5185;&#x5BB9;&#xFF0C;&#x7F3A;&#x70B9;&#x5C31;&#x662F;&#x5982;&#x679C;&#x7F3A;&#x7701;&#x6E90;&#x51FA;&#x9505;&#xFF0C;&#x5199;&#x7684;&#x7A0B;&#x5E8F;&#x90FD;&#x5C06;&#x51FA;&#x73B0;&#x76F8;&#x540C;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x6B65;&#x9AA4;&#xFF1A;&#x5DE5;&#x5177;-&gt;&#x7F16;&#x8F91;&#x5668;&#x5C5E;&#x6027;-&gt;&#x4EE3;&#x7801;-&gt;&#x7F3A;&#x7701;&#x6E90;&#xFF0C;&#x66F4;&#x6539;&#x540E;&#x786E;&#x5B9A;&#x5373;&#x53EF;&#x3002;</p>
+<h4><span id="&#x7F16;&#x8BD1;&#x5668;&#x9009;&#x9879;">&#x7F16;&#x8BD1;&#x5668;&#x9009;&#x9879;</span><a href="#&#x7F16;&#x8BD1;&#x5668;&#x9009;&#x9879;" class="header-anchor"> </a></h4><p>&#x5982;&#x679C;&#x60F3;&#x81EA;&#x5DF1;&#x52A0;&#x9AD8;&#x7248;&#x672C;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#xFF0C;&#x5C31;&#x8FD9;&#x6837;&#x505A;&#x5427;&#x3002;</p>
+<p>&#x6B65;&#x9AA4;&#xFF1A;&#x5DE5;&#x5177;-&gt;&#x7F16;&#x8BD1;&#x9009;&#x9879;-&gt;&#x7531;&#x6587;&#x4EF6;&#x5939;&#x6DFB;&#x52A0;&#x7F16;&#x8BD1;&#x5668;&#x8BBE;&#x7F6E;-&gt;&#x9009;&#x62E9;&#x6587;&#x4EF6;&#x5939;&#xFF08;&#x4F60;&#x4E0B;&#x8F7D;&#x7684;mingw)&#xFF0C;&#x8FD9;&#x6837;&#x662F;&#x6700;&#x65B9;&#x4FBF;&#x7684;&#x3002;</p>
+<h3><span id="visual-studio-code">Visual Studio Code</span><a href="#visual-studio-code" class="header-anchor"> </a></h3><p>&#x975E;&#x5E38;&#x597D;&#x7684;&#x4E00;&#x6B3E;&#x7F16;&#x8F91;&#x5668;&#xFF0C;&#x4F18;&#x70B9;&#x662F;&#x529F;&#x80FD;&#x5168;&#x9762;&#x3001;&#x53EF;&#x6269;&#x5C55;&#x6027;&#x9AD8;&#x3001;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x901F;&#x5EA6;&#x5FEB;&#x3001;&#x624B;&#x611F;&#x6781;&#x4F73;&#x3001;&#x5B89;&#x88C5;&#x8F83;&#x65B9;&#x4FBF;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#x4E5F;&#x6709;&#x4E00;&#x70B9;&#x7F3A;&#x70B9;&#x548C;&#x95EE;&#x9898;&#xFF0C;&#x5BF9;C++&#x7684;&#x652F;&#x6301;&#x4ECD;&#x9700;&#x6539;&#x8FDB;&#xFF0C;GDB&#x8C03;&#x8BD5;&#x76D1;&#x89C6;&#x53D8;&#x91CF;&#x9700;&#x8981;&#x4F18;&#x5316;&#xFF0C;&#x6587;&#x4EF6;&#x5939;&#x53CA;&#x6587;&#x4EF6;&#x540D;&#x4E0D;&#x652F;&#x6301;&#x6C49;&#x5B57;&#xFF0C;&#x5199;&#x9879;&#x76EE;&#x4E0D;&#x6613;&#x914D;&#x7F6E;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x6211;&#x8FD8;&#x662F;&#x975E;&#x5E38;&#x63A8;&#x8350;&#xFF0C;&#x5199;&#x524D;&#x7AEF;&#x3001;JS&#x975E;&#x5E38;&#x597D;&#x7528;&#x3002;</p>
+<h4><span id="&#x57FA;&#x672C;&#x63D2;&#x4EF6;">&#x57FA;&#x672C;&#x63D2;&#x4EF6;</span><a href="#&#x57FA;&#x672C;&#x63D2;&#x4EF6;" class="header-anchor"> </a></h4><p>Chinese language&#x7B80;&#x4F53;&#x4E2D;&#x6587;&#x652F;&#x6301;&#xFF0C;&#x81EA;&#x5DF1;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x559C;&#x6B22;&#x7684;&#x56FE;&#x6807;&#x4E3B;&#x9898;&#x3001;&#x4E3B;&#x9898;&#x3002;</p>
+<h3><span id="&#x7F16;&#x5199;&#x8C03;&#x8BD5;c">&#x7F16;&#x5199;&#x8C03;&#x8BD5;C++</span><a href="#&#x7F16;&#x5199;&#x8C03;&#x8BD5;c" class="header-anchor"> </a></h3><p>&#x9996;&#x5148;&#x9700;&#x8981;&#x4E0B;&#x8F7D;&#x6269;&#x5C55;C/C++&#xFF0C;&#x624D;&#x80FD;&#x6B63;&#x5E38;&#x7F16;&#x5199;&#x8C03;&#x8BD5;C++&#x3002;</p>
+<p>&#x7136;&#x540E;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x4F7F;&#x7528;&#x8C03;&#x8BD5;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x5148;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x5E76;&#x901A;&#x8FC7;vscode&#x6253;&#x5F00;&#xFF0C;&#x4E0B;&#x8F7D;mingw&#xFF0C;&#x6B64;&#x6587;&#x7AE0;&#x540E;&#x9762;&#x4F1A;&#x7ED9;&#x51FA;&#x4E0B;&#x8F7D;&#x5730;&#x5740;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x5728;&#x5F53;&#x524D;&#x6253;&#x5F00;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;.vscode&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF08;&#x82E5;&#x672A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#xFF09;&#xFF0C;&#x518D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;c_cpp_properties.json&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x800C;&#x8FD9;&#x6B65;&#x73B0;&#x5728;&#x4F3C;&#x4E4E;&#x53EF;&#x6709;&#x53EF;&#x65E0;&#xFF0C;&#x4E0D;&#x8FC7;&#x505A;&#x4E86;&#x4E5F;&#x6CA1;&#x6709;&#x574F;&#x5904;&#x3002;</p>
+<p>&#x5C06;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x5199;&#x5165;c_cpp_properties.json&#x6587;&#x4EF6;&#xFF1A;</p>
 <pre><code class="lang-json">{
     &quot;configurations&quot;: [
         {
@@ -327,10 +390,10 @@
     &quot;version&quot;: 4
 }
 </code></pre>
-<p><code>includePath</code>中的<code>D:/Ciyang/mingw64</code>改为你的mingw路径，都改为可用的存在的路径，甚至你可以用DevC++自带的mingw。</p>
-<p>其他不需要管，可以自行查阅，不影响正常编写代码。现在创建一个HelloWorld.cpp，随便写一些代码，如果有莫名其妙的报错先不用管。</p>
-<p>在vscode中，F5可以调试运行。现在我们按下F5，将会显示没有配置launch.json，然后就可以点击创建。（当然你可以自己在.vscode文件夹中创建launch.json文件）。</p>
-<p>将以下内容写入launch.json文件：</p>
+<p><code>includePath</code>&#x4E2D;&#x7684;<code>D:/Ciyang/mingw64</code>&#x6539;&#x4E3A;&#x4F60;&#x7684;mingw&#x8DEF;&#x5F84;&#xFF0C;&#x90FD;&#x6539;&#x4E3A;&#x53EF;&#x7528;&#x7684;&#x5B58;&#x5728;&#x7684;&#x8DEF;&#x5F84;&#xFF0C;&#x751A;&#x81F3;&#x4F60;&#x53EF;&#x4EE5;&#x7528;DevC++&#x81EA;&#x5E26;&#x7684;mingw&#x3002;</p>
+<p>&#x5176;&#x4ED6;&#x4E0D;&#x9700;&#x8981;&#x7BA1;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x67E5;&#x9605;&#xFF0C;&#x4E0D;&#x5F71;&#x54CD;&#x6B63;&#x5E38;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#x3002;&#x73B0;&#x5728;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;HelloWorld.cpp&#xFF0C;&#x968F;&#x4FBF;&#x5199;&#x4E00;&#x4E9B;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x83AB;&#x540D;&#x5176;&#x5999;&#x7684;&#x62A5;&#x9519;&#x5148;&#x4E0D;&#x7528;&#x7BA1;&#x3002;</p>
+<p>&#x5728;vscode&#x4E2D;&#xFF0C;F5&#x53EF;&#x4EE5;&#x8C03;&#x8BD5;&#x8FD0;&#x884C;&#x3002;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x6309;&#x4E0B;F5&#xFF0C;&#x5C06;&#x4F1A;&#x663E;&#x793A;&#x6CA1;&#x6709;&#x914D;&#x7F6E;launch.json&#xFF0C;&#x7136;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x70B9;&#x51FB;&#x521B;&#x5EFA;&#x3002;&#xFF08;&#x5F53;&#x7136;&#x4F60;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5728;.vscode&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x521B;&#x5EFA;launch.json&#x6587;&#x4EF6;&#xFF09;&#x3002;</p>
+<p>&#x5C06;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x5199;&#x5165;launch.json&#x6587;&#x4EF6;&#xFF1A;</p>
 <pre><code class="lang-json">{
     &quot;version&quot;: &quot;0.2.0&quot;,
     &quot;configurations&quot;: [
@@ -358,10 +421,10 @@
     ]
 }
 </code></pre>
-<p>悬停一些字符串上面会显示帮助信息，<code>miDebuggerPath</code>需要改为你的gdb路径，一般在mingw/bin中。</p>
-<p><code>preLaunchTask</code>是预启动任务，通俗来说，启动程序前运行的任务。如果你想每次运行程序都重新编译，就需要设置。</p>
-<p>这时候回到cpp再按F5就会让你配置任务，在.vscode文件夹中创建tasks.json文件，我们将要配置编译任务。</p>
-<p>将以下内容写入tasks.json文件：</p>
+<p>&#x60AC;&#x505C;&#x4E00;&#x4E9B;&#x5B57;&#x7B26;&#x4E32;&#x4E0A;&#x9762;&#x4F1A;&#x663E;&#x793A;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#xFF0C;<code>miDebuggerPath</code>&#x9700;&#x8981;&#x6539;&#x4E3A;&#x4F60;&#x7684;gdb&#x8DEF;&#x5F84;&#xFF0C;&#x4E00;&#x822C;&#x5728;mingw/bin&#x4E2D;&#x3002;</p>
+<p><code>preLaunchTask</code>&#x662F;&#x9884;&#x542F;&#x52A8;&#x4EFB;&#x52A1;&#xFF0C;&#x901A;&#x4FD7;&#x6765;&#x8BF4;&#xFF0C;&#x542F;&#x52A8;&#x7A0B;&#x5E8F;&#x524D;&#x8FD0;&#x884C;&#x7684;&#x4EFB;&#x52A1;&#x3002;&#x5982;&#x679C;&#x4F60;&#x60F3;&#x6BCF;&#x6B21;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#x90FD;&#x91CD;&#x65B0;&#x7F16;&#x8BD1;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x3002;</p>
+<p>&#x8FD9;&#x65F6;&#x5019;&#x56DE;&#x5230;cpp&#x518D;&#x6309;F5&#x5C31;&#x4F1A;&#x8BA9;&#x4F60;&#x914D;&#x7F6E;&#x4EFB;&#x52A1;&#xFF0C;&#x5728;.vscode&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x521B;&#x5EFA;tasks.json&#x6587;&#x4EF6;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x8981;&#x914D;&#x7F6E;&#x7F16;&#x8BD1;&#x4EFB;&#x52A1;&#x3002;</p>
+<p>&#x5C06;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x5199;&#x5165;tasks.json&#x6587;&#x4EF6;&#xFF1A;</p>
 <pre><code class="lang-json">{
     &quot;version&quot;: &quot;2.0.0&quot;,
     &quot;tasks&quot;: [
@@ -407,72 +470,72 @@
     ]
 }
 </code></pre>
-<p>共有三个任务，分别是build（开启O2优化编译程序）、build-bug（开启调试信息编译程序）、build-bug-Wall（开启调试信息并打开最多的警告编译程序）。</p>
-<p>其中有些<code>${file}</code>、<code>${fileDirname}</code>等为vscode提供的变量，将自动转换为一些内容。</p>
-<p>现在再按下F5，即可运行程序，F9设置断点即可暂停程序。</p>
-<p>更多内容可以看：<a href="https://code.visualstudio.com/docs/editor/tasks#vscode" target="_blank" rel="noopener">https://code.visualstudio.com/docs/editor/tasks#vscode</a></p>
-<h4 id="编写运行C"><a href="#编写运行C" class="headerlink" title="编写运行C++"></a>编写运行C++</h4><p>上面的方法过于复杂，还有一种简单的方法。<strong>下载C/C++ Compile Run插件</strong></p>
-<p>下载后，直接按F6即可自动编译cpp文件并运行。</p>
-<p><strong>现在发现有很多BUG，不推荐使用。</strong></p>
-<h4 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h4><p>vscode支持代码格式化，并且无需配置，<strong>快捷键Alt + Shift + F。</strong></p>
-<p>当然，某些语言可以下载插件进行格式化。也可以自定义格式化，我写过具体的步骤。</p>
-<p>方法：<a href="\2019-02\15-du-liu-ma-feng-tui-jian">毒瘤码风推荐</a></p>
-<h4 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h4><blockquote>
-<p>Q: 头文件一直报错？<br>A: 有时候出BUG无法解决，请重启vscode。如果一直报错请下载名为Include Autocomplete的扩展。</p>
-<p>Q: 库关键字报错？<br>A: 检查c_cpp_properties.json文件。</p>
+<p>&#x5171;&#x6709;&#x4E09;&#x4E2A;&#x4EFB;&#x52A1;&#xFF0C;&#x5206;&#x522B;&#x662F;build&#xFF08;&#x5F00;&#x542F;O2&#x4F18;&#x5316;&#x7F16;&#x8BD1;&#x7A0B;&#x5E8F;&#xFF09;&#x3001;build-bug&#xFF08;&#x5F00;&#x542F;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#x7F16;&#x8BD1;&#x7A0B;&#x5E8F;&#xFF09;&#x3001;build-bug-Wall&#xFF08;&#x5F00;&#x542F;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#x5E76;&#x6253;&#x5F00;&#x6700;&#x591A;&#x7684;&#x8B66;&#x544A;&#x7F16;&#x8BD1;&#x7A0B;&#x5E8F;&#xFF09;&#x3002;</p>
+<p>&#x5176;&#x4E2D;&#x6709;&#x4E9B;<code>${file}</code>&#x3001;<code>${fileDirname}</code>&#x7B49;&#x4E3A;vscode&#x63D0;&#x4F9B;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5C06;&#x81EA;&#x52A8;&#x8F6C;&#x6362;&#x4E3A;&#x4E00;&#x4E9B;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x518D;&#x6309;&#x4E0B;F5&#xFF0C;&#x5373;&#x53EF;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#xFF0C;F9&#x8BBE;&#x7F6E;&#x65AD;&#x70B9;&#x5373;&#x53EF;&#x6682;&#x505C;&#x7A0B;&#x5E8F;&#x3002;</p>
+<p>&#x66F4;&#x591A;&#x5185;&#x5BB9;&#x53EF;&#x4EE5;&#x770B;&#xFF1A;<a href="https://code.visualstudio.com/docs/editor/tasks#vscode" target="_blank" rel="noopener">https://code.visualstudio.com/docs/editor/tasks#vscode</a></p>
+<h4><span id="&#x7F16;&#x5199;&#x8FD0;&#x884C;c">&#x7F16;&#x5199;&#x8FD0;&#x884C;C++</span><a href="#&#x7F16;&#x5199;&#x8FD0;&#x884C;c" class="header-anchor"> </a></h4><p>&#x4E0A;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x8FC7;&#x4E8E;&#x590D;&#x6742;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x6CD5;&#x3002;<strong>&#x4E0B;&#x8F7D;C/C++ Compile Run&#x63D2;&#x4EF6;</strong></p>
+<p>&#x4E0B;&#x8F7D;&#x540E;&#xFF0C;&#x76F4;&#x63A5;&#x6309;F6&#x5373;&#x53EF;&#x81EA;&#x52A8;&#x7F16;&#x8BD1;cpp&#x6587;&#x4EF6;&#x5E76;&#x8FD0;&#x884C;&#x3002;</p>
+<p><strong>&#x73B0;&#x5728;&#x53D1;&#x73B0;&#x6709;&#x5F88;&#x591A;BUG&#xFF0C;&#x4E0D;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x3002;</strong></p>
+<h4><span id="&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x5316;">&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x5316;</span><a href="#&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x5316;" class="header-anchor"> </a></h4><p>vscode&#x652F;&#x6301;&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x5316;&#xFF0C;&#x5E76;&#x4E14;&#x65E0;&#x9700;&#x914D;&#x7F6E;&#xFF0C;<strong>&#x5FEB;&#x6377;&#x952E;Alt + Shift + F&#x3002;</strong></p>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x67D0;&#x4E9B;&#x8BED;&#x8A00;&#x53EF;&#x4EE5;&#x4E0B;&#x8F7D;&#x63D2;&#x4EF6;&#x8FDB;&#x884C;&#x683C;&#x5F0F;&#x5316;&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x683C;&#x5F0F;&#x5316;&#xFF0C;&#x6211;&#x5199;&#x8FC7;&#x5177;&#x4F53;&#x7684;&#x6B65;&#x9AA4;&#x3002;</p>
+<p>&#x65B9;&#x6CD5;&#xFF1A;<a href="\2019-02\15-du-liu-ma-feng-tui-jian">&#x6BD2;&#x7624;&#x7801;&#x98CE;&#x63A8;&#x8350;</a></p>
+<h4><span id="&#x76F8;&#x5173;&#x95EE;&#x9898;">&#x76F8;&#x5173;&#x95EE;&#x9898;</span><a href="#&#x76F8;&#x5173;&#x95EE;&#x9898;" class="header-anchor"> </a></h4><blockquote>
+<p>Q: &#x5934;&#x6587;&#x4EF6;&#x4E00;&#x76F4;&#x62A5;&#x9519;&#xFF1F;<br>A: &#x6709;&#x65F6;&#x5019;&#x51FA;BUG&#x65E0;&#x6CD5;&#x89E3;&#x51B3;&#xFF0C;&#x8BF7;&#x91CD;&#x542F;vscode&#x3002;&#x5982;&#x679C;&#x4E00;&#x76F4;&#x62A5;&#x9519;&#x8BF7;&#x4E0B;&#x8F7D;&#x540D;&#x4E3A;Include Autocomplete&#x7684;&#x6269;&#x5C55;&#x3002;</p>
+<p>Q: &#x5E93;&#x5173;&#x952E;&#x5B57;&#x62A5;&#x9519;&#xFF1F;<br>A: &#x68C0;&#x67E5;c_cpp_properties.json&#x6587;&#x4EF6;&#x3002;</p>
 </blockquote>
-<h2 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h2><p>这里只介绍MinGW。</p>
-<h3 id="MinGW"><a href="#MinGW" class="headerlink" title="MinGW"></a>MinGW</h3><p>此工具包含G++、GCC，并且可以安装很多C++库，可以直接选择下载配置完成的版本。</p>
-<h4 id="下载方式"><a href="#下载方式" class="headerlink" title="下载方式"></a>下载方式</h4><p>安装版：<a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download" target="_blank" rel="noopener">https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download</a></p>
-<p>机房的电脑一直安装失败，安装版似乎需要科学上网。</p>
-<p>解压版：<a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains targetting Win64/Personal Builds/mingw-builds/8.1.0/threads-win32/sjlj/x86_64-8.1.0-release-win32-sjlj-rt_v6-rev0.7z" target="_blank" rel="noopener">https://sourceforge.net/projects/mingw-w64/files/Toolchains targetting Win64/Personal Builds/mingw-builds/8.1.0/threads-win32/sjlj/x86_64-8.1.0-release-win32-sjlj-rt_v6-rev0.7z</a></p>
-<p>旧版本安装版：<a href="https://sourceforge.net/projects/mingw/files/latest/download" target="_blank" rel="noopener">https://sourceforge.net/projects/mingw/files/latest/download</a></p>
-<h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><p>下载安装（解压）后，仍需要配置环境变量。</p>
-<p>步骤：右键计算机-&gt;属性-&gt;高级系统设置-&gt;环境变量-&gt;系统变量-&gt;找到path。</p>
-<p>如果是win7点击编辑，将原来的mingw路径删掉，我们机房电脑开机就有个Cena评测机的mingw。在末尾添加新下载的mingw/bin路径，如<code>D:\Ciyang\mingw64\bin</code>，不要忘了分号。</p>
-<p>如果是win10，将原有的mingw移除，添加新下载的mingw路径，与win7同理。</p>
-<p>在终端（cmd或powershell）中输入<code>g++ --version</code>查看版本号是否与下载的一致，如果未知指令表明未成功配置。</p>
-<h4 id="编译指令"><a href="#编译指令" class="headerlink" title="编译指令"></a>编译指令</h4><p>常用的有<code>-o</code>、<code>-g</code>、<code>-O2</code>、<code>-Wall</code>，还有扩大栈内存指令。</p>
-<p>更多指令，可以看：<a href="https://www.cnblogs.com/bugutian/p/4490902.html" target="_blank" rel="noopener">https://www.cnblogs.com/bugutian/p/4490902.html</a></p>
-<h4 id="相关问题-1"><a href="#相关问题-1" class="headerlink" title="相关问题"></a>相关问题</h4><blockquote>
-<p>Q: 为什么配置完环境变量，vscode（cmd）仍显示未知指令？<br>A: 请确保更改环境变量后重启了vscode（cmd）。</p>
+<h2><span id="&#x7F16;&#x8BD1;&#x5668;">&#x7F16;&#x8BD1;&#x5668;</span><a href="#&#x7F16;&#x8BD1;&#x5668;" class="header-anchor"> </a></h2><p>&#x8FD9;&#x91CC;&#x53EA;&#x4ECB;&#x7ECD;MinGW&#x3002;</p>
+<h3><span id="mingw">MinGW</span><a href="#mingw" class="header-anchor"> </a></h3><p>&#x6B64;&#x5DE5;&#x5177;&#x5305;&#x542B;G++&#x3001;GCC&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;&#x5F88;&#x591A;C++&#x5E93;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x9009;&#x62E9;&#x4E0B;&#x8F7D;&#x914D;&#x7F6E;&#x5B8C;&#x6210;&#x7684;&#x7248;&#x672C;&#x3002;</p>
+<h4><span id="&#x4E0B;&#x8F7D;&#x65B9;&#x5F0F;">&#x4E0B;&#x8F7D;&#x65B9;&#x5F0F;</span><a href="#&#x4E0B;&#x8F7D;&#x65B9;&#x5F0F;" class="header-anchor"> </a></h4><p>&#x5B89;&#x88C5;&#x7248;&#xFF1A;<a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download" target="_blank" rel="noopener">https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download</a></p>
+<p>&#x673A;&#x623F;&#x7684;&#x7535;&#x8111;&#x4E00;&#x76F4;&#x5B89;&#x88C5;&#x5931;&#x8D25;&#xFF0C;&#x5B89;&#x88C5;&#x7248;&#x4F3C;&#x4E4E;&#x9700;&#x8981;&#x79D1;&#x5B66;&#x4E0A;&#x7F51;&#x3002;</p>
+<p>&#x89E3;&#x538B;&#x7248;&#xFF1A;<a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains targetting Win64/Personal Builds/mingw-builds/8.1.0/threads-win32/sjlj/x86_64-8.1.0-release-win32-sjlj-rt_v6-rev0.7z" target="_blank" rel="noopener">https://sourceforge.net/projects/mingw-w64/files/Toolchains targetting Win64/Personal Builds/mingw-builds/8.1.0/threads-win32/sjlj/x86_64-8.1.0-release-win32-sjlj-rt_v6-rev0.7z</a></p>
+<p>&#x65E7;&#x7248;&#x672C;&#x5B89;&#x88C5;&#x7248;&#xFF1A;<a href="https://sourceforge.net/projects/mingw/files/latest/download" target="_blank" rel="noopener">https://sourceforge.net/projects/mingw/files/latest/download</a></p>
+<h4><span id="&#x73AF;&#x5883;&#x53D8;&#x91CF;">&#x73AF;&#x5883;&#x53D8;&#x91CF;</span><a href="#&#x73AF;&#x5883;&#x53D8;&#x91CF;" class="header-anchor"> </a></h4><p>&#x4E0B;&#x8F7D;&#x5B89;&#x88C5;&#xFF08;&#x89E3;&#x538B;&#xFF09;&#x540E;&#xFF0C;&#x4ECD;&#x9700;&#x8981;&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x3002;</p>
+<p>&#x6B65;&#x9AA4;&#xFF1A;&#x53F3;&#x952E;&#x8BA1;&#x7B97;&#x673A;-&gt;&#x5C5E;&#x6027;-&gt;&#x9AD8;&#x7EA7;&#x7CFB;&#x7EDF;&#x8BBE;&#x7F6E;-&gt;&#x73AF;&#x5883;&#x53D8;&#x91CF;-&gt;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;-&gt;&#x627E;&#x5230;path&#x3002;</p>
+<p>&#x5982;&#x679C;&#x662F;win7&#x70B9;&#x51FB;&#x7F16;&#x8F91;&#xFF0C;&#x5C06;&#x539F;&#x6765;&#x7684;mingw&#x8DEF;&#x5F84;&#x5220;&#x6389;&#xFF0C;&#x6211;&#x4EEC;&#x673A;&#x623F;&#x7535;&#x8111;&#x5F00;&#x673A;&#x5C31;&#x6709;&#x4E2A;Cena&#x8BC4;&#x6D4B;&#x673A;&#x7684;mingw&#x3002;&#x5728;&#x672B;&#x5C3E;&#x6DFB;&#x52A0;&#x65B0;&#x4E0B;&#x8F7D;&#x7684;mingw/bin&#x8DEF;&#x5F84;&#xFF0C;&#x5982;<code>D:\Ciyang\mingw64\bin</code>&#xFF0C;&#x4E0D;&#x8981;&#x5FD8;&#x4E86;&#x5206;&#x53F7;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x662F;win10&#xFF0C;&#x5C06;&#x539F;&#x6709;&#x7684;mingw&#x79FB;&#x9664;&#xFF0C;&#x6DFB;&#x52A0;&#x65B0;&#x4E0B;&#x8F7D;&#x7684;mingw&#x8DEF;&#x5F84;&#xFF0C;&#x4E0E;win7&#x540C;&#x7406;&#x3002;</p>
+<p>&#x5728;&#x7EC8;&#x7AEF;&#xFF08;cmd&#x6216;powershell&#xFF09;&#x4E2D;&#x8F93;&#x5165;<code>g++ --version</code>&#x67E5;&#x770B;&#x7248;&#x672C;&#x53F7;&#x662F;&#x5426;&#x4E0E;&#x4E0B;&#x8F7D;&#x7684;&#x4E00;&#x81F4;&#xFF0C;&#x5982;&#x679C;&#x672A;&#x77E5;&#x6307;&#x4EE4;&#x8868;&#x660E;&#x672A;&#x6210;&#x529F;&#x914D;&#x7F6E;&#x3002;</p>
+<h4><span id="&#x7F16;&#x8BD1;&#x6307;&#x4EE4;">&#x7F16;&#x8BD1;&#x6307;&#x4EE4;</span><a href="#&#x7F16;&#x8BD1;&#x6307;&#x4EE4;" class="header-anchor"> </a></h4><p>&#x5E38;&#x7528;&#x7684;&#x6709;<code>-o</code>&#x3001;<code>-g</code>&#x3001;<code>-O2</code>&#x3001;<code>-Wall</code>&#xFF0C;&#x8FD8;&#x6709;&#x6269;&#x5927;&#x6808;&#x5185;&#x5B58;&#x6307;&#x4EE4;&#x3002;</p>
+<p>&#x66F4;&#x591A;&#x6307;&#x4EE4;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#xFF1A;<a href="https://www.cnblogs.com/bugutian/p/4490902.html" target="_blank" rel="noopener">https://www.cnblogs.com/bugutian/p/4490902.html</a></p>
+<h4><span id="&#x76F8;&#x5173;&#x95EE;&#x9898;">&#x76F8;&#x5173;&#x95EE;&#x9898;</span><a href="#&#x76F8;&#x5173;&#x95EE;&#x9898;" class="header-anchor"> </a></h4><blockquote>
+<p>Q: &#x4E3A;&#x4EC0;&#x4E48;&#x914D;&#x7F6E;&#x5B8C;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF0C;vscode&#xFF08;cmd&#xFF09;&#x4ECD;&#x663E;&#x793A;&#x672A;&#x77E5;&#x6307;&#x4EE4;&#xFF1F;<br>A: &#x8BF7;&#x786E;&#x4FDD;&#x66F4;&#x6539;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x540E;&#x91CD;&#x542F;&#x4E86;vscode&#xFF08;cmd&#xFF09;&#x3002;</p>
 </blockquote>
-<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><p>所以为什么要讲远程仓库的使用？当然是存储代码和工作区配置，为了不同电脑（机房、自己的笔记本）能<strong>快速同步</strong>。</p>
-<h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>主要是为了更加酷炫，存储代码，<del>还有搭博客</del>。</p>
-<h4 id="下载方式-1"><a href="#下载方式-1" class="headerlink" title="下载方式"></a>下载方式</h4><p>官方链接：<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></p>
-<p><strong>不科学上网下载完成率0.1%。</strong></p>
-<p>镜像下载：<a href="https://github.com/waylau/git-for-win" target="_blank" rel="noopener">https://github.com/waylau/git-for-win</a></p>
-<h4 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h4><p>随机找到一个指南：<a href="https://www.bootcss.com/p/git-guide/" target="_blank" rel="noopener">https://www.bootcss.com/p/git-guide/</a></p>
-<h3 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h3><h4 id="建立仓库"><a href="#建立仓库" class="headerlink" title="建立仓库"></a>建立仓库</h4><p>步骤：注册一个账号并登录-&gt;右上角点击加号-&gt;New Repositorie-&gt;填写Repository name（库名）-&gt;可填写Description（描述）-&gt;选择Private（私有）-&gt;可选择license授权规则-&gt;选择.gitignore-&gt;Create。</p>
-<p>如果要存储不能公开的信息就选择Private，如果都可以公开也可以设为Public。</p>
-<p>如果要存储写的C++代码，推荐.gitignore选择C++，就不会存储exe文件和一些其他烂七八糟的文件。</p>
-<h4 id="ssh配置"><a href="#ssh配置" class="headerlink" title="ssh配置"></a>ssh配置</h4><p>一般来说我们可以用https链接对github进行访问，当然<strong>选择ssh更加安全。</strong></p>
-<p>随机找了个教程：<a href="https://blog.csdn.net/u013778905/article/details/83501204" target="_blank" rel="noopener">https://blog.csdn.net/u013778905/article/details/83501204</a></p>
-<h4 id="增加远程仓库"><a href="#增加远程仓库" class="headerlink" title="增加远程仓库"></a>增加远程仓库</h4><p>我理解为给远程仓库地址起个别名</p>
+<h2><span id="&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;">&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</span><a href="#&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;" class="header-anchor"> </a></h2><p>&#x6240;&#x4EE5;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x8BB2;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x7684;&#x4F7F;&#x7528;&#xFF1F;&#x5F53;&#x7136;&#x662F;&#x5B58;&#x50A8;&#x4EE3;&#x7801;&#x548C;&#x5DE5;&#x4F5C;&#x533A;&#x914D;&#x7F6E;&#xFF0C;&#x4E3A;&#x4E86;&#x4E0D;&#x540C;&#x7535;&#x8111;&#xFF08;&#x673A;&#x623F;&#x3001;&#x81EA;&#x5DF1;&#x7684;&#x7B14;&#x8BB0;&#x672C;&#xFF09;&#x80FD;<strong>&#x5FEB;&#x901F;&#x540C;&#x6B65;</strong>&#x3002;</p>
+<h3><span id="git">Git</span><a href="#git" class="header-anchor"> </a></h3><p>&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x66F4;&#x52A0;&#x9177;&#x70AB;&#xFF0C;&#x5B58;&#x50A8;&#x4EE3;&#x7801;&#xFF0C;<del>&#x8FD8;&#x6709;&#x642D;&#x535A;&#x5BA2;</del>&#x3002;</p>
+<h4><span id="&#x4E0B;&#x8F7D;&#x65B9;&#x5F0F;">&#x4E0B;&#x8F7D;&#x65B9;&#x5F0F;</span><a href="#&#x4E0B;&#x8F7D;&#x65B9;&#x5F0F;" class="header-anchor"> </a></h4><p>&#x5B98;&#x65B9;&#x94FE;&#x63A5;&#xFF1A;<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></p>
+<p><strong>&#x4E0D;&#x79D1;&#x5B66;&#x4E0A;&#x7F51;&#x4E0B;&#x8F7D;&#x5B8C;&#x6210;&#x7387;0.1%&#x3002;</strong></p>
+<p>&#x955C;&#x50CF;&#x4E0B;&#x8F7D;&#xFF1A;<a href="https://github.com/waylau/git-for-win" target="_blank" rel="noopener">https://github.com/waylau/git-for-win</a></p>
+<h4><span id="&#x57FA;&#x672C;&#x547D;&#x4EE4;">&#x57FA;&#x672C;&#x547D;&#x4EE4;</span><a href="#&#x57FA;&#x672C;&#x547D;&#x4EE4;" class="header-anchor"> </a></h4><p>&#x968F;&#x673A;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x6307;&#x5357;&#xFF1A;<a href="https://www.bootcss.com/p/git-guide/" target="_blank" rel="noopener">https://www.bootcss.com/p/git-guide/</a></p>
+<h3><span id="github">Github</span><a href="#github" class="header-anchor"> </a></h3><h4><span id="&#x5EFA;&#x7ACB;&#x4ED3;&#x5E93;">&#x5EFA;&#x7ACB;&#x4ED3;&#x5E93;</span><a href="#&#x5EFA;&#x7ACB;&#x4ED3;&#x5E93;" class="header-anchor"> </a></h4><p>&#x6B65;&#x9AA4;&#xFF1A;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x8D26;&#x53F7;&#x5E76;&#x767B;&#x5F55;-&gt;&#x53F3;&#x4E0A;&#x89D2;&#x70B9;&#x51FB;&#x52A0;&#x53F7;-&gt;New Repositorie-&gt;&#x586B;&#x5199;Repository name&#xFF08;&#x5E93;&#x540D;&#xFF09;-&gt;&#x53EF;&#x586B;&#x5199;Description&#xFF08;&#x63CF;&#x8FF0;&#xFF09;-&gt;&#x9009;&#x62E9;Private&#xFF08;&#x79C1;&#x6709;&#xFF09;-&gt;&#x53EF;&#x9009;&#x62E9;license&#x6388;&#x6743;&#x89C4;&#x5219;-&gt;&#x9009;&#x62E9;.gitignore-&gt;Create&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8981;&#x5B58;&#x50A8;&#x4E0D;&#x80FD;&#x516C;&#x5F00;&#x7684;&#x4FE1;&#x606F;&#x5C31;&#x9009;&#x62E9;Private&#xFF0C;&#x5982;&#x679C;&#x90FD;&#x53EF;&#x4EE5;&#x516C;&#x5F00;&#x4E5F;&#x53EF;&#x4EE5;&#x8BBE;&#x4E3A;Public&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8981;&#x5B58;&#x50A8;&#x5199;&#x7684;C++&#x4EE3;&#x7801;&#xFF0C;&#x63A8;&#x8350;.gitignore&#x9009;&#x62E9;C++&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x5B58;&#x50A8;exe&#x6587;&#x4EF6;&#x548C;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x70C2;&#x4E03;&#x516B;&#x7CDF;&#x7684;&#x6587;&#x4EF6;&#x3002;</p>
+<h4><span id="ssh&#x914D;&#x7F6E;">ssh&#x914D;&#x7F6E;</span><a href="#ssh&#x914D;&#x7F6E;" class="header-anchor"> </a></h4><p>&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;https&#x94FE;&#x63A5;&#x5BF9;github&#x8FDB;&#x884C;&#x8BBF;&#x95EE;&#xFF0C;&#x5F53;&#x7136;<strong>&#x9009;&#x62E9;ssh&#x66F4;&#x52A0;&#x5B89;&#x5168;&#x3002;</strong></p>
+<p>&#x968F;&#x673A;&#x627E;&#x4E86;&#x4E2A;&#x6559;&#x7A0B;&#xFF1A;<a href="https://blog.csdn.net/u013778905/article/details/83501204" target="_blank" rel="noopener">https://blog.csdn.net/u013778905/article/details/83501204</a></p>
+<h4><span id="&#x589E;&#x52A0;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;">&#x589E;&#x52A0;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</span><a href="#&#x589E;&#x52A0;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;" class="header-anchor"> </a></h4><p>&#x6211;&#x7406;&#x89E3;&#x4E3A;&#x7ED9;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x5730;&#x5740;&#x8D77;&#x4E2A;&#x522B;&#x540D;</p>
 <pre><code>git remote add &lt;name&gt; &lt;address&gt;
 example : git remote add cw https://github.com/Xciyang/CodeWork.git
-</code></pre><h4 id="更新本地仓库-拉取远程仓库"><a href="#更新本地仓库-拉取远程仓库" class="headerlink" title="更新本地仓库/拉取远程仓库"></a>更新本地仓库/拉取远程仓库</h4><p>一般称作更新、拉取。</p>
+</code></pre><h4><span id="&#x66F4;&#x65B0;&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x62C9;&#x53D6;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;">&#x66F4;&#x65B0;&#x672C;&#x5730;&#x4ED3;&#x5E93;/&#x62C9;&#x53D6;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</span><a href="#&#x66F4;&#x65B0;&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x62C9;&#x53D6;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;" class="header-anchor"> </a></h4><p>&#x4E00;&#x822C;&#x79F0;&#x4F5C;&#x66F4;&#x65B0;&#x3001;&#x62C9;&#x53D6;&#x3002;</p>
 <pre><code>git fetch &lt;name&gt; &lt;branch&gt;
 example : git fetch cw master
 git pull &lt;name&gt; &lt;branch&gt;
 example : git pull cw master
-</code></pre><h4 id="暂存更改"><a href="#暂存更改" class="headerlink" title="暂存更改"></a>暂存更改</h4><p>如果你写了一道新题，改了一些代码，就会造成一些更改。此命令默认会按照当前文件夹下的.gitignore进行忽略。<code>.</code>为暂存所有更改。</p>
+</code></pre><h4><span id="&#x6682;&#x5B58;&#x66F4;&#x6539;">&#x6682;&#x5B58;&#x66F4;&#x6539;</span><a href="#&#x6682;&#x5B58;&#x66F4;&#x6539;" class="header-anchor"> </a></h4><p>&#x5982;&#x679C;&#x4F60;&#x5199;&#x4E86;&#x4E00;&#x9053;&#x65B0;&#x9898;&#xFF0C;&#x6539;&#x4E86;&#x4E00;&#x4E9B;&#x4EE3;&#x7801;&#xFF0C;&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x4E00;&#x4E9B;&#x66F4;&#x6539;&#x3002;&#x6B64;&#x547D;&#x4EE4;&#x9ED8;&#x8BA4;&#x4F1A;&#x6309;&#x7167;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;.gitignore&#x8FDB;&#x884C;&#x5FFD;&#x7565;&#x3002;<code>.</code>&#x4E3A;&#x6682;&#x5B58;&#x6240;&#x6709;&#x66F4;&#x6539;&#x3002;</p>
 <pre><code>git add &lt;file&gt;
 git add .
-</code></pre><h4 id="查看当前状态"><a href="#查看当前状态" class="headerlink" title="查看当前状态"></a>查看当前状态</h4><p>查看当前暂存的更改。</p>
+</code></pre><h4><span id="&#x67E5;&#x770B;&#x5F53;&#x524D;&#x72B6;&#x6001;">&#x67E5;&#x770B;&#x5F53;&#x524D;&#x72B6;&#x6001;</span><a href="#&#x67E5;&#x770B;&#x5F53;&#x524D;&#x72B6;&#x6001;" class="header-anchor"> </a></h4><p>&#x67E5;&#x770B;&#x5F53;&#x524D;&#x6682;&#x5B58;&#x7684;&#x66F4;&#x6539;&#x3002;</p>
 <pre><code>git status
-</code></pre><h4 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h4><p>提交当前暂存的更改，并附加某些信息</p>
+</code></pre><h4><span id="&#x63D0;&#x4EA4;">&#x63D0;&#x4EA4;</span><a href="#&#x63D0;&#x4EA4;" class="header-anchor"> </a></h4><p>&#x63D0;&#x4EA4;&#x5F53;&#x524D;&#x6682;&#x5B58;&#x7684;&#x66F4;&#x6539;&#xFF0C;&#x5E76;&#x9644;&#x52A0;&#x67D0;&#x4E9B;&#x4FE1;&#x606F;</p>
 <pre><code>git commit -m &quot;Message&quot;
-</code></pre><h4 id="推送远程仓库"><a href="#推送远程仓库" class="headerlink" title="推送远程仓库"></a>推送远程仓库</h4><pre><code>git push &lt;name&gt; &lt;branch&gt;
+</code></pre><h4><span id="&#x63A8;&#x9001;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;">&#x63A8;&#x9001;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</span><a href="#&#x63A8;&#x9001;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;" class="header-anchor"> </a></h4><pre><code>git push &lt;name&gt; &lt;branch&gt;
 example : git push cw master
-</code></pre><h3 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h3><p>如果安装了Git，并且存在.git文件夹，vscode会自动启用源代码管理插件。还是比较好用的，<strong>通过点击就能帮你使用指令拉取提交推送文件</strong>。你唯一要做的事就是增加仓库。</p>
-<p>拉取代码的步骤：增加仓库-&gt;拉取自-&gt;选择仓库。</p>
-<p>推送代码的步骤：增加仓库-&gt;更改文件-&gt;暂存所有更改-&gt;编辑消息-&gt;全部提交-&gt;推送到-&gt;选择仓库，然后就完成了一次上传。</p>
+</code></pre><h3><span id="&#x66F4;&#x591A;">&#x66F4;&#x591A;</span><a href="#&#x66F4;&#x591A;" class="header-anchor"> </a></h3><p>&#x5982;&#x679C;&#x5B89;&#x88C5;&#x4E86;Git&#xFF0C;&#x5E76;&#x4E14;&#x5B58;&#x5728;.git&#x6587;&#x4EF6;&#x5939;&#xFF0C;vscode&#x4F1A;&#x81EA;&#x52A8;&#x542F;&#x7528;&#x6E90;&#x4EE3;&#x7801;&#x7BA1;&#x7406;&#x63D2;&#x4EF6;&#x3002;&#x8FD8;&#x662F;&#x6BD4;&#x8F83;&#x597D;&#x7528;&#x7684;&#xFF0C;<strong>&#x901A;&#x8FC7;&#x70B9;&#x51FB;&#x5C31;&#x80FD;&#x5E2E;&#x4F60;&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x62C9;&#x53D6;&#x63D0;&#x4EA4;&#x63A8;&#x9001;&#x6587;&#x4EF6;</strong>&#x3002;&#x4F60;&#x552F;&#x4E00;&#x8981;&#x505A;&#x7684;&#x4E8B;&#x5C31;&#x662F;&#x589E;&#x52A0;&#x4ED3;&#x5E93;&#x3002;</p>
+<p>&#x62C9;&#x53D6;&#x4EE3;&#x7801;&#x7684;&#x6B65;&#x9AA4;&#xFF1A;&#x589E;&#x52A0;&#x4ED3;&#x5E93;-&gt;&#x62C9;&#x53D6;&#x81EA;-&gt;&#x9009;&#x62E9;&#x4ED3;&#x5E93;&#x3002;</p>
+<p>&#x63A8;&#x9001;&#x4EE3;&#x7801;&#x7684;&#x6B65;&#x9AA4;&#xFF1A;&#x589E;&#x52A0;&#x4ED3;&#x5E93;-&gt;&#x66F4;&#x6539;&#x6587;&#x4EF6;-&gt;&#x6682;&#x5B58;&#x6240;&#x6709;&#x66F4;&#x6539;-&gt;&#x7F16;&#x8F91;&#x6D88;&#x606F;-&gt;&#x5168;&#x90E8;&#x63D0;&#x4EA4;-&gt;&#x63A8;&#x9001;&#x5230;-&gt;&#x9009;&#x62E9;&#x4ED3;&#x5E93;&#xFF0C;&#x7136;&#x540E;&#x5C31;&#x5B8C;&#x6210;&#x4E86;&#x4E00;&#x6B21;&#x4E0A;&#x4F20;&#x3002;</p>
 <p><img src="/images/Code3.jpg" alt="Vscode with git"></p>
-<h3 id="相关问题-2"><a href="#相关问题-2" class="headerlink" title="相关问题"></a>相关问题</h3><blockquote>
-<p>Q: Connection reset by [server_ip] port 22 ？<br>A: 发现是网络问题，多试几次就好了。</p>
+<h3><span id="&#x76F8;&#x5173;&#x95EE;&#x9898;">&#x76F8;&#x5173;&#x95EE;&#x9898;</span><a href="#&#x76F8;&#x5173;&#x95EE;&#x9898;" class="header-anchor"> </a></h3><blockquote>
+<p>Q: Connection reset by [server_ip] port 22 &#xFF1F;<br>A: &#x53D1;&#x73B0;&#x662F;&#x7F51;&#x7EDC;&#x95EE;&#x9898;&#xFF0C;&#x591A;&#x8BD5;&#x51E0;&#x6B21;&#x5C31;&#x597D;&#x4E86;&#x3002;</p>
 </blockquote>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>如果有什么需要解决的问题可以评论或其他方式指出，希望能帮到一些人。</p>
+<h2><span id="&#x6700;&#x540E;">&#x6700;&#x540E;</span><a href="#&#x6700;&#x540E;" class="header-anchor"> </a></h2><p>&#x5982;&#x679C;&#x6709;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;&#x53EF;&#x4EE5;&#x8BC4;&#x8BBA;&#x6216;&#x5176;&#x4ED6;&#x65B9;&#x5F0F;&#x6307;&#x51FA;&#xFF0C;&#x5E0C;&#x671B;&#x80FD;&#x5E2E;&#x5230;&#x4E00;&#x4E9B;&#x4EBA;&#x3002;</p>
 
   </article>
   
@@ -518,7 +581,7 @@ example : git push cw master
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960384913"></script>
+<script src="/js/app.js?v=1573122199822"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

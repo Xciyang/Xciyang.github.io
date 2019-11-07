@@ -12,7 +12,7 @@
 
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <meta name="description" content="用了这个码风，再也不怕代码出BUG了( 前言相信码风对于我们来说太熟悉了，以至于平常都忘记了它的存在">
-<meta name="keywords" content="闲聊,Cpp,码风">
+<meta name="keywords" content="Cpp,闲聊,码风">
 <meta property="og:type" content="article">
 <meta property="og:title" content="闲聊 - 毒瘤码风推荐">
 <meta property="og:url" content="https://xciyang.github.io/2019-02/15-du-liu-ma-feng-tui-jian/index.html">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385328">
+  <link rel="stylesheet" href="/css/style.css?v=1573122200227">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -246,7 +246,7 @@
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年02月15日</a>
     <a><i class="nexmoefont icon-areachart"></i>1.1k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/闲聊/">闲聊</a>
     
@@ -255,31 +255,31 @@
     
   </div>
   <article id="article">
-    <p>用了这个码风，再也不怕代码出BUG了(</p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>相信码风对于我们来说太熟悉了，以至于平常都忘记了它的存在</p>
+    <p>&#x7528;&#x4E86;&#x8FD9;&#x4E2A;&#x7801;&#x98CE;&#xFF0C;&#x518D;&#x4E5F;&#x4E0D;&#x6015;&#x4EE3;&#x7801;&#x51FA;BUG&#x4E86;(</p>
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x76F8;&#x4FE1;&#x7801;&#x98CE;&#x5BF9;&#x4E8E;&#x6211;&#x4EEC;&#x6765;&#x8BF4;&#x592A;&#x719F;&#x6089;&#x4E86;&#xFF0C;&#x4EE5;&#x81F3;&#x4E8E;&#x5E73;&#x5E38;&#x90FD;&#x5FD8;&#x8BB0;&#x4E86;&#x5B83;&#x7684;&#x5B58;&#x5728;</p>
 <a id="more"></a>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>码风全称代码风格…</p>
-<p>我就不啰嗦了，估计也都知道是啥，想看详细介绍可以右转<a href="https://baike.baidu.com/item/代码风格" target="_blank" rel="noopener">代码风格-百度百科</a>或<a href="https://en.wikipedia.org/wiki/Programming_style" target="_blank" rel="noopener">Programming style-Wikipedia</a></p>
-<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>那么就直接推荐自己的码风了</p>
-<p>(从来不多打空格的可以跳过这一部分)</p>
+<h3><span id="&#x7B80;&#x4ECB;">&#x7B80;&#x4ECB;</span><a href="#&#x7B80;&#x4ECB;" class="header-anchor"> </a></h3><p>&#x7801;&#x98CE;&#x5168;&#x79F0;&#x4EE3;&#x7801;&#x98CE;&#x683C;&#x2026;</p>
+<p>&#x6211;&#x5C31;&#x4E0D;&#x5570;&#x55E6;&#x4E86;&#xFF0C;&#x4F30;&#x8BA1;&#x4E5F;&#x90FD;&#x77E5;&#x9053;&#x662F;&#x5565;&#xFF0C;&#x60F3;&#x770B;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#x53EF;&#x4EE5;&#x53F3;&#x8F6C;<a href="https://baike.baidu.com/item/&#x4EE3;&#x7801;&#x98CE;&#x683C;" target="_blank" rel="noopener">&#x4EE3;&#x7801;&#x98CE;&#x683C;-&#x767E;&#x5EA6;&#x767E;&#x79D1;</a>&#x6216;<a href="https://en.wikipedia.org/wiki/Programming_style" target="_blank" rel="noopener">Programming style-Wikipedia</a></p>
+<h3><span id="&#x6B63;&#x6587;">&#x6B63;&#x6587;</span><a href="#&#x6B63;&#x6587;" class="header-anchor"> </a></h3><p>&#x90A3;&#x4E48;&#x5C31;&#x76F4;&#x63A5;&#x63A8;&#x8350;&#x81EA;&#x5DF1;&#x7684;&#x7801;&#x98CE;&#x4E86;</p>
+<p>(&#x4ECE;&#x6765;&#x4E0D;&#x591A;&#x6253;&#x7A7A;&#x683C;&#x7684;&#x53EF;&#x4EE5;&#x8DF3;&#x8FC7;&#x8FD9;&#x4E00;&#x90E8;&#x5206;)</p>
 <pre><code class="lang-cpp">// QuickRead
 inline int read() {
     int e= 0, f= 1;
     char ch= getchar();
-    while(ch &lt; &#39;0&#39; || ch &gt; &#39;9&#39;) {
-        if(ch == &#39;-&#39;) f= -1;
+    while(ch &lt; &apos;0&apos; || ch &gt; &apos;9&apos;) {
+        if(ch == &apos;-&apos;) f= -1;
         ch= getchar();
     }
-    while(ch &gt;= &#39;0&#39; &amp;&amp; ch &lt;= &#39;9&#39;) e= e * 10 + ch - &#39;0&#39;, ch= getchar();
+    while(ch &gt;= &apos;0&apos; &amp;&amp; ch &lt;= &apos;9&apos;) e= e * 10 + ch - &apos;0&apos;, ch= getchar();
     return e * f;
 }
 </code></pre>
-<p>这个空格写法确实毒瘤，估计像我这样的全世界应该有1%…</p>
-<p>赋值符前不加空格，赋值符后加空格，运算符和逻辑符前后都加空格，手打不是很方便，习惯就好了.</p>
-<p>大括号前不换行加空格，for循环中每个语句只在前加空格</p>
+<p>&#x8FD9;&#x4E2A;&#x7A7A;&#x683C;&#x5199;&#x6CD5;&#x786E;&#x5B9E;&#x6BD2;&#x7624;&#xFF0C;&#x4F30;&#x8BA1;&#x50CF;&#x6211;&#x8FD9;&#x6837;&#x7684;&#x5168;&#x4E16;&#x754C;&#x5E94;&#x8BE5;&#x6709;1%&#x2026;</p>
+<p>&#x8D4B;&#x503C;&#x7B26;&#x524D;&#x4E0D;&#x52A0;&#x7A7A;&#x683C;&#xFF0C;&#x8D4B;&#x503C;&#x7B26;&#x540E;&#x52A0;&#x7A7A;&#x683C;&#xFF0C;&#x8FD0;&#x7B97;&#x7B26;&#x548C;&#x903B;&#x8F91;&#x7B26;&#x524D;&#x540E;&#x90FD;&#x52A0;&#x7A7A;&#x683C;&#xFF0C;&#x624B;&#x6253;&#x4E0D;&#x662F;&#x5F88;&#x65B9;&#x4FBF;&#xFF0C;&#x4E60;&#x60EF;&#x5C31;&#x597D;&#x4E86;.</p>
+<p>&#x5927;&#x62EC;&#x53F7;&#x524D;&#x4E0D;&#x6362;&#x884C;&#x52A0;&#x7A7A;&#x683C;&#xFF0C;for&#x5FAA;&#x73AF;&#x4E2D;&#x6BCF;&#x4E2A;&#x8BED;&#x53E5;&#x53EA;&#x5728;&#x524D;&#x52A0;&#x7A7A;&#x683C;</p>
 <hr>
-<p>(关于换行等事)</p>
-<pre><code class="lang-cpp">// 负载平衡问题
+<p>(&#x5173;&#x4E8E;&#x6362;&#x884C;&#x7B49;&#x4E8B;)</p>
+<pre><code class="lang-cpp">// &#x8D1F;&#x8F7D;&#x5E73;&#x8861;&#x95EE;&#x9898;
 inline int absi(int i) {
     return i &gt; 0 ? i : -i;
 }
@@ -294,9 +294,9 @@ int main() {
     return 0;
 }
 </code></pre>
-<p>只遵守一个原则: 一行只存在一个分号, 能一行表示就不要多行表示</p>
-<p>但也有例外，较长表达式不会压到一行，比较长的函数定义也不会压到一行</p>
-<pre><code class="lang-cpp">// 匈牙利算法
+<p>&#x53EA;&#x9075;&#x5B88;&#x4E00;&#x4E2A;&#x539F;&#x5219;: &#x4E00;&#x884C;&#x53EA;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x5206;&#x53F7;, &#x80FD;&#x4E00;&#x884C;&#x8868;&#x793A;&#x5C31;&#x4E0D;&#x8981;&#x591A;&#x884C;&#x8868;&#x793A;</p>
+<p>&#x4F46;&#x4E5F;&#x6709;&#x4F8B;&#x5916;&#xFF0C;&#x8F83;&#x957F;&#x8868;&#x8FBE;&#x5F0F;&#x4E0D;&#x4F1A;&#x538B;&#x5230;&#x4E00;&#x884C;&#xFF0C;&#x6BD4;&#x8F83;&#x957F;&#x7684;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x4E5F;&#x4E0D;&#x4F1A;&#x538B;&#x5230;&#x4E00;&#x884C;</p>
+<pre><code class="lang-cpp">// &#x5308;&#x7259;&#x5229;&#x7B97;&#x6CD5;
 int dfs(int nown, int wptr) {
     for(int i= head[nown], to; i; i= eds[i].nexty) {
         to= eds[i].to;
@@ -308,15 +308,15 @@ int dfs(int nown, int wptr) {
     return 0;
 }
 </code></pre>
-<p>大概就是这种码风，能省略就省略，但一行一条语句。</p>
+<p>&#x5927;&#x6982;&#x5C31;&#x662F;&#x8FD9;&#x79CD;&#x7801;&#x98CE;&#xFF0C;&#x80FD;&#x7701;&#x7565;&#x5C31;&#x7701;&#x7565;&#xFF0C;&#x4F46;&#x4E00;&#x884C;&#x4E00;&#x6761;&#x8BED;&#x53E5;&#x3002;</p>
 <hr>
-<p>(判断语句和数组定义)</p>
-<pre><code class="lang-cpp">// 主席树
+<p>(&#x5224;&#x65AD;&#x8BED;&#x53E5;&#x548C;&#x6570;&#x7EC4;&#x5B9A;&#x4E49;)</p>
+<pre><code class="lang-cpp">// &#x4E3B;&#x5E2D;&#x6811;
 int main() {
     n= read(), m= read();
     while(~scanf(&quot;%s&quot;, o)) {
         tmpx= read(), tmpy= read(), tmpxx= read(), tmpyy= read();
-        if(o[0] == &#39;L&#39;)
+        if(o[0] == &apos;L&apos;)
             tmpc= read(), update(tmpx, tmpy, tmpc), update(tmpx, tmpyy + 1, -tmpc), update(tmpxx + 1, tmpy, -tmpc), update(tmpxx + 1, tmpyy + 1, tmpc);
         else
             printf(&quot;%d\n&quot;, query(tmpxx, tmpyy) - query(tmpx - 1, tmpyy) - query(tmpxx, tmpy - 1) + query(tmpx - 1, tmpy - 1));
@@ -324,25 +324,25 @@ int main() {
     return 0;
 }
 </code></pre>
-<p>单行if不会换行，如果存在 else / else if 则换行</p>
+<p>&#x5355;&#x884C;if&#x4E0D;&#x4F1A;&#x6362;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x5B58;&#x5728; else / else if &#x5219;&#x6362;&#x884C;</p>
 <pre><code class="lang-cpp">int db[]= {
     0,           1,          1799998,   844059434, 446759866, 865662267, 29583524,  127902423, 614370802, 866384115, 771602680, 248905317, 78054944,  297165834, 271692212, 491940959, 329478404, 984412484, 35704862,  729995974, 257611164, 47520158,
     ......
     869867506, 732424548, 678809493, 143987677, 789130682, 973691054, 893883312, 311519914, 650459219, 821045358, 310559620, 775625624, 108543282, 54180205,  287135615, 875178490, 760920242, 512638949, 254323537, 977186041, 474130473, 455558106,
     435916613, 787985317, 366892998, 42185197,  192850838, 421591125, 241779127, 969779315, 924599866, 723460313, 430999144};
 </code></pre>
-<p>这个数组定义比较忙=迷，有的时候不会换行有的时候会</p>
-<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>如果上面这些格式手动的话…估计考试一道题都做不完…</p>
-<p>我目前使用VS Code，他的C++扩展自带格式化工具.clang-format</p>
-<p>在 Visual Studio 和 Vim 中也可以用，并且配置文件是通用的</p>
-<p>VS Code使用.clang-format: 安装C++扩展 -&gt; 选择工作文件夹 -&gt; 在文件夹下创建文件命名为.clang-format -&gt; 打开编辑</p>
-<p>Visual Studio的使用.clang-format: 新建项目 -&gt; 创建.clang-format文件 -&gt; 编辑</p>
-<h4 id="clang-format文件用法"><a href="#clang-format文件用法" class="headerlink" title=".clang-format文件用法"></a>.clang-format文件用法</h4><p><a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html" target="_blank" rel="noopener">官方文档</a>或者自行百度</p>
-<p>常用设置:</p>
-<p>SpaceBeforeAssignmentOperator 为赋值符两边的空格</p>
-<p>BraceWrapping 为各位置括号前后换行</p>
-<p>ColumnLimit 为每行最大字符限制(和数组初始化换行有关)</p>
-<h4 id="放一下我的格式化文件配置"><a href="#放一下我的格式化文件配置" class="headerlink" title="放一下我的格式化文件配置:"></a>放一下我的格式化文件配置:</h4><pre><code class="lang-javascript">---
+<p>&#x8FD9;&#x4E2A;&#x6570;&#x7EC4;&#x5B9A;&#x4E49;&#x6BD4;&#x8F83;&#x5FD9;=&#x8FF7;&#xFF0C;&#x6709;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x4F1A;&#x6362;&#x884C;&#x6709;&#x7684;&#x65F6;&#x5019;&#x4F1A;</p>
+<h3><span id="&#x5DE5;&#x5177;">&#x5DE5;&#x5177;</span><a href="#&#x5DE5;&#x5177;" class="header-anchor"> </a></h3><p>&#x5982;&#x679C;&#x4E0A;&#x9762;&#x8FD9;&#x4E9B;&#x683C;&#x5F0F;&#x624B;&#x52A8;&#x7684;&#x8BDD;&#x2026;&#x4F30;&#x8BA1;&#x8003;&#x8BD5;&#x4E00;&#x9053;&#x9898;&#x90FD;&#x505A;&#x4E0D;&#x5B8C;&#x2026;</p>
+<p>&#x6211;&#x76EE;&#x524D;&#x4F7F;&#x7528;VS Code&#xFF0C;&#x4ED6;&#x7684;C++&#x6269;&#x5C55;&#x81EA;&#x5E26;&#x683C;&#x5F0F;&#x5316;&#x5DE5;&#x5177;.clang-format</p>
+<p>&#x5728; Visual Studio &#x548C; Vim &#x4E2D;&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#xFF0C;&#x5E76;&#x4E14;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x662F;&#x901A;&#x7528;&#x7684;</p>
+<p>VS Code&#x4F7F;&#x7528;.clang-format: &#x5B89;&#x88C5;C++&#x6269;&#x5C55; -&gt; &#x9009;&#x62E9;&#x5DE5;&#x4F5C;&#x6587;&#x4EF6;&#x5939; -&gt; &#x5728;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x547D;&#x540D;&#x4E3A;.clang-format -&gt; &#x6253;&#x5F00;&#x7F16;&#x8F91;</p>
+<p>Visual Studio&#x7684;&#x4F7F;&#x7528;.clang-format: &#x65B0;&#x5EFA;&#x9879;&#x76EE; -&gt; &#x521B;&#x5EFA;.clang-format&#x6587;&#x4EF6; -&gt; &#x7F16;&#x8F91;</p>
+<h4><span id="clang-format&#x6587;&#x4EF6;&#x7528;&#x6CD5;">.clang-format&#x6587;&#x4EF6;&#x7528;&#x6CD5;</span><a href="#clang-format&#x6587;&#x4EF6;&#x7528;&#x6CD5;" class="header-anchor"> </a></h4><p><a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html" target="_blank" rel="noopener">&#x5B98;&#x65B9;&#x6587;&#x6863;</a>&#x6216;&#x8005;&#x81EA;&#x884C;&#x767E;&#x5EA6;</p>
+<p>&#x5E38;&#x7528;&#x8BBE;&#x7F6E;:</p>
+<p>SpaceBeforeAssignmentOperator &#x4E3A;&#x8D4B;&#x503C;&#x7B26;&#x4E24;&#x8FB9;&#x7684;&#x7A7A;&#x683C;</p>
+<p>BraceWrapping &#x4E3A;&#x5404;&#x4F4D;&#x7F6E;&#x62EC;&#x53F7;&#x524D;&#x540E;&#x6362;&#x884C;</p>
+<p>ColumnLimit &#x4E3A;&#x6BCF;&#x884C;&#x6700;&#x5927;&#x5B57;&#x7B26;&#x9650;&#x5236;(&#x548C;&#x6570;&#x7EC4;&#x521D;&#x59CB;&#x5316;&#x6362;&#x884C;&#x6709;&#x5173;)</p>
+<h4><span id="&#x653E;&#x4E00;&#x4E0B;&#x6211;&#x7684;&#x683C;&#x5F0F;&#x5316;&#x6587;&#x4EF6;&#x914D;&#x7F6E;">&#x653E;&#x4E00;&#x4E0B;&#x6211;&#x7684;&#x683C;&#x5F0F;&#x5316;&#x6587;&#x4EF6;&#x914D;&#x7F6E;:</span><a href="#&#x653E;&#x4E00;&#x4E0B;&#x6211;&#x7684;&#x683C;&#x5F0F;&#x5316;&#x6587;&#x4EF6;&#x914D;&#x7F6E;" class="header-anchor"> </a></h4><pre><code class="lang-javascript">---
 Language:    Cpp
 BasedOnStyle:    LLVM
 AccessModifierOffset:    0
@@ -381,7 +381,7 @@ BreakBeforeBraces:    Custom
 BreakBeforeTernaryOperators:    false
 BreakConstructorInitializersBeforeComma:    false
 ColumnLimit:    250
-CommentPragmas:    &#39;^ IWYU pragma:&#39;
+CommentPragmas:    &apos;^ IWYU pragma:&apos;
 ConstructorInitializerAllOnOneLineOrOnePerLine:    true
 ConstructorInitializerIndentWidth:    4
 ContinuationIndentWidth:    4
@@ -391,18 +391,18 @@ DisableFormat:    false
 ExperimentalAutoDetectBinPacking:    false
 ForEachMacros:    [ foreach, Q_FOREACH, BOOST_FOREACH ]
 IncludeCategories: 
-  - Regex:    &#39;^&quot;(llvm|llvm-c|clang|clang-c)/&#39;
+  - Regex:    &apos;^&quot;(llvm|llvm-c|clang|clang-c)/&apos;
     Priority:    2
-  - Regex:    &#39;^(&lt;|&quot;(gtest|isl|json)/)&#39;
+  - Regex:    &apos;^(&lt;|&quot;(gtest|isl|json)/)&apos;
     Priority:    3
-  - Regex:    &#39;.*&#39;
+  - Regex:    &apos;.*&apos;
     Priority:    1
 IndentCaseLabels:    true
 IndentWidth:    4
 IndentWrappedFunctionNames:    false
 KeepEmptyLinesAtTheStartOfBlocks:    false
-MacroBlockBegin:    &#39;&#39;
-MacroBlockEnd:    &#39;&#39;
+MacroBlockBegin:    &apos;&apos;
+MacroBlockEnd:    &apos;&apos;
 MaxEmptyLinesToKeep:    1
 NamespaceIndentation:    Inner
 ObjCBlockIndentWidth:    4
@@ -433,7 +433,7 @@ TabWidth:    4
 UseTab:    Always
 ...
 </code></pre>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>用了这个码风，再也不怕代码出BUG了(</p>
+<h3><span id="&#x6700;&#x540E;">&#x6700;&#x540E;</span><a href="#&#x6700;&#x540E;" class="header-anchor"> </a></h3><p>&#x7528;&#x4E86;&#x8FD9;&#x4E2A;&#x7801;&#x98CE;&#xFF0C;&#x518D;&#x4E5F;&#x4E0D;&#x6015;&#x4EE3;&#x7801;&#x51FA;BUG&#x4E86;(</p>
 
   </article>
   
@@ -479,7 +479,7 @@ UseTab:    Always
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385342"></script>
+<script src="/js/app.js?v=1573122200239"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

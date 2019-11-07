@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="【LuoguP5145】漂浮的鸭子题目链接: https://www.luogu.org/problemnew/show/P5145 前言最近颓的东西太多了, 终于又来做搜索题. 这题很水 随手交了个暴力随机化就A了.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T11:58:42.526Z">
+<meta property="og:updated_time" content="2019-11-07T09:07:33.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LuoguP5145 - 漂浮的鸭子">
 <meta name="twitter:description" content="【LuoguP5145】漂浮的鸭子题目链接: https://www.luogu.org/problemnew/show/P5145 前言最近颓的东西太多了, 终于又来做搜索题. 这题很水 随手交了个暴力随机化就A了.">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385163">
+  <link rel="stylesheet" href="/css/style.css?v=1573122200704">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -249,8 +249,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年05月22日</a>
-    <a><i class="nexmoefont icon-areachart"></i>560 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>570 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -259,13 +259,23 @@
     
   </div>
   <article id="article">
-    <p>【LuoguP5145】漂浮的鸭子<br>题目链接: <a href="https://www.luogu.org/problemnew/show/P5145" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P5145</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近颓的东西太多了, 终于又来做搜索题.</p>
-<p><del>这题很水</del> 随手交了个暴力随机化就A了.</p>
+    <p>&#x3010;LuoguP5145&#x3011;&#x6F02;&#x6D6E;&#x7684;&#x9E2D;&#x5B50;<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;: <a href="https://www.luogu.org/problemnew/show/P5145" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P5145</a></p>
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x6700;&#x8FD1;&#x9893;&#x7684;&#x4E1C;&#x897F;&#x592A;&#x591A;&#x4E86;, &#x7EC8;&#x4E8E;&#x53C8;&#x6765;&#x505A;&#x641C;&#x7D22;&#x9898;.</p>
+<p><del>&#x8FD9;&#x9898;&#x5F88;&#x6C34;</del> &#x968F;&#x624B;&#x4EA4;&#x4E86;&#x4E2A;&#x66B4;&#x529B;&#x968F;&#x673A;&#x5316;&#x5C31;A&#x4E86;.</p>
 <a id="more"></a>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这道题正解思路非常妙, 代码比较短. 但我们能不能想一个更简单粗暴的方法呢?</p>
-<p>先交一下能被卡成接近 $ O(n^2) $ 的暴力, 对于每一个点跑一遍DFS, 如果能回到此点就更新答案, 再加一个玄学剪枝, 将这个环上所有点打标记, 这些点就不用再DFS了.</p>
-<p>开O2只有50分</p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x5206;&#x6790;">&#x5206;&#x6790;</a></li>
+<li><a href="#&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x5206;&#x6790;">&#x5206;&#x6790;</span><a href="#&#x5206;&#x6790;" class="header-anchor"> </a></h3><p>&#x8FD9;&#x9053;&#x9898;&#x6B63;&#x89E3;&#x601D;&#x8DEF;&#x975E;&#x5E38;&#x5999;, &#x4EE3;&#x7801;&#x6BD4;&#x8F83;&#x77ED;. &#x4F46;&#x6211;&#x4EEC;&#x80FD;&#x4E0D;&#x80FD;&#x60F3;&#x4E00;&#x4E2A;&#x66F4;&#x7B80;&#x5355;&#x7C97;&#x66B4;&#x7684;&#x65B9;&#x6CD5;&#x5462;?</p>
+<p>&#x5148;&#x4EA4;&#x4E00;&#x4E0B;&#x80FD;&#x88AB;&#x5361;&#x6210;&#x63A5;&#x8FD1; $ O(n^2) $ &#x7684;&#x66B4;&#x529B;, &#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x4E2A;&#x70B9;&#x8DD1;&#x4E00;&#x904D;DFS, &#x5982;&#x679C;&#x80FD;&#x56DE;&#x5230;&#x6B64;&#x70B9;&#x5C31;&#x66F4;&#x65B0;&#x7B54;&#x6848;, &#x518D;&#x52A0;&#x4E00;&#x4E2A;&#x7384;&#x5B66;&#x526A;&#x679D;, &#x5C06;&#x8FD9;&#x4E2A;&#x73AF;&#x4E0A;&#x6240;&#x6709;&#x70B9;&#x6253;&#x6807;&#x8BB0;, &#x8FD9;&#x4E9B;&#x70B9;&#x5C31;&#x4E0D;&#x7528;&#x518D;DFS&#x4E86;.</p>
+<p>&#x5F00;O2&#x53EA;&#x6709;50&#x5206;</p>
 <pre><code class="lang-cpp">// luogu-judger-enable-o2
 #include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
@@ -293,16 +303,16 @@ int main() {
     return 0;
 }
 </code></pre>
-<p>考虑优化, 其实复杂度是可以玄学过去的 <del>先把cin换成scnaf</del>.</p>
-<p>然后我加了判断有环, 但此点不在环上的一个小剪枝.</p>
+<p>&#x8003;&#x8651;&#x4F18;&#x5316;, &#x5176;&#x5B9E;&#x590D;&#x6742;&#x5EA6;&#x662F;&#x53EF;&#x4EE5;&#x7384;&#x5B66;&#x8FC7;&#x53BB;&#x7684; <del>&#x5148;&#x628A;cin&#x6362;&#x6210;scnaf</del>.</p>
+<p>&#x7136;&#x540E;&#x6211;&#x52A0;&#x4E86;&#x5224;&#x65AD;&#x6709;&#x73AF;, &#x4F46;&#x6B64;&#x70B9;&#x4E0D;&#x5728;&#x73AF;&#x4E0A;&#x7684;&#x4E00;&#x4E2A;&#x5C0F;&#x526A;&#x679D;.</p>
 <pre><code class="lang-cpp">    if(to != nown) {
         lw[nown]= 1;
         return;
     }
 </code></pre>
-<p>通俗一点讲, 让以后到达这个点的鸭子都知道自己的水坑不在环里就不用继续搜了.</p>
-<p>要是还T怎么办, 那改一下搜索顺序说不定就A了, 为了防止从 N 到 1 一条链卡暴力的情况, 我选择随机起点, 再加一个卡时限.</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
+<p>&#x901A;&#x4FD7;&#x4E00;&#x70B9;&#x8BB2;, &#x8BA9;&#x4EE5;&#x540E;&#x5230;&#x8FBE;&#x8FD9;&#x4E2A;&#x70B9;&#x7684;&#x9E2D;&#x5B50;&#x90FD;&#x77E5;&#x9053;&#x81EA;&#x5DF1;&#x7684;&#x6C34;&#x5751;&#x4E0D;&#x5728;&#x73AF;&#x91CC;&#x5C31;&#x4E0D;&#x7528;&#x7EE7;&#x7EED;&#x641C;&#x4E86;.</p>
+<p>&#x8981;&#x662F;&#x8FD8;T&#x600E;&#x4E48;&#x529E;, &#x90A3;&#x6539;&#x4E00;&#x4E0B;&#x641C;&#x7D22;&#x987A;&#x5E8F;&#x8BF4;&#x4E0D;&#x5B9A;&#x5C31;A&#x4E86;, &#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x4ECE; N &#x5230; 1 &#x4E00;&#x6761;&#x94FE;&#x5361;&#x66B4;&#x529B;&#x7684;&#x60C5;&#x51B5;, &#x6211;&#x9009;&#x62E9;&#x968F;&#x673A;&#x8D77;&#x70B9;, &#x518D;&#x52A0;&#x4E00;&#x4E2A;&#x5361;&#x65F6;&#x9650;.</p>
+<h3><span id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</span><a href="#&#x4EE3;&#x7801;" class="header-anchor"> </a></h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 #include &lt;time.h&gt;
@@ -380,7 +390,7 @@ int main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385172"></script>
+<script src="/js/app.js?v=1573122200722"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

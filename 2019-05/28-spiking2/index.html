@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="用C++开发一个图片爬虫 Ⅱ ：编码转换 前言我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。 因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T11:50:40.554Z">
+<meta property="og:updated_time" content="2019-11-07T09:08:05.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目日记 - 开发图片爬虫 Ⅱ">
 <meta name="twitter:description" content="用C++开发一个图片爬虫 Ⅱ ：编码转换 前言我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。 因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385137">
+  <link rel="stylesheet" href="/css/style.css?v=1573122200170">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -245,8 +245,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年05月28日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1.8k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 12 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/项目/">项目</a>
     
@@ -255,85 +255,101 @@
     
   </div>
   <article id="article">
-    <p>用C++开发一个图片爬虫 Ⅱ ：编码转换</p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。</p>
-<p>因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。</p>
+    <p>&#x7528;C++&#x5F00;&#x53D1;&#x4E00;&#x4E2A;&#x56FE;&#x7247;&#x722C;&#x866B; &#x2161; &#xFF1A;&#x7F16;&#x7801;&#x8F6C;&#x6362;</p>
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x6211;&#x4EEC;&#x4E0A;&#x4E00;&#x8282;&#x5B66;&#x4E60;&#x4E86;&#x83B7;&#x53D6;&#x7F51;&#x9875;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x90A3;&#x4E48;&#x5927;&#x5BB6;&#x53EF;&#x80FD;&#x4F1A;&#x4EE5;&#x4E3A;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x662F;&#x5206;&#x6790;&#x7F51;&#x9875;&#x4E86;&#x3002;&#x4F46;&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x5148;&#x8F6C;&#x6362;&#x7F16;&#x7801;&#x3002;&#x6211;&#x4EEC;&#x90FD;&#x77E5;&#x9053;&#xFF0C;C++&#x7F16;&#x7A0B;&#x5E38;&#x7528;&#x7684;&#x662F;ASCII&#x7F16;&#x7801;&#xFF0C;&#x800C;&#x7F51;&#x9875;&#x5927;&#x90E8;&#x5206;&#x4F7F;&#x7528;&#x7684;&#x662F;UTF-8&#x7F16;&#x7801;&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x8981;&#x5148;&#x5C06;&#x83B7;&#x53D6;&#x540E;&#x7684;&#x7F51;&#x9875;&#x8F6C;&#x6362;&#x6210;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;&#x7F16;&#x7801;&#xFF0C;&#x518D;&#x53BB;&#x5206;&#x6790;&#x5185;&#x5BB9;&#x3002;</p>
 <a id="more"></a>
-<h3 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h3><p>我们写编码转换的代码，肯定要知道这些编码之间的关系。</p>
-<p>ASCII编码我们再熟悉不过了，然而我相信很多人和我一样，分不清什么是Unicode，UTF-8，UTF-16，UTF-32。</p>
-<p>我不想用长篇大论来解释这些东西，就给出它们各自的定义和我们需要知道的东西。如果想更深入的了解，可以自行搜索。</p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x7406;&#x8BBA;">&#x7406;&#x8BBA;</a></li>
+<li><a href="#&#x5B9E;&#x6218;">&#x5B9E;&#x6218;</a><ul>
+<li><a href="#multibytetowidechar">MultiByteToWideChar</a></li>
+<li><a href="#widechartomultibyte">WideCharToMultiByte</a></li>
+<li><a href="#delete">delete</a></li>
+</ul>
+</li>
+<li><a href="#&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x7406;&#x8BBA;">&#x7406;&#x8BBA;</span><a href="#&#x7406;&#x8BBA;" class="header-anchor"> </a></h3><p>&#x6211;&#x4EEC;&#x5199;&#x7F16;&#x7801;&#x8F6C;&#x6362;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x80AF;&#x5B9A;&#x8981;&#x77E5;&#x9053;&#x8FD9;&#x4E9B;&#x7F16;&#x7801;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#x3002;</p>
+<p>ASCII&#x7F16;&#x7801;&#x6211;&#x4EEC;&#x518D;&#x719F;&#x6089;&#x4E0D;&#x8FC7;&#x4E86;&#xFF0C;&#x7136;&#x800C;&#x6211;&#x76F8;&#x4FE1;&#x5F88;&#x591A;&#x4EBA;&#x548C;&#x6211;&#x4E00;&#x6837;&#xFF0C;&#x5206;&#x4E0D;&#x6E05;&#x4EC0;&#x4E48;&#x662F;Unicode&#xFF0C;UTF-8&#xFF0C;UTF-16&#xFF0C;UTF-32&#x3002;</p>
+<p>&#x6211;&#x4E0D;&#x60F3;&#x7528;&#x957F;&#x7BC7;&#x5927;&#x8BBA;&#x6765;&#x89E3;&#x91CA;&#x8FD9;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x5C31;&#x7ED9;&#x51FA;&#x5B83;&#x4EEC;&#x5404;&#x81EA;&#x7684;&#x5B9A;&#x4E49;&#x548C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x77E5;&#x9053;&#x7684;&#x4E1C;&#x897F;&#x3002;&#x5982;&#x679C;&#x60F3;&#x66F4;&#x6DF1;&#x5165;&#x7684;&#x4E86;&#x89E3;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x641C;&#x7D22;&#x3002;</p>
 <blockquote>
-<p>Unicode（统一码、万国码、单一码）是计算机科学领域里的一项业界标准，包括字符集、编码方案等。</p>
+<p>Unicode&#xFF08;&#x7EDF;&#x4E00;&#x7801;&#x3001;&#x4E07;&#x56FD;&#x7801;&#x3001;&#x5355;&#x4E00;&#x7801;&#xFF09;&#x662F;&#x8BA1;&#x7B97;&#x673A;&#x79D1;&#x5B66;&#x9886;&#x57DF;&#x91CC;&#x7684;&#x4E00;&#x9879;&#x4E1A;&#x754C;&#x6807;&#x51C6;&#xFF0C;&#x5305;&#x62EC;&#x5B57;&#x7B26;&#x96C6;&#x3001;&#x7F16;&#x7801;&#x65B9;&#x6848;&#x7B49;&#x3002;</p>
 </blockquote>
-<p>至于它为什么诞生，我简单说明一下。因为我们熟知的ASCII码能表示的字符是非常有限的，根本无法承受那么多国家的字符。因此国际组织就又发明了一个新的编码，几乎收尽所有国家的字符，甚至包括特殊字符。</p>
-<p>Unicode与其他编码类似，也是每一个字符都对应一个数字来表示它。但Unicode也仅仅如此，它没有规定这个二进制代码如何存储。</p>
-<p>那么问题来了，在Unicode编码下，假设有一个3字节的二进制代码，计算机怎么知道表示的是一个字符还是两个字符或者是三个字符呢？因此UTF-8、UTF-16这一系列东西就诞生了。</p>
-<p>先介绍UTF-8，这是开发网页首选的编码存储方式。</p>
+<p>&#x81F3;&#x4E8E;&#x5B83;&#x4E3A;&#x4EC0;&#x4E48;&#x8BDE;&#x751F;&#xFF0C;&#x6211;&#x7B80;&#x5355;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;&#x3002;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x719F;&#x77E5;&#x7684;ASCII&#x7801;&#x80FD;&#x8868;&#x793A;&#x7684;&#x5B57;&#x7B26;&#x662F;&#x975E;&#x5E38;&#x6709;&#x9650;&#x7684;&#xFF0C;&#x6839;&#x672C;&#x65E0;&#x6CD5;&#x627F;&#x53D7;&#x90A3;&#x4E48;&#x591A;&#x56FD;&#x5BB6;&#x7684;&#x5B57;&#x7B26;&#x3002;&#x56E0;&#x6B64;&#x56FD;&#x9645;&#x7EC4;&#x7EC7;&#x5C31;&#x53C8;&#x53D1;&#x660E;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7F16;&#x7801;&#xFF0C;&#x51E0;&#x4E4E;&#x6536;&#x5C3D;&#x6240;&#x6709;&#x56FD;&#x5BB6;&#x7684;&#x5B57;&#x7B26;&#xFF0C;&#x751A;&#x81F3;&#x5305;&#x62EC;&#x7279;&#x6B8A;&#x5B57;&#x7B26;&#x3002;</p>
+<p>Unicode&#x4E0E;&#x5176;&#x4ED6;&#x7F16;&#x7801;&#x7C7B;&#x4F3C;&#xFF0C;&#x4E5F;&#x662F;&#x6BCF;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x6765;&#x8868;&#x793A;&#x5B83;&#x3002;&#x4F46;Unicode&#x4E5F;&#x4EC5;&#x4EC5;&#x5982;&#x6B64;&#xFF0C;&#x5B83;&#x6CA1;&#x6709;&#x89C4;&#x5B9A;&#x8FD9;&#x4E2A;&#x4E8C;&#x8FDB;&#x5236;&#x4EE3;&#x7801;&#x5982;&#x4F55;&#x5B58;&#x50A8;&#x3002;</p>
+<p>&#x90A3;&#x4E48;&#x95EE;&#x9898;&#x6765;&#x4E86;&#xFF0C;&#x5728;Unicode&#x7F16;&#x7801;&#x4E0B;&#xFF0C;&#x5047;&#x8BBE;&#x6709;&#x4E00;&#x4E2A;3&#x5B57;&#x8282;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x4EE3;&#x7801;&#xFF0C;&#x8BA1;&#x7B97;&#x673A;&#x600E;&#x4E48;&#x77E5;&#x9053;&#x8868;&#x793A;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x8FD8;&#x662F;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x6216;&#x8005;&#x662F;&#x4E09;&#x4E2A;&#x5B57;&#x7B26;&#x5462;&#xFF1F;&#x56E0;&#x6B64;UTF-8&#x3001;UTF-16&#x8FD9;&#x4E00;&#x7CFB;&#x5217;&#x4E1C;&#x897F;&#x5C31;&#x8BDE;&#x751F;&#x4E86;&#x3002;</p>
+<p>&#x5148;&#x4ECB;&#x7ECD;UTF-8&#xFF0C;&#x8FD9;&#x662F;&#x5F00;&#x53D1;&#x7F51;&#x9875;&#x9996;&#x9009;&#x7684;&#x7F16;&#x7801;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;&#x3002;</p>
 <blockquote>
-<p>UTF-8（8-bit Unicode Transformation Format）是一种针对Unicode的可变长度字符编码，又称万国码，由Ken Thompson于1992年创建。</p>
+<p>UTF-8&#xFF08;8-bit Unicode Transformation Format&#xFF09;&#x662F;&#x4E00;&#x79CD;&#x9488;&#x5BF9;Unicode&#x7684;&#x53EF;&#x53D8;&#x957F;&#x5EA6;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#xFF0C;&#x53C8;&#x79F0;&#x4E07;&#x56FD;&#x7801;&#xFF0C;&#x7531;Ken Thompson&#x4E8E;1992&#x5E74;&#x521B;&#x5EFA;&#x3002;</p>
 </blockquote>
-<p>如果略懂编码的话，可变长度是最大特点。但是为了实现可变长度，就需要一些二进制位来表示长度，我认为它的编码规则可以说是非常典型了。</p>
+<p>&#x5982;&#x679C;&#x7565;&#x61C2;&#x7F16;&#x7801;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x53D8;&#x957F;&#x5EA6;&#x662F;&#x6700;&#x5927;&#x7279;&#x70B9;&#x3002;&#x4F46;&#x662F;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x53EF;&#x53D8;&#x957F;&#x5EA6;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x4E00;&#x4E9B;&#x4E8C;&#x8FDB;&#x5236;&#x4F4D;&#x6765;&#x8868;&#x793A;&#x957F;&#x5EA6;&#xFF0C;&#x6211;&#x8BA4;&#x4E3A;&#x5B83;&#x7684;&#x7F16;&#x7801;&#x89C4;&#x5219;&#x53EF;&#x4EE5;&#x8BF4;&#x662F;&#x975E;&#x5E38;&#x5178;&#x578B;&#x4E86;&#x3002;</p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th>字节数</th>
-<th>二进制编码形式 </th>
+<th>&#x5B57;&#x8282;&#x6570;</th>
+<th>&#x4E8C;&#x8FDB;&#x5236;&#x7F16;&#x7801;&#x5F62;&#x5F0F; </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1字节</td>
+<td>1&#x5B57;&#x8282;</td>
 <td>0xxxxxxx</td>
 </tr>
 <tr>
-<td>2字节</td>
+<td>2&#x5B57;&#x8282;</td>
 <td>110xxxxx 10xxxxxx </td>
 </tr>
 <tr>
-<td>3字节</td>
+<td>3&#x5B57;&#x8282;</td>
 <td>1110xxxx 10xxxxxx 10xxxxxx</td>
 </tr>
 <tr>
-<td>4字节</td>
+<td>4&#x5B57;&#x8282;</td>
 <td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx </td>
 </tr>
 <tr>
-<td>5字节</td>
+<td>5&#x5B57;&#x8282;</td>
 <td>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx </td>
 </tr>
 <tr>
-<td>6字节</td>
+<td>6&#x5B57;&#x8282;</td>
 <td>1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>再简单说一下UTF-16，定义：</p>
+<p>&#x518D;&#x7B80;&#x5355;&#x8BF4;&#x4E00;&#x4E0B;UTF-16&#xFF0C;&#x5B9A;&#x4E49;&#xFF1A;</p>
 <blockquote>
-<p>UTF-16是Unicode字符编码五层次模型的第三层：字符编码表（Character Encoding Form，也称为 “storage format”）的一种实现方式。</p>
+<p>UTF-16&#x662F;Unicode&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x4E94;&#x5C42;&#x6B21;&#x6A21;&#x578B;&#x7684;&#x7B2C;&#x4E09;&#x5C42;&#xFF1A;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x8868;&#xFF08;Character Encoding Form&#xFF0C;&#x4E5F;&#x79F0;&#x4E3A; &#x201C;storage format&#x201D;&#xFF09;&#x7684;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x3002;</p>
 </blockquote>
-<p>UTF-16虽然也可变长度，但不如UTF-8灵活。它有大尾序和小尾序两种储存形式，这个可以自行查阅。</p>
+<p>UTF-16&#x867D;&#x7136;&#x4E5F;&#x53EF;&#x53D8;&#x957F;&#x5EA6;&#xFF0C;&#x4F46;&#x4E0D;&#x5982;UTF-8&#x7075;&#x6D3B;&#x3002;&#x5B83;&#x6709;&#x5927;&#x5C3E;&#x5E8F;&#x548C;&#x5C0F;&#x5C3E;&#x5E8F;&#x4E24;&#x79CD;&#x50A8;&#x5B58;&#x5F62;&#x5F0F;&#xFF0C;&#x8FD9;&#x4E2A;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x67E5;&#x9605;&#x3002;</p>
 <blockquote>
-<p>UTF-32 (或 UCS-4)是一种将Unicode字符编码的协定，对每一个Unicode码位使用恰好32位元。其它的Unicode transformation formats则使用不定长度编码。</p>
+<p>UTF-32 (&#x6216; UCS-4)&#x662F;&#x4E00;&#x79CD;&#x5C06;Unicode&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x7684;&#x534F;&#x5B9A;&#xFF0C;&#x5BF9;&#x6BCF;&#x4E00;&#x4E2A;Unicode&#x7801;&#x4F4D;&#x4F7F;&#x7528;&#x6070;&#x597D;32&#x4F4D;&#x5143;&#x3002;&#x5176;&#x5B83;&#x7684;Unicode transformation formats&#x5219;&#x4F7F;&#x7528;&#x4E0D;&#x5B9A;&#x957F;&#x5EA6;&#x7F16;&#x7801;&#x3002;</p>
 </blockquote>
-<p>网上找到一个工具，<a href="https://www.qqxiuzi.cn/bianma/Unicode-UTF.php" target="_blank" rel="noopener">Unicode和UTF编码转换</a>，有兴趣可以试一下。</p>
-<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>我们为什么要了解上面那些东西，最终还是为了更容易理解代码。先给出一个将一个字符串从UTF-8转为ASCII的示例代码，从网上抄下来的。</p>
+<p>&#x7F51;&#x4E0A;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x5DE5;&#x5177;&#xFF0C;<a href="https://www.qqxiuzi.cn/bianma/Unicode-UTF.php" target="_blank" rel="noopener">Unicode&#x548C;UTF&#x7F16;&#x7801;&#x8F6C;&#x6362;</a>&#xFF0C;&#x6709;&#x5174;&#x8DA3;&#x53EF;&#x4EE5;&#x8BD5;&#x4E00;&#x4E0B;&#x3002;</p>
+<h3><span id="&#x5B9E;&#x6218;">&#x5B9E;&#x6218;</span><a href="#&#x5B9E;&#x6218;" class="header-anchor"> </a></h3><p>&#x6211;&#x4EEC;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4E86;&#x89E3;&#x4E0A;&#x9762;&#x90A3;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x6700;&#x7EC8;&#x8FD8;&#x662F;&#x4E3A;&#x4E86;&#x66F4;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#x4EE3;&#x7801;&#x3002;&#x5148;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x5C06;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x4ECE;UTF-8&#x8F6C;&#x4E3A;ASCII&#x7684;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#xFF0C;&#x4ECE;&#x7F51;&#x4E0A;&#x6284;&#x4E0B;&#x6765;&#x7684;&#x3002;</p>
 <pre><code class="lang-cpp">const char *changeTxtEncoding(const char *szU8) {
     int wcsLen= MultiByteToWideChar(CP_UTF8, NULL, szU8, strlen(szU8), NULL, 0);
     wchar_t *wszString= new wchar_t[wcsLen + 1];
     MultiByteToWideChar(CP_UTF8, NULL, szU8, strlen(szU8), wszString, wcsLen);
-    wszString[wcsLen]= &#39;\0&#39;;
+    wszString[wcsLen]= &apos;\0&apos;;
     int ansiLen= WideCharToMultiByte(CP_ACP, NULL, wszString, wcslen(wszString), NULL, 0, NULL, NULL);
     char *szAnsi= new char[ansiLen + 1];
     WideCharToMultiByte(CP_ACP, NULL, wszString, wcslen(wszString), szAnsi, ansiLen, NULL, NULL);
-    szAnsi[ansiLen]= &#39;\0&#39;;
+    szAnsi[ansiLen]= &apos;\0&apos;;
     delete[] wszString;
     return szAnsi;
 }
 </code></pre>
-<p>此函数是将一个字符串，先从UTF-8转为UTF-16，再转为ASCII。</p>
-<h4 id="MultiByteToWideChar"><a href="#MultiByteToWideChar" class="headerlink" title="MultiByteToWideChar"></a>MultiByteToWideChar</h4><p>此函数可将字符串映射到UTF-16(宽字符)字符串。字符串不一定来自多字节字符集。在这里，字符集或代码页我们都可以理解为编码映射表。</p>
+<p>&#x6B64;&#x51FD;&#x6570;&#x662F;&#x5C06;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5148;&#x4ECE;UTF-8&#x8F6C;&#x4E3A;UTF-16&#xFF0C;&#x518D;&#x8F6C;&#x4E3A;ASCII&#x3002;</p>
+<h4><span id="multibytetowidechar">MultiByteToWideChar</span><a href="#multibytetowidechar" class="header-anchor"> </a></h4><p>&#x6B64;&#x51FD;&#x6570;&#x53EF;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x6620;&#x5C04;&#x5230;UTF-16(&#x5BBD;&#x5B57;&#x7B26;)&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x4E00;&#x5B9A;&#x6765;&#x81EA;&#x591A;&#x5B57;&#x8282;&#x5B57;&#x7B26;&#x96C6;&#x3002;&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x5B57;&#x7B26;&#x96C6;&#x6216;&#x4EE3;&#x7801;&#x9875;&#x6211;&#x4EEC;&#x90FD;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x7F16;&#x7801;&#x6620;&#x5C04;&#x8868;&#x3002;</p>
 <pre><code class="lang-cpp">int WINAPI MultiByteToWideChar(
     _In_ UINT CodePage,
     _In_ DWORD dwFlags,
@@ -343,7 +359,7 @@
     _In_ int cchWideChar
     );
 </code></pre>
-<p>定义简化如下：</p>
+<p>&#x5B9A;&#x4E49;&#x7B80;&#x5316;&#x5982;&#x4E0B;&#xFF1A;</p>
 <pre><code class="lang-cpp">int WINAPI MultiByteToWideChar(
     UINT CodePage, 
     DWORD dwFlags, 
@@ -353,55 +369,55 @@
     int cchWideChar
     );
 </code></pre>
-<p><em>CodePage</em>为指定执行转换的字符集。如果原字符串为ASCII通常选择CP_ACP，关于CP_ACP与CP_THREAD_ACP的区别可以自己了解。我们这里原字符串为UTF-8，因此选择CP_UTF8。数值表：</p>
+<p><em>CodePage</em>&#x4E3A;&#x6307;&#x5B9A;&#x6267;&#x884C;&#x8F6C;&#x6362;&#x7684;&#x5B57;&#x7B26;&#x96C6;&#x3002;&#x5982;&#x679C;&#x539F;&#x5B57;&#x7B26;&#x4E32;&#x4E3A;ASCII&#x901A;&#x5E38;&#x9009;&#x62E9;CP_ACP&#xFF0C;&#x5173;&#x4E8E;CP_ACP&#x4E0E;CP_THREAD_ACP&#x7684;&#x533A;&#x522B;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x4E86;&#x89E3;&#x3002;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x539F;&#x5B57;&#x7B26;&#x4E32;&#x4E3A;UTF-8&#xFF0C;&#x56E0;&#x6B64;&#x9009;&#x62E9;CP_UTF8&#x3002;&#x6570;&#x503C;&#x8868;&#xFF1A;</p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th>数值</th>
-<th>说明   </th>
+<th>&#x6570;&#x503C;</th>
+<th>&#x8BF4;&#x660E;   </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>CP_ACP</td>
-<td>Windows系统默认的ANSI代码页。 </td>
+<td>Windows&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x7684;ANSI&#x4EE3;&#x7801;&#x9875;&#x3002; </td>
 </tr>
 <tr>
 <td>CP_MACCP</td>
-<td>Mac系统代码页。 </td>
+<td>Mac&#x7CFB;&#x7EDF;&#x4EE3;&#x7801;&#x9875;&#x3002; </td>
 </tr>
 <tr>
 <td>CP_ACP</td>
-<td>OEM系统代码页。 </td>
+<td>OEM&#x7CFB;&#x7EDF;&#x4EE3;&#x7801;&#x9875;&#x3002; </td>
 </tr>
 <tr>
 <td>CP_SYMBOL</td>
-<td>符号字符集。 </td>
+<td>&#x7B26;&#x53F7;&#x5B57;&#x7B26;&#x96C6;&#x3002; </td>
 </tr>
 <tr>
 <td>CP_THREAD_ACP</td>
-<td>当前Windows线程的ANSI代码页。 </td>
+<td>&#x5F53;&#x524D;Windows&#x7EBF;&#x7A0B;&#x7684;ANSI&#x4EE3;&#x7801;&#x9875;&#x3002; </td>
 </tr>
 <tr>
 <td>CP_UTF7</td>
-<td>使用UTF-7。 </td>
+<td>&#x4F7F;&#x7528;UTF-7&#x3002; </td>
 </tr>
 <tr>
 <td>CP_UTF8</td>
-<td>使用UTF-8。 </td>
+<td>&#x4F7F;&#x7528;UTF-8&#x3002; </td>
 </tr>
 </tbody>
 </table>
 </div>
-<p><em>dwFlags</em>设定转换类型。缺省值为MB_PRECOMPOSED，对于UTF-8必须为0或MB_ERR_INVALID_CHARS，此参数作用较小，数值表就不给出了。</p>
-<p><em>lpMultiByteStr</em>指向一个要转换的字符串。</p>
-<p><em>cbMultiByte</em>指定长度，如果lpMultiByteStr指向的字符串为空结束，此参数可设为-1。如果设为-1，函数将处理包括终止空字符在内的所有字符。我们可以用strlen来自行获得长度。</p>
-<p><em>lpWideCharStr</em>为指向接收缓冲器的指针。</p>
-<p><em>cchWideChar</em>为lpWideCharStr指示的缓冲器的大小(以字符为单位)。如果此值为0不使用lpWideCharStr缓冲区。</p>
-<p><em>Return Value</em>即返回值，返回写入到缓冲器的字符数。如果cchWideChar为0则返回缓冲器所需大小(以字符为单位)。</p>
-<p>我们第一次调用此函数时应将cchWideChar设为0，并记录函数返回值，第二次调用时将cchWideChar设为此值。</p>
-<h4 id="WideCharToMultiByte"><a href="#WideCharToMultiByte" class="headerlink" title="WideCharToMultiByte"></a>WideCharToMultiByte</h4><p>与MultiByteToWideChar恰恰相反，但多两个参数，此函数可将UTF-16(宽字符)字符串映射到新字符串。</p>
+<p><em>dwFlags</em>&#x8BBE;&#x5B9A;&#x8F6C;&#x6362;&#x7C7B;&#x578B;&#x3002;&#x7F3A;&#x7701;&#x503C;&#x4E3A;MB_PRECOMPOSED&#xFF0C;&#x5BF9;&#x4E8E;UTF-8&#x5FC5;&#x987B;&#x4E3A;0&#x6216;MB_ERR_INVALID_CHARS&#xFF0C;&#x6B64;&#x53C2;&#x6570;&#x4F5C;&#x7528;&#x8F83;&#x5C0F;&#xFF0C;&#x6570;&#x503C;&#x8868;&#x5C31;&#x4E0D;&#x7ED9;&#x51FA;&#x4E86;&#x3002;</p>
+<p><em>lpMultiByteStr</em>&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x8981;&#x8F6C;&#x6362;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p><em>cbMultiByte</em>&#x6307;&#x5B9A;&#x957F;&#x5EA6;&#xFF0C;&#x5982;&#x679C;lpMultiByteStr&#x6307;&#x5411;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E3A;&#x7A7A;&#x7ED3;&#x675F;&#xFF0C;&#x6B64;&#x53C2;&#x6570;&#x53EF;&#x8BBE;&#x4E3A;-1&#x3002;&#x5982;&#x679C;&#x8BBE;&#x4E3A;-1&#xFF0C;&#x51FD;&#x6570;&#x5C06;&#x5904;&#x7406;&#x5305;&#x62EC;&#x7EC8;&#x6B62;&#x7A7A;&#x5B57;&#x7B26;&#x5728;&#x5185;&#x7684;&#x6240;&#x6709;&#x5B57;&#x7B26;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;strlen&#x6765;&#x81EA;&#x884C;&#x83B7;&#x5F97;&#x957F;&#x5EA6;&#x3002;</p>
+<p><em>lpWideCharStr</em>&#x4E3A;&#x6307;&#x5411;&#x63A5;&#x6536;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x6307;&#x9488;&#x3002;</p>
+<p><em>cchWideChar</em>&#x4E3A;lpWideCharStr&#x6307;&#x793A;&#x7684;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x5927;&#x5C0F;(&#x4EE5;&#x5B57;&#x7B26;&#x4E3A;&#x5355;&#x4F4D;)&#x3002;&#x5982;&#x679C;&#x6B64;&#x503C;&#x4E3A;0&#x4E0D;&#x4F7F;&#x7528;lpWideCharStr&#x7F13;&#x51B2;&#x533A;&#x3002;</p>
+<p><em>Return Value</em>&#x5373;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x8FD4;&#x56DE;&#x5199;&#x5165;&#x5230;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x5B57;&#x7B26;&#x6570;&#x3002;&#x5982;&#x679C;cchWideChar&#x4E3A;0&#x5219;&#x8FD4;&#x56DE;&#x7F13;&#x51B2;&#x5668;&#x6240;&#x9700;&#x5927;&#x5C0F;(&#x4EE5;&#x5B57;&#x7B26;&#x4E3A;&#x5355;&#x4F4D;)&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;&#x6B64;&#x51FD;&#x6570;&#x65F6;&#x5E94;&#x5C06;cchWideChar&#x8BBE;&#x4E3A;0&#xFF0C;&#x5E76;&#x8BB0;&#x5F55;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x7B2C;&#x4E8C;&#x6B21;&#x8C03;&#x7528;&#x65F6;&#x5C06;cchWideChar&#x8BBE;&#x4E3A;&#x6B64;&#x503C;&#x3002;</p>
+<h4><span id="widechartomultibyte">WideCharToMultiByte</span><a href="#widechartomultibyte" class="header-anchor"> </a></h4><p>&#x4E0E;MultiByteToWideChar&#x6070;&#x6070;&#x76F8;&#x53CD;&#xFF0C;&#x4F46;&#x591A;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x6B64;&#x51FD;&#x6570;&#x53EF;&#x5C06;UTF-16(&#x5BBD;&#x5B57;&#x7B26;)&#x5B57;&#x7B26;&#x4E32;&#x6620;&#x5C04;&#x5230;&#x65B0;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
 <pre><code class="lang-cpp">int WINAPI WideCharToMultiByte(
     UINT CodePage, 
     DWORD dwFlags, 
@@ -413,22 +429,22 @@
     LPBOOL lpUsedDefaultChar
     );
 </code></pre>
-<p><em>CodePage</em>为指定执行转换的字符集。可选数值与MultiByteToWideChar相同，我们这里选择CP_ACP。</p>
-<p><em>dwFlags</em>设定转换类型。设为0即可。</p>
-<p><em>lpWideCharStr</em>指向一个要转换的字符串。</p>
-<p><em>cchWideChar</em>指定长度。对于宽字符，自行使用wcslen来获得。</p>
-<p><em>lpMultiByteStr</em>为指向接收缓冲器的指针。</p>
-<p><em>cbMultiByte</em>为lpMultiByteStr指示的缓冲器的大小(以字符为单位)。</p>
-<p><em>lpDefaultChar</em>为指向另一个接收缓冲器的指针，如果某个字符不能在指定的代码页中表示将使用此缓冲器。我们不需要，设为NULL即可。</p>
-<p><em>lpUsedDefaultChar</em>为一个指向BOOL变量的指针。如果使用了lpDefaultChar将被设为TRUE，否则为FALSE。我们也设为NULL即可。</p>
-<p><em>Return Value</em>即返回值，与MultiByteToWideChar相类比。</p>
-<p>调用两次，步骤也与MultiByteToWideChar相似。</p>
-<h4 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h4><p>网上给的代码没有释放内存的语句，可能会造成内存泄露。</p>
-<p><em>delete</em>语句使用过指针都知道，释放一个指针指向的内存。</p>
-<p><em>delete[]</em>语句释放一个数组指针指向的内存。</p>
-<p>如果想深入了解其中的原理，可以自行查阅。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>这一节简单介绍了编码的知识和使用C++进行编码转换的代码。我们这个项目深入了解编码系统，所介绍的也不过是冰山一角。</p>
-<p>现在大家已经可以自己写代码对网页进行简单分析了。下一节我打算介绍关于WinHTTP的内容和用途。</p>
+<p><em>CodePage</em>&#x4E3A;&#x6307;&#x5B9A;&#x6267;&#x884C;&#x8F6C;&#x6362;&#x7684;&#x5B57;&#x7B26;&#x96C6;&#x3002;&#x53EF;&#x9009;&#x6570;&#x503C;&#x4E0E;MultiByteToWideChar&#x76F8;&#x540C;&#xFF0C;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x9009;&#x62E9;CP_ACP&#x3002;</p>
+<p><em>dwFlags</em>&#x8BBE;&#x5B9A;&#x8F6C;&#x6362;&#x7C7B;&#x578B;&#x3002;&#x8BBE;&#x4E3A;0&#x5373;&#x53EF;&#x3002;</p>
+<p><em>lpWideCharStr</em>&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x8981;&#x8F6C;&#x6362;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p><em>cchWideChar</em>&#x6307;&#x5B9A;&#x957F;&#x5EA6;&#x3002;&#x5BF9;&#x4E8E;&#x5BBD;&#x5B57;&#x7B26;&#xFF0C;&#x81EA;&#x884C;&#x4F7F;&#x7528;wcslen&#x6765;&#x83B7;&#x5F97;&#x3002;</p>
+<p><em>lpMultiByteStr</em>&#x4E3A;&#x6307;&#x5411;&#x63A5;&#x6536;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x6307;&#x9488;&#x3002;</p>
+<p><em>cbMultiByte</em>&#x4E3A;lpMultiByteStr&#x6307;&#x793A;&#x7684;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x5927;&#x5C0F;(&#x4EE5;&#x5B57;&#x7B26;&#x4E3A;&#x5355;&#x4F4D;)&#x3002;</p>
+<p><em>lpDefaultChar</em>&#x4E3A;&#x6307;&#x5411;&#x53E6;&#x4E00;&#x4E2A;&#x63A5;&#x6536;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x5982;&#x679C;&#x67D0;&#x4E2A;&#x5B57;&#x7B26;&#x4E0D;&#x80FD;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x4EE3;&#x7801;&#x9875;&#x4E2D;&#x8868;&#x793A;&#x5C06;&#x4F7F;&#x7528;&#x6B64;&#x7F13;&#x51B2;&#x5668;&#x3002;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#xFF0C;&#x8BBE;&#x4E3A;NULL&#x5373;&#x53EF;&#x3002;</p>
+<p><em>lpUsedDefaultChar</em>&#x4E3A;&#x4E00;&#x4E2A;&#x6307;&#x5411;BOOL&#x53D8;&#x91CF;&#x7684;&#x6307;&#x9488;&#x3002;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4E86;lpDefaultChar&#x5C06;&#x88AB;&#x8BBE;&#x4E3A;TRUE&#xFF0C;&#x5426;&#x5219;&#x4E3A;FALSE&#x3002;&#x6211;&#x4EEC;&#x4E5F;&#x8BBE;&#x4E3A;NULL&#x5373;&#x53EF;&#x3002;</p>
+<p><em>Return Value</em>&#x5373;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x4E0E;MultiByteToWideChar&#x76F8;&#x7C7B;&#x6BD4;&#x3002;</p>
+<p>&#x8C03;&#x7528;&#x4E24;&#x6B21;&#xFF0C;&#x6B65;&#x9AA4;&#x4E5F;&#x4E0E;MultiByteToWideChar&#x76F8;&#x4F3C;&#x3002;</p>
+<h4><span id="delete">delete</span><a href="#delete" class="header-anchor"> </a></h4><p>&#x7F51;&#x4E0A;&#x7ED9;&#x7684;&#x4EE3;&#x7801;&#x6CA1;&#x6709;&#x91CA;&#x653E;&#x5185;&#x5B58;&#x7684;&#x8BED;&#x53E5;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x5185;&#x5B58;&#x6CC4;&#x9732;&#x3002;</p>
+<p><em>delete</em>&#x8BED;&#x53E5;&#x4F7F;&#x7528;&#x8FC7;&#x6307;&#x9488;&#x90FD;&#x77E5;&#x9053;&#xFF0C;&#x91CA;&#x653E;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x5185;&#x5B58;&#x3002;</p>
+<p><em>delete[]</em>&#x8BED;&#x53E5;&#x91CA;&#x653E;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x5185;&#x5B58;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x60F3;&#x6DF1;&#x5165;&#x4E86;&#x89E3;&#x5176;&#x4E2D;&#x7684;&#x539F;&#x7406;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x67E5;&#x9605;&#x3002;</p>
+<h3><span id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</span><a href="#&#x5C0F;&#x7ED3;" class="header-anchor"> </a></h3><p>&#x8FD9;&#x4E00;&#x8282;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E86;&#x7F16;&#x7801;&#x7684;&#x77E5;&#x8BC6;&#x548C;&#x4F7F;&#x7528;C++&#x8FDB;&#x884C;&#x7F16;&#x7801;&#x8F6C;&#x6362;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x6211;&#x4EEC;&#x8FD9;&#x4E2A;&#x9879;&#x76EE;&#x6DF1;&#x5165;&#x4E86;&#x89E3;&#x7F16;&#x7801;&#x7CFB;&#x7EDF;&#xFF0C;&#x6240;&#x4ECB;&#x7ECD;&#x7684;&#x4E5F;&#x4E0D;&#x8FC7;&#x662F;&#x51B0;&#x5C71;&#x4E00;&#x89D2;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x5927;&#x5BB6;&#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5199;&#x4EE3;&#x7801;&#x5BF9;&#x7F51;&#x9875;&#x8FDB;&#x884C;&#x7B80;&#x5355;&#x5206;&#x6790;&#x4E86;&#x3002;&#x4E0B;&#x4E00;&#x8282;&#x6211;&#x6253;&#x7B97;&#x4ECB;&#x7ECD;&#x5173;&#x4E8E;WinHTTP&#x7684;&#x5185;&#x5BB9;&#x548C;&#x7528;&#x9014;&#x3002;</p>
 
   </article>
   
@@ -474,7 +490,7 @@
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385146"></script>
+<script src="/js/app.js?v=1573122200182"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

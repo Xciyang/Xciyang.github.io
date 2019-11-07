@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="【LuoguP3396】哈希冲突题目链接: https://www.luogu.org/problemnew/show/P3396 前言话说快暑假了…但是好像没有几天假期啊。 然后期末考试之际做了找到题，发现暴力好像都能用分块优化。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T11:58:57.276Z">
+<meta property="og:updated_time" content="2019-11-07T09:07:06.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LuoguP3396 - 哈希冲突">
 <meta name="twitter:description" content="【LuoguP3396】哈希冲突题目链接: https://www.luogu.org/problemnew/show/P3396 前言话说快暑假了…但是好像没有几天假期啊。 然后期末考试之际做了找到题，发现暴力好像都能用分块优化。">
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385094">
+  <link rel="stylesheet" href="/css/style.css?v=1573122199971">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -249,8 +249,8 @@
   </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年07月09日</a>
-    <a><i class="nexmoefont icon-areachart"></i>635 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>691 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -259,18 +259,29 @@
     
   </div>
   <article id="article">
-    <p>【LuoguP3396】哈希冲突<br>题目链接: <a href="https://www.luogu.org/problemnew/show/P3396" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P3396</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>话说快暑假了…但是好像没有几天假期啊。</p>
-<p>然后期末考试之际做了找到题，发现暴力好像都能用分块优化。</p>
+    <p>&#x3010;LuoguP3396&#x3011;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;: <a href="https://www.luogu.org/problemnew/show/P3396" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P3396</a></p>
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x8BDD;&#x8BF4;&#x5FEB;&#x6691;&#x5047;&#x4E86;&#x2026;&#x4F46;&#x662F;&#x597D;&#x50CF;&#x6CA1;&#x6709;&#x51E0;&#x5929;&#x5047;&#x671F;&#x554A;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x671F;&#x672B;&#x8003;&#x8BD5;&#x4E4B;&#x9645;&#x505A;&#x4E86;&#x627E;&#x5230;&#x9898;&#xFF0C;&#x53D1;&#x73B0;&#x66B4;&#x529B;&#x597D;&#x50CF;&#x90FD;&#x80FD;&#x7528;&#x5206;&#x5757;&#x4F18;&#x5316;&#x3002;</p>
 <a id="more"></a>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>读完题目，发现想不到任何复杂度较低思路。对于几乎不接触分块的我，数据范围似乎没有什么用。</p>
-<p>然后就打开了题解，才知道可以根号算法（不指分块），不过我统一把用sqrt函数的解法都叫做分块。</p>
-<p>暴力的复杂度大概是$ O(mn) $ ，每次查询我们都需要$ O(n) $ 来遍历数组，修改是$ O(1) $。如果预处理的话那更玄学，每次查询时$ O(1) $，而修改是$ O(n^2) $ ，那么很有可能变成$ O(n^2m) $算法。</p>
-<p>所以考虑只预处理$ \sqrt{n} $的模数，复杂度为$ O(n \sqrt{n}) $。</p>
-<p>对于查询，如果查询的模数不超过$ \sqrt{n} $那么可以直接输出答案。如果模数超过$ \sqrt{n} $，我们只需要枚举模$ p $后的结果，把他们加起来，那么复杂度仍为$ \frac{n}{\sqrt{n}} = \sqrt{n} $。</p>
-<p>对于修改，与预处理类似，还是只修改$ \sqrt{n} $的模数，由于只是单点修改，所以少了一层循环，那么复杂度为$ O(\sqrt{n}) $。</p>
-<p>总复杂度最大是$ O((m + n)\sqrt{n}) $，然后就可以写代码了，代码极为简单，感觉像是暴力。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x5206;&#x6790;">&#x5206;&#x6790;</a></li>
+<li><a href="#&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</a></li>
+<li><a href="#&#x540E;&#x8BB0;">&#x540E;&#x8BB0;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x5206;&#x6790;">&#x5206;&#x6790;</span><a href="#&#x5206;&#x6790;" class="header-anchor"> </a></h3><p>&#x8BFB;&#x5B8C;&#x9898;&#x76EE;&#xFF0C;&#x53D1;&#x73B0;&#x60F3;&#x4E0D;&#x5230;&#x4EFB;&#x4F55;&#x590D;&#x6742;&#x5EA6;&#x8F83;&#x4F4E;&#x601D;&#x8DEF;&#x3002;&#x5BF9;&#x4E8E;&#x51E0;&#x4E4E;&#x4E0D;&#x63A5;&#x89E6;&#x5206;&#x5757;&#x7684;&#x6211;&#xFF0C;&#x6570;&#x636E;&#x8303;&#x56F4;&#x4F3C;&#x4E4E;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x7528;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x5C31;&#x6253;&#x5F00;&#x4E86;&#x9898;&#x89E3;&#xFF0C;&#x624D;&#x77E5;&#x9053;&#x53EF;&#x4EE5;&#x6839;&#x53F7;&#x7B97;&#x6CD5;&#xFF08;&#x4E0D;&#x6307;&#x5206;&#x5757;&#xFF09;&#xFF0C;&#x4E0D;&#x8FC7;&#x6211;&#x7EDF;&#x4E00;&#x628A;&#x7528;sqrt&#x51FD;&#x6570;&#x7684;&#x89E3;&#x6CD5;&#x90FD;&#x53EB;&#x505A;&#x5206;&#x5757;&#x3002;</p>
+<p>&#x66B4;&#x529B;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x5927;&#x6982;&#x662F;$ O(mn) $ &#xFF0C;&#x6BCF;&#x6B21;&#x67E5;&#x8BE2;&#x6211;&#x4EEC;&#x90FD;&#x9700;&#x8981;$ O(n) $ &#x6765;&#x904D;&#x5386;&#x6570;&#x7EC4;&#xFF0C;&#x4FEE;&#x6539;&#x662F;$ O(1) $&#x3002;&#x5982;&#x679C;&#x9884;&#x5904;&#x7406;&#x7684;&#x8BDD;&#x90A3;&#x66F4;&#x7384;&#x5B66;&#xFF0C;&#x6BCF;&#x6B21;&#x67E5;&#x8BE2;&#x65F6;$ O(1) $&#xFF0C;&#x800C;&#x4FEE;&#x6539;&#x662F;$ O(n^2) $ &#xFF0C;&#x90A3;&#x4E48;&#x5F88;&#x6709;&#x53EF;&#x80FD;&#x53D8;&#x6210;$ O(n^2m) $&#x7B97;&#x6CD5;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x8003;&#x8651;&#x53EA;&#x9884;&#x5904;&#x7406;$ \sqrt{n} $&#x7684;&#x6A21;&#x6570;&#xFF0C;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$ O(n \sqrt{n}) $&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x67E5;&#x8BE2;&#xFF0C;&#x5982;&#x679C;&#x67E5;&#x8BE2;&#x7684;&#x6A21;&#x6570;&#x4E0D;&#x8D85;&#x8FC7;$ \sqrt{n} $&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8F93;&#x51FA;&#x7B54;&#x6848;&#x3002;&#x5982;&#x679C;&#x6A21;&#x6570;&#x8D85;&#x8FC7;$ \sqrt{n} $&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x679A;&#x4E3E;&#x6A21;$ p $&#x540E;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x628A;&#x4ED6;&#x4EEC;&#x52A0;&#x8D77;&#x6765;&#xFF0C;&#x90A3;&#x4E48;&#x590D;&#x6742;&#x5EA6;&#x4ECD;&#x4E3A;$ \frac{n}{\sqrt{n}} = \sqrt{n} $&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x4FEE;&#x6539;&#xFF0C;&#x4E0E;&#x9884;&#x5904;&#x7406;&#x7C7B;&#x4F3C;&#xFF0C;&#x8FD8;&#x662F;&#x53EA;&#x4FEE;&#x6539;$ \sqrt{n} $&#x7684;&#x6A21;&#x6570;&#xFF0C;&#x7531;&#x4E8E;&#x53EA;&#x662F;&#x5355;&#x70B9;&#x4FEE;&#x6539;&#xFF0C;&#x6240;&#x4EE5;&#x5C11;&#x4E86;&#x4E00;&#x5C42;&#x5FAA;&#x73AF;&#xFF0C;&#x90A3;&#x4E48;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$ O(\sqrt{n}) $&#x3002;</p>
+<p>&#x603B;&#x590D;&#x6742;&#x5EA6;&#x6700;&#x5927;&#x662F;$ O((m + n)\sqrt{n}) $&#xFF0C;&#x7136;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x5199;&#x4EE3;&#x7801;&#x4E86;&#xFF0C;&#x4EE3;&#x7801;&#x6781;&#x4E3A;&#x7B80;&#x5355;&#xFF0C;&#x611F;&#x89C9;&#x50CF;&#x662F;&#x66B4;&#x529B;&#x3002;</p>
+<h3><span id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</span><a href="#&#x4EE3;&#x7801;" class="header-anchor"> </a></h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;math.h&gt;
 using namespace std;
@@ -283,7 +294,7 @@ int main() {
         for(int j= 1; j &lt;= n; j++) sum[i][j % i]+= v[j];
     while(m--) {
         cin &gt;&gt; cmd &gt;&gt; tmpx &gt;&gt; tmpy;
-        if(cmd == &#39;A&#39;) {
+        if(cmd == &apos;A&apos;) {
             if(tmpx &lt;= nb)
                 cout &lt;&lt; sum[tmpx][tmpy] &lt;&lt; endl;
             else {
@@ -300,8 +311,8 @@ int main() {
     return 0;
 }
 </code></pre>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>因为之前根号算法做比较少，而这道题给我很大的启示，以后一些只能想到暴力的题可以尝试使用根号来优化。</p>
-<p>听说这题不用根号，而使用1/3次方作为块的大小效率更高。但是不会证明，而且复杂度比较玄学，可能只适用这一道题的数据吧。</p>
+<h3><span id="&#x540E;&#x8BB0;">&#x540E;&#x8BB0;</span><a href="#&#x540E;&#x8BB0;" class="header-anchor"> </a></h3><p>&#x56E0;&#x4E3A;&#x4E4B;&#x524D;&#x6839;&#x53F7;&#x7B97;&#x6CD5;&#x505A;&#x6BD4;&#x8F83;&#x5C11;&#xFF0C;&#x800C;&#x8FD9;&#x9053;&#x9898;&#x7ED9;&#x6211;&#x5F88;&#x5927;&#x7684;&#x542F;&#x793A;&#xFF0C;&#x4EE5;&#x540E;&#x4E00;&#x4E9B;&#x53EA;&#x80FD;&#x60F3;&#x5230;&#x66B4;&#x529B;&#x7684;&#x9898;&#x53EF;&#x4EE5;&#x5C1D;&#x8BD5;&#x4F7F;&#x7528;&#x6839;&#x53F7;&#x6765;&#x4F18;&#x5316;&#x3002;</p>
+<p>&#x542C;&#x8BF4;&#x8FD9;&#x9898;&#x4E0D;&#x7528;&#x6839;&#x53F7;&#xFF0C;&#x800C;&#x4F7F;&#x7528;1/3&#x6B21;&#x65B9;&#x4F5C;&#x4E3A;&#x5757;&#x7684;&#x5927;&#x5C0F;&#x6548;&#x7387;&#x66F4;&#x9AD8;&#x3002;&#x4F46;&#x662F;&#x4E0D;&#x4F1A;&#x8BC1;&#x660E;&#xFF0C;&#x800C;&#x4E14;&#x590D;&#x6742;&#x5EA6;&#x6BD4;&#x8F83;&#x7384;&#x5B66;&#xFF0C;&#x53EF;&#x80FD;&#x53EA;&#x9002;&#x7528;&#x8FD9;&#x4E00;&#x9053;&#x9898;&#x7684;&#x6570;&#x636E;&#x5427;&#x3002;</p>
 
   </article>
   
@@ -347,7 +358,7 @@ int main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385104"></script>
+<script src="/js/app.js?v=1573122199981"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 

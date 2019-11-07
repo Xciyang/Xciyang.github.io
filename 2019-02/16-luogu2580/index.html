@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://xciyang.github.io/images/P2580_1.png">
 <meta property="og:image" content="https://xciyang.github.io/images/P2580_2.png">
 <meta property="og:image" content="https://xciyang.github.io/images/P2580_3.png">
-<meta property="og:updated_time" content="2019-08-15T11:55:35.966Z">
+<meta property="og:updated_time" content="2019-11-07T09:06:59.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LuoguP2580 - 于是他错误的点名开始了">
 <meta name="twitter:description" content="【LuoguP2580】于是他错误的点名开始了题目链接: https://www.luogu.org/problemnew/show/P2580 前言这篇题解原来是我放到Luogu上的，打算搬过来，原地址: https://ciyang.blog.luogu.org/solution-p2580 当时是自己闲得无聊自创的算法，跑了最优解第3，Trie树中最快了 不过后来Luogu上的dalao告诉">
@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1571960385315">
+  <link rel="stylesheet" href="/css/style.css?v=1573122200212">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -254,7 +254,7 @@
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年02月16日</a>
     <a><i class="nexmoefont icon-areachart"></i>2.2k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 10 分钟</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 13 分钟</a>
     
     <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
     
@@ -263,124 +263,141 @@
     
   </div>
   <article id="article">
-    <p>【LuoguP2580】于是他错误的点名开始了<br>题目链接: <a href="https://www.luogu.org/problemnew/show/P2580" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P2580</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这篇题解原来是我放到Luogu上的，打算搬过来，原地址: <a href="https://ciyang.blog.luogu.org/solution-p2580" target="_blank" rel="noopener">https://ciyang.blog.luogu.org/solution-p2580</a></p>
-<p>当时是自己闲得无聊自创的算法，跑了最优解第3，Trie树中最快了</p>
-<p>不过后来Luogu上的dalao告诉我这个是边压Trie树，因此<del>人生失去意义</del></p>
-<p>此题解非正常字典树,推荐先学习普通的字典树并了解指针的使用</p>
-<p>代码还是之前的代码,名为Lumpy_Tnode.</p>
+    <p>&#x3010;LuoguP2580&#x3011;&#x4E8E;&#x662F;&#x4ED6;&#x9519;&#x8BEF;&#x7684;&#x70B9;&#x540D;&#x5F00;&#x59CB;&#x4E86;<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;: <a href="https://www.luogu.org/problemnew/show/P2580" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P2580</a></p>
+<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x8FD9;&#x7BC7;&#x9898;&#x89E3;&#x539F;&#x6765;&#x662F;&#x6211;&#x653E;&#x5230;Luogu&#x4E0A;&#x7684;&#xFF0C;&#x6253;&#x7B97;&#x642C;&#x8FC7;&#x6765;&#xFF0C;&#x539F;&#x5730;&#x5740;: <a href="https://ciyang.blog.luogu.org/solution-p2580" target="_blank" rel="noopener">https://ciyang.blog.luogu.org/solution-p2580</a></p>
+<p>&#x5F53;&#x65F6;&#x662F;&#x81EA;&#x5DF1;&#x95F2;&#x5F97;&#x65E0;&#x804A;&#x81EA;&#x521B;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x8DD1;&#x4E86;&#x6700;&#x4F18;&#x89E3;&#x7B2C;3&#xFF0C;Trie&#x6811;&#x4E2D;&#x6700;&#x5FEB;&#x4E86;</p>
+<p>&#x4E0D;&#x8FC7;&#x540E;&#x6765;Luogu&#x4E0A;&#x7684;dalao&#x544A;&#x8BC9;&#x6211;&#x8FD9;&#x4E2A;&#x662F;&#x8FB9;&#x538B;Trie&#x6811;&#xFF0C;&#x56E0;&#x6B64;<del>&#x4EBA;&#x751F;&#x5931;&#x53BB;&#x610F;&#x4E49;</del></p>
+<p>&#x6B64;&#x9898;&#x89E3;&#x975E;&#x6B63;&#x5E38;&#x5B57;&#x5178;&#x6811;,&#x63A8;&#x8350;&#x5148;&#x5B66;&#x4E60;&#x666E;&#x901A;&#x7684;&#x5B57;&#x5178;&#x6811;&#x5E76;&#x4E86;&#x89E3;&#x6307;&#x9488;&#x7684;&#x4F7F;&#x7528;</p>
+<p>&#x4EE3;&#x7801;&#x8FD8;&#x662F;&#x4E4B;&#x524D;&#x7684;&#x4EE3;&#x7801;,&#x540D;&#x4E3A;Lumpy_Tnode.</p>
 <a id="more"></a>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>树上的边存储字符串,代表节点的单独前缀.</p>
-<p>写题解的上午有了灵感,然后根据思路模拟了一下,可行性挺高的.代码上比普通的复杂一些,我使用了指针.    </p>
+<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#&#x7B80;&#x4ECB;">&#x7B80;&#x4ECB;</a></li>
+<li><a href="#&#x8BC1;&#x660E;">&#x8BC1;&#x660E;</a></li>
+<li><a href="#&#x89E3;&#x6790;">&#x89E3;&#x6790;</a><ul>
+<li><a href="#&#x63D2;&#x5165;&#x64CD;&#x4F5C;">&#x63D2;&#x5165;&#x64CD;&#x4F5C;</a></li>
+<li><a href="#&#x67E5;&#x627E;&#x64CD;&#x4F5C;">&#x67E5;&#x627E;&#x64CD;&#x4F5C;</a></li>
+</ul>
+</li>
+<li><a href="#&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</a></li>
+<li><a href="#&#x540E;&#x7EED;">&#x540E;&#x7EED;</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h3><span id="&#x7B80;&#x4ECB;">&#x7B80;&#x4ECB;</span><a href="#&#x7B80;&#x4ECB;" class="header-anchor"> </a></h3><p>&#x6811;&#x4E0A;&#x7684;&#x8FB9;&#x5B58;&#x50A8;&#x5B57;&#x7B26;&#x4E32;,&#x4EE3;&#x8868;&#x8282;&#x70B9;&#x7684;&#x5355;&#x72EC;&#x524D;&#x7F00;.</p>
+<p>&#x5199;&#x9898;&#x89E3;&#x7684;&#x4E0A;&#x5348;&#x6709;&#x4E86;&#x7075;&#x611F;,&#x7136;&#x540E;&#x6839;&#x636E;&#x601D;&#x8DEF;&#x6A21;&#x62DF;&#x4E86;&#x4E00;&#x4E0B;,&#x53EF;&#x884C;&#x6027;&#x633A;&#x9AD8;&#x7684;.&#x4EE3;&#x7801;&#x4E0A;&#x6BD4;&#x666E;&#x901A;&#x7684;&#x590D;&#x6742;&#x4E00;&#x4E9B;,&#x6211;&#x4F7F;&#x7528;&#x4E86;&#x6307;&#x9488;.    </p>
 <p><img src="/images/P2580_1.png" alt="Example"></p>
-<p>按任意顺序插入abcd,abcde,bcde,bcdf四个字符串的Trie树长这样</p>
-<p>红色节点表示已插入字符串的结尾节点</p>
-<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>通过与比较普通指针版和非指针版Trie来证明一下可行性.  </p>
-<p>已知一个节点要保存26条边的指针</p>
-<p>指针版Trie可使用动态内存,缺点是每个节点只保存一个字符,会有大量边的空指针来占用额外的内存,且new节点多了,内存分配常数较大.</p>
-<p>为了减少常数,可以自己写内存池分配,但无论是什么数据,只要稍带随机性形成链,就会有很多只有一个子节点的节点,这无疑有25个空指针浪费内存.</p>
-<p>非指针版常数小,但空间分配也是很大的问题,多了可能MLE,少了RE.然而仍有很多一条链的树,空间最大浪费N*25啊…<del>先不说影响美观</del>而且时间复杂度依然很高,毕竟查询也是O(N).</p>
-<p>边压Trie的复杂度是会改变的,就是对一条链情况的优化,理论最大时间复杂度是O(N)带有一些常数,不考虑常数情况下,永远小于等于普通Trie.   </p>
-<p>边压Trie巧妙利用字符串指针,赋值、继承等操作只需要指针或长度变化就好了,因此插入最小复杂度是O(1),空间上也少了很多空指针. </p>
-<p>太多证明不如一句代码,我放上代码继续分析. </p>
-<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>节点的结构体,原来的char变成了length和字符串指针:  </p>
+<p>&#x6309;&#x4EFB;&#x610F;&#x987A;&#x5E8F;&#x63D2;&#x5165;abcd,abcde,bcde,bcdf&#x56DB;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7684;Trie&#x6811;&#x957F;&#x8FD9;&#x6837;</p>
+<p>&#x7EA2;&#x8272;&#x8282;&#x70B9;&#x8868;&#x793A;&#x5DF2;&#x63D2;&#x5165;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x7ED3;&#x5C3E;&#x8282;&#x70B9;</p>
+<h3><span id="&#x8BC1;&#x660E;">&#x8BC1;&#x660E;</span><a href="#&#x8BC1;&#x660E;" class="header-anchor"> </a></h3><p>&#x901A;&#x8FC7;&#x4E0E;&#x6BD4;&#x8F83;&#x666E;&#x901A;&#x6307;&#x9488;&#x7248;&#x548C;&#x975E;&#x6307;&#x9488;&#x7248;Trie&#x6765;&#x8BC1;&#x660E;&#x4E00;&#x4E0B;&#x53EF;&#x884C;&#x6027;.  </p>
+<p>&#x5DF2;&#x77E5;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x8981;&#x4FDD;&#x5B58;26&#x6761;&#x8FB9;&#x7684;&#x6307;&#x9488;</p>
+<p>&#x6307;&#x9488;&#x7248;Trie&#x53EF;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x5185;&#x5B58;,&#x7F3A;&#x70B9;&#x662F;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x53EA;&#x4FDD;&#x5B58;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;,&#x4F1A;&#x6709;&#x5927;&#x91CF;&#x8FB9;&#x7684;&#x7A7A;&#x6307;&#x9488;&#x6765;&#x5360;&#x7528;&#x989D;&#x5916;&#x7684;&#x5185;&#x5B58;,&#x4E14;new&#x8282;&#x70B9;&#x591A;&#x4E86;,&#x5185;&#x5B58;&#x5206;&#x914D;&#x5E38;&#x6570;&#x8F83;&#x5927;.</p>
+<p>&#x4E3A;&#x4E86;&#x51CF;&#x5C11;&#x5E38;&#x6570;,&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5199;&#x5185;&#x5B58;&#x6C60;&#x5206;&#x914D;,&#x4F46;&#x65E0;&#x8BBA;&#x662F;&#x4EC0;&#x4E48;&#x6570;&#x636E;,&#x53EA;&#x8981;&#x7A0D;&#x5E26;&#x968F;&#x673A;&#x6027;&#x5F62;&#x6210;&#x94FE;,&#x5C31;&#x4F1A;&#x6709;&#x5F88;&#x591A;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5B50;&#x8282;&#x70B9;&#x7684;&#x8282;&#x70B9;,&#x8FD9;&#x65E0;&#x7591;&#x6709;25&#x4E2A;&#x7A7A;&#x6307;&#x9488;&#x6D6A;&#x8D39;&#x5185;&#x5B58;.</p>
+<p>&#x975E;&#x6307;&#x9488;&#x7248;&#x5E38;&#x6570;&#x5C0F;,&#x4F46;&#x7A7A;&#x95F4;&#x5206;&#x914D;&#x4E5F;&#x662F;&#x5F88;&#x5927;&#x7684;&#x95EE;&#x9898;,&#x591A;&#x4E86;&#x53EF;&#x80FD;MLE,&#x5C11;&#x4E86;RE.&#x7136;&#x800C;&#x4ECD;&#x6709;&#x5F88;&#x591A;&#x4E00;&#x6761;&#x94FE;&#x7684;&#x6811;,&#x7A7A;&#x95F4;&#x6700;&#x5927;&#x6D6A;&#x8D39;N*25&#x554A;&#x2026;<del>&#x5148;&#x4E0D;&#x8BF4;&#x5F71;&#x54CD;&#x7F8E;&#x89C2;</del>&#x800C;&#x4E14;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4F9D;&#x7136;&#x5F88;&#x9AD8;,&#x6BD5;&#x7ADF;&#x67E5;&#x8BE2;&#x4E5F;&#x662F;O(N).</p>
+<p>&#x8FB9;&#x538B;Trie&#x7684;&#x590D;&#x6742;&#x5EA6;&#x662F;&#x4F1A;&#x6539;&#x53D8;&#x7684;,&#x5C31;&#x662F;&#x5BF9;&#x4E00;&#x6761;&#x94FE;&#x60C5;&#x51B5;&#x7684;&#x4F18;&#x5316;,&#x7406;&#x8BBA;&#x6700;&#x5927;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F;O(N)&#x5E26;&#x6709;&#x4E00;&#x4E9B;&#x5E38;&#x6570;,&#x4E0D;&#x8003;&#x8651;&#x5E38;&#x6570;&#x60C5;&#x51B5;&#x4E0B;,&#x6C38;&#x8FDC;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E;&#x666E;&#x901A;Trie.   </p>
+<p>&#x8FB9;&#x538B;Trie&#x5DE7;&#x5999;&#x5229;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x6307;&#x9488;,&#x8D4B;&#x503C;&#x3001;&#x7EE7;&#x627F;&#x7B49;&#x64CD;&#x4F5C;&#x53EA;&#x9700;&#x8981;&#x6307;&#x9488;&#x6216;&#x957F;&#x5EA6;&#x53D8;&#x5316;&#x5C31;&#x597D;&#x4E86;,&#x56E0;&#x6B64;&#x63D2;&#x5165;&#x6700;&#x5C0F;&#x590D;&#x6742;&#x5EA6;&#x662F;O(1),&#x7A7A;&#x95F4;&#x4E0A;&#x4E5F;&#x5C11;&#x4E86;&#x5F88;&#x591A;&#x7A7A;&#x6307;&#x9488;. </p>
+<p>&#x592A;&#x591A;&#x8BC1;&#x660E;&#x4E0D;&#x5982;&#x4E00;&#x53E5;&#x4EE3;&#x7801;,&#x6211;&#x653E;&#x4E0A;&#x4EE3;&#x7801;&#x7EE7;&#x7EED;&#x5206;&#x6790;. </p>
+<h3><span id="&#x89E3;&#x6790;">&#x89E3;&#x6790;</span><a href="#&#x89E3;&#x6790;" class="header-anchor"> </a></h3><p>&#x8282;&#x70B9;&#x7684;&#x7ED3;&#x6784;&#x4F53;,&#x539F;&#x6765;&#x7684;char&#x53D8;&#x6210;&#x4E86;length&#x548C;&#x5B57;&#x7B26;&#x4E32;&#x6307;&#x9488;:  </p>
 <pre><code class="lang-cpp">#define clear(a) memset(a, 0, sizeof(a))
 #define copy(a, b) memcpy(a, b, sizeof(a))
     struct Lumpy_Tnode {
         const char *pStr;
-        //指向当前存储字符串首元素
+        //&#x6307;&#x5411;&#x5F53;&#x524D;&#x5B58;&#x50A8;&#x5B57;&#x7B26;&#x4E32;&#x9996;&#x5143;&#x7D20;
         int length, isEnd;
-        //length存储字符串的长度 isEnd代表是否是结尾节点
+        //length&#x5B58;&#x50A8;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x957F;&#x5EA6; isEnd&#x4EE3;&#x8868;&#x662F;&#x5426;&#x662F;&#x7ED3;&#x5C3E;&#x8282;&#x70B9;
         Lumpy_Tnode *children[26];
-        //26个子节点
+        //26&#x4E2A;&#x5B50;&#x8282;&#x70B9;
         inline Lumpy_Tnode() {
             pStr= 0, length= isEnd= 0, clear(children);
         }
         inline Lumpy_Tnode(const char *str, int len, int end) {
             pStr= str, length= len, isEnd= end, clear(children);
         }
-        //构造函数
+        //&#x6784;&#x9020;&#x51FD;&#x6570;
     } mNode;
 </code></pre>
-<h4 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h4><p>使用递归和循环,判断比较多,先看代码(看起来常数很大)      </p>
+<h4><span id="&#x63D2;&#x5165;&#x64CD;&#x4F5C;">&#x63D2;&#x5165;&#x64CD;&#x4F5C;</span><a href="#&#x63D2;&#x5165;&#x64CD;&#x4F5C;" class="header-anchor"> </a></h4><p>&#x4F7F;&#x7528;&#x9012;&#x5F52;&#x548C;&#x5FAA;&#x73AF;,&#x5224;&#x65AD;&#x6BD4;&#x8F83;&#x591A;,&#x5148;&#x770B;&#x4EE3;&#x7801;(&#x770B;&#x8D77;&#x6765;&#x5E38;&#x6570;&#x5F88;&#x5927;)      </p>
 <pre><code class="lang-cpp">    inline void insert(const char *str, int length, Lumpy_Tnode *bNode) {
-    //str是指针,指向当前插入字符串的第一个元素
+    //str&#x662F;&#x6307;&#x9488;,&#x6307;&#x5411;&#x5F53;&#x524D;&#x63D2;&#x5165;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;
         if(!length) {
-        //字符串长度为0代表结尾
-        //其实是为了优化代码美观,当作递归边界
+        //&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;&#x4E3A;0&#x4EE3;&#x8868;&#x7ED3;&#x5C3E;
+        //&#x5176;&#x5B9E;&#x662F;&#x4E3A;&#x4E86;&#x4F18;&#x5316;&#x4EE3;&#x7801;&#x7F8E;&#x89C2;,&#x5F53;&#x4F5C;&#x9012;&#x5F52;&#x8FB9;&#x754C;
             bNode-&gt;isEnd= 1;
             return;
         }
-        int ch= str[0] - &#39;a&#39;;
+        int ch= str[0] - &apos;a&apos;;
         if(bNode-&gt;children[ch]) {
-        //子节点已存在
+        //&#x5B50;&#x8282;&#x70B9;&#x5DF2;&#x5B58;&#x5728;
             bNode= bNode-&gt;children[ch];
             register int sptr= 0;
             while(sptr &lt; length &amp;&amp; sptr &lt; bNode-&gt;length &amp;&amp; bNode-&gt;pStr[sptr] == str[sptr]) ++sptr;
-            //循环来找当前字符串和节点存储的字符串最长前缀
+            //&#x5FAA;&#x73AF;&#x6765;&#x627E;&#x5F53;&#x524D;&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x8282;&#x70B9;&#x5B58;&#x50A8;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x6700;&#x957F;&#x524D;&#x7F00;
             if(sptr != bNode-&gt;length) {
-            //节点存储的字符串不是插入字符串的子串
+            //&#x8282;&#x70B9;&#x5B58;&#x50A8;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x662F;&#x63D2;&#x5165;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5B50;&#x4E32;
                 Lumpy_Tnode *nNode= new Lumpy_Tnode(bNode-&gt;pStr + sptr, bNode-&gt;length - sptr, bNode-&gt;isEnd);
-                //拆树,运用字符串指针连续地址的特性来操作
+                //&#x62C6;&#x6811;,&#x8FD0;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x6307;&#x9488;&#x8FDE;&#x7EED;&#x5730;&#x5740;&#x7684;&#x7279;&#x6027;&#x6765;&#x64CD;&#x4F5C;
                 copy(nNode-&gt;children, bNode-&gt;children), clear(bNode-&gt;children);
-                //继承原有子节点的各种信息
-                bNode-&gt;isEnd= 0, bNode-&gt;children[bNode-&gt;pStr[sptr] - &#39;a&#39;]= nNode;
-                //清空原有节点,重新初始化
+                //&#x7EE7;&#x627F;&#x539F;&#x6709;&#x5B50;&#x8282;&#x70B9;&#x7684;&#x5404;&#x79CD;&#x4FE1;&#x606F;
+                bNode-&gt;isEnd= 0, bNode-&gt;children[bNode-&gt;pStr[sptr] - &apos;a&apos;]= nNode;
+                //&#x6E05;&#x7A7A;&#x539F;&#x6709;&#x8282;&#x70B9;,&#x91CD;&#x65B0;&#x521D;&#x59CB;&#x5316;
             }
             bNode-&gt;length= sptr;
-            //更新当前节点存储的字符串长度,从而更改当前存储的字符串
+            //&#x66F4;&#x65B0;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x5B58;&#x50A8;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;,&#x4ECE;&#x800C;&#x66F4;&#x6539;&#x5F53;&#x524D;&#x5B58;&#x50A8;&#x7684;&#x5B57;&#x7B26;&#x4E32;
             insert(str + sptr, length - sptr, bNode);
         }
         else
             bNode-&gt;children[ch]= new Lumpy_Tnode(str, length, 1);
-            //不存在当前首字母的子节点,直接new并且赋值
-            //因为是指针操作,所以不需要O(n)复制字符串,理论上复杂度O(3)?
+            //&#x4E0D;&#x5B58;&#x5728;&#x5F53;&#x524D;&#x9996;&#x5B57;&#x6BCD;&#x7684;&#x5B50;&#x8282;&#x70B9;,&#x76F4;&#x63A5;new&#x5E76;&#x4E14;&#x8D4B;&#x503C;
+            //&#x56E0;&#x4E3A;&#x662F;&#x6307;&#x9488;&#x64CD;&#x4F5C;,&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;O(n)&#x590D;&#x5236;&#x5B57;&#x7B26;&#x4E32;,&#x7406;&#x8BBA;&#x4E0A;&#x590D;&#x6742;&#x5EA6;O(3)?
         return;
     }
-    //调用方式:insert(插入字符串, 字符串长度, Trie根节点);
+    //&#x8C03;&#x7528;&#x65B9;&#x5F0F;:insert(&#x63D2;&#x5165;&#x5B57;&#x7B26;&#x4E32;, &#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;, Trie&#x6839;&#x8282;&#x70B9;);
 </code></pre>
-<p>如果代码看懂了,第一反应可能认为指针操作有一些漏洞.</p>
-<p>的确插入的字符串在插入后就不能进行改变了,所以就只要开一个char[N][K]的数组来保存输入的字符串,K为最长字符串的长度. </p>
-<p>相比较空间复杂度总体仍然较小,其实是把原来每个节点存的char放到了一起,每个节点多了一个指针.</p>
-<p>这其中其实有个很巧妙的事,树上的一条链可能指向的地址是连续的.仔细想了想,其实也有空间浪费,不管是节点上还是树上的最长公共前缀都只指向一个字符串,其他字符串中相同的字符占用的空间就浪费掉了,这句话不懂没事,因为这个浪费造成的影响很小. </p>
-<p>如果代码都没看懂,还有图解:</p>
+<p>&#x5982;&#x679C;&#x4EE3;&#x7801;&#x770B;&#x61C2;&#x4E86;,&#x7B2C;&#x4E00;&#x53CD;&#x5E94;&#x53EF;&#x80FD;&#x8BA4;&#x4E3A;&#x6307;&#x9488;&#x64CD;&#x4F5C;&#x6709;&#x4E00;&#x4E9B;&#x6F0F;&#x6D1E;.</p>
+<p>&#x7684;&#x786E;&#x63D2;&#x5165;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5728;&#x63D2;&#x5165;&#x540E;&#x5C31;&#x4E0D;&#x80FD;&#x8FDB;&#x884C;&#x6539;&#x53D8;&#x4E86;,&#x6240;&#x4EE5;&#x5C31;&#x53EA;&#x8981;&#x5F00;&#x4E00;&#x4E2A;char[N][K]&#x7684;&#x6570;&#x7EC4;&#x6765;&#x4FDD;&#x5B58;&#x8F93;&#x5165;&#x7684;&#x5B57;&#x7B26;&#x4E32;,K&#x4E3A;&#x6700;&#x957F;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x957F;&#x5EA6;. </p>
+<p>&#x76F8;&#x6BD4;&#x8F83;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x603B;&#x4F53;&#x4ECD;&#x7136;&#x8F83;&#x5C0F;,&#x5176;&#x5B9E;&#x662F;&#x628A;&#x539F;&#x6765;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x5B58;&#x7684;char&#x653E;&#x5230;&#x4E86;&#x4E00;&#x8D77;,&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x6307;&#x9488;.</p>
+<p>&#x8FD9;&#x5176;&#x4E2D;&#x5176;&#x5B9E;&#x6709;&#x4E2A;&#x5F88;&#x5DE7;&#x5999;&#x7684;&#x4E8B;,&#x6811;&#x4E0A;&#x7684;&#x4E00;&#x6761;&#x94FE;&#x53EF;&#x80FD;&#x6307;&#x5411;&#x7684;&#x5730;&#x5740;&#x662F;&#x8FDE;&#x7EED;&#x7684;.&#x4ED4;&#x7EC6;&#x60F3;&#x4E86;&#x60F3;,&#x5176;&#x5B9E;&#x4E5F;&#x6709;&#x7A7A;&#x95F4;&#x6D6A;&#x8D39;,&#x4E0D;&#x7BA1;&#x662F;&#x8282;&#x70B9;&#x4E0A;&#x8FD8;&#x662F;&#x6811;&#x4E0A;&#x7684;&#x6700;&#x957F;&#x516C;&#x5171;&#x524D;&#x7F00;&#x90FD;&#x53EA;&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;,&#x5176;&#x4ED6;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x76F8;&#x540C;&#x7684;&#x5B57;&#x7B26;&#x5360;&#x7528;&#x7684;&#x7A7A;&#x95F4;&#x5C31;&#x6D6A;&#x8D39;&#x6389;&#x4E86;,&#x8FD9;&#x53E5;&#x8BDD;&#x4E0D;&#x61C2;&#x6CA1;&#x4E8B;,&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x6D6A;&#x8D39;&#x9020;&#x6210;&#x7684;&#x5F71;&#x54CD;&#x5F88;&#x5C0F;. </p>
+<p>&#x5982;&#x679C;&#x4EE3;&#x7801;&#x90FD;&#x6CA1;&#x770B;&#x61C2;,&#x8FD8;&#x6709;&#x56FE;&#x89E3;:</p>
 <ol>
-<li><p><img src="/images/P2580_2.png" alt="向空树插入abc,再插入ab"></p>
+<li><p><img src="/images/P2580_2.png" alt="&#x5411;&#x7A7A;&#x6811;&#x63D2;&#x5165;abc,&#x518D;&#x63D2;&#x5165;ab"></p>
 </li>
-<li><p><img src="/images/P2580_3.png" alt="再向此树插入ac:"></p>
+<li><p><img src="/images/P2580_3.png" alt="&#x518D;&#x5411;&#x6B64;&#x6811;&#x63D2;&#x5165;ac:"></p>
 </li>
 </ol>
-<p>解释一下图2:</p>
-<p>比较ab和ac,最长公共前缀为a</p>
-<p>新建一个字符串指针指向ab中b的节点,长度为1,继承ab的颜色和ab的子节点.</p>
-<p>清空ab的子节点,颜色改为黑(黑表示不为结尾节点),ab的首字母b子节点指向b.</p>
-<p>在我实现时,先更改长度使ab变为a,再向a中插入c.</p>
-<p>因为没有首字母为c的子节点,直接new一个新的.</p>
-<h4 id="查找操作"><a href="#查找操作" class="headerlink" title="查找操作"></a>查找操作</h4><pre><code class="lang-cpp">    inline int find(const char *str, int length, Lumpy_Tnode *bNode) {
+<p>&#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#x56FE;2:</p>
+<p>&#x6BD4;&#x8F83;ab&#x548C;ac,&#x6700;&#x957F;&#x516C;&#x5171;&#x524D;&#x7F00;&#x4E3A;a</p>
+<p>&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x6307;&#x9488;&#x6307;&#x5411;ab&#x4E2D;b&#x7684;&#x8282;&#x70B9;,&#x957F;&#x5EA6;&#x4E3A;1,&#x7EE7;&#x627F;ab&#x7684;&#x989C;&#x8272;&#x548C;ab&#x7684;&#x5B50;&#x8282;&#x70B9;.</p>
+<p>&#x6E05;&#x7A7A;ab&#x7684;&#x5B50;&#x8282;&#x70B9;,&#x989C;&#x8272;&#x6539;&#x4E3A;&#x9ED1;(&#x9ED1;&#x8868;&#x793A;&#x4E0D;&#x4E3A;&#x7ED3;&#x5C3E;&#x8282;&#x70B9;),ab&#x7684;&#x9996;&#x5B57;&#x6BCD;b&#x5B50;&#x8282;&#x70B9;&#x6307;&#x5411;b.</p>
+<p>&#x5728;&#x6211;&#x5B9E;&#x73B0;&#x65F6;,&#x5148;&#x66F4;&#x6539;&#x957F;&#x5EA6;&#x4F7F;ab&#x53D8;&#x4E3A;a,&#x518D;&#x5411;a&#x4E2D;&#x63D2;&#x5165;c.</p>
+<p>&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x9996;&#x5B57;&#x6BCD;&#x4E3A;c&#x7684;&#x5B50;&#x8282;&#x70B9;,&#x76F4;&#x63A5;new&#x4E00;&#x4E2A;&#x65B0;&#x7684;.</p>
+<h4><span id="&#x67E5;&#x627E;&#x64CD;&#x4F5C;">&#x67E5;&#x627E;&#x64CD;&#x4F5C;</span><a href="#&#x67E5;&#x627E;&#x64CD;&#x4F5C;" class="header-anchor"> </a></h4><pre><code class="lang-cpp">    inline int find(const char *str, int length, Lumpy_Tnode *bNode) {
         if(!length) {
-        //递归到查找的字符串长度为0
-        //判断当前节点是否为结尾,是否是第一次查询
+        //&#x9012;&#x5F52;&#x5230;&#x67E5;&#x627E;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;&#x4E3A;0
+        //&#x5224;&#x65AD;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x662F;&#x5426;&#x4E3A;&#x7ED3;&#x5C3E;,&#x662F;&#x5426;&#x662F;&#x7B2C;&#x4E00;&#x6B21;&#x67E5;&#x8BE2;
             if(bNode-&gt;isEnd == 1) return bNode-&gt;isEnd++;
             return bNode-&gt;isEnd;
         }
-        int ch= str[0] - &#39;a&#39;;
+        int ch= str[0] - &apos;a&apos;;
         if(bNode-&gt;children[ch]) {
             bNode= bNode-&gt;children[ch];
             if(length &lt; bNode-&gt;length) return 0;
-            //自带剪枝,若当前查找字符串长度小于当前公共前缀,那么字典树中不存在当前查找的字符串
+            //&#x81EA;&#x5E26;&#x526A;&#x679D;,&#x82E5;&#x5F53;&#x524D;&#x67E5;&#x627E;&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;&#x5C0F;&#x4E8E;&#x5F53;&#x524D;&#x516C;&#x5171;&#x524D;&#x7F00;,&#x90A3;&#x4E48;&#x5B57;&#x5178;&#x6811;&#x4E2D;&#x4E0D;&#x5B58;&#x5728;&#x5F53;&#x524D;&#x67E5;&#x627E;&#x7684;&#x5B57;&#x7B26;&#x4E32;
             register int sptr= 0;
             while(sptr &lt; bNode-&gt;length &amp;&amp; bNode-&gt;pStr[sptr] == str[sptr]) ++sptr;
             if(sptr != bNode-&gt;length) return 0;
-            //最长公共前缀必须是当前查找的字符串的子串
+            //&#x6700;&#x957F;&#x516C;&#x5171;&#x524D;&#x7F00;&#x5FC5;&#x987B;&#x662F;&#x5F53;&#x524D;&#x67E5;&#x627E;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5B50;&#x4E32;
             return find(str + sptr, length - sptr, bNode);
         }
         return 0;
-        //没有子节点,字典树中不存在当前查找的字符串
+        //&#x6CA1;&#x6709;&#x5B50;&#x8282;&#x70B9;,&#x5B57;&#x5178;&#x6811;&#x4E2D;&#x4E0D;&#x5B58;&#x5728;&#x5F53;&#x524D;&#x67E5;&#x627E;&#x7684;&#x5B57;&#x7B26;&#x4E32;
     }
-    //调用方式:find(查询字符串, 字符串长度, Trie根节点);
+    //&#x8C03;&#x7528;&#x65B9;&#x5F0F;:find(&#x67E5;&#x8BE2;&#x5B57;&#x7B26;&#x4E32;, &#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;, Trie&#x6839;&#x8282;&#x70B9;);
 </code></pre>
-<p>比插入的代码简单多了,并且自带剪枝,所以比较快.</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>（开启O2） 用时: 127ms / 内存: 4248KB<br>（关闭O2） 用时: 144ms / 内存: 4128KB</p>
+<p>&#x6BD4;&#x63D2;&#x5165;&#x7684;&#x4EE3;&#x7801;&#x7B80;&#x5355;&#x591A;&#x4E86;,&#x5E76;&#x4E14;&#x81EA;&#x5E26;&#x526A;&#x679D;,&#x6240;&#x4EE5;&#x6BD4;&#x8F83;&#x5FEB;.</p>
+<h3><span id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</span><a href="#&#x4EE3;&#x7801;" class="header-anchor"> </a></h3><p>&#xFF08;&#x5F00;&#x542F;O2&#xFF09; &#x7528;&#x65F6;: 127ms / &#x5185;&#x5B58;: 4248KB<br>&#xFF08;&#x5173;&#x95ED;O2&#xFF09; &#x7528;&#x65F6;: 144ms / &#x5185;&#x5B58;: 4128KB</p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
@@ -404,7 +421,7 @@ struct Lumpy_Trie {
             bNode-&gt;isEnd= 1;
             return;
         }
-        int ch= str[0] - &#39;a&#39;;
+        int ch= str[0] - &apos;a&apos;;
         if(bNode-&gt;children[ch]) {
             bNode= bNode-&gt;children[ch];
             register int sptr= 0;
@@ -412,7 +429,7 @@ struct Lumpy_Trie {
             if(sptr != bNode-&gt;length) {
                 Lumpy_Tnode *nNode= new Lumpy_Tnode(bNode-&gt;pStr + sptr, bNode-&gt;length - sptr, bNode-&gt;isEnd);
                 copy(nNode-&gt;children, bNode-&gt;children), clear(bNode-&gt;children);
-                bNode-&gt;isEnd= 0, bNode-&gt;children[bNode-&gt;pStr[sptr] - &#39;a&#39;]= nNode;
+                bNode-&gt;isEnd= 0, bNode-&gt;children[bNode-&gt;pStr[sptr] - &apos;a&apos;]= nNode;
             }
             bNode-&gt;length= sptr;
             insert(str + sptr, length - sptr, bNode);
@@ -426,7 +443,7 @@ struct Lumpy_Trie {
             if(bNode-&gt;isEnd == 1) return bNode-&gt;isEnd++;
             return bNode-&gt;isEnd;
         }
-        int ch= str[0] - &#39;a&#39;;
+        int ch= str[0] - &apos;a&apos;;
         if(bNode-&gt;children[ch]) {
             bNode= bNode-&gt;children[ch];
             if(length &lt; bNode-&gt;length) return 0;
@@ -459,8 +476,8 @@ int main() {
     return 0;
 }
 </code></pre>
-<p>最需要注意的是输入的字符串insert后不能再更改那一块内存了不能更改了…</p>
-<h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>我写的常数可能挺大,希望dalao们试试各种卡常优化…  </p>
+<p>&#x6700;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x8F93;&#x5165;&#x7684;&#x5B57;&#x7B26;&#x4E32;insert&#x540E;&#x4E0D;&#x80FD;&#x518D;&#x66F4;&#x6539;&#x90A3;&#x4E00;&#x5757;&#x5185;&#x5B58;&#x4E86;&#x4E0D;&#x80FD;&#x66F4;&#x6539;&#x4E86;&#x2026;</p>
+<h3><span id="&#x540E;&#x7EED;">&#x540E;&#x7EED;</span><a href="#&#x540E;&#x7EED;" class="header-anchor"> </a></h3><p>&#x6211;&#x5199;&#x7684;&#x5E38;&#x6570;&#x53EF;&#x80FD;&#x633A;&#x5927;,&#x5E0C;&#x671B;dalao&#x4EEC;&#x8BD5;&#x8BD5;&#x5404;&#x79CD;&#x5361;&#x5E38;&#x4F18;&#x5316;&#x2026;</p>
 
   </article>
   
@@ -506,7 +523,7 @@ int main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1571960385324"></script>
+<script src="/js/app.js?v=1573122200223"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 
