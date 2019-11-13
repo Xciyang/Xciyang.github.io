@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1573615162762">
+  <link rel="stylesheet" href="/css/style.css?v=1573618890434">
 <link rel="alternate" href="/atom.xml" title="Ciyang’s Blog" type="application/atom+xml">
 </head>
 
@@ -95,8 +95,22 @@
   
   <div class="nexmoe-widget-wrap" style="min-height: 100px;">
     <h3 class="nexmoe-widget-title">字体</h3>
-    <select onchange='fontTool.onchange(this)' class="mdui-select" mdui-select style="left: 5%;">
-        <option value="">默认</option>
+    <select onchange='articleFontTool.onchange(this)' class="mdui-select" mdui-select style="margin: 5%;">
+        <option value="">选择文章字体</option>
+        
+        <option value=Monaco>Monaco</option>
+        
+        <option value=SourceCodeVariable>SourceCodeVariable</option>
+        
+        <option value=Panda>Panda</option>
+        
+        <option value=问藏书房>问藏书房</option>
+        
+        <option value=MEllybO0_fONt>MEllybO0_fONt</option>
+        
+    </select>
+    <select onchange='codeFontTool.onchange(this)' class="mdui-select" mdui-select style="margin: 5%;">
+        <option value="">选择代码字体</option>
         
         <option value=Monaco>Monaco</option>
         
@@ -112,34 +126,57 @@
     <script>
         let Cookie = {
             setCookie(name, value) {
-                var Days = 30;
-                var exp = new Date();
+                let Days = 30;
+                let exp = new Date();
                 exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 30);
-                document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+                document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";
             },
             getCookie(name) {
-                var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+                let arr;
+                let reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
                 if (arr = document.cookie.match(reg)) { return unescape(arr[2]); }
                 return null;
             }
         };
-        let fontTool = {
+
+        let articleFontTool = {
             onload: () => {
-                let res = Cookie.getCookie('font');
-                if (!res || res === '') { 
-                    res = 'Panda'; 
-                    Cookie.setCookie('font', res);
+                let res = Cookie.getCookie('articleFont');
+                if (!res || res === '') {
+                    res = 'Panda';
+                    Cookie.setCookie('articleFont', res);
                 }
                 document.body.style.fontFamily = res;
             },
             onchange: (ftSelect) => {
-                if(ftSelect.value && ftSelect.value !== '') {
-                    Cookie.setCookie('font', ftSelect.value);
+                if (ftSelect.value && ftSelect.value !== '') {
+                    Cookie.setCookie('articleFont', ftSelect.value);
                     document.body.style.fontFamily = ftSelect.value;
                 }
             }
         };
-        fontTool.onload();
+        let codeFontTool = {
+            onload: () => {
+                let res = Cookie.getCookie('codeFont');
+                if (!res || res === '') {
+                    res = 'Monaco';
+                    Cookie.setCookie('codeFont', res);
+                }
+                document.querySelectorAll('code').forEach(item => {
+                    item.style.fontFamily = res;
+                });
+            },
+            onchange: (ftSelect) => {
+                if (ftSelect.value && ftSelect.value !== '') {
+                    Cookie.setCookie('codeFont', ftSelect.value);
+                    document.querySelectorAll('code').forEach(item => {
+                        item.style.fontFamily = ftSelect.value;
+                    });
+                }
+            }
+        };
+        articleFontTool.onload();
+        codeFontTool.onload();
     </script>
 </div>
   
@@ -409,7 +446,7 @@
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1573615162787"></script>
+<script src="/js/app.js?v=1573618890460"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 
@@ -446,6 +483,22 @@
         s.parentNode.insertBefore(hm, s);
     })();
 </script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 
