@@ -1,3 +1,23 @@
+@font-face {
+  font-family: 'Monaco';
+  src: url("/static/Monaco.ttf");
+}
+@font-face {
+  font-family: 'Panda';
+  src: url("/static/Panda.ttf");
+}
+@font-face {
+  font-family: '问藏书房';
+  src: url("/static/问藏书房.ttf");
+}
+@font-face {
+  font-family: 'SourceCodeVariable';
+  src: url("/static/SourceCodeVariable.ttf");
+}
+@font-face {
+  font-family: 'MEllybO0_fONt';
+  src: url("/static/MEllybO0_fONt.ttf");
+}
 *,
 *::after,
 *::before {
@@ -130,7 +150,6 @@ body {
   background-color: #fff;
   margin: 20px;
   border-radius: 10px;
-  overflow: hidden;
   white-space: normal;
 }
 #nexmoe-header .nexmoe-widget-wrap .nexmoe-widget-title {
@@ -139,6 +158,9 @@ body {
   padding: 12px 10px 10px;
   border-bottom: 1px solid #eee;
   margin: 0;
+}
+#nexmoe-header .nexmoe-widget-wrap .mdui-select {
+  overflow: visible;
 }
 #nexmoe-header .nexmoe-widget-wrap .nexmoe-widget ul {
   list-style-type: none;
@@ -469,7 +491,6 @@ body {
 }
 article {
   color: #444;
-  font-family: microsoft yahei;
 }
 article p {
   line-height: 24px;

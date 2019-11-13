@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   
   <title>USACO17DEC - Haybale Feast - Ciyang’s Blog</title>
   <meta charset="UTF-8">
@@ -10,30 +10,29 @@
   
   
 
-  <link rel="shortcut icon" href="/favicon.png" type="image/png">
-  <meta name="description" content="【LuoguP4085】【USACO17DEC】Haybale Feast题目链接: https://www.luogu.org/problemnew/show/P4085 引言好像教练说要考线段树和树状数组, 然后看到了这个题 这道题可以练习各种数据结构的基础操作… 我就浪费了大把时间用各种算法来A这道题">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+  <meta name="description" content="【LuoguP4085】【USACO17DEC】Haybale Feast题目链接: https:&#x2F;&#x2F;www.luogu.org&#x2F;problemnew&#x2F;show&#x2F;P4085 引言好像教练说要考线段树和树状数组, 然后看到了这个题 这道题可以练习各种数据结构的基础操作… 我就浪费了大把时间用各种算法来A这道题">
 <meta name="keywords" content="题解,Cpp,分块,二分查找,ST表,线段树,前缀和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="USACO17DEC - Haybale Feast">
-<meta property="og:url" content="https://xciyang.github.io/2019-03/07-luogu4085/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-03&#x2F;07-luogu4085&#x2F;index.html">
 <meta property="og:site_name" content="Ciyang’s Blog">
-<meta property="og:description" content="【LuoguP4085】【USACO17DEC】Haybale Feast题目链接: https://www.luogu.org/problemnew/show/P4085 引言好像教练说要考线段树和树状数组, 然后看到了这个题 这道题可以练习各种数据结构的基础操作… 我就浪费了大把时间用各种算法来A这道题">
+<meta property="og:description" content="【LuoguP4085】【USACO17DEC】Haybale Feast题目链接: https:&#x2F;&#x2F;www.luogu.org&#x2F;problemnew&#x2F;show&#x2F;P4085 引言好像教练说要考线段树和树状数组, 然后看到了这个题 这道题可以练习各种数据结构的基础操作… 我就浪费了大把时间用各种算法来A这道题">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-07T09:07:24.040Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="USACO17DEC - Haybale Feast">
-<meta name="twitter:description" content="【LuoguP4085】【USACO17DEC】Haybale Feast题目链接: https://www.luogu.org/problemnew/show/P4085 引言好像教练说要考线段树和树状数组, 然后看到了这个题 这道题可以练习各种数据结构的基础操作… 我就浪费了大把时间用各种算法来A这道题">
   <script src="https://lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://lib.baomitu.com/mdui/0.4.3/css/mdui.min.css">
   <link rel="stylesheet" href="https://lib.baomitu.com/highlight.js/9.15.10/styles/hopscotch.min.css">
   
-  <link rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1573254650876">
+  <link rel="stylesheet" href="/css/style.css?v=1573615161155">
+<link rel="alternate" href="/atom.xml" title="Ciyang’s Blog" type="application/atom+xml">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -42,10 +41,12 @@
     <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
-        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i
+            class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
-        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Ciyang" class="mdui-btn mdui-btn-icon"><img src="/medias/avatar.jpg"></a>
+        <!--<a href="javascript:;" target="_blank" rel="noopener" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Ciyang" class="mdui-btn mdui-btn-icon"><img
+            src="/medias/avatar.jpg"></a>
       </div>
     </div>
   </div>
@@ -94,6 +95,56 @@
     </ul>
     <aside id="nexmoe-sidebar">
   
+  <div class="nexmoe-widget-wrap" style="min-height: 100px;">
+    <h3 class="nexmoe-widget-title">字体</h3>
+    <select onchange='fontTool.onchange(this)' class="mdui-select" mdui-select style="left: 5%;">
+        <option value="">默认</option>
+        
+        <option value=Monaco>Monaco</option>
+        
+        <option value=SourceCodeVariable>SourceCodeVariable</option>
+        
+        <option value=Panda>Panda</option>
+        
+        <option value=问藏书房>问藏书房</option>
+        
+        <option value=MEllybO0_fONt>MEllybO0_fONt</option>
+        
+    </select>
+    <script>
+        let Cookie = {
+            setCookie(name, value) {
+                var Days = 30;
+                var exp = new Date();
+                exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 30);
+                document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+            },
+            getCookie(name) {
+                var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+                if (arr = document.cookie.match(reg)) { return unescape(arr[2]); }
+                return null;
+            }
+        };
+        let fontTool = {
+            onload: () => {
+                let res = Cookie.getCookie('font');
+                if (!res || res === '') { 
+                    res = 'Panda'; 
+                    Cookie.setCookie('font', res);
+                }
+                document.body.style.fontFamily = res;
+            },
+            onchange: (ftSelect) => {
+                if(ftSelect.value && ftSelect.value !== '') {
+                    Cookie.setCookie('font', ftSelect.value);
+                    document.body.style.fontFamily = ftSelect.value;
+                }
+            }
+        };
+        fontTool.onload();
+    </script>
+</div>
+  
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">社交按钮</h3>
     <div class="nexmoe-widget nexmoe-social">
@@ -105,7 +156,7 @@
             <i class="nexmoefont icon-bilibili"></i>
         </a><a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=896681584&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(12, 2, 255);background-color: rgba(12, 2, 255, .15);">
             <i class="nexmoefont icon-QQ"></i>
-        </a><a class="mdui-ripple" href="mailto:896681584@qq.com" target="_blank" mdui-tooltip="{content: '邮箱'}" style="color: rgb(123, 1, 255);background-color: rgba(123, 1, 255, .15);">
+        </a><a class="mdui-ripple" href="/mailto:896681584@qq.com" target="_blank" mdui-tooltip="{content: '邮箱'}" style="color: rgb(123, 1, 255);background-color: rgba(123, 1, 255, .15);">
             <i class="nexmoefont icon-mail-fill"></i>
         </a><a class="mdui-ripple" href="/rss.xml" target="_blank" mdui-tooltip="{content: 'RSS'}" style="color: rgb(2, 10, 56);background-color: rgba(2, 10, 56, .15);">
             <i class="nexmoefont icon-rss"></i>
@@ -165,7 +216,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">标签云</h3>
     <div id="randomtagcloud" class="nexmoe-widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.67px;">STL</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/主席树/" style="font-size: 10px;">主席树</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/分块/" style="font-size: 13.33px;">分块</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 15px;">动态规划</a> <a href="/tags/块状链表/" style="font-size: 10px;">块状链表</a> <a href="/tags/字典树/" style="font-size: 10px;">字典树</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/并查集/" style="font-size: 11.67px;">并查集</a> <a href="/tags/技巧/" style="font-size: 13.33px;">技巧</a> <a href="/tags/搜索/" style="font-size: 16.67px;">搜索</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/整除分块/" style="font-size: 10px;">整除分块</a> <a href="/tags/模拟/" style="font-size: 13.33px;">模拟</a> <a href="/tags/比赛/" style="font-size: 10px;">比赛</a> <a href="/tags/爬虫/" style="font-size: 13.33px;">爬虫</a> <a href="/tags/状压DP/" style="font-size: 11.67px;">状压DP</a> <a href="/tags/码风/" style="font-size: 10px;">码风</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 10px;">线段树</a> <a href="/tags/背包/" style="font-size: 10px;">背包</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a> <a href="/tags/边压Trie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/闲聊/" style="font-size: 16.67px;">闲聊</a> <a href="/tags/随机化搜索/" style="font-size: 11.67px;">随机化搜索</a> <a href="/tags/项目/" style="font-size: 13.33px;">项目</a> <a href="/tags/颓废/" style="font-size: 16.67px;">颓废</a> <a href="/tags/题解/" style="font-size: 18.33px;">题解</a>
+      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.67px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 13.33px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.67px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 13.33px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 16.67px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13.33px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.33px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.67px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 16.67px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.67px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 13.33px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 16.67px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.33px;">题解</a>
     </div>
     
   </div>
@@ -218,7 +269,7 @@
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         <span id="busuanzi_container_site_pv">
             <style="text-align: center;">本站总访问量<span id="busuanzi_value_site_pv"></span>次
-        </style="text-align:></span>
+        </span>
         <br>
         <span id="busuanzi_container_page_pv">
             本文总阅读量<span id="busuanzi_value_page_pv"></span>次
@@ -252,13 +303,13 @@
     <a><i class="nexmoefont icon-areachart"></i>1.1k 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
     
-    <a class="nexmoefont icon-appstore-fill -link" href="/categories/题解/">题解</a>
+    <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
     
     
-    <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/ST表/">ST表</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/二分查找/">二分查找</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/分块/">分块</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/前缀和/">前缀和</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/线段树/">线段树</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/题解/">题解</a>
+    <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/" rel="tag">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/ST%E8%A1%A8/" rel="tag">ST表</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%88%86%E5%9D%97/" rel="tag">分块</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" rel="tag">前缀和</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag">线段树</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a>
     
   </div>
-  <article id="article">
+  <article id = "article">
     <p>&#x3010;LuoguP4085&#x3011;&#x3010;USACO17DEC&#x3011;Haybale Feast<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;: <a href="https://www.luogu.org/problemnew/show/P4085" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P4085</a></p>
 <h3><span id="&#x5F15;&#x8A00;">&#x5F15;&#x8A00;</span><a href="#&#x5F15;&#x8A00;" class="header-anchor"> </a></h3><p>&#x597D;&#x50CF;&#x6559;&#x7EC3;&#x8BF4;&#x8981;&#x8003;&#x7EBF;&#x6BB5;&#x6811;&#x548C;&#x6811;&#x72B6;&#x6570;&#x7EC4;, &#x7136;&#x540E;&#x770B;&#x5230;&#x4E86;&#x8FD9;&#x4E2A;&#x9898;</p>
 <p>&#x8FD9;&#x9053;&#x9898;&#x53EF;&#x4EE5;&#x7EC3;&#x4E60;&#x5404;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7684;&#x57FA;&#x7840;&#x64CD;&#x4F5C;&#x2026;</p>
@@ -399,7 +450,7 @@ int main() {
 <div class="nexmoe-post-copyright">
 <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
 <strong>本文作者：</strong>Ciyang<br>
-<strong>本文链接：</strong><a href="https://xciyang.github.io/2019-03/07-luogu4085/" title="https://xciyang.github.io/2019-03/07-luogu4085/" target="_blank" rel="noopener">https://xciyang.github.io/2019-03/07-luogu4085/</a><br>
+<strong>本文链接：</strong><a href="https://xciyang.github.io/2019-03/07-luogu4085/" title="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-03&#x2F;07-luogu4085&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-03&#x2F;07-luogu4085&#x2F;</a><br>
 
   <strong>版权声明：</strong>本文一切由权利由作者 Ciyang 所有，转载请声明本文地址。
 
@@ -437,7 +488,7 @@ int main() {
 <script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1573254650888"></script>
+<script src="/js/app.js?v=1573615161181"></script>
 <script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
 
 
@@ -474,23 +525,6 @@ int main() {
         s.parentNode.insertBefore(hm, s);
     })();
 </script>
-
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 
