@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html>
-
+<html  lang="zh">
 <head>
-  
-  <title>NOI2005 - 智慧珠游戏 - Ciyang’s Blog</title>
-  <meta charset="UTF-8">
-  <meta name="description" content="一个半退役OI的文化课选手...">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  
+    <meta charset="utf-8" />
 
-  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-  <meta name="description" content="【LuoguP4205】【BZOJ1501】【NOI2005】智慧珠游戏题目链接1: https:&#x2F;&#x2F;www.luogu.org&#x2F;problemnew&#x2F;show&#x2F;P4205题目链接2: https:&#x2F;&#x2F;www.lydsy.com&#x2F;JudgeOnline&#x2F;problem.php?id=1501 引言最近忙于各种事, 又有十天没写题解了, 好像这十天又变颓废了好多 实在学习不下去很酷很炫的算法, 特意">
+<meta name="generator" content="Hexo 4.0.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>NOI2005 - 智慧珠游戏 - Ciyang’s Blog</title>
+
+
+    <meta name="description" content="【LuoguP4205】【BZOJ1501】【NOI2005】智慧珠游戏题目链接1: https:&#x2F;&#x2F;www.luogu.org&#x2F;problemnew&#x2F;show&#x2F;P4205题目链接2: https:&#x2F;&#x2F;www.lydsy.com&#x2F;JudgeOnline&#x2F;problem.php?id=1501 引言最近忙于各种事, 又有十天没写题解了, 好像这十天又变颓废了好多 实在学习不下去很酷很炫的算法, 特意">
 <meta name="keywords" content="题解,Cpp,搜索,模拟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NOI2005 - 智慧珠游戏">
@@ -19,386 +18,195 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="【LuoguP4205】【BZOJ1501】【NOI2005】智慧珠游戏题目链接1: https:&#x2F;&#x2F;www.luogu.org&#x2F;problemnew&#x2F;show&#x2F;P4205题目链接2: https:&#x2F;&#x2F;www.lydsy.com&#x2F;JudgeOnline&#x2F;problem.php?id=1501 引言最近忙于各种事, 又有十天没写题解了, 好像这十天又变颓废了好多 实在学习不下去很酷很炫的算法, 特意">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;www.lydsy.com&#x2F;JudgeOnline&#x2F;images&#x2F;1501_1.jpg">
-<meta property="og:updated_time" content="2019-11-07T09:07:29.595Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;images&#x2F;og_image.png">
+<meta property="og:updated_time" content="2019-12-09T12:30:52.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;www.lydsy.com&#x2F;JudgeOnline&#x2F;images&#x2F;1501_1.jpg">
-  <script src="https://lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://lib.baomitu.com/mdui/0.4.3/css/mdui.min.css">
-  <link rel="stylesheet" href="https://lib.baomitu.com/highlight.js/9.15.10/styles/hopscotch.min.css">
-  
-  <link rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-  
-  
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
-  
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1573618888702">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;images&#x2F;og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_ondu1wicx5.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-lightfab fa-github.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
 <link rel="alternate" href="/atom.xml" title="Ciyang’s Blog" type="application/atom+xml">
 </head>
-
-<body class="mdui-drawer-body-left">
-  
-  <div id="nexmoe-background">
-    <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
-    <div class="mdui-appbar mdui-shadow-0">
-      <div class="mdui-toolbar">
-        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i
-            class="mdui-icon material-icons">menu</i></a>
-        <div class="mdui-toolbar-spacer"></div>
-        <!--<a href="javascript:;" target="_blank" rel="noopener" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Ciyang" class="mdui-btn mdui-btn-icon"><img
-            src="/medias/avatar.jpg"></a>
-      </div>
-    </div>
-  </div>
-  <div id="nexmoe-header">
-    <div class="nexmoe-drawer mdui-drawer" id="drawer">
-    <div class="nexmoe-avatar mdui-ripple">
-        <a href="/" title="Ciyang">
-            <img src="/medias/avatar.jpg" alt="Ciyang">
-        </a>
-    </div>
-    <div class="nexmoe-count">
-        <div><span>文章</span>30</div>
-        <div><span>标签</span>38</div>
-        <div><span>分类</span>4</div>
-    </div>
-    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="首页">
-            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
-            <div class="mdui-list-item-content">
-                首页
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/medias/avatar.jpg" alt="NOI2005 - 智慧珠游戏" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/friends">友情链接</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
             </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/" title="关于">
-            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-            <div class="mdui-list-item-content">
-                关于
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;" target="_blank" rel="noopener">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;" target="_blank" rel="noopener">
+                    <i class="fas fa-search"></i>
+                </a>
+                
             </div>
-        </a>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/" title="友情链接">
-            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
-            <div class="mdui-list-item-content">
-                友情链接
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-03-17T09:02:12.000Z">2019-03-17</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    22 分钟 读完 (大约 3309 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
             </div>
-        </a>
+        </div>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search" title="搜索">
-            <i class="mdui-list-item-icon nexmoefont icon-search"></i>
-            <div class="mdui-list-item-content">
-                搜索
-            </div>
-        </a>
-        
-    </ul>
-    <aside id="nexmoe-sidebar">
-  
-  <div class="nexmoe-widget-wrap" style="min-height: 100px;">
-    <h3 class="nexmoe-widget-title">字体</h3>
-    <select onchange='articleFontTool.onchange(this)' class="mdui-select" mdui-select style="margin: 5%;">
-        <option value="">选择文章字体</option>
-        
-        <option value=Monaco>Monaco</option>
-        
-        <option value=SourceCodeVariable>SourceCodeVariable</option>
-        
-        <option value=Panda>Panda</option>
-        
-        <option value=问藏书房>问藏书房</option>
-        
-        <option value=MEllybO0_fONt>MEllybO0_fONt</option>
-        
-    </select>
-    <select onchange='codeFontTool.onchange(this)' class="mdui-select" mdui-select style="margin: 5%;">
-        <option value="">选择代码字体</option>
-        
-        <option value=Monaco>Monaco</option>
-        
-        <option value=SourceCodeVariable>SourceCodeVariable</option>
-        
-        <option value=Panda>Panda</option>
-        
-        <option value=问藏书房>问藏书房</option>
-        
-        <option value=MEllybO0_fONt>MEllybO0_fONt</option>
-        
-    </select>
-    <script>
-        let Cookie = {
-            setCookie(name, value) {
-                let Days = 30;
-                let exp = new Date();
-                exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 30);
-                document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";
-            },
-            getCookie(name) {
-                let arr;
-                let reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-                if (arr = document.cookie.match(reg)) { return unescape(arr[2]); }
-                return null;
-            }
-        };
-
-        let articleFontTool = {
-            onload: () => {
-                let res = Cookie.getCookie('articleFont');
-                if (!res || res === '') {
-                    res = 'Panda';
-                    Cookie.setCookie('articleFont', res);
-                }
-                document.body.style.fontFamily = res;
-            },
-            onchange: (ftSelect) => {
-                if (ftSelect.value && ftSelect.value !== '') {
-                    Cookie.setCookie('articleFont', ftSelect.value);
-                    document.body.style.fontFamily = ftSelect.value;
-                }
-            }
-        };
-        let codeFontTool = {
-            onload: () => {
-                let res = Cookie.getCookie('codeFont');
-                if (!res || res === '') {
-                    res = 'Monaco';
-                    Cookie.setCookie('codeFont', res);
-                }
-                document.querySelectorAll('code').forEach(item => {
-                    item.style.fontFamily = res;
-                });
-            },
-            onchange: (ftSelect) => {
-                if (ftSelect.value && ftSelect.value !== '') {
-                    Cookie.setCookie('codeFont', ftSelect.value);
-                    document.querySelectorAll('code').forEach(item => {
-                        item.style.fontFamily = ftSelect.value;
-                    });
-                }
-            }
-        };
-        articleFontTool.onload();
-        codeFontTool.onload();
-    </script>
-</div>
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">社交按钮</h3>
-    <div class="nexmoe-widget nexmoe-social">
-        <a class="mdui-ripple" href="https://github.com/Xciyang" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
-            <i class="nexmoefont icon-github"></i>
-        </a><a class="mdui-ripple" href="https://www.zhihu.com/people/ci-yang-ciyang" target="_blank" mdui-tooltip="{content: '知乎'}" style="color: rgb(123, 12, 57);background-color: rgba(123, 12, 57, .15);">
-            <i class="nexmoefont icon-zhihu"></i>
-        </a><a class="mdui-ripple" href="https://space.bilibili.com/6068536" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
-            <i class="nexmoefont icon-bilibili"></i>
-        </a><a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=896681584&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(12, 2, 255);background-color: rgba(12, 2, 255, .15);">
-            <i class="nexmoefont icon-QQ"></i>
-        </a><a class="mdui-ripple" href="/mailto:896681584@qq.com" target="_blank" mdui-tooltip="{content: '邮箱'}" style="color: rgb(123, 1, 255);background-color: rgba(123, 1, 255, .15);">
-            <i class="nexmoefont icon-mail-fill"></i>
-        </a><a class="mdui-ripple" href="/rss.xml" target="_blank" mdui-tooltip="{content: 'RSS'}" style="color: rgb(2, 10, 56);background-color: rgba(2, 10, 56, .15);">
-            <i class="nexmoefont icon-rss"></i>
-        </a>
-    </div>
-</div>
-  
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章分类</h3>
-    <div class="nexmoe-widget">
-
-      <ul class="category-list">
-
-        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                NOI2005 - 智慧珠游戏
+            
+        </h1>
+        <div class="content">
+            <p>【LuoguP4205】【BZOJ1501】【NOI2005】智慧珠游戏<br>题目链接1: <a href="https://www.luogu.org/problemnew/show/P4205" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P4205</a><br>题目链接2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1501" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=1501</a></p>
+<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>最近忙于各种事, 又有十天没写题解了, 好像这十天又变颓废了好多</p>
+<p>实在学习不下去很酷很炫的算法, 特意找搜索模拟等类题, 然后看到了这道题</p>
+<p>做题的时候教练还在说:”不要看不起搜索…”</p>
+<p>然后因为看我做这道题, 旁边的大佬还作了一首诗</p>
+<pre><code>生命诚可贵
+搜索价更高
+若为暴力故
+二者皆可抛
+    --Steve_Braveman</code></pre><a id="more"></a>
 
 
-        
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/技巧/">技巧</a>
-          <span class="category-list-count">3</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/闲聊/">闲聊</a>
-          <span class="category-list-count">4</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/项目/">项目</a>
-          <span class="category-list-count">3</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/题解/">题解</a>
-          <span class="category-list-count">20</span>
-        </li>
-
-        
-      </ul>
-
-    </div>
-  </div>
-
-
-  
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">标签云</h3>
-    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.67px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 13.33px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.67px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 13.33px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 16.67px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13.33px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.33px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.67px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 16.67px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.67px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 13.33px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 16.67px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.33px;">题解</a>
-    </div>
-    
-  </div>
-
-  
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">最新文章</h3>
-    <div class="nexmoe-widget">
-      <ul>
-        
-          <li>
-            <a href="/2019-10/08-you-ya-de-xie-dai-ma/">技巧 - 如何优雅的写代码</a>
-          </li>
-        
-          <li>
-            <a href="/2019-09/29-atbeginner142/">比赛 - AtCoder Beginner Contest 142</a>
-          </li>
-        
-          <li>
-            <a href="/2019-09/25-luogu1026/">NOIP2001 - 统计单词个数</a>
-          </li>
-        
-          <li>
-            <a href="/2019-09/20-luogu2540/">NOIP2015 - 斗地主增强版</a>
-          </li>
-        
-          <li>
-            <a href="/2019-09/19-luogu1282/">LuoguP1282 - 多米诺骨牌</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">访客量</h3>
-    <div class="nexmoe-widget" style="text-align: center;">
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-        <span id="busuanzi_container_site_pv">
-            <style="text-align: center;">本站总访问量<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        <br>
-        <span id="busuanzi_container_page_pv">
-            本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-        </span>
-    </div>
-</div>
-  
-</aside>
-    <div class="nexmoe-copyright">
-        &copy; 2019 Ciyang
-        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
-    </div>
-</div><!-- .nexmoe-drawer -->
-  </div>
-  <div id="nexmoe-content">
-    <div class="nexmoe-primary">
-      <div class="nexmoe-post">
-  <div class="nexmoe-post-cover">
-    
-    <img id="coverback">
-    <script>
-      var nowImg = document.getElementById('coverback'), key = '190317';
-      nowImg.src = '/medias/banner/' + key % Number("12") + '.jpg';
-    </script>
-    
-    <h1>NOI2005 - 智慧珠游戏</h1>
-  </div>
-  <div class="nexmoe-post-meta">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2019年03月17日</a>
-    <a><i class="nexmoefont icon-areachart"></i>5.5k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 34 分钟</a>
-    
-    <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-    
-    
-    <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/" rel="tag">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E6%90%9C%E7%B4%A2/" rel="tag">搜索</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a>
-    
-  </div>
-  <article id = "article">
-    <p>&#x3010;LuoguP4205&#x3011;&#x3010;BZOJ1501&#x3011;&#x3010;NOI2005&#x3011;&#x667A;&#x6167;&#x73E0;&#x6E38;&#x620F;<br>&#x9898;&#x76EE;&#x94FE;&#x63A5;1: <a href="https://www.luogu.org/problemnew/show/P4205" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P4205</a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1501" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=1501</a></p>
-<h3><span id="&#x5F15;&#x8A00;">&#x5F15;&#x8A00;</span><a href="#&#x5F15;&#x8A00;" class="header-anchor"> </a></h3><p>&#x6700;&#x8FD1;&#x5FD9;&#x4E8E;&#x5404;&#x79CD;&#x4E8B;, &#x53C8;&#x6709;&#x5341;&#x5929;&#x6CA1;&#x5199;&#x9898;&#x89E3;&#x4E86;, &#x597D;&#x50CF;&#x8FD9;&#x5341;&#x5929;&#x53C8;&#x53D8;&#x9893;&#x5E9F;&#x4E86;&#x597D;&#x591A;</p>
-<p>&#x5B9E;&#x5728;&#x5B66;&#x4E60;&#x4E0D;&#x4E0B;&#x53BB;&#x5F88;&#x9177;&#x5F88;&#x70AB;&#x7684;&#x7B97;&#x6CD5;, &#x7279;&#x610F;&#x627E;&#x641C;&#x7D22;&#x6A21;&#x62DF;&#x7B49;&#x7C7B;&#x9898;, &#x7136;&#x540E;&#x770B;&#x5230;&#x4E86;&#x8FD9;&#x9053;&#x9898;</p>
-<p>&#x505A;&#x9898;&#x7684;&#x65F6;&#x5019;&#x6559;&#x7EC3;&#x8FD8;&#x5728;&#x8BF4;:&#x201D;&#x4E0D;&#x8981;&#x770B;&#x4E0D;&#x8D77;&#x641C;&#x7D22;&#x2026;&#x201D;</p>
-<p>&#x7136;&#x540E;&#x56E0;&#x4E3A;&#x770B;&#x6211;&#x505A;&#x8FD9;&#x9053;&#x9898;, &#x65C1;&#x8FB9;&#x7684;&#x5927;&#x4F6C;&#x8FD8;&#x4F5C;&#x4E86;&#x4E00;&#x9996;&#x8BD7;</p>
-<pre><code>&#x751F;&#x547D;&#x8BDA;&#x53EF;&#x8D35;
-&#x641C;&#x7D22;&#x4EF7;&#x66F4;&#x9AD8;
-&#x82E5;&#x4E3A;&#x66B4;&#x529B;&#x6545;
-&#x4E8C;&#x8005;&#x7686;&#x53EF;&#x629B;
-    --Steve_Braveman
-</code></pre><a id="more"></a>
-<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
-
-<!-- toc -->
-<ul>
-<li><a href="#&#x5206;&#x6790;">&#x5206;&#x6790;</a></li>
-<li><a href="#&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</a></li>
-</ul>
-<!-- tocstop -->
-</div>
-
-<h3><span id="&#x5206;&#x6790;">&#x5206;&#x6790;</span><a href="#&#x5206;&#x6790;" class="header-anchor"> </a></h3><p>&#x6211;&#x5C31;&#x76F4;&#x63A5;&#x628A;&#x9898;&#x76EE;&#x63CF;&#x8FF0;&#x7684;&#x56FE;&#x642C;&#x8FC7;&#x6765;&#x4E86;</p>
-<p><img src="https://www.lydsy.com/JudgeOnline/images/1501_1.jpg" alt="&#x9898;&#x76EE;&#x63CF;&#x8FF0;"></p>
-<p>&#x4E00;&#x773C;&#x770B;&#x4E0A;&#x53BB;&#x5C31;&#x76F4;&#x63A5;&#x529D;&#x9000;, &#x5F53;&#x7136;&#x5176;&#x5B9E;&#x4E5F;&#x6CA1;&#x90A3;&#x4E48;&#x4E25;&#x91CD;, &#x597D;&#x50CF;&#x8FD8;&#x662F;&#x53EF;&#x505A;&#x7684;</p>
-<p>&#x5177;&#x4F53;&#x5206;&#x6790;&#x4E00;&#x4E0B;&#x8FD9;&#x9053;&#x9898;, &#x6240;&#x6709;&#x7684;&#x96F6;&#x4EF6;&#x90FD;&#x5141;&#x8BB8;&#x65CB;&#x8F6C;&#x548C;&#x7FFB;&#x8F6C;, &#x90A3;&#x4E48;&#x6BCF;&#x79CD;&#x96F6;&#x4EF6;&#x90FD;&#x6709;&#x591A;&#x79CD;&#x653E;&#x7F6E;&#x7684;&#x65B9;&#x6CD5;</p>
-<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x753B;&#x4E00;&#x4E0B;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x6CD5;, &#x53EF;&#x4EE5;&#x5728;&#x8349;&#x7A3F;&#x7EB8;&#x4E0A;&#x6216;&#x8005;&#x4E0A;&#x753B;&#x56FE;</p>
-<p>&#x4E3A;&#x4E86;&#x533A;&#x522B;&#x4EC0;&#x4E48;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x6446;&#x653E;&#x65B9;&#x6CD5;, &#x5C31;&#x8981;&#x786E;&#x5B9A;&#x641C;&#x7D22;&#x7684;&#x65B9;&#x5F0F;, &#x6211;&#x4EEC;&#x679A;&#x4E3E;&#x6BCF;&#x4E00;&#x4E2A;&#x70B9;, &#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x70B9;&#x5F53;&#x524D;&#x6CA1;&#x6709;&#x88AB;&#x8986;&#x76D6;&#x8FC7;, &#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x5F53;&#x524D;&#x5269;&#x4F59;&#x7684;&#x96F6;&#x4EF6;&#x8FDB;&#x884C;&#x5224;&#x65AD;.</p>
-<p>&#x6211;&#x9009;&#x62E9;&#x96F6;&#x4EF6;&#x6700;&#x5DE6;&#x4E0A;&#x89D2;&#x7684;&#x90A3;&#x4E2A;&#x73E0;&#x5B50;&#x6765;&#x586B;&#x5F53;&#x524D;&#x8FD9;&#x4E2A;&#x70B9;, &#x56E0;&#x6B64;&#x6709;&#x8FD9;&#x4E9B;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x6446;&#x653E;&#x65B9;&#x5F0F;</p>
-<pre><code>A: 4&#x79CD;
-B: 2&#x79CD;
-C: 8&#x79CD;
-D: 1&#x79CD;
-E: 4&#x79CD;
-F: 8&#x79CD;
-G: 4&#x79CD;
-H: 8&#x79CD;
-I: 8&#x79CD;
-J: 1&#x79CD;
-K: 4&#x79CD;
-L: 8&#x79CD;
-</code></pre><p>&#x52A0;&#x8D77;&#x6765;&#x7684;&#x786E;&#x6709;&#x5F88;&#x591A;&#x79CD;, &#x7136;&#x540E;&#x5C31;&#x5F00;&#x59CB;&#x5199;DFS&#x4E86;.</p>
-<p>&#x6211;&#x5199;&#x7684;&#x8FD8;&#x662F;&#x6BD4;&#x8F83;&#x66B4;&#x529B;&#x7684;, &#x66B4;&#x529B;&#x6A21;&#x62DF;, &#x53EA;&#x505A;&#x4E86;&#x4E00;&#x4E9B;&#x5C0F;&#x7684;&#x6280;&#x5DE7;.</p>
-<p>&#x5728;&#x67D0;&#x6B21;DFS&#x79CD;, &#x7B2C;&#x4E00;&#x6B21;&#x5224;&#x65AD;&#x67D0;&#x6761;&#x4EF6;&#x65F6;&#x5C31;&#x628A;&#x4ED6;&#x4EE5;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x5B58;&#x8D77;&#x6765;, &#x8D77;&#x4E00;&#x4E2A;&#x8F83;&#x4E3A;&#x76F4;&#x89C2;&#x7684;&#x53D8;&#x91CF;&#x540D;, &#x7136;&#x540E;&#x7B49;&#x4E0B;&#x6B21;&#x5224;&#x65AD;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5224;&#x65AD;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x4E86;.</p>
-<p>&#x5199;&#x7684;&#x65F6;&#x5019;&#x5F97;&#x6709;&#x8010;&#x5FC3;, &#x786E;&#x5B9E;&#x662F;&#x6709;&#x60F3;&#x6B7B;&#x7684;&#x611F;&#x89C9;.</p>
-<p>&#x5199;&#x5B8C;&#x540E;, &#x4F60;&#x8FD8;&#x662F;AC&#x4E0D;&#x4E86;&#x8FD9;&#x9053;&#x9898;, &#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x70B9;TLE. </p>
-<p>&#x8FD9;&#x4E2A;&#x70B9;&#x662F;No solution&#x2026;&#x6211;&#x5148;&#x9009;&#x62E9;&#x4E86;&#x5361;&#x65F6;&#x9650;, &#x5230;0.95s&#x4E4B;&#x540E;&#x5C31;&#x8F93;&#x51FA;&#x65E0;&#x89E3;</p>
-<p>&#x4F46;&#x662F;&#x4E8B;&#x5B9E;&#x8BC1;&#x660E;&#x4E0D;&#x53EF;&#x884C;, &#x56E0;&#x4E3A;clock&#x51FD;&#x6570;&#x6548;&#x7387;&#x4E0D;&#x9AD8;, &#x8BB8;&#x591A;&#x70B9;&#x7684;&#x8017;&#x65F6;&#x98D9;&#x5347;, &#x5E76;&#x5BFC;&#x81F4;&#x53E6;&#x4E00;&#x4E2A;&#x672C;&#x6765;&#x6709;&#x89E3;&#x7684;&#x5374;&#x8F93;&#x51FA;&#x4E86;&#x65E0;&#x89E3;&#x2026;</p>
-<p>&#x7136;&#x540E;&#x5C31;&#x8003;&#x8651;&#x5361;DFS&#x6B21;&#x6570;, &#x6211;&#x5728;&#x672C;&#x5730;&#x8BD5;&#x4E86;&#x4E00;&#x4E0B;, 10000000&#x5C31;&#x4E0D;&#x4F1A;&#x9519;&#x5224;&#x65E0;&#x89E3;&#x4E86;, &#x7136;&#x540E;&#x63D0;&#x4EA4;AC&#x4E86;</p>
-<h3><span id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</span><a href="#&#x4EE3;&#x7801;" class="header-anchor"> </a></h3><p>&#x6CE8;&#x91CA;&#x4E2D;A1&#x4EE3;&#x8868;A&#x96F6;&#x4EF6;&#x7684;&#x7B2C;1&#x79CD;&#x6446;&#x653E;&#x65B9;&#x6CD5;, &#x4EE5;&#x6B64;&#x7C7B;&#x63A8;</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我就直接把题目描述的图搬过来了</p>
+<p><img src="https://www.lydsy.com/JudgeOnline/images/1501_1.jpg" alt="题目描述"></p>
+<p>一眼看上去就直接劝退, 当然其实也没那么严重, 好像还是可做的</p>
+<p>具体分析一下这道题, 所有的零件都允许旋转和翻转, 那么每种零件都有多种放置的方法</p>
+<p>所以我们就可以画一下不同的方法, 可以在草稿纸上或者上画图</p>
+<p>为了区别什么是不同的摆放方法, 就要确定搜索的方式, 我们枚举每一个点, 如果这个点当前没有被覆盖过, 那么我们就可以选择当前剩余的零件进行判断.</p>
+<p>我选择零件最左上角的那个珠子来填当前这个点, 因此有这些种不同的摆放方式</p>
+<pre><code>A: 4种
+B: 2种
+C: 8种
+D: 1种
+E: 4种
+F: 8种
+G: 4种
+H: 8种
+I: 8种
+J: 1种
+K: 4种
+L: 8种</code></pre><p>加起来的确有很多种, 然后就开始写DFS了.</p>
+<p>我写的还是比较暴力的, 暴力模拟, 只做了一些小的技巧.</p>
+<p>在某次DFS种, 第一次判断某条件时就把他以一个变量存起来, 起一个较为直观的变量名, 然后等下次判断就可以直接判断这个变量了.</p>
+<p>写的时候得有耐心, 确实是有想死的感觉.</p>
+<p>写完后, 你还是AC不了这道题, 会有一个点TLE. </p>
+<p>这个点是No solution…我先选择了卡时限, 到0.95s之后就输出无解</p>
+<p>但是事实证明不可行, 因为clock函数效率不高, 许多点的耗时飙升, 并导致另一个本来有解的却输出了无解…</p>
+<p>然后就考虑卡DFS次数, 我在本地试了一下, 10000000就不会错判无解了, 然后提交AC了</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>注释中A1代表A零件的第1种摆放方法, 以此类推</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;time.h&gt;
 #include &lt;stdlib.h&gt;
@@ -412,537 +220,2017 @@ int dfs(int nowx, int nowy) {
     if(++cnt &gt; 10000000) return false;
     if(nowx == 11) return true;
     if(nowy == nowx + 1) return dfs(nowx + 1, 1);
-    if(inits[nowx][nowy] != &apos;.&apos;) return dfs(nowx, nowy + 1);
-    int right= (getlimit(nowx, nowy + 1) &amp;&amp; inits[nowx][nowy + 1] == &apos;.&apos;);
-    int rdown= (getlimit(nowx + 1, nowy + 1) &amp;&amp; inits[nowx + 1][nowy + 1] == &apos;.&apos;);
-    int down= (getlimit(nowx + 1, nowy) &amp;&amp; inits[nowx + 1][nowy] == &apos;.&apos;);
-    int dleft= (getlimit(nowx + 1, nowy - 1) &amp;&amp; inits[nowx + 1][nowy - 1] == &apos;.&apos;);
-    if(!chose[&apos;A&apos;]) {
-        chose[&apos;A&apos;]= true, inits[nowx][nowy]= &apos;A&apos;;
+    if(inits[nowx][nowy] != &#39;.&#39;) return dfs(nowx, nowy + 1);
+    int right= (getlimit(nowx, nowy + 1) &amp;&amp; inits[nowx][nowy + 1] == &#39;.&#39;);
+    int rdown= (getlimit(nowx + 1, nowy + 1) &amp;&amp; inits[nowx + 1][nowy + 1] == &#39;.&#39;);
+    int down= (getlimit(nowx + 1, nowy) &amp;&amp; inits[nowx + 1][nowy] == &#39;.&#39;);
+    int dleft= (getlimit(nowx + 1, nowy - 1) &amp;&amp; inits[nowx + 1][nowy - 1] == &#39;.&#39;);
+    if(!chose[&#39;A&#39;]) {
+        chose[&#39;A&#39;]= true, inits[nowx][nowy]= &#39;A&#39;;
         // A1
         if(right &amp;&amp; rdown) {
-            inits[nowx][nowy + 1]= &apos;A&apos;, inits[nowx + 1][nowy + 1]= &apos;A&apos;;
+            inits[nowx][nowy + 1]= &#39;A&#39;, inits[nowx + 1][nowy + 1]= &#39;A&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
         }
         // A2
         if(down &amp;&amp; dleft) {
-            inits[nowx + 1][nowy]= &apos;A&apos;, inits[nowx + 1][nowy - 1]= &apos;A&apos;;
+            inits[nowx + 1][nowy]= &#39;A&#39;, inits[nowx + 1][nowy - 1]= &#39;A&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;;
         }
         // A3
         if(down &amp;&amp; rdown) {
-            inits[nowx + 1][nowy]= &apos;A&apos;, inits[nowx + 1][nowy + 1]= &apos;A&apos;;
+            inits[nowx + 1][nowy]= &#39;A&#39;, inits[nowx + 1][nowy + 1]= &#39;A&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
         }
         // A4
         if(right &amp;&amp; down) {
-            inits[nowx][nowy + 1]= &apos;A&apos;, inits[nowx + 1][nowy]= &apos;A&apos;;
+            inits[nowx][nowy + 1]= &#39;A&#39;, inits[nowx + 1][nowy]= &#39;A&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;;
         }
-        chose[&apos;A&apos;]= false;
+        chose[&#39;A&#39;]= false;
     }
-    int ddown= (getlimit(nowx + 2, nowy) &amp;&amp; inits[nowx + 2][nowy] == &apos;.&apos;);
-    int dddown= (getlimit(nowx + 3, nowy) &amp;&amp; inits[nowx + 3][nowy] == &apos;.&apos;);
-    int rright= (getlimit(nowx, nowy + 2) &amp;&amp; inits[nowx][nowy + 2] == &apos;.&apos;);
-    int rrright= (getlimit(nowx, nowy + 3) &amp;&amp; inits[nowx][nowy + 3] == &apos;.&apos;);
-    if(!chose[&apos;B&apos;]) {
-        chose[&apos;B&apos;]= true, inits[nowx][nowy]= &apos;B&apos;;
+    int ddown= (getlimit(nowx + 2, nowy) &amp;&amp; inits[nowx + 2][nowy] == &#39;.&#39;);
+    int dddown= (getlimit(nowx + 3, nowy) &amp;&amp; inits[nowx + 3][nowy] == &#39;.&#39;);
+    int rright= (getlimit(nowx, nowy + 2) &amp;&amp; inits[nowx][nowy + 2] == &#39;.&#39;);
+    int rrright= (getlimit(nowx, nowy + 3) &amp;&amp; inits[nowx][nowy + 3] == &#39;.&#39;);
+    if(!chose[&#39;B&#39;]) {
+        chose[&#39;B&#39;]= true, inits[nowx][nowy]= &#39;B&#39;;
         // B1
         if(down &amp;&amp; ddown &amp;&amp; dddown) {
-            inits[nowx + 1][nowy]= &apos;B&apos;, inits[nowx + 2][nowy]= &apos;B&apos;, inits[nowx + 3][nowy]= &apos;B&apos;;
+            inits[nowx + 1][nowy]= &#39;B&#39;, inits[nowx + 2][nowy]= &#39;B&#39;, inits[nowx + 3][nowy]= &#39;B&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;;
         }
         // B2
         if(right &amp;&amp; rright &amp;&amp; rrright) {
-            inits[nowx][nowy + 1]= &apos;B&apos;, inits[nowx][nowy + 2]= &apos;B&apos;, inits[nowx][nowy + 3]= &apos;B&apos;;
+            inits[nowx][nowy + 1]= &#39;B&#39;, inits[nowx][nowy + 2]= &#39;B&#39;, inits[nowx][nowy + 3]= &#39;B&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 3]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 3]= &#39;.&#39;;
         }
-        chose[&apos;B&apos;]= false;
+        chose[&#39;B&#39;]= false;
     }
-    int rddown= (getlimit(nowx + 2, nowy + 1) &amp;&amp; inits[nowx + 2][nowy + 1] == &apos;.&apos;);
-    int dlleft= (getlimit(nowx + 1, nowy - 2) &amp;&amp; inits[nowx + 1][nowy - 2] == &apos;.&apos;);
-    int drright= (getlimit(nowx + 1, nowy + 2) &amp;&amp; inits[nowx + 1][nowy + 2] == &apos;.&apos;);
-    int ddleft= (getlimit(nowx + 2, nowy - 1) &amp;&amp; inits[nowx + 2][nowy - 1] == &apos;.&apos;);
-    if(!chose[&apos;C&apos;]) {
-        chose[&apos;C&apos;]= true, inits[nowx][nowy]= &apos;C&apos;;
+    int rddown= (getlimit(nowx + 2, nowy + 1) &amp;&amp; inits[nowx + 2][nowy + 1] == &#39;.&#39;);
+    int dlleft= (getlimit(nowx + 1, nowy - 2) &amp;&amp; inits[nowx + 1][nowy - 2] == &#39;.&#39;);
+    int drright= (getlimit(nowx + 1, nowy + 2) &amp;&amp; inits[nowx + 1][nowy + 2] == &#39;.&#39;);
+    int ddleft= (getlimit(nowx + 2, nowy - 1) &amp;&amp; inits[nowx + 2][nowy - 1] == &#39;.&#39;);
+    if(!chose[&#39;C&#39;]) {
+        chose[&#39;C&#39;]= true, inits[nowx][nowy]= &#39;C&#39;;
         // C1
         if(right &amp;&amp; rright &amp;&amp; down) {
-            inits[nowx][nowy + 1]= &apos;C&apos;, inits[nowx][nowy + 2]= &apos;C&apos;, inits[nowx + 1][nowy]= &apos;C&apos;;
+            inits[nowx][nowy + 1]= &#39;C&#39;, inits[nowx][nowy + 2]= &#39;C&#39;, inits[nowx + 1][nowy]= &#39;C&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;;
         }
         // C2
         if(right &amp;&amp; rdown &amp;&amp; rddown) {
-            inits[nowx][nowy + 1]= &apos;C&apos;, inits[nowx + 1][nowy + 1]= &apos;C&apos;, inits[nowx + 2][nowy + 1]= &apos;C&apos;;
+            inits[nowx][nowy + 1]= &#39;C&#39;, inits[nowx + 1][nowy + 1]= &#39;C&#39;, inits[nowx + 2][nowy + 1]= &#39;C&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
         }
         // C3
         if(down &amp;&amp; dleft &amp;&amp; dlleft) {
-            inits[nowx + 1][nowy]= &apos;C&apos;, inits[nowx + 1][nowy - 1]= &apos;C&apos;, inits[nowx + 1][nowy - 2]= &apos;C&apos;;
+            inits[nowx + 1][nowy]= &#39;C&#39;, inits[nowx + 1][nowy - 1]= &#39;C&#39;, inits[nowx + 1][nowy - 2]= &#39;C&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy - 2]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy - 2]= &#39;.&#39;;
         }
         // C4
         if(down &amp;&amp; ddown &amp;&amp; rddown) {
-            inits[nowx + 1][nowy]= &apos;C&apos;, inits[nowx + 2][nowy]= &apos;C&apos;, inits[nowx + 2][nowy + 1]= &apos;C&apos;;
+            inits[nowx + 1][nowy]= &#39;C&#39;, inits[nowx + 2][nowy]= &#39;C&#39;, inits[nowx + 2][nowy + 1]= &#39;C&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
         }
         // C5
         if(down &amp;&amp; rdown &amp;&amp; drright) {
-            inits[nowx + 1][nowy]= &apos;C&apos;, inits[nowx + 1][nowy + 1]= &apos;C&apos;, inits[nowx + 1][nowy + 2]= &apos;C&apos;;
+            inits[nowx + 1][nowy]= &#39;C&#39;, inits[nowx + 1][nowy + 1]= &#39;C&#39;, inits[nowx + 1][nowy + 2]= &#39;C&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
         }
         // C6
         if(right &amp;&amp; down &amp;&amp; ddown) {
-            inits[nowx][nowy + 1]= &apos;C&apos;, inits[nowx + 1][nowy]= &apos;C&apos;, inits[nowx + 2][nowy]= &apos;C&apos;;
+            inits[nowx][nowy + 1]= &#39;C&#39;, inits[nowx + 1][nowy]= &#39;C&#39;, inits[nowx + 2][nowy]= &#39;C&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;;
         }
         // C7
         if(right &amp;&amp; rright &amp;&amp; drright) {
-            inits[nowx][nowy + 1]= &apos;C&apos;, inits[nowx][nowy + 2]= &apos;C&apos;, inits[nowx + 1][nowy + 2]= &apos;C&apos;;
+            inits[nowx][nowy + 1]= &#39;C&#39;, inits[nowx][nowy + 2]= &#39;C&#39;, inits[nowx + 1][nowy + 2]= &#39;C&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
         }
         // C8
         if(down &amp;&amp; ddown &amp;&amp; ddleft) {
-            inits[nowx + 1][nowy]= &apos;C&apos;, inits[nowx + 2][nowy]= &apos;C&apos;, inits[nowx + 2][nowy - 1]= &apos;C&apos;;
+            inits[nowx + 1][nowy]= &#39;C&#39;, inits[nowx + 2][nowy]= &#39;C&#39;, inits[nowx + 2][nowy - 1]= &#39;C&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;;
         }
-        chose[&apos;C&apos;]= false;
+        chose[&#39;C&#39;]= false;
     }
-    if(!chose[&apos;D&apos;]) {
-        chose[&apos;D&apos;]= true, inits[nowx][nowy]= &apos;D&apos;;
+    if(!chose[&#39;D&#39;]) {
+        chose[&#39;D&#39;]= true, inits[nowx][nowy]= &#39;D&#39;;
         // D1
         if(right &amp;&amp; down &amp;&amp; rdown) {
-            inits[nowx + 1][nowy]= &apos;D&apos;, inits[nowx][nowy + 1]= &apos;D&apos;, inits[nowx + 1][nowy + 1]= &apos;D&apos;;
+            inits[nowx + 1][nowy]= &#39;D&#39;, inits[nowx][nowy + 1]= &#39;D&#39;, inits[nowx + 1][nowy + 1]= &#39;D&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
         }
-        chose[&apos;D&apos;]= false;
+        chose[&#39;D&#39;]= false;
     }
-    int ddrright= (getlimit(nowx + 2, nowy + 2) &amp;&amp; inits[nowx + 2][nowy + 2] == &apos;.&apos;);
-    int ddlleft= (getlimit(nowx + 2, nowy - 2) &amp;&amp; inits[nowx + 2][nowy - 2] == &apos;.&apos;);
-    if(!chose[&apos;E&apos;]) {
-        chose[&apos;E&apos;]= true, inits[nowx][nowy]= &apos;E&apos;;
+    int ddrright= (getlimit(nowx + 2, nowy + 2) &amp;&amp; inits[nowx + 2][nowy + 2] == &#39;.&#39;);
+    int ddlleft= (getlimit(nowx + 2, nowy - 2) &amp;&amp; inits[nowx + 2][nowy - 2] == &#39;.&#39;);
+    if(!chose[&#39;E&#39;]) {
+        chose[&#39;E&#39;]= true, inits[nowx][nowy]= &#39;E&#39;;
         // E1
         if(down &amp;&amp; ddown &amp;&amp; rddown &amp;&amp; ddrright) {
-            inits[nowx + 1][nowy]= &apos;E&apos;, inits[nowx + 2][nowy]= &apos;E&apos;, inits[nowx + 2][nowy + 1]= &apos;E&apos;, inits[nowx + 2][nowy + 2]= &apos;E&apos;;
+            inits[nowx + 1][nowy]= &#39;E&#39;, inits[nowx + 2][nowy]= &#39;E&#39;, inits[nowx + 2][nowy + 1]= &#39;E&#39;, inits[nowx + 2][nowy + 2]= &#39;E&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 2]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 2]= &#39;.&#39;;
         }
         // E2
         if(right &amp;&amp; rright &amp;&amp; down &amp;&amp; ddown) {
-            inits[nowx][nowy + 1]= &apos;E&apos;, inits[nowx][nowy + 2]= &apos;E&apos;, inits[nowx + 1][nowy]= &apos;E&apos;, inits[nowx + 2][nowy]= &apos;E&apos;;
+            inits[nowx][nowy + 1]= &#39;E&#39;, inits[nowx][nowy + 2]= &#39;E&#39;, inits[nowx + 1][nowy]= &#39;E&#39;, inits[nowx + 2][nowy]= &#39;E&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;;
         }
         // E3
         if(right &amp;&amp; rright &amp;&amp; drright &amp;&amp; ddrright) {
-            inits[nowx][nowy + 1]= &apos;E&apos;, inits[nowx][nowy + 2]= &apos;E&apos;, inits[nowx + 1][nowy + 2]= &apos;E&apos;, inits[nowx + 2][nowy + 2]= &apos;E&apos;;
+            inits[nowx][nowy + 1]= &#39;E&#39;, inits[nowx][nowy + 2]= &#39;E&#39;, inits[nowx + 1][nowy + 2]= &#39;E&#39;, inits[nowx + 2][nowy + 2]= &#39;E&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx + 2][nowy + 2]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx + 2][nowy + 2]= &#39;.&#39;;
         }
         // E4
         if(down &amp;&amp; ddown &amp;&amp; ddleft &amp;&amp; ddlleft) {
-            inits[nowx + 1][nowy]= &apos;E&apos;, inits[nowx + 2][nowy]= &apos;E&apos;, inits[nowx + 2][nowy - 1]= &apos;E&apos;, inits[nowx + 2][nowy - 2]= &apos;E&apos;;
+            inits[nowx + 1][nowy]= &#39;E&#39;, inits[nowx + 2][nowy]= &#39;E&#39;, inits[nowx + 2][nowy - 1]= &#39;E&#39;, inits[nowx + 2][nowy - 2]= &#39;E&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 2]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 2]= &#39;.&#39;;
         }
-        chose[&apos;E&apos;]= false;
+        chose[&#39;E&#39;]= false;
     }
-    if(!chose[&apos;F&apos;]) {
-        chose[&apos;F&apos;]= true, inits[nowx][nowy]= &apos;F&apos;;
+    if(!chose[&#39;F&#39;]) {
+        chose[&#39;F&#39;]= true, inits[nowx][nowy]= &#39;F&#39;;
         // F1
         if(right &amp;&amp; rright &amp;&amp; rrright &amp;&amp; rdown) {
-            inits[nowx][nowy + 1]= &apos;F&apos;, inits[nowx][nowy + 2]= &apos;F&apos;, inits[nowx][nowy + 3]= &apos;F&apos;, inits[nowx + 1][nowy + 1]= &apos;F&apos;;
+            inits[nowx][nowy + 1]= &#39;F&#39;, inits[nowx][nowy + 2]= &#39;F&#39;, inits[nowx][nowy + 3]= &#39;F&#39;, inits[nowx + 1][nowy + 1]= &#39;F&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 3]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 3]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
         }
         // F2
         if(down &amp;&amp; ddown &amp;&amp; dddown &amp;&amp; dleft) {
-            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 2][nowy]= &apos;F&apos;, inits[nowx + 3][nowy]= &apos;F&apos;, inits[nowx + 1][nowy - 1]= &apos;F&apos;;
+            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 2][nowy]= &#39;F&#39;, inits[nowx + 3][nowy]= &#39;F&#39;, inits[nowx + 1][nowy - 1]= &#39;F&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;;
         }
         // F3
         if(down &amp;&amp; dleft &amp;&amp; dlleft &amp;&amp; rdown) {
-            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 1][nowy - 1]= &apos;F&apos;, inits[nowx + 1][nowy - 2]= &apos;F&apos;, inits[nowx + 1][nowy + 1]= &apos;F&apos;;
+            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 1][nowy - 1]= &#39;F&#39;, inits[nowx + 1][nowy - 2]= &#39;F&#39;, inits[nowx + 1][nowy + 1]= &#39;F&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy - 2]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy - 2]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
         }
         // F4
         if(down &amp;&amp; ddown &amp;&amp; dddown &amp;&amp; rddown) {
-            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 2][nowy]= &apos;F&apos;, inits[nowx + 3][nowy]= &apos;F&apos;, inits[nowx + 2][nowy + 1]= &apos;F&apos;;
+            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 2][nowy]= &#39;F&#39;, inits[nowx + 3][nowy]= &#39;F&#39;, inits[nowx + 2][nowy + 1]= &#39;F&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
         }
         // F5
         if(down &amp;&amp; dleft &amp;&amp; rdown &amp;&amp; drright) {
-            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 1][nowy - 1]= &apos;F&apos;, inits[nowx + 1][nowy + 1]= &apos;F&apos;, inits[nowx + 1][nowy + 2]= &apos;F&apos;;
+            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 1][nowy - 1]= &#39;F&#39;, inits[nowx + 1][nowy + 1]= &#39;F&#39;, inits[nowx + 1][nowy + 2]= &#39;F&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
         }
         // F6
         if(down &amp;&amp; ddown &amp;&amp; ddleft &amp;&amp; dddown) {
-            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 2][nowy]= &apos;F&apos;, inits[nowx + 2][nowy - 1]= &apos;F&apos;, inits[nowx + 3][nowy]= &apos;F&apos;;
+            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 2][nowy]= &#39;F&#39;, inits[nowx + 2][nowy - 1]= &#39;F&#39;, inits[nowx + 3][nowy]= &#39;F&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;;
         }
         // F7
         if(right &amp;&amp; rright &amp;&amp; drright &amp;&amp; rrright) {
-            inits[nowx][nowy + 1]= &apos;F&apos;, inits[nowx][nowy + 2]= &apos;F&apos;, inits[nowx + 1][nowy + 2]= &apos;F&apos;, inits[nowx][nowy + 3]= &apos;F&apos;;
+            inits[nowx][nowy + 1]= &#39;F&#39;, inits[nowx][nowy + 2]= &#39;F&#39;, inits[nowx + 1][nowy + 2]= &#39;F&#39;, inits[nowx][nowy + 3]= &#39;F&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 3]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 3]= &#39;.&#39;;
         }
         // F8
         if(down &amp;&amp; rdown &amp;&amp; ddown &amp;&amp; dddown) {
-            inits[nowx + 1][nowy]= &apos;F&apos;, inits[nowx + 1][nowy + 1]= &apos;F&apos;, inits[nowx + 2][nowy]= &apos;F&apos;, inits[nowx + 3][nowy]= &apos;F&apos;;
+            inits[nowx + 1][nowy]= &#39;F&#39;, inits[nowx + 1][nowy + 1]= &#39;F&#39;, inits[nowx + 2][nowy]= &#39;F&#39;, inits[nowx + 3][nowy]= &#39;F&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;;
         }
-        chose[&apos;F&apos;]= false;
+        chose[&#39;F&#39;]= false;
     }
-    if(!chose[&apos;G&apos;]) {
-        chose[&apos;G&apos;]= true, inits[nowx][nowy]= &apos;G&apos;;
+    if(!chose[&#39;G&#39;]) {
+        chose[&#39;G&#39;]= true, inits[nowx][nowy]= &#39;G&#39;;
         // G1
         if(down &amp;&amp; right &amp;&amp; rright &amp;&amp; drright) {
-            inits[nowx + 1][nowy]= &apos;G&apos;, inits[nowx][nowy + 1]= &apos;G&apos;, inits[nowx][nowy + 2]= &apos;G&apos;, inits[nowx + 1][nowy + 2]= &apos;G&apos;;
+            inits[nowx + 1][nowy]= &#39;G&#39;, inits[nowx][nowy + 1]= &#39;G&#39;, inits[nowx][nowy + 2]= &#39;G&#39;, inits[nowx + 1][nowy + 2]= &#39;G&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
         }
         // G2
         if(right &amp;&amp; rdown &amp;&amp; rddown &amp;&amp; ddown) {
-            inits[nowx][nowy + 1]= &apos;G&apos;, inits[nowx + 1][nowy + 1]= &apos;G&apos;, inits[nowx + 2][nowy + 1]= &apos;G&apos;, inits[nowx + 2][nowy]= &apos;G&apos;;
+            inits[nowx][nowy + 1]= &#39;G&#39;, inits[nowx + 1][nowy + 1]= &#39;G&#39;, inits[nowx + 2][nowy + 1]= &#39;G&#39;, inits[nowx + 2][nowy]= &#39;G&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;;
         }
         // G3
         if(down &amp;&amp; rdown &amp;&amp; drright &amp;&amp; rright) {
-            inits[nowx + 1][nowy]= &apos;G&apos;, inits[nowx + 1][nowy + 1]= &apos;G&apos;, inits[nowx + 1][nowy + 2]= &apos;G&apos;, inits[nowx][nowy + 2]= &apos;G&apos;;
+            inits[nowx + 1][nowy]= &#39;G&#39;, inits[nowx + 1][nowy + 1]= &#39;G&#39;, inits[nowx + 1][nowy + 2]= &#39;G&#39;, inits[nowx][nowy + 2]= &#39;G&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;;
         }
         // G4
         if(right &amp;&amp; down &amp;&amp; ddown &amp;&amp; rddown) {
-            inits[nowx][nowy + 1]= &apos;G&apos;, inits[nowx + 1][nowy]= &apos;G&apos;, inits[nowx + 2][nowy]= &apos;G&apos;, inits[nowx + 2][nowy + 1]= &apos;G&apos;;
+            inits[nowx][nowy + 1]= &#39;G&#39;, inits[nowx + 1][nowy]= &#39;G&#39;, inits[nowx + 2][nowy]= &#39;G&#39;, inits[nowx + 2][nowy + 1]= &#39;G&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
         }
-        chose[&apos;G&apos;]= false;
+        chose[&#39;G&#39;]= false;
     }
-    if(!chose[&apos;H&apos;]) {
-        chose[&apos;H&apos;]= true, inits[nowx][nowy]= &apos;H&apos;;
+    if(!chose[&#39;H&#39;]) {
+        chose[&#39;H&#39;]= true, inits[nowx][nowy]= &#39;H&#39;;
         // H1
         if(right &amp;&amp; rright &amp;&amp; down &amp;&amp; rdown) {
-            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx][nowy + 2]= &apos;H&apos;, inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;;
+            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx][nowy + 2]= &#39;H&#39;, inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
         }
         // H2
         if(right &amp;&amp; down &amp;&amp; rdown &amp;&amp; rddown) {
-            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;, inits[nowx + 2][nowy + 1]= &apos;H&apos;;
+            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;, inits[nowx + 2][nowy + 1]= &#39;H&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
         }
         // H3
         if(right &amp;&amp; down &amp;&amp; rdown &amp;&amp; dleft) {
-            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy - 1]= &apos;H&apos;;
+            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy - 1]= &#39;H&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;;
         }
         // H4
         if(down &amp;&amp; rdown &amp;&amp; ddown &amp;&amp; rddown) {
-            inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;, inits[nowx + 2][nowy]= &apos;H&apos;, inits[nowx + 2][nowy + 1]= &apos;H&apos;;
+            inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;, inits[nowx + 2][nowy]= &#39;H&#39;, inits[nowx + 2][nowy + 1]= &#39;H&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;;
         }
         // H5
         if(right &amp;&amp; down &amp;&amp; rdown &amp;&amp; drright) {
-            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy + 2]= &apos;H&apos;;
+            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy + 2]= &#39;H&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
         }
         // H6
         if(down &amp;&amp; ddown &amp;&amp; dleft &amp;&amp; ddleft) {
-            inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 2][nowy]= &apos;H&apos;, inits[nowx + 1][nowy - 1]= &apos;H&apos;, inits[nowx + 2][nowy - 1]= &apos;H&apos;;
+            inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 2][nowy]= &#39;H&#39;, inits[nowx + 1][nowy - 1]= &#39;H&#39;, inits[nowx + 2][nowy - 1]= &#39;H&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;;
         }
         // H7
         if(right &amp;&amp; rright &amp;&amp; rdown &amp;&amp; drright) {
-            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx][nowy + 2]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy + 2]= &apos;H&apos;;
+            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx][nowy + 2]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy + 2]= &#39;H&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;;
         }
         // H8
         if(right &amp;&amp; down &amp;&amp; ddown &amp;&amp; rdown) {
-            inits[nowx][nowy + 1]= &apos;H&apos;, inits[nowx + 1][nowy]= &apos;H&apos;, inits[nowx + 2][nowy]= &apos;H&apos;, inits[nowx + 1][nowy + 1]= &apos;H&apos;;
+            inits[nowx][nowy + 1]= &#39;H&#39;, inits[nowx + 1][nowy]= &#39;H&#39;, inits[nowx + 2][nowy]= &#39;H&#39;, inits[nowx + 1][nowy + 1]= &#39;H&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;;
         }
-        chose[&apos;H&apos;]= false;
+        chose[&#39;H&#39;]= false;
     }
-    int rrdright= (getlimit(nowx + 1, nowy + 3) &amp;&amp; inits[nowx + 1][nowy + 3] == &apos;.&apos;);
-    int ddldown= (getlimit(nowx + 3, nowy - 1) &amp;&amp; inits[nowx + 3][nowy - 1] == &apos;.&apos;);
-    int drddown= (getlimit(nowx + 3, nowy + 1) &amp;&amp; inits[nowx + 3][nowy + 1] == &apos;.&apos;);
-    if(!chose[&apos;I&apos;]) {
-        chose[&apos;I&apos;]= true, inits[nowx][nowy]= &apos;I&apos;;
+    int rrdright= (getlimit(nowx + 1, nowy + 3) &amp;&amp; inits[nowx + 1][nowy + 3] == &#39;.&#39;);
+    int ddldown= (getlimit(nowx + 3, nowy - 1) &amp;&amp; inits[nowx + 3][nowy - 1] == &#39;.&#39;);
+    int drddown= (getlimit(nowx + 3, nowy + 1) &amp;&amp; inits[nowx + 3][nowy + 1] == &#39;.&#39;);
+    if(!chose[&#39;I&#39;]) {
+        chose[&#39;I&#39;]= true, inits[nowx][nowy]= &#39;I&#39;;
         // I1
         if(right &amp;&amp; rright &amp;&amp; drright &amp;&amp; rrdright) {
-            inits[nowx][nowy + 1]= &apos;I&apos;, inits[nowx][nowy + 2]= &apos;I&apos;, inits[nowx + 1][nowy + 2]= &apos;I&apos;, inits[nowx + 1][nowy + 3]= &apos;I&apos;;
+            inits[nowx][nowy + 1]= &#39;I&#39;, inits[nowx][nowy + 2]= &#39;I&#39;, inits[nowx + 1][nowy + 2]= &#39;I&#39;, inits[nowx + 1][nowy + 3]= &#39;I&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 3]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 3]= &#39;.&#39;;
         }
         // I2
         if(down &amp;&amp; ddown &amp;&amp; ddleft &amp;&amp; ddldown) {
-            inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 2][nowy]= &apos;I&apos;, inits[nowx + 2][nowy - 1]= &apos;I&apos;, inits[nowx + 3][nowy - 1]= &apos;I&apos;;
+            inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 2][nowy]= &#39;I&#39;, inits[nowx + 2][nowy - 1]= &#39;I&#39;, inits[nowx + 3][nowy - 1]= &#39;I&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;, inits[nowx + 3][nowy - 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;, inits[nowx + 3][nowy - 1]= &#39;.&#39;;
         }
         // I3
         if(right &amp;&amp; rdown &amp;&amp; drright &amp;&amp; rrdright) {
-            inits[nowx][nowy + 1]= &apos;I&apos;, inits[nowx + 1][nowy + 1]= &apos;I&apos;, inits[nowx + 1][nowy + 2]= &apos;I&apos;, inits[nowx + 1][nowy + 3]= &apos;I&apos;;
+            inits[nowx][nowy + 1]= &#39;I&#39;, inits[nowx + 1][nowy + 1]= &#39;I&#39;, inits[nowx + 1][nowy + 2]= &#39;I&#39;, inits[nowx + 1][nowy + 3]= &#39;I&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 3]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 3]= &#39;.&#39;;
         }
         // I4
         if(down &amp;&amp; dleft &amp;&amp; ddleft &amp;&amp; ddldown) {
-            inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 1][nowy - 1]= &apos;I&apos;, inits[nowx + 2][nowy - 1]= &apos;I&apos;, inits[nowx + 3][nowy - 1]= &apos;I&apos;;
+            inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 1][nowy - 1]= &#39;I&#39;, inits[nowx + 2][nowy - 1]= &#39;I&#39;, inits[nowx + 3][nowy - 1]= &#39;I&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;, inits[nowx + 3][nowy - 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;, inits[nowx + 3][nowy - 1]= &#39;.&#39;;
         }
         // I5
         if(right &amp;&amp; down &amp;&amp; dleft &amp;&amp; dlleft) {
-            inits[nowx][nowy + 1]= &apos;I&apos;, inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 1][nowy - 1]= &apos;I&apos;, inits[nowx + 1][nowy - 2]= &apos;I&apos;;
+            inits[nowx][nowy + 1]= &#39;I&#39;, inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 1][nowy - 1]= &#39;I&#39;, inits[nowx + 1][nowy - 2]= &#39;I&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy - 2]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy - 2]= &#39;.&#39;;
         }
         // I6
         if(down &amp;&amp; rdown &amp;&amp; rddown &amp;&amp; drddown) {
-            inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 1][nowy + 1]= &apos;I&apos;, inits[nowx + 2][nowy + 1]= &apos;I&apos;, inits[nowx + 3][nowy + 1]= &apos;I&apos;;
+            inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 1][nowy + 1]= &#39;I&#39;, inits[nowx + 2][nowy + 1]= &#39;I&#39;, inits[nowx + 3][nowy + 1]= &#39;I&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 3][nowy + 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 3][nowy + 1]= &#39;.&#39;;
         }
         // I7
         if(right &amp;&amp; rright &amp;&amp; down &amp;&amp; dleft) {
-            inits[nowx][nowy + 1]= &apos;I&apos;, inits[nowx][nowy + 2]= &apos;I&apos;, inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 1][nowy - 1]= &apos;I&apos;;
+            inits[nowx][nowy + 1]= &#39;I&#39;, inits[nowx][nowy + 2]= &#39;I&#39;, inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 1][nowy - 1]= &#39;I&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;;
         }
         // I8
         if(down &amp;&amp; ddown &amp;&amp; rddown &amp;&amp; drddown) {
-            inits[nowx + 1][nowy]= &apos;I&apos;, inits[nowx + 2][nowy]= &apos;I&apos;, inits[nowx + 2][nowy + 1]= &apos;I&apos;, inits[nowx + 3][nowy + 1]= &apos;I&apos;;
+            inits[nowx + 1][nowy]= &#39;I&#39;, inits[nowx + 2][nowy]= &#39;I&#39;, inits[nowx + 2][nowy + 1]= &#39;I&#39;, inits[nowx + 3][nowy + 1]= &#39;I&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 3][nowy + 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 3][nowy + 1]= &#39;.&#39;;
         }
-        chose[&apos;I&apos;]= false;
+        chose[&#39;I&#39;]= false;
     }
-    if(!chose[&apos;J&apos;]) {
-        chose[&apos;J&apos;]= true, inits[nowx][nowy]= &apos;J&apos;;
+    if(!chose[&#39;J&#39;]) {
+        chose[&#39;J&#39;]= true, inits[nowx][nowy]= &#39;J&#39;;
         // J1
         if(down &amp;&amp; dleft &amp;&amp; rdown &amp;&amp; ddown) {
-            inits[nowx + 1][nowy]= &apos;J&apos;, inits[nowx + 1][nowy - 1]= &apos;J&apos;, inits[nowx + 1][nowy + 1]= &apos;J&apos;, inits[nowx + 2][nowy]= &apos;J&apos;;
+            inits[nowx + 1][nowy]= &#39;J&#39;, inits[nowx + 1][nowy - 1]= &#39;J&#39;, inits[nowx + 1][nowy + 1]= &#39;J&#39;, inits[nowx + 2][nowy]= &#39;J&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;;
         }
-        chose[&apos;J&apos;]= false;
+        chose[&#39;J&#39;]= false;
     }
-    if(!chose[&apos;K&apos;]) {
-        chose[&apos;K&apos;]= true, inits[nowx][nowy]= &apos;K&apos;;
+    if(!chose[&#39;K&#39;]) {
+        chose[&#39;K&#39;]= true, inits[nowx][nowy]= &#39;K&#39;;
         // K1
         if(down &amp;&amp; rdown &amp;&amp; rddown &amp;&amp; ddrright) {
-            inits[nowx + 1][nowy]= &apos;K&apos;, inits[nowx + 1][nowy + 1]= &apos;K&apos;, inits[nowx + 2][nowy + 1]= &apos;K&apos;, inits[nowx + 2][nowy + 2]= &apos;K&apos;;
+            inits[nowx + 1][nowy]= &#39;K&#39;, inits[nowx + 1][nowy + 1]= &#39;K&#39;, inits[nowx + 2][nowy + 1]= &#39;K&#39;, inits[nowx + 2][nowy + 2]= &#39;K&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 2]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 2]= &#39;.&#39;;
         }
         // K2
         if(right &amp;&amp; down &amp;&amp; dleft &amp;&amp; ddleft) {
-            inits[nowx][nowy + 1]= &apos;K&apos;, inits[nowx + 1][nowy]= &apos;K&apos;, inits[nowx + 1][nowy - 1]= &apos;K&apos;, inits[nowx + 2][nowy - 1]= &apos;K&apos;;
+            inits[nowx][nowy + 1]= &#39;K&#39;, inits[nowx + 1][nowy]= &#39;K&#39;, inits[nowx + 1][nowy - 1]= &#39;K&#39;, inits[nowx + 2][nowy - 1]= &#39;K&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;;
         }
         // K3
         if(right &amp;&amp; rdown &amp;&amp; drright &amp;&amp; ddrright) {
-            inits[nowx][nowy + 1]= &apos;K&apos;, inits[nowx + 1][nowy + 1]= &apos;K&apos;, inits[nowx + 1][nowy + 2]= &apos;K&apos;, inits[nowx + 2][nowy + 2]= &apos;K&apos;;
+            inits[nowx][nowy + 1]= &#39;K&#39;, inits[nowx + 1][nowy + 1]= &#39;K&#39;, inits[nowx + 1][nowy + 2]= &#39;K&#39;, inits[nowx + 2][nowy + 2]= &#39;K&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx + 2][nowy + 2]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx + 2][nowy + 2]= &#39;.&#39;;
         }
         // K4
         if(down &amp;&amp; dleft &amp;&amp; ddleft &amp;&amp; ddlleft) {
-            inits[nowx + 1][nowy]= &apos;K&apos;, inits[nowx + 1][nowy - 1]= &apos;K&apos;, inits[nowx + 2][nowy - 1]= &apos;K&apos;, inits[nowx + 2][nowy - 2]= &apos;K&apos;;
+            inits[nowx + 1][nowy]= &#39;K&#39;, inits[nowx + 1][nowy - 1]= &#39;K&#39;, inits[nowx + 2][nowy - 1]= &#39;K&#39;, inits[nowx + 2][nowy - 2]= &#39;K&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 1]= &apos;.&apos;, inits[nowx + 2][nowy - 2]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 1]= &#39;.&#39;, inits[nowx + 2][nowy - 2]= &#39;.&#39;;
         }
-        chose[&apos;K&apos;]= false;
+        chose[&#39;K&#39;]= false;
     }
-    int dllleft= (getlimit(nowx + 1, nowy - 3) &amp;&amp; inits[nowx + 1][nowy - 3] == &apos;.&apos;);
-    if(!chose[&apos;L&apos;]) {
-        chose[&apos;L&apos;]= true, inits[nowx][nowy]= &apos;L&apos;;
+    int dllleft= (getlimit(nowx + 1, nowy - 3) &amp;&amp; inits[nowx + 1][nowy - 3] == &#39;.&#39;);
+    if(!chose[&#39;L&#39;]) {
+        chose[&#39;L&#39;]= true, inits[nowx][nowy]= &#39;L&#39;;
         // L1
         if(right &amp;&amp; rright &amp;&amp; rrright &amp;&amp; down) {
-            inits[nowx][nowy + 1]= &apos;L&apos;, inits[nowx][nowy + 2]= &apos;L&apos;, inits[nowx][nowy + 3]= &apos;L&apos;, inits[nowx + 1][nowy]= &apos;L&apos;;
+            inits[nowx][nowy + 1]= &#39;L&#39;, inits[nowx][nowy + 2]= &#39;L&#39;, inits[nowx][nowy + 3]= &#39;L&#39;, inits[nowx + 1][nowy]= &#39;L&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 3]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 3]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;;
         }
         // L2
         if(right &amp;&amp; rdown &amp;&amp; rddown &amp;&amp; drddown) {
-            inits[nowx][nowy + 1]= &apos;L&apos;, inits[nowx + 1][nowy + 1]= &apos;L&apos;, inits[nowx + 2][nowy + 1]= &apos;L&apos;, inits[nowx + 3][nowy + 1]= &apos;L&apos;;
+            inits[nowx][nowy + 1]= &#39;L&#39;, inits[nowx + 1][nowy + 1]= &#39;L&#39;, inits[nowx + 2][nowy + 1]= &#39;L&#39;, inits[nowx + 3][nowy + 1]= &#39;L&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 2][nowy + 1]= &apos;.&apos;, inits[nowx + 3][nowy + 1]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 2][nowy + 1]= &#39;.&#39;, inits[nowx + 3][nowy + 1]= &#39;.&#39;;
         }
         // L3
         if(down &amp;&amp; dleft &amp;&amp; dlleft &amp;&amp; dllleft) {
-            inits[nowx + 1][nowy]= &apos;L&apos;, inits[nowx + 1][nowy - 1]= &apos;L&apos;, inits[nowx + 1][nowy - 2]= &apos;L&apos;, inits[nowx + 1][nowy - 3]= &apos;L&apos;;
+            inits[nowx + 1][nowy]= &#39;L&#39;, inits[nowx + 1][nowy - 1]= &#39;L&#39;, inits[nowx + 1][nowy - 2]= &#39;L&#39;, inits[nowx + 1][nowy - 3]= &#39;L&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy - 1]= &apos;.&apos;, inits[nowx + 1][nowy - 2]= &apos;.&apos;, inits[nowx + 1][nowy - 3]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy - 1]= &#39;.&#39;, inits[nowx + 1][nowy - 2]= &#39;.&#39;, inits[nowx + 1][nowy - 3]= &#39;.&#39;;
         }
         // L4
         if(down &amp;&amp; ddown &amp;&amp; dddown &amp;&amp; drddown) {
-            inits[nowx + 1][nowy]= &apos;L&apos;, inits[nowx + 2][nowy]= &apos;L&apos;, inits[nowx + 3][nowy]= &apos;L&apos;, inits[nowx + 3][nowy + 1]= &apos;L&apos;;
+            inits[nowx + 1][nowy]= &#39;L&#39;, inits[nowx + 2][nowy]= &#39;L&#39;, inits[nowx + 3][nowy]= &#39;L&#39;, inits[nowx + 3][nowy + 1]= &#39;L&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;, inits[nowx + 3][nowy + 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;, inits[nowx + 3][nowy + 1]= &#39;.&#39;;
         }
         // L5
         if(down &amp;&amp; rdown &amp;&amp; drright &amp;&amp; rrdright) {
-            inits[nowx + 1][nowy]= &apos;L&apos;, inits[nowx + 1][nowy + 1]= &apos;L&apos;, inits[nowx + 1][nowy + 2]= &apos;L&apos;, inits[nowx + 1][nowy + 3]= &apos;L&apos;;
+            inits[nowx + 1][nowy]= &#39;L&#39;, inits[nowx + 1][nowy + 1]= &#39;L&#39;, inits[nowx + 1][nowy + 2]= &#39;L&#39;, inits[nowx + 1][nowy + 3]= &#39;L&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 1][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy + 2]= &apos;.&apos;, inits[nowx + 1][nowy + 3]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 1][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy + 2]= &#39;.&#39;, inits[nowx + 1][nowy + 3]= &#39;.&#39;;
         }
         // L6
         if(down &amp;&amp; ddown &amp;&amp; dddown &amp;&amp; ddldown) {
-            inits[nowx + 1][nowy]= &apos;L&apos;, inits[nowx + 2][nowy]= &apos;L&apos;, inits[nowx + 3][nowy]= &apos;L&apos;, inits[nowx + 3][nowy - 1]= &apos;L&apos;;
+            inits[nowx + 1][nowy]= &#39;L&#39;, inits[nowx + 2][nowy]= &#39;L&#39;, inits[nowx + 3][nowy]= &#39;L&#39;, inits[nowx + 3][nowy - 1]= &#39;L&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;, inits[nowx + 3][nowy - 1]= &apos;.&apos;;
+            inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;, inits[nowx + 3][nowy - 1]= &#39;.&#39;;
         }
         // L7
         if(right &amp;&amp; rright &amp;&amp; rrright &amp;&amp; rrdright) {
-            inits[nowx][nowy + 1]= &apos;L&apos;, inits[nowx][nowy + 2]= &apos;L&apos;, inits[nowx][nowy + 3]= &apos;L&apos;, inits[nowx + 1][nowy + 3]= &apos;L&apos;;
+            inits[nowx][nowy + 1]= &#39;L&#39;, inits[nowx][nowy + 2]= &#39;L&#39;, inits[nowx][nowy + 3]= &#39;L&#39;, inits[nowx + 1][nowy + 3]= &#39;L&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx][nowy + 2]= &apos;.&apos;, inits[nowx][nowy + 3]= &apos;.&apos;, inits[nowx + 1][nowy + 3]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx][nowy + 2]= &#39;.&#39;, inits[nowx][nowy + 3]= &#39;.&#39;, inits[nowx + 1][nowy + 3]= &#39;.&#39;;
         }
         // L8
         if(right &amp;&amp; down &amp;&amp; ddown &amp;&amp; dddown) {
-            inits[nowx][nowy + 1]= &apos;L&apos;, inits[nowx + 1][nowy]= &apos;L&apos;, inits[nowx + 2][nowy]= &apos;L&apos;, inits[nowx + 3][nowy]= &apos;L&apos;;
+            inits[nowx][nowy + 1]= &#39;L&#39;, inits[nowx + 1][nowy]= &#39;L&#39;, inits[nowx + 2][nowy]= &#39;L&#39;, inits[nowx + 3][nowy]= &#39;L&#39;;
             if(dfs(nowx, nowy + 1)) return true;
-            inits[nowx][nowy + 1]= &apos;.&apos;, inits[nowx + 1][nowy]= &apos;.&apos;, inits[nowx + 2][nowy]= &apos;.&apos;, inits[nowx + 3][nowy]= &apos;.&apos;;
+            inits[nowx][nowy + 1]= &#39;.&#39;, inits[nowx + 1][nowy]= &#39;.&#39;, inits[nowx + 2][nowy]= &#39;.&#39;, inits[nowx + 3][nowy]= &#39;.&#39;;
         }
-        chose[&apos;L&apos;]= false;
+        chose[&#39;L&#39;]= false;
     }
-    inits[nowx][nowy]= &apos;.&apos;;
+    inits[nowx][nowy]= &#39;.&#39;;
     return false;
 }
 int main() {
     for(int i= 1; i &lt; 11; i++) {
         for(int j= 1; j &lt;= i; j++) {
             cin &gt;&gt; inits[i][j];
-            if(inits[i][j] != &apos;.&apos;) chose[(int)inits[i][j]]= 1;
+            if(inits[i][j] != &#39;.&#39;) chose[(int)inits[i][j]]= 1;
         }
     }
     if(dfs(1, 1)) {
         for(int i= 1; i &lt; 11; i++) {
             for(int j= 1; j &lt;= i; j++) putchar(inits[i][j]);
-            putchar(&apos;\n&apos;);
+            putchar(&#39;\n&#39;);
         }
     }
     else
         printf(&quot;No solution\n&quot;);
     return 0;
-}
-</code></pre>
+}</code></pre>
 
-  </article>
-  
-  
-<div class="nexmoe-post-copyright">
-<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-<strong>本文作者：</strong>Ciyang<br>
-<strong>本文链接：</strong><a href="https://xciyang.github.io/2019-03/17-luogu4205/" title="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-03&#x2F;17-luogu4205&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-03&#x2F;17-luogu4205&#x2F;</a><br>
-
-  <strong>版权声明：</strong>本文一切由权利由作者 Ciyang 所有，转载请声明本文地址。
-
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Cpp/" rel="tag">Cpp</a>, <a class="has-link-grey -link" href="/tags/%E6%90%9C%E7%B4%A2/" rel="tag">搜索</a>, <a class="has-link-grey -link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a>, <a class="has-link-grey -link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
 </div>
 
 
-  
-  <section class="nexmoe-comment">
-    <div id="lv-container" data-id="city" data-uid="MTAyMC80NjA4Ni8yMjU5Nw==">
-    <script id="livere-comment-js">
-    (function(d, s) {
-       var j, e = d.getElementsByTagName(s)[0];
-       if (typeof LivereTower === 'function') { return; }
-       j = d.createElement(s);
-       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       j.async = true;
-       e.parentNode.insertBefore(j, e);
-    })(document, 'script');
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019-03/31-luogu1955/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">NOI2015 - 程序自动分析</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019-03/07-luogu4085/">
+                <span class="level-item">USACO17DEC - Haybale Feast</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NjA4Ni8yMjU5Nw==">
+    <script type="text/javascript">
+        (function(d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+
+            if (typeof LivereTower === 'function') { return; }
+
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
     </script>
-</div>
-</section>
+    <noscript> Please activate JavaScript for write a comment in LiveRe</noscript>
 </div>
 
     </div>
-  </div>
-  <script src="https://lib.baomitu.com/mdui/0.4.3/js/mdui.min.js"></script>
- 
-    <script src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-
-
- 
-    <script src="https://lib.baomitu.com/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
-
-
-<script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-<script src="/js/app.js?v=1573618888729"></script>
-<script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
-
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
-
-
-  
+</div>
+</div>
+                
 
 
 
-    <!-- Tencent Analytics -->
-<script>
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//tajs.qq.com/stats?sId=66465453";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="/medias/avatar.jpg" alt="Ciyang">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Ciyang
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        High School OIer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Dongying, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            31
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            40
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/Xciyang" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/Xciyang">
+                
+                <i class="BlogIcon icon-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="知乎" href="https://www.zhihu.com/people/ci-yang-ciyang">
+                
+                <i class="BlogIcon icon-zhihu"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=896681584&amp;site=qq&amp;menu=yes">
+                
+                <i class="BlogIcon icon-qq"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="哔哩哔哩" href="https://space.bilibili.com/6068536">
+                
+                <i class="BlogIcon icon-bilibili"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/rss.xml">
+                
+                <i class="BlogIcon icon-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
 
-    <!-- 51.La Analytics -->
-<div hidden>
-  <script type="text/javascript" src="https://js.users.51.la/20284321.js"></script>
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#引言">
+        <span class="has-mr-6">1</span>
+        <span>引言</span>
+        </a></li><li>
+        <a class="is-flex" href="#分析">
+        <span class="has-mr-6">2</span>
+        <span>分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码">
+        <span class="has-mr-6">3</span>
+        <span>代码</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://zhihu.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">知乎</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">zhihu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://bilibili.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">哔哩哔哩</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">bilibili.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
 </div>
 
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/%E6%8A%80%E5%B7%A7/">
+            <span class="level-start">
+                <span class="level-item">技巧</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E8%AE%B0%E5%BF%86/">
+            <span class="level-start">
+                <span class="level-item">记忆</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E9%97%B2%E8%81%8A/">
+            <span class="level-start">
+                <span class="level-item">闲聊</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E9%A1%B9%E7%9B%AE/">
+            <span class="level-start">
+                <span class="level-item">项目</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E9%A2%98%E8%A7%A3/">
+            <span class="level-start">
+                <span class="level-item">题解</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/CPS-S/" style="font-size: 10px;">CPS-S</a> <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.67px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 13.33px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.67px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 13.33px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 16.67px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13.33px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.33px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.67px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%AE%B0%E5%BF%86/" style="font-size: 10px;">记忆</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 16.67px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.67px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 13.33px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 16.67px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.33px;">题解</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019-12/09-csps2019afo/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSP-S 2019 · AFO游记 （未完）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T12:02:17.000Z">2019-12-09</time></div>
+                    <a href="/2019-12/09-csps2019afo/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CSP-S 2019 · AFO游记 （未完）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E8%AE%B0%E5%BF%86/">记忆</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-10/08-you-ya-de-xie-dai-ma/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="技巧 - 如何优雅的写代码">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T03:14:24.000Z">2019-10-08</time></div>
+                    <a href="/2019-10/08-you-ya-de-xie-dai-ma/" class="title has-link-black-ter is-size-6 has-text-weight-normal">技巧 - 如何优雅的写代码</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%8A%80%E5%B7%A7/">技巧</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/29-atbeginner142/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="比赛 - AtCoder Beginner Contest 142">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T00:10:39.000Z">2019-09-29</time></div>
+                    <a href="/2019-09/29-atbeginner142/" class="title has-link-black-ter is-size-6 has-text-weight-normal">比赛 - AtCoder Beginner Contest 142</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/25-luogu1026/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
+                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/20-luogu2540/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2015 - 斗地主增强版">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T13:14:30.000Z">2019-09-20</time></div>
+                    <a href="/2019-09/20-luogu2540/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2015 - 斗地主增强版</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPS-S/">
+                        <span class="tag">CPS-S</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Cpp/">
+                        <span class="tag">Cpp</span>
+                        <span class="tag is-grey">27</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GCD/">
+                        <span class="tag">GCD</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LCA/">
+                        <span class="tag">LCA</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STL/">
+                        <span class="tag">STL</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ST%E8%A1%A8/">
+                        <span class="tag">ST表</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/">
+                        <span class="tag">主席树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
+                        <span class="tag">二分查找</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%86%E5%9D%97/">
+                        <span class="tag">分块</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/">
+                        <span class="tag">前缀和</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                        <span class="tag">动态规划</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/">
+                        <span class="tag">块状链表</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/">
+                        <span class="tag">字典树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+                        <span class="tag">字符串</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/">
+                        <span class="tag">左偏树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%8A%80%E5%B7%A7/">
+                        <span class="tag">技巧</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">搜索</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E8%AE%BA/">
+                        <span class="tag">数论</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/">
+                        <span class="tag">整除分块</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
+                        <span class="tag">模拟</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%AF%94%E8%B5%9B/">
+                        <span class="tag">比赛</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%8A%B6%E5%8E%8BDP/">
+                        <span class="tag">状压DP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%A0%81%E9%A3%8E/">
+                        <span class="tag">码风</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/">
+                        <span class="tag">离散化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+                        <span class="tag">线段树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%83%8C%E5%8C%85/">
+                        <span class="tag">背包</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/">
+                        <span class="tag">莫比乌斯反演</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%8E%AB%E9%98%9F/">
+                        <span class="tag">莫队</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
+                        <span class="tag">记忆</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AF%AD%E5%BD%95/">
+                        <span class="tag">语录</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%BE%B9%E5%8E%8BTrie/">
+                        <span class="tag">边压Trie</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%97%B2%E8%81%8A/">
+                        <span class="tag">闲聊</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">随机化搜索</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE/">
+                        <span class="tag">项目</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A2%93%E5%BA%9F/">
+                        <span class="tag">颓废</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
+                        <span class="tag">题解</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
 
-    <!-- baidu Analytics -->
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019-12/09-csps2019afo/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSP-S 2019 · AFO游记 （未完）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T12:02:17.000Z">2019-12-09</time></div>
+                    <a href="/2019-12/09-csps2019afo/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CSP-S 2019 · AFO游记 （未完）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E8%AE%B0%E5%BF%86/">记忆</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-10/08-you-ya-de-xie-dai-ma/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="技巧 - 如何优雅的写代码">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T03:14:24.000Z">2019-10-08</time></div>
+                    <a href="/2019-10/08-you-ya-de-xie-dai-ma/" class="title has-link-black-ter is-size-6 has-text-weight-normal">技巧 - 如何优雅的写代码</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%8A%80%E5%B7%A7/">技巧</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/29-atbeginner142/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="比赛 - AtCoder Beginner Contest 142">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T00:10:39.000Z">2019-09-29</time></div>
+                    <a href="/2019-09/29-atbeginner142/" class="title has-link-black-ter is-size-6 has-text-weight-normal">比赛 - AtCoder Beginner Contest 142</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/25-luogu1026/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
+                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/20-luogu2540/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2015 - 斗地主增强版">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T13:14:30.000Z">2019-09-20</time></div>
+                    <a href="/2019-09/20-luogu2540/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2015 - 斗地主增强版</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPS-S/">
+                        <span class="tag">CPS-S</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Cpp/">
+                        <span class="tag">Cpp</span>
+                        <span class="tag is-grey">27</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GCD/">
+                        <span class="tag">GCD</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LCA/">
+                        <span class="tag">LCA</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STL/">
+                        <span class="tag">STL</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ST%E8%A1%A8/">
+                        <span class="tag">ST表</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/">
+                        <span class="tag">主席树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
+                        <span class="tag">二分查找</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%86%E5%9D%97/">
+                        <span class="tag">分块</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/">
+                        <span class="tag">前缀和</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                        <span class="tag">动态规划</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/">
+                        <span class="tag">块状链表</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/">
+                        <span class="tag">字典树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+                        <span class="tag">字符串</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/">
+                        <span class="tag">左偏树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%8A%80%E5%B7%A7/">
+                        <span class="tag">技巧</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">搜索</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E8%AE%BA/">
+                        <span class="tag">数论</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/">
+                        <span class="tag">整除分块</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
+                        <span class="tag">模拟</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%AF%94%E8%B5%9B/">
+                        <span class="tag">比赛</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%8A%B6%E5%8E%8BDP/">
+                        <span class="tag">状压DP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%A0%81%E9%A3%8E/">
+                        <span class="tag">码风</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/">
+                        <span class="tag">离散化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+                        <span class="tag">线段树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%83%8C%E5%8C%85/">
+                        <span class="tag">背包</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/">
+                        <span class="tag">莫比乌斯反演</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%8E%AB%E9%98%9F/">
+                        <span class="tag">莫队</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
+                        <span class="tag">记忆</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AF%AD%E5%BD%95/">
+                        <span class="tag">语录</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%BE%B9%E5%8E%8BTrie/">
+                        <span class="tag">边压Trie</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%97%B2%E8%81%8A/">
+                        <span class="tag">闲聊</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">随机化搜索</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE/">
+                        <span class="tag">项目</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A2%93%E5%BA%9F/">
+                        <span class="tag">颓废</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
+                        <span class="tag">题解</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/medias/avatar.jpg" alt="NOI2005 - 智慧珠游戏" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Ciyang&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
 <script>
-    var _hmt = _hmt || [];
-    (function() {var hm = document.createElement('script');
-    hm.src = 'https://hm.baidu.com/hm.js?c285bfd3ab71dfa2d08b9656991e938e';
-    var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
 </script>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="回到顶端" href="javascript:;" target="_blank" rel="noopener">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
@@ -960,5 +2248,4 @@ int main() {
 <script src="https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
-
 </html>

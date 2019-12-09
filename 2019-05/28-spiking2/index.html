@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html>
-
+<html  lang="zh">
 <head>
-  
-  <title>项目日记 - 开发图片爬虫 Ⅱ - Ciyang’s Blog</title>
-  <meta charset="UTF-8">
-  <meta name="description" content="一个半退役OI的文化课选手...">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  
+    <meta charset="utf-8" />
 
-  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-  <meta name="description" content="用C++开发一个图片爬虫 Ⅱ ：编码转换 前言我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。 因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。">
+<meta name="generator" content="Hexo 4.0.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>项目日记 - 开发图片爬虫 Ⅱ - Ciyang’s Blog</title>
+
+
+    <meta name="description" content="用C++开发一个图片爬虫 Ⅱ ：编码转换 前言我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。 因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。">
 <meta name="keywords" content="Cpp,颓废,项目,爬虫">
 <meta property="og:type" content="article">
 <meta property="og:title" content="项目日记 - 开发图片爬虫 Ⅱ">
@@ -19,494 +18,300 @@
 <meta property="og:site_name" content="Ciyang’s Blog">
 <meta property="og:description" content="用C++开发一个图片爬虫 Ⅱ ：编码转换 前言我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。 因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-07T09:08:05.273Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;images&#x2F;spiKing3.jpg">
+<meta property="og:updated_time" content="2019-12-09T12:30:52.106Z">
 <meta name="twitter:card" content="summary">
-  <script src="https://lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://lib.baomitu.com/mdui/0.4.3/css/mdui.min.css">
-  <link rel="stylesheet" href="https://lib.baomitu.com/highlight.js/9.15.10/styles/hopscotch.min.css">
-  
-  <link rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-  
-  
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_eqmr8hm9nwr.css">
-  
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1573618888483">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;images&#x2F;spiKing3.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1361180_ondu1wicx5.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-lightfab fa-github.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
 <link rel="alternate" href="/atom.xml" title="Ciyang’s Blog" type="application/atom+xml">
 </head>
-
-<body class="mdui-drawer-body-left">
-  
-  <div id="nexmoe-background">
-    <div class="nexmoe-bg" style="background-image: url(/medias/banner/8.jpg)"></div>
-    <div class="mdui-appbar mdui-shadow-0">
-      <div class="mdui-toolbar">
-        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i
-            class="mdui-icon material-icons">menu</i></a>
-        <div class="mdui-toolbar-spacer"></div>
-        <!--<a href="javascript:;" target="_blank" rel="noopener" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Ciyang" class="mdui-btn mdui-btn-icon"><img
-            src="/medias/avatar.jpg"></a>
-      </div>
-    </div>
-  </div>
-  <div id="nexmoe-header">
-    <div class="nexmoe-drawer mdui-drawer" id="drawer">
-    <div class="nexmoe-avatar mdui-ripple">
-        <a href="/" title="Ciyang">
-            <img src="/medias/avatar.jpg" alt="Ciyang">
-        </a>
-    </div>
-    <div class="nexmoe-count">
-        <div><span>文章</span>30</div>
-        <div><span>标签</span>38</div>
-        <div><span>分类</span>4</div>
-    </div>
-    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="首页">
-            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
-            <div class="mdui-list-item-content">
-                首页
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/medias/avatar.jpg" alt="项目日记 - 开发图片爬虫 Ⅱ" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/friends">友情链接</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
             </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about/" title="关于">
-            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-            <div class="mdui-list-item-content">
-                关于
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;" target="_blank" rel="noopener">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;" target="_blank" rel="noopener">
+                    <i class="fas fa-search"></i>
+                </a>
+                
             </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends/" title="友情链接">
-            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
-            <div class="mdui-list-item-content">
-                友情链接
-            </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/search" title="搜索">
-            <i class="mdui-list-item-icon nexmoefont icon-search"></i>
-            <div class="mdui-list-item-content">
-                搜索
-            </div>
-        </a>
-        
-    </ul>
-    <aside id="nexmoe-sidebar">
-  
-  <div class="nexmoe-widget-wrap" style="min-height: 100px;">
-    <h3 class="nexmoe-widget-title">字体</h3>
-    <select onchange='articleFontTool.onchange(this)' class="mdui-select" mdui-select style="margin: 5%;">
-        <option value="">选择文章字体</option>
-        
-        <option value=Monaco>Monaco</option>
-        
-        <option value=SourceCodeVariable>SourceCodeVariable</option>
-        
-        <option value=Panda>Panda</option>
-        
-        <option value=问藏书房>问藏书房</option>
-        
-        <option value=MEllybO0_fONt>MEllybO0_fONt</option>
-        
-    </select>
-    <select onchange='codeFontTool.onchange(this)' class="mdui-select" mdui-select style="margin: 5%;">
-        <option value="">选择代码字体</option>
-        
-        <option value=Monaco>Monaco</option>
-        
-        <option value=SourceCodeVariable>SourceCodeVariable</option>
-        
-        <option value=Panda>Panda</option>
-        
-        <option value=问藏书房>问藏书房</option>
-        
-        <option value=MEllybO0_fONt>MEllybO0_fONt</option>
-        
-    </select>
-    <script>
-        let Cookie = {
-            setCookie(name, value) {
-                let Days = 30;
-                let exp = new Date();
-                exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 30);
-                document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";
-            },
-            getCookie(name) {
-                let arr;
-                let reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-                if (arr = document.cookie.match(reg)) { return unescape(arr[2]); }
-                return null;
-            }
-        };
-
-        let articleFontTool = {
-            onload: () => {
-                let res = Cookie.getCookie('articleFont');
-                if (!res || res === '') {
-                    res = 'Panda';
-                    Cookie.setCookie('articleFont', res);
-                }
-                document.body.style.fontFamily = res;
-            },
-            onchange: (ftSelect) => {
-                if (ftSelect.value && ftSelect.value !== '') {
-                    Cookie.setCookie('articleFont', ftSelect.value);
-                    document.body.style.fontFamily = ftSelect.value;
-                }
-            }
-        };
-        let codeFontTool = {
-            onload: () => {
-                let res = Cookie.getCookie('codeFont');
-                if (!res || res === '') {
-                    res = 'Monaco';
-                    Cookie.setCookie('codeFont', res);
-                }
-                document.querySelectorAll('code').forEach(item => {
-                    item.style.fontFamily = res;
-                });
-            },
-            onchange: (ftSelect) => {
-                if (ftSelect.value && ftSelect.value !== '') {
-                    Cookie.setCookie('codeFont', ftSelect.value);
-                    document.querySelectorAll('code').forEach(item => {
-                        item.style.fontFamily = ftSelect.value;
-                    });
-                }
-            }
-        };
-        articleFontTool.onload();
-        codeFontTool.onload();
-    </script>
-</div>
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">社交按钮</h3>
-    <div class="nexmoe-widget nexmoe-social">
-        <a class="mdui-ripple" href="https://github.com/Xciyang" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
-            <i class="nexmoefont icon-github"></i>
-        </a><a class="mdui-ripple" href="https://www.zhihu.com/people/ci-yang-ciyang" target="_blank" mdui-tooltip="{content: '知乎'}" style="color: rgb(123, 12, 57);background-color: rgba(123, 12, 57, .15);">
-            <i class="nexmoefont icon-zhihu"></i>
-        </a><a class="mdui-ripple" href="https://space.bilibili.com/6068536" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
-            <i class="nexmoefont icon-bilibili"></i>
-        </a><a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=896681584&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(12, 2, 255);background-color: rgba(12, 2, 255, .15);">
-            <i class="nexmoefont icon-QQ"></i>
-        </a><a class="mdui-ripple" href="/mailto:896681584@qq.com" target="_blank" mdui-tooltip="{content: '邮箱'}" style="color: rgb(123, 1, 255);background-color: rgba(123, 1, 255, .15);">
-            <i class="nexmoefont icon-mail-fill"></i>
-        </a><a class="mdui-ripple" href="/rss.xml" target="_blank" mdui-tooltip="{content: 'RSS'}" style="color: rgb(2, 10, 56);background-color: rgba(2, 10, 56, .15);">
-            <i class="nexmoefont icon-rss"></i>
-        </a>
+        </div>
     </div>
-</div>
-  
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章分类</h3>
-    <div class="nexmoe-widget">
-
-      <ul class="category-list">
-
-        
-
-
-        
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/技巧/">技巧</a>
-          <span class="category-list-count">3</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/闲聊/">闲聊</a>
-          <span class="category-list-count">4</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/项目/">项目</a>
-          <span class="category-list-count">3</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/categories/题解/">题解</a>
-          <span class="category-list-count">20</span>
-        </li>
-
-        
-      </ul>
-
-    </div>
-  </div>
-
-
-  
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">标签云</h3>
-    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.67px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 13.33px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.67px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 13.33px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 16.67px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13.33px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.33px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.67px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 16.67px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.67px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 13.33px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 16.67px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.33px;">题解</a>
-    </div>
+</nav>
     
-  </div>
-
-  
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">最新文章</h3>
-    <div class="nexmoe-widget">
-      <ul>
-        
-          <li>
-            <a href="/2019-10/08-you-ya-de-xie-dai-ma/">技巧 - 如何优雅的写代码</a>
-          </li>
-        
-          <li>
-            <a href="/2019-09/29-atbeginner142/">比赛 - AtCoder Beginner Contest 142</a>
-          </li>
-        
-          <li>
-            <a href="/2019-09/25-luogu1026/">NOIP2001 - 统计单词个数</a>
-          </li>
-        
-          <li>
-            <a href="/2019-09/20-luogu2540/">NOIP2015 - 斗地主增强版</a>
-          </li>
-        
-          <li>
-            <a href="/2019-09/19-luogu1282/">LuoguP1282 - 多米诺骨牌</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">访客量</h3>
-    <div class="nexmoe-widget" style="text-align: center;">
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-        <span id="busuanzi_container_site_pv">
-            <style="text-align: center;">本站总访问量<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        <br>
-        <span id="busuanzi_container_page_pv">
-            本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/images/spiKing3.jpg" alt="项目日记 - 开发图片爬虫 Ⅱ">
         </span>
     </div>
-</div>
-  
-</aside>
-    <div class="nexmoe-copyright">
-        &copy; 2019 Ciyang
-        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
-    </div>
-</div><!-- .nexmoe-drawer -->
-  </div>
-  <div id="nexmoe-content">
-    <div class="nexmoe-primary">
-      <div class="nexmoe-post">
-  <div class="nexmoe-post-cover">
     
-    <img src="/images/spiKing3.jpg">
-    
-    <h1>项目日记 - 开发图片爬虫 Ⅱ</h1>
-  </div>
-  <div class="nexmoe-post-meta">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2019年05月28日</a>
-    <a><i class="nexmoefont icon-areachart"></i>2k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 12 分钟</a>
-    
-    <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a>
-    
-    
-    <a class="nexmoefont icon-tag-fill -link" href="/tags/Cpp/" rel="tag">Cpp</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E9%A2%93%E5%BA%9F/" rel="tag">颓废</a>
-    
-  </div>
-  <article id = "article">
-    <p>&#x7528;C++&#x5F00;&#x53D1;&#x4E00;&#x4E2A;&#x56FE;&#x7247;&#x722C;&#x866B; &#x2161; &#xFF1A;&#x7F16;&#x7801;&#x8F6C;&#x6362;</p>
-<h3><span id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</span><a href="#&#x524D;&#x8A00;" class="header-anchor"> </a></h3><p>&#x6211;&#x4EEC;&#x4E0A;&#x4E00;&#x8282;&#x5B66;&#x4E60;&#x4E86;&#x83B7;&#x53D6;&#x7F51;&#x9875;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x90A3;&#x4E48;&#x5927;&#x5BB6;&#x53EF;&#x80FD;&#x4F1A;&#x4EE5;&#x4E3A;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x662F;&#x5206;&#x6790;&#x7F51;&#x9875;&#x4E86;&#x3002;&#x4F46;&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x5148;&#x8F6C;&#x6362;&#x7F16;&#x7801;&#x3002;&#x6211;&#x4EEC;&#x90FD;&#x77E5;&#x9053;&#xFF0C;C++&#x7F16;&#x7A0B;&#x5E38;&#x7528;&#x7684;&#x662F;ASCII&#x7F16;&#x7801;&#xFF0C;&#x800C;&#x7F51;&#x9875;&#x5927;&#x90E8;&#x5206;&#x4F7F;&#x7528;&#x7684;&#x662F;UTF-8&#x7F16;&#x7801;&#x3002;</p>
-<p>&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x8981;&#x5148;&#x5C06;&#x83B7;&#x53D6;&#x540E;&#x7684;&#x7F51;&#x9875;&#x8F6C;&#x6362;&#x6210;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;&#x7F16;&#x7801;&#xFF0C;&#x518D;&#x53BB;&#x5206;&#x6790;&#x5185;&#x5BB9;&#x3002;</p>
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-28T12:54:38.000Z">2019-05-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13 分钟 读完 (大约 1976 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                项目日记 - 开发图片爬虫 Ⅱ
+            
+        </h1>
+        <div class="content">
+            <p>用C++开发一个图片爬虫 Ⅱ ：编码转换</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。</p>
+<p>因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。</p>
 <a id="more"></a>
-<h3><span id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</span><a href="#&#x76EE;&#x5F55;" class="header-anchor"> </a></h3><div class="toc">
 
-<!-- toc -->
-<ul>
-<li><a href="#&#x7406;&#x8BBA;">&#x7406;&#x8BBA;</a></li>
-<li><a href="#&#x5B9E;&#x6218;">&#x5B9E;&#x6218;</a><ul>
-<li><a href="#multibytetowidechar">MultiByteToWideChar</a></li>
-<li><a href="#widechartomultibyte">WideCharToMultiByte</a></li>
-<li><a href="#delete">delete</a></li>
-</ul>
-</li>
-<li><a href="#&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</a></li>
-</ul>
-<!-- tocstop -->
-</div>
 
-<h3><span id="&#x7406;&#x8BBA;">&#x7406;&#x8BBA;</span><a href="#&#x7406;&#x8BBA;" class="header-anchor"> </a></h3><p>&#x6211;&#x4EEC;&#x5199;&#x7F16;&#x7801;&#x8F6C;&#x6362;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x80AF;&#x5B9A;&#x8981;&#x77E5;&#x9053;&#x8FD9;&#x4E9B;&#x7F16;&#x7801;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#x3002;</p>
-<p>ASCII&#x7F16;&#x7801;&#x6211;&#x4EEC;&#x518D;&#x719F;&#x6089;&#x4E0D;&#x8FC7;&#x4E86;&#xFF0C;&#x7136;&#x800C;&#x6211;&#x76F8;&#x4FE1;&#x5F88;&#x591A;&#x4EBA;&#x548C;&#x6211;&#x4E00;&#x6837;&#xFF0C;&#x5206;&#x4E0D;&#x6E05;&#x4EC0;&#x4E48;&#x662F;Unicode&#xFF0C;UTF-8&#xFF0C;UTF-16&#xFF0C;UTF-32&#x3002;</p>
-<p>&#x6211;&#x4E0D;&#x60F3;&#x7528;&#x957F;&#x7BC7;&#x5927;&#x8BBA;&#x6765;&#x89E3;&#x91CA;&#x8FD9;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x5C31;&#x7ED9;&#x51FA;&#x5B83;&#x4EEC;&#x5404;&#x81EA;&#x7684;&#x5B9A;&#x4E49;&#x548C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x77E5;&#x9053;&#x7684;&#x4E1C;&#x897F;&#x3002;&#x5982;&#x679C;&#x60F3;&#x66F4;&#x6DF1;&#x5165;&#x7684;&#x4E86;&#x89E3;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x641C;&#x7D22;&#x3002;</p>
+<h3 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h3><p>我们写编码转换的代码，肯定要知道这些编码之间的关系。</p>
+<p>ASCII编码我们再熟悉不过了，然而我相信很多人和我一样，分不清什么是Unicode，UTF-8，UTF-16，UTF-32。</p>
+<p>我不想用长篇大论来解释这些东西，就给出它们各自的定义和我们需要知道的东西。如果想更深入的了解，可以自行搜索。</p>
 <blockquote>
-<p>Unicode&#xFF08;&#x7EDF;&#x4E00;&#x7801;&#x3001;&#x4E07;&#x56FD;&#x7801;&#x3001;&#x5355;&#x4E00;&#x7801;&#xFF09;&#x662F;&#x8BA1;&#x7B97;&#x673A;&#x79D1;&#x5B66;&#x9886;&#x57DF;&#x91CC;&#x7684;&#x4E00;&#x9879;&#x4E1A;&#x754C;&#x6807;&#x51C6;&#xFF0C;&#x5305;&#x62EC;&#x5B57;&#x7B26;&#x96C6;&#x3001;&#x7F16;&#x7801;&#x65B9;&#x6848;&#x7B49;&#x3002;</p>
+<p>Unicode（统一码、万国码、单一码）是计算机科学领域里的一项业界标准，包括字符集、编码方案等。</p>
 </blockquote>
-<p>&#x81F3;&#x4E8E;&#x5B83;&#x4E3A;&#x4EC0;&#x4E48;&#x8BDE;&#x751F;&#xFF0C;&#x6211;&#x7B80;&#x5355;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;&#x3002;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x719F;&#x77E5;&#x7684;ASCII&#x7801;&#x80FD;&#x8868;&#x793A;&#x7684;&#x5B57;&#x7B26;&#x662F;&#x975E;&#x5E38;&#x6709;&#x9650;&#x7684;&#xFF0C;&#x6839;&#x672C;&#x65E0;&#x6CD5;&#x627F;&#x53D7;&#x90A3;&#x4E48;&#x591A;&#x56FD;&#x5BB6;&#x7684;&#x5B57;&#x7B26;&#x3002;&#x56E0;&#x6B64;&#x56FD;&#x9645;&#x7EC4;&#x7EC7;&#x5C31;&#x53C8;&#x53D1;&#x660E;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7F16;&#x7801;&#xFF0C;&#x51E0;&#x4E4E;&#x6536;&#x5C3D;&#x6240;&#x6709;&#x56FD;&#x5BB6;&#x7684;&#x5B57;&#x7B26;&#xFF0C;&#x751A;&#x81F3;&#x5305;&#x62EC;&#x7279;&#x6B8A;&#x5B57;&#x7B26;&#x3002;</p>
-<p>Unicode&#x4E0E;&#x5176;&#x4ED6;&#x7F16;&#x7801;&#x7C7B;&#x4F3C;&#xFF0C;&#x4E5F;&#x662F;&#x6BCF;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x6765;&#x8868;&#x793A;&#x5B83;&#x3002;&#x4F46;Unicode&#x4E5F;&#x4EC5;&#x4EC5;&#x5982;&#x6B64;&#xFF0C;&#x5B83;&#x6CA1;&#x6709;&#x89C4;&#x5B9A;&#x8FD9;&#x4E2A;&#x4E8C;&#x8FDB;&#x5236;&#x4EE3;&#x7801;&#x5982;&#x4F55;&#x5B58;&#x50A8;&#x3002;</p>
-<p>&#x90A3;&#x4E48;&#x95EE;&#x9898;&#x6765;&#x4E86;&#xFF0C;&#x5728;Unicode&#x7F16;&#x7801;&#x4E0B;&#xFF0C;&#x5047;&#x8BBE;&#x6709;&#x4E00;&#x4E2A;3&#x5B57;&#x8282;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x4EE3;&#x7801;&#xFF0C;&#x8BA1;&#x7B97;&#x673A;&#x600E;&#x4E48;&#x77E5;&#x9053;&#x8868;&#x793A;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x8FD8;&#x662F;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x6216;&#x8005;&#x662F;&#x4E09;&#x4E2A;&#x5B57;&#x7B26;&#x5462;&#xFF1F;&#x56E0;&#x6B64;UTF-8&#x3001;UTF-16&#x8FD9;&#x4E00;&#x7CFB;&#x5217;&#x4E1C;&#x897F;&#x5C31;&#x8BDE;&#x751F;&#x4E86;&#x3002;</p>
-<p>&#x5148;&#x4ECB;&#x7ECD;UTF-8&#xFF0C;&#x8FD9;&#x662F;&#x5F00;&#x53D1;&#x7F51;&#x9875;&#x9996;&#x9009;&#x7684;&#x7F16;&#x7801;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>至于它为什么诞生，我简单说明一下。因为我们熟知的ASCII码能表示的字符是非常有限的，根本无法承受那么多国家的字符。因此国际组织就又发明了一个新的编码，几乎收尽所有国家的字符，甚至包括特殊字符。</p>
+<p>Unicode与其他编码类似，也是每一个字符都对应一个数字来表示它。但Unicode也仅仅如此，它没有规定这个二进制代码如何存储。</p>
+<p>那么问题来了，在Unicode编码下，假设有一个3字节的二进制代码，计算机怎么知道表示的是一个字符还是两个字符或者是三个字符呢？因此UTF-8、UTF-16这一系列东西就诞生了。</p>
+<p>先介绍UTF-8，这是开发网页首选的编码存储方式。</p>
 <blockquote>
-<p>UTF-8&#xFF08;8-bit Unicode Transformation Format&#xFF09;&#x662F;&#x4E00;&#x79CD;&#x9488;&#x5BF9;Unicode&#x7684;&#x53EF;&#x53D8;&#x957F;&#x5EA6;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#xFF0C;&#x53C8;&#x79F0;&#x4E07;&#x56FD;&#x7801;&#xFF0C;&#x7531;Ken Thompson&#x4E8E;1992&#x5E74;&#x521B;&#x5EFA;&#x3002;</p>
+<p>UTF-8（8-bit Unicode Transformation Format）是一种针对Unicode的可变长度字符编码，又称万国码，由Ken Thompson于1992年创建。</p>
 </blockquote>
-<p>&#x5982;&#x679C;&#x7565;&#x61C2;&#x7F16;&#x7801;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x53D8;&#x957F;&#x5EA6;&#x662F;&#x6700;&#x5927;&#x7279;&#x70B9;&#x3002;&#x4F46;&#x662F;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x53EF;&#x53D8;&#x957F;&#x5EA6;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x4E00;&#x4E9B;&#x4E8C;&#x8FDB;&#x5236;&#x4F4D;&#x6765;&#x8868;&#x793A;&#x957F;&#x5EA6;&#xFF0C;&#x6211;&#x8BA4;&#x4E3A;&#x5B83;&#x7684;&#x7F16;&#x7801;&#x89C4;&#x5219;&#x53EF;&#x4EE5;&#x8BF4;&#x662F;&#x975E;&#x5E38;&#x5178;&#x578B;&#x4E86;&#x3002;</p>
-<div class="table-container">
+<p>如果略懂编码的话，可变长度是最大特点。但是为了实现可变长度，就需要一些二进制位来表示长度，我认为它的编码规则可以说是非常典型了。</p>
 <table>
 <thead>
 <tr>
-<th>&#x5B57;&#x8282;&#x6570;</th>
-<th>&#x4E8C;&#x8FDB;&#x5236;&#x7F16;&#x7801;&#x5F62;&#x5F0F; </th>
+<th>字节数</th>
+<th>二进制编码形式</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td>1&#x5B57;&#x8282;</td>
+<tbody><tr>
+<td>1字节</td>
 <td>0xxxxxxx</td>
 </tr>
 <tr>
-<td>2&#x5B57;&#x8282;</td>
-<td>110xxxxx 10xxxxxx </td>
+<td>2字节</td>
+<td>110xxxxx 10xxxxxx</td>
 </tr>
 <tr>
-<td>3&#x5B57;&#x8282;</td>
+<td>3字节</td>
 <td>1110xxxx 10xxxxxx 10xxxxxx</td>
 </tr>
 <tr>
-<td>4&#x5B57;&#x8282;</td>
-<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx </td>
+<td>4字节</td>
+<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
 </tr>
 <tr>
-<td>5&#x5B57;&#x8282;</td>
-<td>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx </td>
+<td>5字节</td>
+<td>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
 </tr>
 <tr>
-<td>6&#x5B57;&#x8282;</td>
+<td>6字节</td>
 <td>1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
 </tr>
-</tbody>
-</table>
-</div>
-<p>&#x518D;&#x7B80;&#x5355;&#x8BF4;&#x4E00;&#x4E0B;UTF-16&#xFF0C;&#x5B9A;&#x4E49;&#xFF1A;</p>
+</tbody></table>
+<p>再简单说一下UTF-16，定义：</p>
 <blockquote>
-<p>UTF-16&#x662F;Unicode&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x4E94;&#x5C42;&#x6B21;&#x6A21;&#x578B;&#x7684;&#x7B2C;&#x4E09;&#x5C42;&#xFF1A;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x8868;&#xFF08;Character Encoding Form&#xFF0C;&#x4E5F;&#x79F0;&#x4E3A; &#x201C;storage format&#x201D;&#xFF09;&#x7684;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>UTF-16是Unicode字符编码五层次模型的第三层：字符编码表（Character Encoding Form，也称为 “storage format”）的一种实现方式。</p>
 </blockquote>
-<p>UTF-16&#x867D;&#x7136;&#x4E5F;&#x53EF;&#x53D8;&#x957F;&#x5EA6;&#xFF0C;&#x4F46;&#x4E0D;&#x5982;UTF-8&#x7075;&#x6D3B;&#x3002;&#x5B83;&#x6709;&#x5927;&#x5C3E;&#x5E8F;&#x548C;&#x5C0F;&#x5C3E;&#x5E8F;&#x4E24;&#x79CD;&#x50A8;&#x5B58;&#x5F62;&#x5F0F;&#xFF0C;&#x8FD9;&#x4E2A;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x67E5;&#x9605;&#x3002;</p>
+<p>UTF-16虽然也可变长度，但不如UTF-8灵活。它有大尾序和小尾序两种储存形式，这个可以自行查阅。</p>
 <blockquote>
-<p>UTF-32 (&#x6216; UCS-4)&#x662F;&#x4E00;&#x79CD;&#x5C06;Unicode&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x7684;&#x534F;&#x5B9A;&#xFF0C;&#x5BF9;&#x6BCF;&#x4E00;&#x4E2A;Unicode&#x7801;&#x4F4D;&#x4F7F;&#x7528;&#x6070;&#x597D;32&#x4F4D;&#x5143;&#x3002;&#x5176;&#x5B83;&#x7684;Unicode transformation formats&#x5219;&#x4F7F;&#x7528;&#x4E0D;&#x5B9A;&#x957F;&#x5EA6;&#x7F16;&#x7801;&#x3002;</p>
+<p>UTF-32 (或 UCS-4)是一种将Unicode字符编码的协定，对每一个Unicode码位使用恰好32位元。其它的Unicode transformation formats则使用不定长度编码。</p>
 </blockquote>
-<p>&#x7F51;&#x4E0A;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x5DE5;&#x5177;&#xFF0C;<a href="https://www.qqxiuzi.cn/bianma/Unicode-UTF.php" target="_blank" rel="noopener">Unicode&#x548C;UTF&#x7F16;&#x7801;&#x8F6C;&#x6362;</a>&#xFF0C;&#x6709;&#x5174;&#x8DA3;&#x53EF;&#x4EE5;&#x8BD5;&#x4E00;&#x4E0B;&#x3002;</p>
-<h3><span id="&#x5B9E;&#x6218;">&#x5B9E;&#x6218;</span><a href="#&#x5B9E;&#x6218;" class="header-anchor"> </a></h3><p>&#x6211;&#x4EEC;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4E86;&#x89E3;&#x4E0A;&#x9762;&#x90A3;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x6700;&#x7EC8;&#x8FD8;&#x662F;&#x4E3A;&#x4E86;&#x66F4;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#x4EE3;&#x7801;&#x3002;&#x5148;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x5C06;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x4ECE;UTF-8&#x8F6C;&#x4E3A;ASCII&#x7684;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#xFF0C;&#x4ECE;&#x7F51;&#x4E0A;&#x6284;&#x4E0B;&#x6765;&#x7684;&#x3002;</p>
-<pre><code class="lang-cpp">const char *changeTxtEncoding(const char *szU8) {
+<p>网上找到一个工具，<a href="https://www.qqxiuzi.cn/bianma/Unicode-UTF.php" target="_blank" rel="noopener">Unicode和UTF编码转换</a>，有兴趣可以试一下。</p>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>我们为什么要了解上面那些东西，最终还是为了更容易理解代码。先给出一个将一个字符串从UTF-8转为ASCII的示例代码，从网上抄下来的。</p>
+<pre><code class="cpp">const char *changeTxtEncoding(const char *szU8) {
     int wcsLen= MultiByteToWideChar(CP_UTF8, NULL, szU8, strlen(szU8), NULL, 0);
     wchar_t *wszString= new wchar_t[wcsLen + 1];
     MultiByteToWideChar(CP_UTF8, NULL, szU8, strlen(szU8), wszString, wcsLen);
-    wszString[wcsLen]= &apos;\0&apos;;
+    wszString[wcsLen]= &#39;\0&#39;;
     int ansiLen= WideCharToMultiByte(CP_ACP, NULL, wszString, wcslen(wszString), NULL, 0, NULL, NULL);
     char *szAnsi= new char[ansiLen + 1];
     WideCharToMultiByte(CP_ACP, NULL, wszString, wcslen(wszString), szAnsi, ansiLen, NULL, NULL);
-    szAnsi[ansiLen]= &apos;\0&apos;;
+    szAnsi[ansiLen]= &#39;\0&#39;;
     delete[] wszString;
     return szAnsi;
-}
-</code></pre>
-<p>&#x6B64;&#x51FD;&#x6570;&#x662F;&#x5C06;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5148;&#x4ECE;UTF-8&#x8F6C;&#x4E3A;UTF-16&#xFF0C;&#x518D;&#x8F6C;&#x4E3A;ASCII&#x3002;</p>
-<h4><span id="multibytetowidechar">MultiByteToWideChar</span><a href="#multibytetowidechar" class="header-anchor"> </a></h4><p>&#x6B64;&#x51FD;&#x6570;&#x53EF;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x6620;&#x5C04;&#x5230;UTF-16(&#x5BBD;&#x5B57;&#x7B26;)&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x4E00;&#x5B9A;&#x6765;&#x81EA;&#x591A;&#x5B57;&#x8282;&#x5B57;&#x7B26;&#x96C6;&#x3002;&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x5B57;&#x7B26;&#x96C6;&#x6216;&#x4EE3;&#x7801;&#x9875;&#x6211;&#x4EEC;&#x90FD;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x7F16;&#x7801;&#x6620;&#x5C04;&#x8868;&#x3002;</p>
-<pre><code class="lang-cpp">int WINAPI MultiByteToWideChar(
+}</code></pre>
+<p>此函数是将一个字符串，先从UTF-8转为UTF-16，再转为ASCII。</p>
+<h4 id="MultiByteToWideChar"><a href="#MultiByteToWideChar" class="headerlink" title="MultiByteToWideChar"></a>MultiByteToWideChar</h4><p>此函数可将字符串映射到UTF-16(宽字符)字符串。字符串不一定来自多字节字符集。在这里，字符集或代码页我们都可以理解为编码映射表。</p>
+<pre><code class="cpp">int WINAPI MultiByteToWideChar(
     _In_ UINT CodePage,
     _In_ DWORD dwFlags,
     _In_NLS_string_(cbMultiByte) LPCCH lpMultiByteStr,
     _In_ int cbMultiByte,
     _Out_writes_to_opt_(cchWideChar,return) LPWSTR lpWideCharStr,
     _In_ int cchWideChar
-    );
-</code></pre>
-<p>&#x5B9A;&#x4E49;&#x7B80;&#x5316;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-cpp">int WINAPI MultiByteToWideChar(
+    );</code></pre>
+<p>定义简化如下：</p>
+<pre><code class="cpp">int WINAPI MultiByteToWideChar(
     UINT CodePage, 
     DWORD dwFlags, 
     LPCCH lpMultiByteStr, 
     int cbMultiByte, 
     LPWSTR lpWideCharStr, 
     int cchWideChar
-    );
-</code></pre>
-<p><em>CodePage</em>&#x4E3A;&#x6307;&#x5B9A;&#x6267;&#x884C;&#x8F6C;&#x6362;&#x7684;&#x5B57;&#x7B26;&#x96C6;&#x3002;&#x5982;&#x679C;&#x539F;&#x5B57;&#x7B26;&#x4E32;&#x4E3A;ASCII&#x901A;&#x5E38;&#x9009;&#x62E9;CP_ACP&#xFF0C;&#x5173;&#x4E8E;CP_ACP&#x4E0E;CP_THREAD_ACP&#x7684;&#x533A;&#x522B;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x4E86;&#x89E3;&#x3002;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x539F;&#x5B57;&#x7B26;&#x4E32;&#x4E3A;UTF-8&#xFF0C;&#x56E0;&#x6B64;&#x9009;&#x62E9;CP_UTF8&#x3002;&#x6570;&#x503C;&#x8868;&#xFF1A;</p>
-<div class="table-container">
+    );</code></pre>
+<p><em>CodePage</em>为指定执行转换的字符集。如果原字符串为ASCII通常选择CP_ACP，关于CP_ACP与CP_THREAD_ACP的区别可以自己了解。我们这里原字符串为UTF-8，因此选择CP_UTF8。数值表：</p>
 <table>
 <thead>
 <tr>
-<th>&#x6570;&#x503C;</th>
-<th>&#x8BF4;&#x660E;   </th>
+<th>数值</th>
+<th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>CP_ACP</td>
-<td>Windows&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x7684;ANSI&#x4EE3;&#x7801;&#x9875;&#x3002; </td>
+<td>Windows系统默认的ANSI代码页。</td>
 </tr>
 <tr>
 <td>CP_MACCP</td>
-<td>Mac&#x7CFB;&#x7EDF;&#x4EE3;&#x7801;&#x9875;&#x3002; </td>
+<td>Mac系统代码页。</td>
 </tr>
 <tr>
 <td>CP_ACP</td>
-<td>OEM&#x7CFB;&#x7EDF;&#x4EE3;&#x7801;&#x9875;&#x3002; </td>
+<td>OEM系统代码页。</td>
 </tr>
 <tr>
 <td>CP_SYMBOL</td>
-<td>&#x7B26;&#x53F7;&#x5B57;&#x7B26;&#x96C6;&#x3002; </td>
+<td>符号字符集。</td>
 </tr>
 <tr>
 <td>CP_THREAD_ACP</td>
-<td>&#x5F53;&#x524D;Windows&#x7EBF;&#x7A0B;&#x7684;ANSI&#x4EE3;&#x7801;&#x9875;&#x3002; </td>
+<td>当前Windows线程的ANSI代码页。</td>
 </tr>
 <tr>
 <td>CP_UTF7</td>
-<td>&#x4F7F;&#x7528;UTF-7&#x3002; </td>
+<td>使用UTF-7。</td>
 </tr>
 <tr>
 <td>CP_UTF8</td>
-<td>&#x4F7F;&#x7528;UTF-8&#x3002; </td>
+<td>使用UTF-8。</td>
 </tr>
-</tbody>
-</table>
-</div>
-<p><em>dwFlags</em>&#x8BBE;&#x5B9A;&#x8F6C;&#x6362;&#x7C7B;&#x578B;&#x3002;&#x7F3A;&#x7701;&#x503C;&#x4E3A;MB_PRECOMPOSED&#xFF0C;&#x5BF9;&#x4E8E;UTF-8&#x5FC5;&#x987B;&#x4E3A;0&#x6216;MB_ERR_INVALID_CHARS&#xFF0C;&#x6B64;&#x53C2;&#x6570;&#x4F5C;&#x7528;&#x8F83;&#x5C0F;&#xFF0C;&#x6570;&#x503C;&#x8868;&#x5C31;&#x4E0D;&#x7ED9;&#x51FA;&#x4E86;&#x3002;</p>
-<p><em>lpMultiByteStr</em>&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x8981;&#x8F6C;&#x6362;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
-<p><em>cbMultiByte</em>&#x6307;&#x5B9A;&#x957F;&#x5EA6;&#xFF0C;&#x5982;&#x679C;lpMultiByteStr&#x6307;&#x5411;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E3A;&#x7A7A;&#x7ED3;&#x675F;&#xFF0C;&#x6B64;&#x53C2;&#x6570;&#x53EF;&#x8BBE;&#x4E3A;-1&#x3002;&#x5982;&#x679C;&#x8BBE;&#x4E3A;-1&#xFF0C;&#x51FD;&#x6570;&#x5C06;&#x5904;&#x7406;&#x5305;&#x62EC;&#x7EC8;&#x6B62;&#x7A7A;&#x5B57;&#x7B26;&#x5728;&#x5185;&#x7684;&#x6240;&#x6709;&#x5B57;&#x7B26;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;strlen&#x6765;&#x81EA;&#x884C;&#x83B7;&#x5F97;&#x957F;&#x5EA6;&#x3002;</p>
-<p><em>lpWideCharStr</em>&#x4E3A;&#x6307;&#x5411;&#x63A5;&#x6536;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x6307;&#x9488;&#x3002;</p>
-<p><em>cchWideChar</em>&#x4E3A;lpWideCharStr&#x6307;&#x793A;&#x7684;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x5927;&#x5C0F;(&#x4EE5;&#x5B57;&#x7B26;&#x4E3A;&#x5355;&#x4F4D;)&#x3002;&#x5982;&#x679C;&#x6B64;&#x503C;&#x4E3A;0&#x4E0D;&#x4F7F;&#x7528;lpWideCharStr&#x7F13;&#x51B2;&#x533A;&#x3002;</p>
-<p><em>Return Value</em>&#x5373;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x8FD4;&#x56DE;&#x5199;&#x5165;&#x5230;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x5B57;&#x7B26;&#x6570;&#x3002;&#x5982;&#x679C;cchWideChar&#x4E3A;0&#x5219;&#x8FD4;&#x56DE;&#x7F13;&#x51B2;&#x5668;&#x6240;&#x9700;&#x5927;&#x5C0F;(&#x4EE5;&#x5B57;&#x7B26;&#x4E3A;&#x5355;&#x4F4D;)&#x3002;</p>
-<p>&#x6211;&#x4EEC;&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;&#x6B64;&#x51FD;&#x6570;&#x65F6;&#x5E94;&#x5C06;cchWideChar&#x8BBE;&#x4E3A;0&#xFF0C;&#x5E76;&#x8BB0;&#x5F55;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x7B2C;&#x4E8C;&#x6B21;&#x8C03;&#x7528;&#x65F6;&#x5C06;cchWideChar&#x8BBE;&#x4E3A;&#x6B64;&#x503C;&#x3002;</p>
-<h4><span id="widechartomultibyte">WideCharToMultiByte</span><a href="#widechartomultibyte" class="header-anchor"> </a></h4><p>&#x4E0E;MultiByteToWideChar&#x6070;&#x6070;&#x76F8;&#x53CD;&#xFF0C;&#x4F46;&#x591A;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x6B64;&#x51FD;&#x6570;&#x53EF;&#x5C06;UTF-16(&#x5BBD;&#x5B57;&#x7B26;)&#x5B57;&#x7B26;&#x4E32;&#x6620;&#x5C04;&#x5230;&#x65B0;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
-<pre><code class="lang-cpp">int WINAPI WideCharToMultiByte(
+</tbody></table>
+<p><em>dwFlags</em>设定转换类型。缺省值为MB_PRECOMPOSED，对于UTF-8必须为0或MB_ERR_INVALID_CHARS，此参数作用较小，数值表就不给出了。</p>
+<p><em>lpMultiByteStr</em>指向一个要转换的字符串。</p>
+<p><em>cbMultiByte</em>指定长度，如果lpMultiByteStr指向的字符串为空结束，此参数可设为-1。如果设为-1，函数将处理包括终止空字符在内的所有字符。我们可以用strlen来自行获得长度。</p>
+<p><em>lpWideCharStr</em>为指向接收缓冲器的指针。</p>
+<p><em>cchWideChar</em>为lpWideCharStr指示的缓冲器的大小(以字符为单位)。如果此值为0不使用lpWideCharStr缓冲区。</p>
+<p><em>Return Value</em>即返回值，返回写入到缓冲器的字符数。如果cchWideChar为0则返回缓冲器所需大小(以字符为单位)。</p>
+<p>我们第一次调用此函数时应将cchWideChar设为0，并记录函数返回值，第二次调用时将cchWideChar设为此值。</p>
+<h4 id="WideCharToMultiByte"><a href="#WideCharToMultiByte" class="headerlink" title="WideCharToMultiByte"></a>WideCharToMultiByte</h4><p>与MultiByteToWideChar恰恰相反，但多两个参数，此函数可将UTF-16(宽字符)字符串映射到新字符串。</p>
+<pre><code class="cpp">int WINAPI WideCharToMultiByte(
     UINT CodePage, 
     DWORD dwFlags, 
     LPCWCH lpWideCharStr, 
@@ -515,107 +320,1603 @@
     int cbMultiByte, 
     LPCCH lpDefaultChar, 
     LPBOOL lpUsedDefaultChar
-    );
-</code></pre>
-<p><em>CodePage</em>&#x4E3A;&#x6307;&#x5B9A;&#x6267;&#x884C;&#x8F6C;&#x6362;&#x7684;&#x5B57;&#x7B26;&#x96C6;&#x3002;&#x53EF;&#x9009;&#x6570;&#x503C;&#x4E0E;MultiByteToWideChar&#x76F8;&#x540C;&#xFF0C;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x9009;&#x62E9;CP_ACP&#x3002;</p>
-<p><em>dwFlags</em>&#x8BBE;&#x5B9A;&#x8F6C;&#x6362;&#x7C7B;&#x578B;&#x3002;&#x8BBE;&#x4E3A;0&#x5373;&#x53EF;&#x3002;</p>
-<p><em>lpWideCharStr</em>&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x8981;&#x8F6C;&#x6362;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
-<p><em>cchWideChar</em>&#x6307;&#x5B9A;&#x957F;&#x5EA6;&#x3002;&#x5BF9;&#x4E8E;&#x5BBD;&#x5B57;&#x7B26;&#xFF0C;&#x81EA;&#x884C;&#x4F7F;&#x7528;wcslen&#x6765;&#x83B7;&#x5F97;&#x3002;</p>
-<p><em>lpMultiByteStr</em>&#x4E3A;&#x6307;&#x5411;&#x63A5;&#x6536;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x6307;&#x9488;&#x3002;</p>
-<p><em>cbMultiByte</em>&#x4E3A;lpMultiByteStr&#x6307;&#x793A;&#x7684;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x5927;&#x5C0F;(&#x4EE5;&#x5B57;&#x7B26;&#x4E3A;&#x5355;&#x4F4D;)&#x3002;</p>
-<p><em>lpDefaultChar</em>&#x4E3A;&#x6307;&#x5411;&#x53E6;&#x4E00;&#x4E2A;&#x63A5;&#x6536;&#x7F13;&#x51B2;&#x5668;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x5982;&#x679C;&#x67D0;&#x4E2A;&#x5B57;&#x7B26;&#x4E0D;&#x80FD;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x4EE3;&#x7801;&#x9875;&#x4E2D;&#x8868;&#x793A;&#x5C06;&#x4F7F;&#x7528;&#x6B64;&#x7F13;&#x51B2;&#x5668;&#x3002;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#xFF0C;&#x8BBE;&#x4E3A;NULL&#x5373;&#x53EF;&#x3002;</p>
-<p><em>lpUsedDefaultChar</em>&#x4E3A;&#x4E00;&#x4E2A;&#x6307;&#x5411;BOOL&#x53D8;&#x91CF;&#x7684;&#x6307;&#x9488;&#x3002;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4E86;lpDefaultChar&#x5C06;&#x88AB;&#x8BBE;&#x4E3A;TRUE&#xFF0C;&#x5426;&#x5219;&#x4E3A;FALSE&#x3002;&#x6211;&#x4EEC;&#x4E5F;&#x8BBE;&#x4E3A;NULL&#x5373;&#x53EF;&#x3002;</p>
-<p><em>Return Value</em>&#x5373;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x4E0E;MultiByteToWideChar&#x76F8;&#x7C7B;&#x6BD4;&#x3002;</p>
-<p>&#x8C03;&#x7528;&#x4E24;&#x6B21;&#xFF0C;&#x6B65;&#x9AA4;&#x4E5F;&#x4E0E;MultiByteToWideChar&#x76F8;&#x4F3C;&#x3002;</p>
-<h4><span id="delete">delete</span><a href="#delete" class="header-anchor"> </a></h4><p>&#x7F51;&#x4E0A;&#x7ED9;&#x7684;&#x4EE3;&#x7801;&#x6CA1;&#x6709;&#x91CA;&#x653E;&#x5185;&#x5B58;&#x7684;&#x8BED;&#x53E5;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x5185;&#x5B58;&#x6CC4;&#x9732;&#x3002;</p>
-<p><em>delete</em>&#x8BED;&#x53E5;&#x4F7F;&#x7528;&#x8FC7;&#x6307;&#x9488;&#x90FD;&#x77E5;&#x9053;&#xFF0C;&#x91CA;&#x653E;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x5185;&#x5B58;&#x3002;</p>
-<p><em>delete[]</em>&#x8BED;&#x53E5;&#x91CA;&#x653E;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x5185;&#x5B58;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x60F3;&#x6DF1;&#x5165;&#x4E86;&#x89E3;&#x5176;&#x4E2D;&#x7684;&#x539F;&#x7406;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x67E5;&#x9605;&#x3002;</p>
-<h3><span id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</span><a href="#&#x5C0F;&#x7ED3;" class="header-anchor"> </a></h3><p>&#x8FD9;&#x4E00;&#x8282;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E86;&#x7F16;&#x7801;&#x7684;&#x77E5;&#x8BC6;&#x548C;&#x4F7F;&#x7528;C++&#x8FDB;&#x884C;&#x7F16;&#x7801;&#x8F6C;&#x6362;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x6211;&#x4EEC;&#x8FD9;&#x4E2A;&#x9879;&#x76EE;&#x6DF1;&#x5165;&#x4E86;&#x89E3;&#x7F16;&#x7801;&#x7CFB;&#x7EDF;&#xFF0C;&#x6240;&#x4ECB;&#x7ECD;&#x7684;&#x4E5F;&#x4E0D;&#x8FC7;&#x662F;&#x51B0;&#x5C71;&#x4E00;&#x89D2;&#x3002;</p>
-<p>&#x73B0;&#x5728;&#x5927;&#x5BB6;&#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5199;&#x4EE3;&#x7801;&#x5BF9;&#x7F51;&#x9875;&#x8FDB;&#x884C;&#x7B80;&#x5355;&#x5206;&#x6790;&#x4E86;&#x3002;&#x4E0B;&#x4E00;&#x8282;&#x6211;&#x6253;&#x7B97;&#x4ECB;&#x7ECD;&#x5173;&#x4E8E;WinHTTP&#x7684;&#x5185;&#x5BB9;&#x548C;&#x7528;&#x9014;&#x3002;</p>
+    );</code></pre>
+<p><em>CodePage</em>为指定执行转换的字符集。可选数值与MultiByteToWideChar相同，我们这里选择CP_ACP。</p>
+<p><em>dwFlags</em>设定转换类型。设为0即可。</p>
+<p><em>lpWideCharStr</em>指向一个要转换的字符串。</p>
+<p><em>cchWideChar</em>指定长度。对于宽字符，自行使用wcslen来获得。</p>
+<p><em>lpMultiByteStr</em>为指向接收缓冲器的指针。</p>
+<p><em>cbMultiByte</em>为lpMultiByteStr指示的缓冲器的大小(以字符为单位)。</p>
+<p><em>lpDefaultChar</em>为指向另一个接收缓冲器的指针，如果某个字符不能在指定的代码页中表示将使用此缓冲器。我们不需要，设为NULL即可。</p>
+<p><em>lpUsedDefaultChar</em>为一个指向BOOL变量的指针。如果使用了lpDefaultChar将被设为TRUE，否则为FALSE。我们也设为NULL即可。</p>
+<p><em>Return Value</em>即返回值，与MultiByteToWideChar相类比。</p>
+<p>调用两次，步骤也与MultiByteToWideChar相似。</p>
+<h4 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h4><p>网上给的代码没有释放内存的语句，可能会造成内存泄露。</p>
+<p><em>delete</em>语句使用过指针都知道，释放一个指针指向的内存。</p>
+<p><em>delete[]</em>语句释放一个数组指针指向的内存。</p>
+<p>如果想深入了解其中的原理，可以自行查阅。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>这一节简单介绍了编码的知识和使用C++进行编码转换的代码。我们这个项目深入了解编码系统，所介绍的也不过是冰山一角。</p>
+<p>现在大家已经可以自己写代码对网页进行简单分析了。下一节我打算介绍关于WinHTTP的内容和用途。</p>
 
-  </article>
-  
-  
-<div class="nexmoe-post-copyright">
-<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-<strong>本文作者：</strong>Ciyang<br>
-<strong>本文链接：</strong><a href="https://xciyang.github.io/2019-05/28-spiking2/" title="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-05&#x2F;28-spiking2&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-05&#x2F;28-spiking2&#x2F;</a><br>
-
-  <strong>版权声明：</strong>本文一切由权利由作者 Ciyang 所有，转载请声明本文地址。
-
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Cpp/" rel="tag">Cpp</a>, <a class="has-link-grey -link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a>, <a class="has-link-grey -link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a>, <a class="has-link-grey -link" href="/tags/%E9%A2%93%E5%BA%9F/" rel="tag">颓废</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
 </div>
 
 
-  
-  <section class="nexmoe-comment">
-    <div id="lv-container" data-id="city" data-uid="MTAyMC80NjA4Ni8yMjU5Nw==">
-    <script id="livere-comment-js">
-    (function(d, s) {
-       var j, e = d.getElementsByTagName(s)[0];
-       if (typeof LivereTower === 'function') { return; }
-       j = d.createElement(s);
-       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       j.async = true;
-       e.parentNode.insertBefore(j, e);
-    })(document, 'script');
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019-06/03-spiking3/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">项目日记 - 开发图片爬虫 Ⅲ</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019-05/26-spiking1/">
+                <span class="level-item">项目日记 - 开发图片爬虫 Ⅰ</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NjA4Ni8yMjU5Nw==">
+    <script type="text/javascript">
+        (function(d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+
+            if (typeof LivereTower === 'function') { return; }
+
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
     </script>
-</div>
-</section>
+    <noscript> Please activate JavaScript for write a comment in LiveRe</noscript>
 </div>
 
     </div>
-  </div>
-  <script src="https://lib.baomitu.com/mdui/0.4.3/js/mdui.min.js"></script>
- 
-    <script src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-
-
- 
-    <script src="https://lib.baomitu.com/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
-
-
-<script src="https://lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-<script src="/js/app.js?v=1573618888511"></script>
-<script src="https://lib.baomitu.com/lazysizes/5.1.1/lazysizes.min.js"></script>
-
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
-
-
-  
+</div>
+</div>
+                
 
 
 
-    <!-- Tencent Analytics -->
-<script>
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//tajs.qq.com/stats?sId=66465453";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="/medias/avatar.jpg" alt="Ciyang">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Ciyang
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        High School OIer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Dongying, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            31
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            40
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/Xciyang" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/Xciyang">
+                
+                <i class="BlogIcon icon-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="知乎" href="https://www.zhihu.com/people/ci-yang-ciyang">
+                
+                <i class="BlogIcon icon-zhihu"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=896681584&amp;site=qq&amp;menu=yes">
+                
+                <i class="BlogIcon icon-qq"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="哔哩哔哩" href="https://space.bilibili.com/6068536">
+                
+                <i class="BlogIcon icon-bilibili"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/rss.xml">
+                
+                <i class="BlogIcon icon-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
 
-    <!-- 51.La Analytics -->
-<div hidden>
-  <script type="text/javascript" src="https://js.users.51.la/20284321.js"></script>
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#前言">
+        <span class="has-mr-6">1</span>
+        <span>前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#理论">
+        <span class="has-mr-6">2</span>
+        <span>理论</span>
+        </a></li><li>
+        <a class="is-flex" href="#实战">
+        <span class="has-mr-6">3</span>
+        <span>实战</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#MultiByteToWideChar">
+        <span class="has-mr-6">3.1</span>
+        <span>MultiByteToWideChar</span>
+        </a></li><li>
+        <a class="is-flex" href="#WideCharToMultiByte">
+        <span class="has-mr-6">3.2</span>
+        <span>WideCharToMultiByte</span>
+        </a></li><li>
+        <a class="is-flex" href="#delete">
+        <span class="has-mr-6">3.3</span>
+        <span>delete</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#小结">
+        <span class="has-mr-6">4</span>
+        <span>小结</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://zhihu.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">知乎</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">zhihu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://bilibili.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">哔哩哔哩</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">bilibili.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
 </div>
 
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/%E6%8A%80%E5%B7%A7/">
+            <span class="level-start">
+                <span class="level-item">技巧</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E8%AE%B0%E5%BF%86/">
+            <span class="level-start">
+                <span class="level-item">记忆</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E9%97%B2%E8%81%8A/">
+            <span class="level-start">
+                <span class="level-item">闲聊</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E9%A1%B9%E7%9B%AE/">
+            <span class="level-start">
+                <span class="level-item">项目</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E9%A2%98%E8%A7%A3/">
+            <span class="level-start">
+                <span class="level-item">题解</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/CPS-S/" style="font-size: 10px;">CPS-S</a> <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.67px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 13.33px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.67px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 13.33px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 16.67px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13.33px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.33px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.67px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%AE%B0%E5%BF%86/" style="font-size: 10px;">记忆</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 16.67px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.67px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 13.33px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 16.67px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.33px;">题解</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019-12/09-csps2019afo/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSP-S 2019 · AFO游记 （未完）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T12:02:17.000Z">2019-12-09</time></div>
+                    <a href="/2019-12/09-csps2019afo/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CSP-S 2019 · AFO游记 （未完）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E8%AE%B0%E5%BF%86/">记忆</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-10/08-you-ya-de-xie-dai-ma/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="技巧 - 如何优雅的写代码">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T03:14:24.000Z">2019-10-08</time></div>
+                    <a href="/2019-10/08-you-ya-de-xie-dai-ma/" class="title has-link-black-ter is-size-6 has-text-weight-normal">技巧 - 如何优雅的写代码</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%8A%80%E5%B7%A7/">技巧</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/29-atbeginner142/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="比赛 - AtCoder Beginner Contest 142">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T00:10:39.000Z">2019-09-29</time></div>
+                    <a href="/2019-09/29-atbeginner142/" class="title has-link-black-ter is-size-6 has-text-weight-normal">比赛 - AtCoder Beginner Contest 142</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/25-luogu1026/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
+                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/20-luogu2540/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2015 - 斗地主增强版">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T13:14:30.000Z">2019-09-20</time></div>
+                    <a href="/2019-09/20-luogu2540/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2015 - 斗地主增强版</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPS-S/">
+                        <span class="tag">CPS-S</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Cpp/">
+                        <span class="tag">Cpp</span>
+                        <span class="tag is-grey">27</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GCD/">
+                        <span class="tag">GCD</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LCA/">
+                        <span class="tag">LCA</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STL/">
+                        <span class="tag">STL</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ST%E8%A1%A8/">
+                        <span class="tag">ST表</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/">
+                        <span class="tag">主席树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
+                        <span class="tag">二分查找</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%86%E5%9D%97/">
+                        <span class="tag">分块</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/">
+                        <span class="tag">前缀和</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                        <span class="tag">动态规划</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/">
+                        <span class="tag">块状链表</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/">
+                        <span class="tag">字典树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+                        <span class="tag">字符串</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/">
+                        <span class="tag">左偏树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%8A%80%E5%B7%A7/">
+                        <span class="tag">技巧</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">搜索</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E8%AE%BA/">
+                        <span class="tag">数论</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/">
+                        <span class="tag">整除分块</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
+                        <span class="tag">模拟</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%AF%94%E8%B5%9B/">
+                        <span class="tag">比赛</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%8A%B6%E5%8E%8BDP/">
+                        <span class="tag">状压DP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%A0%81%E9%A3%8E/">
+                        <span class="tag">码风</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/">
+                        <span class="tag">离散化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+                        <span class="tag">线段树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%83%8C%E5%8C%85/">
+                        <span class="tag">背包</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/">
+                        <span class="tag">莫比乌斯反演</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%8E%AB%E9%98%9F/">
+                        <span class="tag">莫队</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
+                        <span class="tag">记忆</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AF%AD%E5%BD%95/">
+                        <span class="tag">语录</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%BE%B9%E5%8E%8BTrie/">
+                        <span class="tag">边压Trie</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%97%B2%E8%81%8A/">
+                        <span class="tag">闲聊</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">随机化搜索</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE/">
+                        <span class="tag">项目</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A2%93%E5%BA%9F/">
+                        <span class="tag">颓废</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
+                        <span class="tag">题解</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
 
-    <!-- baidu Analytics -->
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019-12/09-csps2019afo/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CSP-S 2019 · AFO游记 （未完）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T12:02:17.000Z">2019-12-09</time></div>
+                    <a href="/2019-12/09-csps2019afo/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CSP-S 2019 · AFO游记 （未完）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E8%AE%B0%E5%BF%86/">记忆</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-10/08-you-ya-de-xie-dai-ma/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="技巧 - 如何优雅的写代码">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T03:14:24.000Z">2019-10-08</time></div>
+                    <a href="/2019-10/08-you-ya-de-xie-dai-ma/" class="title has-link-black-ter is-size-6 has-text-weight-normal">技巧 - 如何优雅的写代码</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%8A%80%E5%B7%A7/">技巧</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/29-atbeginner142/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="比赛 - AtCoder Beginner Contest 142">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T00:10:39.000Z">2019-09-29</time></div>
+                    <a href="/2019-09/29-atbeginner142/" class="title has-link-black-ter is-size-6 has-text-weight-normal">比赛 - AtCoder Beginner Contest 142</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/25-luogu1026/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
+                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09/20-luogu2540/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2015 - 斗地主增强版">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T13:14:30.000Z">2019-09-20</time></div>
+                    <a href="/2019-09/20-luogu2540/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2015 - 斗地主增强版</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPS-S/">
+                        <span class="tag">CPS-S</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Cpp/">
+                        <span class="tag">Cpp</span>
+                        <span class="tag is-grey">27</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GCD/">
+                        <span class="tag">GCD</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LCA/">
+                        <span class="tag">LCA</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STL/">
+                        <span class="tag">STL</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ST%E8%A1%A8/">
+                        <span class="tag">ST表</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/">
+                        <span class="tag">主席树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
+                        <span class="tag">二分查找</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%86%E5%9D%97/">
+                        <span class="tag">分块</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/">
+                        <span class="tag">前缀和</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                        <span class="tag">动态规划</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/">
+                        <span class="tag">块状链表</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/">
+                        <span class="tag">字典树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+                        <span class="tag">字符串</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/">
+                        <span class="tag">左偏树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%8A%80%E5%B7%A7/">
+                        <span class="tag">技巧</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">搜索</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E8%AE%BA/">
+                        <span class="tag">数论</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/">
+                        <span class="tag">整除分块</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
+                        <span class="tag">模拟</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%AF%94%E8%B5%9B/">
+                        <span class="tag">比赛</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%8A%B6%E5%8E%8BDP/">
+                        <span class="tag">状压DP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%A0%81%E9%A3%8E/">
+                        <span class="tag">码风</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/">
+                        <span class="tag">离散化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+                        <span class="tag">线段树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%83%8C%E5%8C%85/">
+                        <span class="tag">背包</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/">
+                        <span class="tag">莫比乌斯反演</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%8E%AB%E9%98%9F/">
+                        <span class="tag">莫队</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
+                        <span class="tag">记忆</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AF%AD%E5%BD%95/">
+                        <span class="tag">语录</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%BE%B9%E5%8E%8BTrie/">
+                        <span class="tag">边压Trie</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%97%B2%E8%81%8A/">
+                        <span class="tag">闲聊</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/">
+                        <span class="tag">随机化搜索</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE/">
+                        <span class="tag">项目</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A2%93%E5%BA%9F/">
+                        <span class="tag">颓废</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
+                        <span class="tag">题解</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/medias/avatar.jpg" alt="项目日记 - 开发图片爬虫 Ⅱ" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Ciyang&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
 <script>
-    var _hmt = _hmt || [];
-    (function() {var hm = document.createElement('script');
-    hm.src = 'https://hm.baidu.com/hm.js?c285bfd3ab71dfa2d08b9656991e938e';
-    var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
 </script>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="回到顶端" href="javascript:;" target="_blank" rel="noopener">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
@@ -633,5 +1934,4 @@
 <script src="https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
-
 </html>
