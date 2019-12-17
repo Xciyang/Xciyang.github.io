@@ -11,7 +11,7 @@
 
 
     <meta name="description" content="【LuoguP5145】漂浮的鸭子题目链接: https:&#x2F;&#x2F;www.luogu.org&#x2F;problemnew&#x2F;show&#x2F;P5145 前言最近颓的东西太多了, 终于又来做搜索题. 这题很水 随手交了个暴力随机化就A了.">
-<meta name="keywords" content="Cpp,题解,搜索,随机化搜索">
+<meta name="keywords" content="题解,Cpp,随机化搜索,搜索">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LuoguP5145 - 漂浮的鸭子">
 <meta property="og:url" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-05&#x2F;22-luogu5145&#x2F;index.html">
@@ -79,6 +79,148 @@
 <link rel="alternate" href="/atom.xml" title="Ciyang’s Blog" type="application/atom+xml">
 </head>
 <body class="is-3-column">
+    <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
+<script>
+    (function BallMouse() {
+        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
+            STAR_SIZE = 5,
+            GRAVITY_SIZE = 100,
+            STAR_MASS = 1,
+            STAR_REMOVE_TIME = 2000;
+
+        const canvas = document.getElementById('BallMouse'),
+            context = canvas.getContext('2d');
+
+        let scale = 1, // device pixel ratio
+            width,
+            height,
+            nowtime;
+
+        let stars = [];
+
+        resize();
+        step();
+
+        window.onresize = resize;
+        window.addEventListener('mousedown', function (e) {
+            onMouseDown(e);
+        }, false);
+        window.addEventListener('mouseup', function (e) {
+            onMouseUp(e);
+        }, false);
+        function placeStar(star) {
+            star.x = Math.random() * width;
+            star.y = Math.random() * height;
+            return star;
+        }
+
+        function resize() {
+            scale = window.devicePixelRatio || 1;
+            width = window.innerWidth * scale;
+            height = window.innerHeight * scale;
+            canvas.width = width;
+            canvas.height = height;
+            stars.forEach(placeStar);
+        }
+
+        function step() {
+            nowtime = new Date().getTime();
+            context.clearRect(0, 0, width, height);
+            update();
+            render();
+            requestAnimationFrame(step);
+        }
+
+        function update() {
+            for (let index = 0; index < stars.length; index++) {
+                const star = stars[index];
+                if (star.z && nowtime > star.z) {
+                    stars.splice(index, 1);
+                    --index;
+                }
+            }
+            if (stars.length < STAR_COUNT) {
+                let place = (STAR_COUNT - stars.length) * Math.random();
+                for (let i = 0; i < place; i++) {
+                    stars.push(placeStar({
+                        x: 0,
+                        y: 0,
+                        z: 0,
+                        vx: 0,
+                        vy: 0,
+                        colorh: parseInt(Math.random() * 359)
+                    }));
+                }
+            }
+            stars.forEach((star) => {
+                stars.forEach(bigStar => {
+                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
+                    if (r2 > 10) {
+                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
+                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
+                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
+                    }
+                    else if (r2 > 5) {
+                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
+                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
+                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
+                    }
+                });
+            });
+            stars.forEach((star) => {
+                star.vx -= star.vx * 0.05;
+                star.vy -= star.vy * 0.05;
+                star.x += star.vx;
+                star.y += star.vy;
+                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
+                    if (star.z == 0) {
+                        star.z = nowtime + STAR_REMOVE_TIME;
+                    }
+                } else {
+                    star.z = 0;
+                }
+            });
+        }
+        function render() {
+            stars.forEach((star) => {
+                context.beginPath();
+                context.lineCap = 'round';
+                context.lineWidth = STAR_SIZE * scale;
+                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
+                context.beginPath();
+                context.moveTo(star.x, star.y);
+                context.lineTo(star.x, star.y);
+                context.stroke();
+            });
+        }
+        let inv;
+        function onMouseDown(event) {
+            stars.push({
+                x: event.clientX,
+                y: event.clientY,
+                z: 0,
+                vx: 0,
+                vy: 0,
+                colorh: parseInt(Math.random() * 359)
+            });
+            inv = setTimeout(pushStar, 500);
+            function pushStar() {
+                stars.push({
+                    x: event.clientX,
+                    y: event.clientY,
+                    z: 0,
+                    vx: 0,
+                    vy: 0,
+                    colorh: parseInt(Math.random() * 359)
+                });
+                inv = setTimeout(pushStar, 100);
+            }
+        }
+        function onMouseUp(event) {
+            clearTimeout(inv);
+        }
+    })();
+</script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -1792,6 +1934,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/insight.css">
     
+
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
