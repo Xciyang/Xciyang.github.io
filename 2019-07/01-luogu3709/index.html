@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-lightfab fa-github.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.17.1/styles/gradient-dark.css">
 
 
     
@@ -173,6 +173,8 @@
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近一个月是各种忙啊。先是准备了半个多月的合格考，然后终于回归了OI。最近一周又生病请假等就没有更新过题解。上次更新题解也是很久之前，因为中间有段时间颓废过度做项目，现在那个项目基本已经咕咕，因为懒得再下Visual Studio了。</p>
 <p>这几天一直在做莫队，然后做到这道题，打算水篇题解。</p>
 <a id="more"></a>
+
+
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这题可以说是语文阅读理解神题，丝毫看不懂出题人意图是什么。</p>
 <p>根据出题人的解释，一句话概括如下: </p>
 <blockquote>
@@ -182,70 +184,7 @@
 <p>根据一些其他题解的提示，我们开一个cnt数组记录区间内某个数出现的次数，然后用cntt数组记录cnt数组中数出现的次数。</p>
 <p>在区间扩大时ans和cnt数组取max，然后区间缩小时就判断cntt是否已经为0，如果是就让ans减一。当然不能忘了区间更改时cnt和cntt肯定都会有所改变。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>评测详情(未开O2): Accepted 100 用时: 1634ms / 内存: 9740KB</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
-#include &lt;stdio.h&gt;
-#include &lt;map&gt;
-#include &lt;math.h&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-int read() {
-    int x= 0, f= 1;
-    char ch= getchar();
-    while(ch &lt; &#39;0&#39; || ch &gt; &#39;9&#39;) {
-        if(ch == &#39;-&#39;) f= -1;
-        ch= getchar();
-    }
-    while(ch &gt;= &#39;0&#39; &amp;&amp; ch &lt;= &#39;9&#39;) x= x * 10 + ch - &#39;0&#39;, ch= getchar();
-    return x * f;
-}
-inline void write(int x) {
-    if(x &lt; 0) x= -x, putchar(&#39;-&#39;);
-    if(x &gt; 9) write(x / 10);
-    putchar(&#39;0&#39; + x % 10);
-    return;
-}
-int n, m, a[200001], mapptr, cnt[200001], cntt[200001], nowans, ans[200001], ns;
-map&lt; int, int &gt; mapping;
-struct QUERY {
-    int id, l, r, bl;
-    int operator&lt;(const QUERY &amp;q2) const {
-        return bl == q2.bl ? r &lt; q2.r : l &lt; q2.l;
-    }
-} qs[200001];
-inline void add(int x) {
-    --cntt[cnt[x]];
-    ++cntt[++cnt[x]];
-    nowans= max(nowans, cnt[x]);
-    return;
-}
-inline void del(int x) {
-    --cntt[cnt[x]];
-    if(!cntt[cnt[x]] &amp;&amp; nowans == cnt[x]) --nowans;
-    ++cntt[--cnt[x]];
-    return;
-}
-int main() {
-    n= read(), m= read(), ns= sqrt(n);
-    for(int i= 1; i &lt;= n; i++) {
-        a[i]= read();
-        if(!mapping[a[i]]) mapping[a[i]]= ++mapptr;
-        a[i]= mapping[a[i]];
-    }
-    for(int i= 1; i &lt;= m; i++) qs[i].l= read(), qs[i].r= read(), qs[i].id= i, qs[i].bl= (qs[i].l - 1) / ns;
-    sort(qs + 1, qs + m + 1);
-    int l= 1, r= 0;
-    for(int i= 1; i &lt;= m; i++) {
-        while(l &lt; qs[i].l) del(a[l++]);
-        while(l &gt; qs[i].l) add(a[--l]);
-        while(r &gt; qs[i].r) del(a[r--]);
-        while(r &lt; qs[i].r) add(a[++r]);
-        ans[qs[i].id]= nowans;
-    }
-    for(int i= 1; i &lt;= m; i++) write(-ans[i]), putchar(&#39;\n&#39;);
-    return 0;
-}
-</code></pre>
-
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> x= <span class="hljs-number">0</span>, f= <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">char</span> ch= getchar();</span><br><span class="line">    <span class="hljs-keyword">while</span>(ch &lt; <span class="hljs-string">'0'</span> || ch &gt; <span class="hljs-string">'9'</span>) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'-'</span>) f= <span class="hljs-number">-1</span>;</span><br><span class="line">        ch= getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">while</span>(ch &gt;= <span class="hljs-string">'0'</span> &amp;&amp; ch &lt;= <span class="hljs-string">'9'</span>) x= x * <span class="hljs-number">10</span> + ch - <span class="hljs-string">'0'</span>, ch= getchar();</span><br><span class="line">    <span class="hljs-keyword">return</span> x * f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span>(x &lt; <span class="hljs-number">0</span>) x= -x, <span class="hljs-built_in">putchar</span>(<span class="hljs-string">'-'</span>);</span><br><span class="line">    <span class="hljs-keyword">if</span>(x &gt; <span class="hljs-number">9</span>) write(x / <span class="hljs-number">10</span>);</span><br><span class="line">    <span class="hljs-built_in">putchar</span>(<span class="hljs-string">'0'</span> + x % <span class="hljs-number">10</span>);</span><br><span class="line">    <span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">int</span> n, m, a[<span class="hljs-number">200001</span>], mapptr, cnt[<span class="hljs-number">200001</span>], cntt[<span class="hljs-number">200001</span>], nowans, ans[<span class="hljs-number">200001</span>], ns;</span><br><span class="line"><span class="hljs-built_in">map</span>&lt; <span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span> &gt; mapping;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">QUERY</span> &#123;</span></span><br><span class="line">    <span class="hljs-keyword">int</span> id, l, r, bl;</span><br><span class="line">    <span class="hljs-keyword">int</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-keyword">const</span> QUERY &amp;q2) <span class="hljs-keyword">const</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> bl == q2.bl ? r &lt; q2.r : l &lt; q2.l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; qs[<span class="hljs-number">200001</span>];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    --cntt[cnt[x]];</span><br><span class="line">    ++cntt[++cnt[x]];</span><br><span class="line">    nowans= max(nowans, cnt[x]);</span><br><span class="line">    <span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">del</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    --cntt[cnt[x]];</span><br><span class="line">    <span class="hljs-keyword">if</span>(!cntt[cnt[x]] &amp;&amp; nowans == cnt[x]) --nowans;</span><br><span class="line">    ++cntt[--cnt[x]];</span><br><span class="line">    <span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    n= read(), m= read(), ns= <span class="hljs-built_in">sqrt</span>(n);</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        a[i]= read();</span><br><span class="line">        <span class="hljs-keyword">if</span>(!mapping[a[i]]) mapping[a[i]]= ++mapptr;</span><br><span class="line">        a[i]= mapping[a[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>; i &lt;= m; i++) qs[i].l= read(), qs[i].r= read(), qs[i].id= i, qs[i].bl= (qs[i].l - <span class="hljs-number">1</span>) / ns;</span><br><span class="line">    sort(qs + <span class="hljs-number">1</span>, qs + m + <span class="hljs-number">1</span>);</span><br><span class="line">    <span class="hljs-keyword">int</span> l= <span class="hljs-number">1</span>, r= <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="hljs-keyword">while</span>(l &lt; qs[i].l) del(a[l++]);</span><br><span class="line">        <span class="hljs-keyword">while</span>(l &gt; qs[i].l) add(a[--l]);</span><br><span class="line">        <span class="hljs-keyword">while</span>(r &gt; qs[i].r) del(a[r--]);</span><br><span class="line">        <span class="hljs-keyword">while</span>(r &lt; qs[i].r) add(a[++r]);</span><br><span class="line">        ans[qs[i].id]= nowans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>; i &lt;= m; i++) write(-ans[i]), <span class="hljs-built_in">putchar</span>(<span class="hljs-string">'\n'</span>);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">

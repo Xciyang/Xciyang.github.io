@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-lightfab fa-github.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.17.1/styles/gradient-dark.css">
 
 
     
@@ -174,6 +174,8 @@
 <p>以后可能颓的时间会变少. 现在文化课好像更重要些, 还是要专心学习吧. </p>
 <p>本题是一个状压练手好题.</p>
 <a id="more"></a>
+
+
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我再大致翻译描述一下题目, 我一开始因为没看样例就理解错了.</p>
 <p>本题给出N点M边的无向图, 然后要割掉其中一些边, 使从1到N只有一条不经过重复顶点的边, 求删掉的边的边权和最小.</p>
 <blockquote>
@@ -189,50 +191,9 @@
 <p>然后进行DP, 二维数组, 第一维为处理了哪些点, 第二维为到达哪个点(当前终点).</p>
 <p>有两种转移, 一种是新处理一个点, 一种是将一个联通块与当前终点相连.</p>
 <p>我从这道题还学习了一个新的二进制性质.枚举一个数二进制下的所有子集:</p>
-<pre><code>int num = 59; // 某个数
-for(int i= num; i; i= (i - 1) &amp; num) {
-    // i 为 num 的一个二进制子集
-}
-</code></pre><p>比如（0101）的子集为（0101）,（0100）,（0001）,（0000）.</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-using namespace std;
-int n, m, nn, edge[16][16], tmpx, tmpy, tmpz, sums;
-int blocks[1 &lt;&lt; 16], len, f[1 &lt;&lt; 16][16];
-int main() {
-    cin &gt;&gt; n &gt;&gt; m;
-    nn= 1 &lt;&lt; n;
-    for(int i= 1; i &lt;= m; i++) {
-        cin &gt;&gt; tmpx &gt;&gt; tmpy &gt;&gt; tmpz;
-        sums+= edge[tmpx][tmpy]= edge[tmpy][tmpx]= tmpz;
-    }
-    for(int i= 0; i &lt; nn; i++) {
-        for(int j= 1; j &lt;= n; j++) {
-            if(!(i &amp; (1 &lt;&lt; (j - 1))) &amp;&amp; !(blocks[i | (1 &lt;&lt; (j - 1))])) {
-                blocks[i | (1 &lt;&lt; (j - 1))]= blocks[i];
-                for(int k= 1; k &lt;= n; k++)
-                    if((i &amp; (1 &lt;&lt; (k - 1)))) blocks[i | (1 &lt;&lt; (j - 1))]+= edge[j][k];
-            }
-        }
-    }
-    memset(f, -1, sizeof(f));
-    f[1][1]= 0;
-    for(int i= 0; i &lt; nn; i++) {
-        for(int j= 1; j &lt;= n; j++) {
-            if(f[i][j] != -1 &amp;&amp; (i &amp; (1 &lt;&lt; (j - 1)))) {
-                for(int k= 1; k &lt;= n; k++)
-                    if(!(i &amp; (1 &lt;&lt; (k - 1))) &amp;&amp; edge[j][k]) f[i | (1 &lt;&lt; (k - 1))][k]= max(f[i | (1 &lt;&lt; (k - 1))][k], f[i][j] + edge[j][k]);
-                tmpx= ((nn - 1) ^ i) | (1 &lt;&lt; (j - 1));
-                for(int k= tmpx; k; k= (k - 1) &amp; tmpx)
-                    if(k &amp; (1 &lt;&lt; (j - 1))) f[i | k][j]= max(f[i | k][j], f[i][j] + blocks[k]);
-            }
-        }
-    }
-    cout &lt;&lt; sums - f[nn - 1][n] &lt;&lt; endl;
-    return 0;
-}
-</code></pre>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int num = 59; // 某个数</span><br><span class="line">for(int i= num; i; i= (i - 1) &amp; num) &#123;</span><br><span class="line">	// i 为 num 的一个二进制子集</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>比如（0101）的子集为（0101）,（0100）,（0001）,（0000）.</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> n, m, nn, edge[<span class="hljs-number">16</span>][<span class="hljs-number">16</span>], tmpx, tmpy, tmpz, sums;</span><br><span class="line"><span class="hljs-keyword">int</span> blocks[<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">16</span>], len, f[<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">16</span>][<span class="hljs-number">16</span>];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	nn= <span class="hljs-number">1</span> &lt;&lt; n;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">		<span class="hljs-built_in">cin</span> &gt;&gt; tmpx &gt;&gt; tmpy &gt;&gt; tmpz;</span><br><span class="line">		sums+= edge[tmpx][tmpy]= edge[tmpy][tmpx]= tmpz;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">0</span>; i &lt; nn; i++) &#123;</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j= <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span>(!(i &amp; (<span class="hljs-number">1</span> &lt;&lt; (j - <span class="hljs-number">1</span>))) &amp;&amp; !(blocks[i | (<span class="hljs-number">1</span> &lt;&lt; (j - <span class="hljs-number">1</span>))])) &#123;</span><br><span class="line">				blocks[i | (<span class="hljs-number">1</span> &lt;&lt; (j - <span class="hljs-number">1</span>))]= blocks[i];</span><br><span class="line">				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k= <span class="hljs-number">1</span>; k &lt;= n; k++)</span><br><span class="line">					<span class="hljs-keyword">if</span>((i &amp; (<span class="hljs-number">1</span> &lt;&lt; (k - <span class="hljs-number">1</span>)))) blocks[i | (<span class="hljs-number">1</span> &lt;&lt; (j - <span class="hljs-number">1</span>))]+= edge[j][k];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-built_in">memset</span>(f, <span class="hljs-number">-1</span>, <span class="hljs-keyword">sizeof</span>(f));</span><br><span class="line">	f[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]= <span class="hljs-number">0</span>;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">0</span>; i &lt; nn; i++) &#123;</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j= <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span>(f[i][j] != <span class="hljs-number">-1</span> &amp;&amp; (i &amp; (<span class="hljs-number">1</span> &lt;&lt; (j - <span class="hljs-number">1</span>)))) &#123;</span><br><span class="line">				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k= <span class="hljs-number">1</span>; k &lt;= n; k++)</span><br><span class="line">					<span class="hljs-keyword">if</span>(!(i &amp; (<span class="hljs-number">1</span> &lt;&lt; (k - <span class="hljs-number">1</span>))) &amp;&amp; edge[j][k]) f[i | (<span class="hljs-number">1</span> &lt;&lt; (k - <span class="hljs-number">1</span>))][k]= max(f[i | (<span class="hljs-number">1</span> &lt;&lt; (k - <span class="hljs-number">1</span>))][k], f[i][j] + edge[j][k]);</span><br><span class="line">				tmpx= ((nn - <span class="hljs-number">1</span>) ^ i) | (<span class="hljs-number">1</span> &lt;&lt; (j - <span class="hljs-number">1</span>));</span><br><span class="line">				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k= tmpx; k; k= (k - <span class="hljs-number">1</span>) &amp; tmpx)</span><br><span class="line">					<span class="hljs-keyword">if</span>(k &amp; (<span class="hljs-number">1</span> &lt;&lt; (j - <span class="hljs-number">1</span>))) f[i | k][j]= max(f[i | k][j], f[i][j] + blocks[k]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-built_in">cout</span> &lt;&lt; sums - f[nn - <span class="hljs-number">1</span>][n] &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         

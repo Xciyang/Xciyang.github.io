@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-lightfab fa-github.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.17.1/styles/gradient-dark.css">
 
 
     
@@ -173,71 +173,42 @@
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>机房很久前就人均会反演，今天我终于看懂是啥了。</p>
 <p>然后把整除分块理解透彻！</p>
 <a id="more"></a>
+
+
 <p>先做道最简单的题练练手，感谢<a href="https://oi-wiki.org/math/mobius/" target="_blank" rel="noopener">莫比乌斯反演 - OI WIKI</a>和<a href="https://ctz45562.github.io/" target="_blank" rel="noopener">大佬CTZ</a>的帮助。</p>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>本题题目翻译成公式：</p>
-<script type="math/tex; mode=display">\sum_{x=a}^{b}\sum_{y=c}^{d} [gcd(x,y)=k]</script><p>可以按照二维前缀和的思想分治一下，先设</p>
-<script type="math/tex; mode=display">F(n,m) = \sum_{i=1}^{n}\sum_{j=1}^{m} [gcd(i,j)=k]</script><p>那么</p>
-<script type="math/tex; mode=display">ans = F(b,d) - F(b,c-1) - F(a-1,d) + F(a-1,c-1)</script><p>然后对F(n,m)进行化简，首先两边同除以K，至于可行性，记录一下大佬的亲自讲解</p>
+<p>$$ \sum_{x=a}^{b}\sum_{y=c}^{d} [gcd(x,y)=k] $$</p>
+<p>可以按照二维前缀和的思想分治一下，先设</p>
+<p>$$ F(n,m) = \sum_{i=1}^{n}\sum_{j=1}^{m} [gcd(i,j)=k] $$</p>
+<p>那么</p>
+<p>$$ ans = F(b,d) - F(b,c-1) - F(a-1,d) + F(a-1,c-1) $$</p>
+<p>然后对F(n,m)进行化简，首先两边同除以K，至于可行性，记录一下大佬的亲自讲解</p>
 <p>如果原式中$gcd(i,j)=k$，那么$i,j$一定是k的倍数，现在设</p>
-<script type="math/tex; mode=display">i = i' * k , j = j' * k</script><p>那么一定$gcd(i’,j’)=1$，所以得出</p>
-<script type="math/tex; mode=display">F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} [gcd(i,j)=1]</script><p>这就可以莫比乌斯反演了，首先记住一个通用公式</p>
-<script type="math/tex; mode=display">[gcd(i,j)=1] = \sum_{d \mid gcd(i,j)}\mu(d)</script><p>然后代入F(n,m)中</p>
-<script type="math/tex; mode=display">F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} \sum_{d \mid gcd(i,j)}\mu(d)</script><p>先默认$n &lt; m$，那么可知$d \in [1,\lfloor \frac{n}{k} \rfloor]$</p>
+<p>$$ i = i’ * k , j = j’ * k $$ </p>
+<p>那么一定$gcd(i’,j’)=1$，所以得出</p>
+<p>$$ F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} [gcd(i,j)=1] $$</p>
+<p>这就可以莫比乌斯反演了，首先记住一个通用公式</p>
+<p>$$ [gcd(i,j)=1] = \sum_{d \mid gcd(i,j)}\mu(d) $$</p>
+<p>然后代入F(n,m)中</p>
+<p>$$ F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} \sum_{d \mid gcd(i,j)}\mu(d) $$</p>
+<p>先默认$n &lt; m$，那么可知$d \in [1,\lfloor \frac{n}{k} \rfloor]$</p>
 <p>然后改变一下位置</p>
-<script type="math/tex; mode=display">F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}[i \mid p]\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor}[j \mid p]</script><p>注意，右边是一个整体，后面的$[i\mid d],[j\mid d]$取1或0，也就是表示能否整除。</p>
+<p>$$ F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}[i \mid p]\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor}[j \mid p] $$</p>
+<p>注意，右边是一个整体，后面的$[i\mid d],[j\mid d]$取1或0，也就是表示能否整除。</p>
 <p>这样还能进一步化简，根据常识易得</p>
-<script type="math/tex; mode=display">\sum_{i=1}^{n} i \mid p = \lfloor \frac{n}{p} \rfloor</script><p>从而推出</p>
-<script type="math/tex; mode=display">F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\lfloor \frac{n}{kd} \rfloor{\lfloor \frac{m}{kd} \rfloor}</script><p>式子终于推完了，然后就是整除分块。</p>
+<p>$$ \sum_{i=1}^{n} i \mid p = \lfloor \frac{n}{p} \rfloor$$</p>
+<p>从而推出</p>
+<p>$$ F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\lfloor \frac{n}{kd} \rfloor{\lfloor \frac{m}{kd} \rfloor} $$</p>
+<p>式子终于推完了，然后就是整除分块。</p>
 <p>其实我一开始没看懂整除分块是因为不知道有啥用，其实是用来$O(\sqrt{n})$求这个式子</p>
-<script type="math/tex; mode=display">\sum_{i=1}^{n} \lfloor \frac{i}{p} \rfloor</script><p>这样就好说了，我们知道某些$\lfloor \frac{i}{p} \rfloor$的值是相等的，并且这些项在一个连续区间$[l,r]$内。</p>
+<p>$$ \sum_{i=1}^{n} \lfloor \frac{i}{p} \rfloor $$</p>
+<p>这样就好说了，我们知道某些$\lfloor \frac{i}{p} \rfloor$的值是相等的，并且这些项在一个连续区间$[l,r]$内。</p>
 <p>所以枚举时找一个右端点$r$，直接计算$[i,r]$这个区间的结果，这个$r= \lfloor \frac{n}{\lfloor \frac{n}{i} \rfloor} \rfloor$。</p>
 <p>具体证明不难，<a href="https://oi-wiki.org/math/mobius/#_3" target="_blank" rel="noopener">数论分块 - OI WIKI</a>有略证。</p>
 <p>然后就写代码，还需要写莫比乌斯函数筛、前缀和。</p>
 <p>这个莫比乌斯函数筛我有待研究。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
-#include &lt;stdio.h&gt;
-#define MAXA 50001
-using namespace std;
-int miu[50005], notzs[50005], zs[50005], sum[50005];
-void shai() {
-    notzs[1]= 1, miu[1]= 1;
-    for(int i= 2; i &lt;= MAXA; i++) {
-        if(!notzs[i]) miu[i]= -1, zs[++zs[0]]= i;
-        for(int j= 1; j &lt;= zs[0] &amp;&amp; i * zs[j] &lt;= MAXA; j++) {
-            notzs[i * zs[j]]= 1;
-            if(i % zs[j] == 0) {
-                miu[i * zs[j]]= 0;
-                break;
-            }
-            miu[i * zs[j]]= -miu[i];
-        }
-    }
-    for(int i= 1; i &lt;= MAXA; i++) sum[i]= sum[i - 1] + miu[i];
-    return;
-}
-int query(int n, int m, int k) {
-    int res= 0;
-    n/= k, m/= k;
-    if(n &gt; m) swap(n, m);
-    for(int i= 1, j; i &lt;= n; i= j + 1) {
-        j= min(n / (n / i), m / (m / i));
-        res+= (sum[j] - sum[i - 1]) * (n / i) * (m / i);
-    }
-    return res;
-}
-#define query(x, y) query(x, y, k)
-int t;
-int main() {
-    shai();
-    cin &gt;&gt; t;
-    int a, b, c, d, k;
-    while(t--) {
-        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d &gt;&gt; k;
-        cout &lt;&lt; query(b, d) - query(b, c - 1) - query(a - 1, d) + query(a - 1, c - 1) &lt;&lt; endl;
-    }
-    return 0;
-}
-</code></pre>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXA 50001</span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> miu[<span class="hljs-number">50005</span>], notzs[<span class="hljs-number">50005</span>], zs[<span class="hljs-number">50005</span>], sum[<span class="hljs-number">50005</span>];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">shai</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	notzs[<span class="hljs-number">1</span>]= <span class="hljs-number">1</span>, miu[<span class="hljs-number">1</span>]= <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">2</span>; i &lt;= MAXA; i++) &#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(!notzs[i]) miu[i]= <span class="hljs-number">-1</span>, zs[++zs[<span class="hljs-number">0</span>]]= i;</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j= <span class="hljs-number">1</span>; j &lt;= zs[<span class="hljs-number">0</span>] &amp;&amp; i * zs[j] &lt;= MAXA; j++) &#123;</span><br><span class="line">			notzs[i * zs[j]]= <span class="hljs-number">1</span>;</span><br><span class="line">			<span class="hljs-keyword">if</span>(i % zs[j] == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">				miu[i * zs[j]]= <span class="hljs-number">0</span>;</span><br><span class="line">				<span class="hljs-keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			miu[i * zs[j]]= -miu[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>; i &lt;= MAXA; i++) sum[i]= sum[i - <span class="hljs-number">1</span>] + miu[i];</span><br><span class="line">	<span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">int</span> res= <span class="hljs-number">0</span>;</span><br><span class="line">	n/= k, m/= k;</span><br><span class="line">	<span class="hljs-keyword">if</span>(n &gt; m) swap(n, m);</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>, j; i &lt;= n; i= j + <span class="hljs-number">1</span>) &#123;</span><br><span class="line">		j= min(n / (n / i), m / (m / i));</span><br><span class="line">		res+= (sum[j] - sum[i - <span class="hljs-number">1</span>]) * (n / i) * (m / i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> query(x, y) query(x, y, k)</span></span><br><span class="line"><span class="hljs-keyword">int</span> t;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	shai();</span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; t;</span><br><span class="line">	<span class="hljs-keyword">int</span> a, b, c, d, k;</span><br><span class="line">	<span class="hljs-keyword">while</span>(t--) &#123;</span><br><span class="line">		<span class="hljs-built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d &gt;&gt; k;</span><br><span class="line">		<span class="hljs-built_in">cout</span> &lt;&lt; query(b, d) - query(b, c - <span class="hljs-number">1</span>) - query(a - <span class="hljs-number">1</span>, d) + query(a - <span class="hljs-number">1</span>, c - <span class="hljs-number">1</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>然后你还可以把<a href="https://www.luogu.org/problem/P3455" target="_blank" rel="noopener">【LuoguP3455】【POI2007】ZAP-Queries</a> 一块通过了，只需要改一下输入输出。</p>
 
         </div>

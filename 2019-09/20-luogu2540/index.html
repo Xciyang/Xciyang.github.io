@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-lightfab fa-github.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.17.1/styles/gradient-dark.css">
 
 
     
@@ -174,10 +174,13 @@
 <p>早在一年前就用贪心完成了普通版，然后现在忘了。</p>
 <p>所以重新写一遍这道题，并且提高难度做增强版。看了仅剩的智商，我选择搜索。</p>
 <a id="more"></a>
+
+
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>其实我一开始没有想着去写100分的代码，因为爆搜的复杂度太大，然后这题好像我只会爆搜。</p>
 <h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>首先，很容易想到一种最纯粹的爆搜。每层都将当前剩余牌可行的情况全部枚举判断，然后打出一种可行的牌进入下一层继续搜索。</p>
-<pre><code>搜索是盲目的，我们考虑剪枝。    ——某金牌教练
-</code></pre><p>一个剪枝是搜索必备，如果当前答案大于或等于已知的最小答案，我们接下来的搜索一定不会更新答案，所以回到上一层。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">搜索是盲目的，我们考虑剪枝。    ——某金牌教练</span><br></pre></td></tr></table></figure>
+
+<p>一个剪枝是搜索必备，如果当前答案大于或等于已知的最小答案，我们接下来的搜索一定不会更新答案，所以回到上一层。</p>
 <p>然后再继续想，可以加一个启发式剪枝，计算打出所有剩余牌的最大出牌次数。</p>
 <p>用肉眼就能推出，一副牌的最大出牌次数就是牌的数码种类数，两个王在此可以算一种。然后我们计算出当前最大出牌次数加上当前已出牌次数去更新答案，这样就会剪去接下来的一些较差的出牌方法。</p>
 <h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><p>上面的方法必不能通过本题，不需要尝试也能猜测。所以还要继续剪枝。</p>
@@ -192,160 +195,7 @@
 <p>然后还有几个提示，四带二可以带两个相同数码的对子（俗称炸弹），同理，可以带两个相同数码的一张牌（俗称对子）。然后1当14，大小王当15、16比较好写代码。</p>
 <p>经过多次提交更改调试，终于通过了本题。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>不开O2两秒多通过。</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-int T, n;
-struct PAI {
-    int num, col;
-} ps[30];
-// 记录牌的数码，颜色（没啥用）
-#define SHUNZI 3
-#define SANDAI 4
-#define SIDAI 5
-//顺子、三带、四带
-struct CP {
-    // 记录出牌方法的信息
-    int typ, l, r, k1, k2, siz;
-    // typ 为宏定义的值
-    // siz 为出牌数量
-    // l r 多种使用。l：顺子左端点，其他为最多的那张牌。r：顺子右端点，其他为少的那张牌需要的个数
-    // k1 k2 三带、四带使用，表示附带哪一（两）张牌。
-    CP(int typ, int siz, int l= 0, int r= 0, int k1= 0, int k2= 0) {
-        this-&gt;typ= typ, this-&gt;siz= siz, this-&gt;l= l, this-&gt;r= r, this-&gt;k1= k1, this-&gt;k2= k2;
-    }
-    inline int operator&lt;(const CP &amp;c2) const {
-        return siz &gt; c2.siz;
-    }
-};
-int pai[20], bestans, us3[20], us2[20], us1[20];
-vector&lt; CP &gt; v;
-void dfs(int nown, int nowa, int ls) {
-    if(nowa &gt;= bestans) return;
-    // 小剪枝
-    bestans= min(bestans, nowa + nown);
-    // 更新答案，全部单打（没什么用）
-    if(!nown) return;
-    int res= 0, us[4][20];
-    memset(us, 0, sizeof(us));
-    for(int i= 2; i &lt;= 16; i++) res+= (pai[i] != 0);
-    if(pai[15] &amp;&amp; pai[16]) --res;
-    // 15、16为大小王，主程序中有，大小王可以王炸
-    bestans= min(bestans, nowa + res);
-    // 再次更新答案（剪枝）
-    for(int i= 14, cnt= 0; i &gt;= 2; i--) {
-        if(pai[i] &lt; 1) continue;
-        us[1][i]= us[1][i + 1] + 1;
-        if(pai[i] &lt; 2) continue;
-        us[2][i]= us[2][i + 1] + 1;
-        if(pai[i] &lt; 3) continue;
-        us[3][i]= us[3][i + 1] + 1;
-    }
-    // DP出可行的顺子长度
-    for(int i= ls; i &lt; v.size(); i++) {
-        if(v[i].siz &gt; nown) continue;
-        switch(v[i].typ) {
-            case SHUNZI: {
-                if(v[i].r - v[i].l + 1 &gt; us[v[i].k1][v[i].l]) break;
-                for(int j= v[i].l; j &lt;= v[i].r; j++) pai[j]-= v[i].k1;
-                dfs(nown - v[i].siz, nowa + 1, i + 1);
-                for(int j= v[i].l; j &lt;= v[i].r; j++) pai[j]+= v[i].k1;
-                // 判断顺子
-                break;
-            }
-            case SANDAI: {
-                if(pai[v[i].l] &lt; 3 || pai[v[i].k1] &lt; v[i].r) break;
-                pai[v[i].l]-= 3, pai[v[i].k1]-= v[i].r;
-                dfs(nown - v[i].siz, nowa + 1, i + 1);
-                pai[v[i].l]+= 3, pai[v[i].k1]+= v[i].r;
-                // 判断三带
-                break;
-            }
-            case SIDAI: {
-                if(pai[v[i].l] &lt; 4) break;
-                if(pai[v[i].k1] &lt; 1 || pai[v[i].k2] &lt; 1) break;
-                if(v[i].r == 2 &amp;&amp; (pai[v[i].k1] &lt; 2 || pai[v[i].k2] &lt; 2)) break;
-                // 都需要两张
-                if(v[i].r == 2 &amp;&amp; v[i].k1 == v[i].k2 &amp;&amp; pai[v[i].k1] &lt; 4) break;
-                // 两对相同数码
-                if(v[i].r == 1 &amp;&amp; v[i].k1 == v[i].k2 &amp;&amp; pai[v[i].k1] &lt; 2) break;
-                // 两张相同数码
-                pai[v[i].l]-= 4;
-                pai[v[i].k1]-= v[i].r;
-                pai[v[i].k2]-= v[i].r;
-                dfs(nown - v[i].siz, nowa + 1, i + 1);
-                pai[v[i].l]+= 4;
-                pai[v[i].k1]+= v[i].r;
-                pai[v[i].k2]+= v[i].r;
-                // 判断四带
-            }
-            default: break;
-        }
-    }
-    return;
-}
-int main() {
-    scanf(&quot;%d%d&quot;, &amp;T, &amp;n);
-    while(T--) {
-        memset(pai, 0, sizeof(pai)), bestans= 0x3f3f3f3f;
-        for(int i= 1; i &lt;= n; i++) {
-            scanf(&quot;%d%d&quot;, &amp;ps[i].num, &amp;ps[i].col);
-            if(ps[i].num == 1) ps[i].num= 14;
-            // 1 当 14
-            if(ps[i].num == 0) ps[i].num= ps[i].col + 14;
-            // 大小王当15、16
-            ++pai[ps[i].num];
-        }
-        memset(us3, 0, sizeof(us3)), memset(us2, 0, sizeof(us2)), memset(us1, 0, sizeof(us1));
-        v.clear();
-        for(int i= 14; i &gt;= 3; i--) {
-            if(pai[i] &lt; 1) continue;
-            us1[i]= us1[i + 1] + 1;
-            if(pai[i] &lt; 2) continue;
-            us2[i]= us2[i + 1] + 1;
-            if(pai[i] &lt; 3) continue;
-            us3[i]= us3[i + 1] + 1;
-        }
-        // DP出顺子长度
-        for(int i= 2; i &lt;= 16; i++) {
-            for(int j= 5; j &lt;= us1[i]; j++) v.push_back(CP(SHUNZI, j, i, i + j - 1, 1));
-            for(int j= 3; j &lt;= us2[i]; j++) v.push_back(CP(SHUNZI, j * 2, i, i + j - 1, 2));
-            for(int j= 2; j &lt;= us3[i]; j++) v.push_back(CP(SHUNZI, j * 3, i, i + j - 1, 3));
-            // i 当左端点的顺子
-            if(pai[i] &lt; 3) continue;
-            for(int j= 2; j &lt;= 16; j++) {
-                if(i == j || !pai[j]) continue;
-                v.push_back(CP(SANDAI, 4, i, 1, j));
-                if(pai[j] &lt; 2) continue;
-                v.push_back(CP(SANDAI, 5, i, 2, j));
-            }
-            // 三带
-            if(pai[i] &lt; 4) continue;
-            for(int j= 2; j &lt;= 16; j++) {
-                if(i == j || !pai[j]) continue;
-                for(int k= j + 1; k &lt;= 16; k++) {
-                    if(i == k || !pai[k]) continue;
-                    v.push_back(CP(SIDAI, 6, i, 1, j, k));
-                    if(pai[j] &lt; 2 || pai[k] &lt; 2) continue;
-                    v.push_back(CP(SIDAI, 8, i, 2, j, k));
-                }
-                if(pai[j] == 4) v.push_back(CP(SIDAI, 8, i, 2, j, j));
-                if(pai[j] &gt; 2) v.push_back(CP(SIDAI, 6, i, 1, j, j));
-            }
-            // 四带
-        }
-        sort(v.begin(), v.end());
-        // 排序
-        dfs(n, 0, 0);
-        cout &lt;&lt; bestans &lt;&lt; endl;
-    }
-    return 0;
-}
-</code></pre>
-
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> T, n;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">PAI</span> &#123;</span></span><br><span class="line">	<span class="hljs-keyword">int</span> num, col;</span><br><span class="line">&#125; ps[<span class="hljs-number">30</span>];</span><br><span class="line"><span class="hljs-comment">// 记录牌的数码，颜色（没啥用）</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SHUNZI 3</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SANDAI 4</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SIDAI 5</span></span><br><span class="line"><span class="hljs-comment">//顺子、三带、四带</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">CP</span> &#123;</span></span><br><span class="line">    <span class="hljs-comment">// 记录出牌方法的信息</span></span><br><span class="line">	<span class="hljs-keyword">int</span> typ, l, r, k1, k2, siz;</span><br><span class="line">    <span class="hljs-comment">// typ 为宏定义的值</span></span><br><span class="line">    <span class="hljs-comment">// siz 为出牌数量</span></span><br><span class="line">    <span class="hljs-comment">// l r 多种使用。l：顺子左端点，其他为最多的那张牌。r：顺子右端点，其他为少的那张牌需要的个数</span></span><br><span class="line">    <span class="hljs-comment">// k1 k2 三带、四带使用，表示附带哪一（两）张牌。</span></span><br><span class="line">	CP(<span class="hljs-keyword">int</span> typ, <span class="hljs-keyword">int</span> siz, <span class="hljs-keyword">int</span> l= <span class="hljs-number">0</span>, <span class="hljs-keyword">int</span> r= <span class="hljs-number">0</span>, <span class="hljs-keyword">int</span> k1= <span class="hljs-number">0</span>, <span class="hljs-keyword">int</span> k2= <span class="hljs-number">0</span>) &#123;</span><br><span class="line">		<span class="hljs-keyword">this</span>-&gt;typ= typ, <span class="hljs-keyword">this</span>-&gt;siz= siz, <span class="hljs-keyword">this</span>-&gt;l= l, <span class="hljs-keyword">this</span>-&gt;r= r, <span class="hljs-keyword">this</span>-&gt;k1= k1, <span class="hljs-keyword">this</span>-&gt;k2= k2;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-keyword">const</span> CP &amp;c2) <span class="hljs-keyword">const</span> &#123;</span><br><span class="line">		<span class="hljs-keyword">return</span> siz &gt; c2.siz;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="hljs-keyword">int</span> pai[<span class="hljs-number">20</span>], bestans, us3[<span class="hljs-number">20</span>], us2[<span class="hljs-number">20</span>], us1[<span class="hljs-number">20</span>];</span><br><span class="line"><span class="hljs-built_in">vector</span>&lt; CP &gt; v;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nown, <span class="hljs-keyword">int</span> nowa, <span class="hljs-keyword">int</span> ls)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span>(nowa &gt;= bestans) <span class="hljs-keyword">return</span>;</span><br><span class="line">    <span class="hljs-comment">// 小剪枝</span></span><br><span class="line">	bestans= min(bestans, nowa + nown);</span><br><span class="line">    <span class="hljs-comment">// 更新答案，全部单打（没什么用）</span></span><br><span class="line">	<span class="hljs-keyword">if</span>(!nown) <span class="hljs-keyword">return</span>;</span><br><span class="line">	<span class="hljs-keyword">int</span> res= <span class="hljs-number">0</span>, us[<span class="hljs-number">4</span>][<span class="hljs-number">20</span>];</span><br><span class="line">	<span class="hljs-built_in">memset</span>(us, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(us));</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">2</span>; i &lt;= <span class="hljs-number">16</span>; i++) res+= (pai[i] != <span class="hljs-number">0</span>);</span><br><span class="line">	<span class="hljs-keyword">if</span>(pai[<span class="hljs-number">15</span>] &amp;&amp; pai[<span class="hljs-number">16</span>]) --res;</span><br><span class="line">    <span class="hljs-comment">// 15、16为大小王，主程序中有，大小王可以王炸</span></span><br><span class="line">	bestans= min(bestans, nowa + res);</span><br><span class="line">    <span class="hljs-comment">// 再次更新答案（剪枝）</span></span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">14</span>, cnt= <span class="hljs-number">0</span>; i &gt;= <span class="hljs-number">2</span>; i--) &#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(pai[i] &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">continue</span>;</span><br><span class="line">		us[<span class="hljs-number">1</span>][i]= us[<span class="hljs-number">1</span>][i + <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;</span><br><span class="line">		<span class="hljs-keyword">if</span>(pai[i] &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">continue</span>;</span><br><span class="line">		us[<span class="hljs-number">2</span>][i]= us[<span class="hljs-number">2</span>][i + <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;</span><br><span class="line">		<span class="hljs-keyword">if</span>(pai[i] &lt; <span class="hljs-number">3</span>) <span class="hljs-keyword">continue</span>;</span><br><span class="line">		us[<span class="hljs-number">3</span>][i]= us[<span class="hljs-number">3</span>][i + <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="hljs-comment">// DP出可行的顺子长度</span></span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= ls; i &lt; v.size(); i++) &#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(v[i].siz &gt; nown) <span class="hljs-keyword">continue</span>;</span><br><span class="line">		<span class="hljs-keyword">switch</span>(v[i].typ) &#123;</span><br><span class="line">			<span class="hljs-keyword">case</span> SHUNZI: &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span>(v[i].r - v[i].l + <span class="hljs-number">1</span> &gt; us[v[i].k1][v[i].l]) <span class="hljs-keyword">break</span>;</span><br><span class="line">				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j= v[i].l; j &lt;= v[i].r; j++) pai[j]-= v[i].k1;</span><br><span class="line">				dfs(nown - v[i].siz, nowa + <span class="hljs-number">1</span>, i + <span class="hljs-number">1</span>);</span><br><span class="line">				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j= v[i].l; j &lt;= v[i].r; j++) pai[j]+= v[i].k1;</span><br><span class="line">                <span class="hljs-comment">// 判断顺子</span></span><br><span class="line">				<span class="hljs-keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">case</span> SANDAI: &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span>(pai[v[i].l] &lt; <span class="hljs-number">3</span> || pai[v[i].k1] &lt; v[i].r) <span class="hljs-keyword">break</span>;</span><br><span class="line">				pai[v[i].l]-= <span class="hljs-number">3</span>, pai[v[i].k1]-= v[i].r;</span><br><span class="line">				dfs(nown - v[i].siz, nowa + <span class="hljs-number">1</span>, i + <span class="hljs-number">1</span>);</span><br><span class="line">				pai[v[i].l]+= <span class="hljs-number">3</span>, pai[v[i].k1]+= v[i].r;</span><br><span class="line">                <span class="hljs-comment">// 判断三带</span></span><br><span class="line">				<span class="hljs-keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">case</span> SIDAI: &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span>(pai[v[i].l] &lt; <span class="hljs-number">4</span>) <span class="hljs-keyword">break</span>;</span><br><span class="line">				<span class="hljs-keyword">if</span>(pai[v[i].k1] &lt; <span class="hljs-number">1</span> || pai[v[i].k2] &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">break</span>;</span><br><span class="line">				<span class="hljs-keyword">if</span>(v[i].r == <span class="hljs-number">2</span> &amp;&amp; (pai[v[i].k1] &lt; <span class="hljs-number">2</span> || pai[v[i].k2] &lt; <span class="hljs-number">2</span>)) <span class="hljs-keyword">break</span>;</span><br><span class="line">                <span class="hljs-comment">// 都需要两张</span></span><br><span class="line">				<span class="hljs-keyword">if</span>(v[i].r == <span class="hljs-number">2</span> &amp;&amp; v[i].k1 == v[i].k2 &amp;&amp; pai[v[i].k1] &lt; <span class="hljs-number">4</span>) <span class="hljs-keyword">break</span>;</span><br><span class="line">                <span class="hljs-comment">// 两对相同数码</span></span><br><span class="line">				<span class="hljs-keyword">if</span>(v[i].r == <span class="hljs-number">1</span> &amp;&amp; v[i].k1 == v[i].k2 &amp;&amp; pai[v[i].k1] &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">break</span>;</span><br><span class="line">                <span class="hljs-comment">// 两张相同数码</span></span><br><span class="line">				pai[v[i].l]-= <span class="hljs-number">4</span>;</span><br><span class="line">				pai[v[i].k1]-= v[i].r;</span><br><span class="line">				pai[v[i].k2]-= v[i].r;</span><br><span class="line">				dfs(nown - v[i].siz, nowa + <span class="hljs-number">1</span>, i + <span class="hljs-number">1</span>);</span><br><span class="line">				pai[v[i].l]+= <span class="hljs-number">4</span>;</span><br><span class="line">				pai[v[i].k1]+= v[i].r;</span><br><span class="line">				pai[v[i].k2]+= v[i].r;</span><br><span class="line">                <span class="hljs-comment">// 判断四带</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">default</span>: <span class="hljs-keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>, &amp;T, &amp;n);</span><br><span class="line">	<span class="hljs-keyword">while</span>(T--) &#123;</span><br><span class="line">		<span class="hljs-built_in">memset</span>(pai, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(pai)), bestans= <span class="hljs-number">0x3f3f3f3f</span>;</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>, &amp;ps[i].num, &amp;ps[i].col);</span><br><span class="line">			<span class="hljs-keyword">if</span>(ps[i].num == <span class="hljs-number">1</span>) ps[i].num= <span class="hljs-number">14</span>;</span><br><span class="line">            <span class="hljs-comment">// 1 当 14</span></span><br><span class="line">			<span class="hljs-keyword">if</span>(ps[i].num == <span class="hljs-number">0</span>) ps[i].num= ps[i].col + <span class="hljs-number">14</span>;</span><br><span class="line">            <span class="hljs-comment">// 大小王当15、16</span></span><br><span class="line">			++pai[ps[i].num];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-built_in">memset</span>(us3, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(us3)), <span class="hljs-built_in">memset</span>(us2, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(us2)), <span class="hljs-built_in">memset</span>(us1, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(us1));</span><br><span class="line">		v.clear();</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">14</span>; i &gt;= <span class="hljs-number">3</span>; i--) &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span>(pai[i] &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">continue</span>;</span><br><span class="line">			us1[i]= us1[i + <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;</span><br><span class="line">			<span class="hljs-keyword">if</span>(pai[i] &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">continue</span>;</span><br><span class="line">			us2[i]= us2[i + <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;</span><br><span class="line">			<span class="hljs-keyword">if</span>(pai[i] &lt; <span class="hljs-number">3</span>) <span class="hljs-keyword">continue</span>;</span><br><span class="line">			us3[i]= us3[i + <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="hljs-comment">// DP出顺子长度</span></span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">2</span>; i &lt;= <span class="hljs-number">16</span>; i++) &#123;</span><br><span class="line">			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j= <span class="hljs-number">5</span>; j &lt;= us1[i]; j++) v.push_back(CP(SHUNZI, j, i, i + j - <span class="hljs-number">1</span>, <span class="hljs-number">1</span>));</span><br><span class="line">			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j= <span class="hljs-number">3</span>; j &lt;= us2[i]; j++) v.push_back(CP(SHUNZI, j * <span class="hljs-number">2</span>, i, i + j - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>));</span><br><span class="line">			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j= <span class="hljs-number">2</span>; j &lt;= us3[i]; j++) v.push_back(CP(SHUNZI, j * <span class="hljs-number">3</span>, i, i + j - <span class="hljs-number">1</span>, <span class="hljs-number">3</span>));</span><br><span class="line">            <span class="hljs-comment">// i 当左端点的顺子</span></span><br><span class="line">			<span class="hljs-keyword">if</span>(pai[i] &lt; <span class="hljs-number">3</span>) <span class="hljs-keyword">continue</span>;</span><br><span class="line">			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j= <span class="hljs-number">2</span>; j &lt;= <span class="hljs-number">16</span>; j++) &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span>(i == j || !pai[j]) <span class="hljs-keyword">continue</span>;</span><br><span class="line">				v.push_back(CP(SANDAI, <span class="hljs-number">4</span>, i, <span class="hljs-number">1</span>, j));</span><br><span class="line">				<span class="hljs-keyword">if</span>(pai[j] &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">continue</span>;</span><br><span class="line">				v.push_back(CP(SANDAI, <span class="hljs-number">5</span>, i, <span class="hljs-number">2</span>, j));</span><br><span class="line">			&#125;</span><br><span class="line">            <span class="hljs-comment">// 三带</span></span><br><span class="line">			<span class="hljs-keyword">if</span>(pai[i] &lt; <span class="hljs-number">4</span>) <span class="hljs-keyword">continue</span>;</span><br><span class="line">			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j= <span class="hljs-number">2</span>; j &lt;= <span class="hljs-number">16</span>; j++) &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span>(i == j || !pai[j]) <span class="hljs-keyword">continue</span>;</span><br><span class="line">				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k= j + <span class="hljs-number">1</span>; k &lt;= <span class="hljs-number">16</span>; k++) &#123;</span><br><span class="line">					<span class="hljs-keyword">if</span>(i == k || !pai[k]) <span class="hljs-keyword">continue</span>;</span><br><span class="line">					v.push_back(CP(SIDAI, <span class="hljs-number">6</span>, i, <span class="hljs-number">1</span>, j, k));</span><br><span class="line">					<span class="hljs-keyword">if</span>(pai[j] &lt; <span class="hljs-number">2</span> || pai[k] &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">continue</span>;</span><br><span class="line">					v.push_back(CP(SIDAI, <span class="hljs-number">8</span>, i, <span class="hljs-number">2</span>, j, k));</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">if</span>(pai[j] == <span class="hljs-number">4</span>) v.push_back(CP(SIDAI, <span class="hljs-number">8</span>, i, <span class="hljs-number">2</span>, j, j));</span><br><span class="line">				<span class="hljs-keyword">if</span>(pai[j] &gt; <span class="hljs-number">2</span>) v.push_back(CP(SIDAI, <span class="hljs-number">6</span>, i, <span class="hljs-number">1</span>, j, j));</span><br><span class="line">			&#125;</span><br><span class="line">            <span class="hljs-comment">// 四带</span></span><br><span class="line">		&#125;</span><br><span class="line">		sort(v.begin(), v.end());</span><br><span class="line">        <span class="hljs-comment">// 排序</span></span><br><span class="line">		dfs(n, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);</span><br><span class="line">		<span class="hljs-built_in">cout</span> &lt;&lt; bestans &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
