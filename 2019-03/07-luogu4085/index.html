@@ -80,147 +80,7 @@
 </head>
 <body class="is-3-column">
     <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
-<script>
-    (function BallMouse() {
-        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
-            STAR_SIZE = 5,
-            GRAVITY_SIZE = 100,
-            STAR_MASS = 1,
-            STAR_REMOVE_TIME = 2000;
-
-        const canvas = document.getElementById('BallMouse'),
-            context = canvas.getContext('2d');
-
-        let scale = 1, // device pixel ratio
-            width,
-            height,
-            nowtime;
-
-        let stars = [];
-
-        resize();
-        step();
-
-        window.onresize = resize;
-        window.addEventListener('mousedown', function (e) {
-            onMouseDown(e);
-        }, false);
-        window.addEventListener('mouseup', function (e) {
-            onMouseUp(e);
-        }, false);
-        function placeStar(star) {
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-            return star;
-        }
-
-        function resize() {
-            scale = window.devicePixelRatio || 1;
-            width = window.innerWidth * scale;
-            height = window.innerHeight * scale;
-            canvas.width = width;
-            canvas.height = height;
-            stars.forEach(placeStar);
-        }
-
-        function step() {
-            nowtime = new Date().getTime();
-            context.clearRect(0, 0, width, height);
-            update();
-            render();
-            requestAnimationFrame(step);
-        }
-
-        function update() {
-            for (let index = 0; index < stars.length; index++) {
-                const star = stars[index];
-                if (star.z && nowtime > star.z) {
-                    stars.splice(index, 1);
-                    --index;
-                }
-            }
-            if (stars.length < STAR_COUNT) {
-                let place = (STAR_COUNT - stars.length) * Math.random();
-                for (let i = 0; i < place; i++) {
-                    stars.push(placeStar({
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        vx: 0,
-                        vy: 0,
-                        colorh: parseInt(Math.random() * 359)
-                    }));
-                }
-            }
-            stars.forEach((star) => {
-                stars.forEach(bigStar => {
-                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-                    if (r2 > 10) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                    else if (r2 > 5) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
-                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                });
-            });
-            stars.forEach((star) => {
-                star.vx -= star.vx * 0.05;
-                star.vy -= star.vy * 0.05;
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
-                    if (star.z == 0) {
-                        star.z = nowtime + STAR_REMOVE_TIME;
-                    }
-                } else {
-                    star.z = 0;
-                }
-            });
-        }
-        function render() {
-            stars.forEach((star) => {
-                context.beginPath();
-                context.lineCap = 'round';
-                context.lineWidth = STAR_SIZE * scale;
-                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
-                context.beginPath();
-                context.moveTo(star.x, star.y);
-                context.lineTo(star.x, star.y);
-                context.stroke();
-            });
-        }
-        let inv;
-        function onMouseDown(event) {
-            stars.push({
-                x: event.clientX,
-                y: event.clientY,
-                z: 0,
-                vx: 0,
-                vy: 0,
-                colorh: parseInt(Math.random() * 359)
-            });
-            inv = setTimeout(pushStar, 500);
-            function pushStar() {
-                stars.push({
-                    x: event.clientX,
-                    y: event.clientY,
-                    z: 0,
-                    vx: 0,
-                    vy: 0,
-                    colorh: parseInt(Math.random() * 359)
-                });
-                inv = setTimeout(pushStar, 100);
-            }
-        }
-        function onMouseUp(event) {
-            clearTimeout(inv);
-        }
-    })();
-</script>
+<script src="/js/animation/ballMouse.js" charset="utf-8"></script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -314,30 +174,25 @@
 <p>这道题可以练习各种数据结构的基础操作…</p>
 <p>我就浪费了大把时间用各种算法来A这道题</p>
 <a id="more"></a>
-
-
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>先看这个 $ \sum_{k=i}^{j} F_k \geqslant M $ </p>
 <p>这个一眼看上去就是前缀和了.静态的话直接普通的前缀和$ O(n) $ 预处理, $ O(1) $ 查询就行了,应该是时间复杂度最低的了.</p>
 <p>至于这个 $ max(S_i,S_{i+1},…,S_{j-1},S_j) $</p>
 <p>维护方法就比较多了,可以用线段树,分块,ST表,我没有写树状数组,因为太麻烦了.</p>
 <p>然后我就浪费了好多时间来用不同的算法A这道题…</p>
 <p>这道题还有一个性质, 关于找i和j, 不需要 $ O(n^2) $ 的复杂度来枚举区间, 我给出下面这个式子</p>
-<p>$$ max(s_i, s_{i + 1}, s_{i + 2}) &lt;=  max(s_i, s_{i + 1}, s_{i + 2}, s_{i + 3}) $$</p>
-<p>这个式子根本不用推, 一眼看上去肯定就成立了</p>
+<script type="math/tex; mode=display">max(s_i, s_{i + 1}, s_{i + 2}) <=  max(s_i, s_{i + 1}, s_{i + 2}, s_{i + 3})</script><p>这个式子根本不用推, 一眼看上去肯定就成立了</p>
 <p>那么根据这个性质, 我们枚举i的值, 只需要找到一个对应的j就行了,这个j一定是满足条件且最小的那个了</p>
 <p>满足条件只需要</p>
-<p>$$ Sumf_j - sumf_i &gt;= m $$</p>
-<p>注: Sumf代表f数组的前缀和</p>
+<script type="math/tex; mode=display">Sumf_j - sumf_i >= m</script><p>注: Sumf代表f数组的前缀和</p>
 <p>那么我们可以用 $ O(logn) $ 的复杂度二分查询这个j了</p>
 <p>我们其实不需要自己写二分查找,根据上面的不等式,移一下项,就变成了</p>
-<p>$$ Sumf_j  &gt;= m + sumf_i $$</p>
-<p>然后使用STL自带的lower_bound函数就可以了</p>
+<script type="math/tex; mode=display">Sumf_j  >= m + sumf_i</script><p>然后使用STL自带的lower_bound函数就可以了</p>
 <p>维护区间最大值我建议写ST表, 毕竟静态查询时间复杂度 $ O(1) $, 你也可以写其他的, 我竟然写了三种数据结构.</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>这个代码是线段树 + 前缀和, 评测详情 418ms / 6MB </p>
 <p>ST_Table为ST表的代码, 评测详情 328ms / 9.53MB </p>
 <p>Sqrt为分块,实在没找到英文名, 评测详情 1049ms / 7.65MB </p>
 <p>m 和 前缀和要开long long, 其他的可以用int, 懒得话就全部 long long 吧</p>
-<pre><code class="cpp">
+<pre><code class="lang-cpp">
 #include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;algorithm&gt;

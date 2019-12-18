@@ -80,147 +80,7 @@
 </head>
 <body class="is-3-column">
     <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
-<script>
-    (function BallMouse() {
-        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
-            STAR_SIZE = 5,
-            GRAVITY_SIZE = 100,
-            STAR_MASS = 1,
-            STAR_REMOVE_TIME = 2000;
-
-        const canvas = document.getElementById('BallMouse'),
-            context = canvas.getContext('2d');
-
-        let scale = 1, // device pixel ratio
-            width,
-            height,
-            nowtime;
-
-        let stars = [];
-
-        resize();
-        step();
-
-        window.onresize = resize;
-        window.addEventListener('mousedown', function (e) {
-            onMouseDown(e);
-        }, false);
-        window.addEventListener('mouseup', function (e) {
-            onMouseUp(e);
-        }, false);
-        function placeStar(star) {
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-            return star;
-        }
-
-        function resize() {
-            scale = window.devicePixelRatio || 1;
-            width = window.innerWidth * scale;
-            height = window.innerHeight * scale;
-            canvas.width = width;
-            canvas.height = height;
-            stars.forEach(placeStar);
-        }
-
-        function step() {
-            nowtime = new Date().getTime();
-            context.clearRect(0, 0, width, height);
-            update();
-            render();
-            requestAnimationFrame(step);
-        }
-
-        function update() {
-            for (let index = 0; index < stars.length; index++) {
-                const star = stars[index];
-                if (star.z && nowtime > star.z) {
-                    stars.splice(index, 1);
-                    --index;
-                }
-            }
-            if (stars.length < STAR_COUNT) {
-                let place = (STAR_COUNT - stars.length) * Math.random();
-                for (let i = 0; i < place; i++) {
-                    stars.push(placeStar({
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        vx: 0,
-                        vy: 0,
-                        colorh: parseInt(Math.random() * 359)
-                    }));
-                }
-            }
-            stars.forEach((star) => {
-                stars.forEach(bigStar => {
-                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-                    if (r2 > 10) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                    else if (r2 > 5) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
-                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                });
-            });
-            stars.forEach((star) => {
-                star.vx -= star.vx * 0.05;
-                star.vy -= star.vy * 0.05;
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
-                    if (star.z == 0) {
-                        star.z = nowtime + STAR_REMOVE_TIME;
-                    }
-                } else {
-                    star.z = 0;
-                }
-            });
-        }
-        function render() {
-            stars.forEach((star) => {
-                context.beginPath();
-                context.lineCap = 'round';
-                context.lineWidth = STAR_SIZE * scale;
-                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
-                context.beginPath();
-                context.moveTo(star.x, star.y);
-                context.lineTo(star.x, star.y);
-                context.stroke();
-            });
-        }
-        let inv;
-        function onMouseDown(event) {
-            stars.push({
-                x: event.clientX,
-                y: event.clientY,
-                z: 0,
-                vx: 0,
-                vy: 0,
-                colorh: parseInt(Math.random() * 359)
-            });
-            inv = setTimeout(pushStar, 500);
-            function pushStar() {
-                stars.push({
-                    x: event.clientX,
-                    y: event.clientY,
-                    z: 0,
-                    vx: 0,
-                    vy: 0,
-                    colorh: parseInt(Math.random() * 359)
-                });
-                inv = setTimeout(pushStar, 100);
-            }
-        }
-        function onMouseUp(event) {
-            clearTimeout(inv);
-        }
-    })();
-</script>
+<script src="/js/animation/ballMouse.js" charset="utf-8"></script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -314,8 +174,6 @@
 <p>以后可能颓的时间会变少. 现在文化课好像更重要些, 还是要专心学习吧. </p>
 <p>本题是一个状压练手好题.</p>
 <a id="more"></a>
-
-
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我再大致翻译描述一下题目, 我一开始因为没看样例就理解错了.</p>
 <p>本题给出N点M边的无向图, 然后要割掉其中一些边, 使从1到N只有一条不经过重复顶点的边, 求删掉的边的边权和最小.</p>
 <blockquote>
@@ -334,8 +192,9 @@
 <pre><code>int num = 59; // 某个数
 for(int i= num; i; i= (i - 1) &amp; num) {
     // i 为 num 的一个二进制子集
-}</code></pre><p>比如（0101）的子集为（0101）,（0100）,（0001）,（0000）.</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="cpp">#include &lt;iostream&gt;
+}
+</code></pre><p>比如（0101）的子集为（0101）,（0100）,（0001）,（0000）.</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 using namespace std;
@@ -372,7 +231,8 @@ int main() {
     }
     cout &lt;&lt; sums - f[nn - 1][n] &lt;&lt; endl;
     return 0;
-}</code></pre>
+}
+</code></pre>
 
         </div>
         

@@ -80,147 +80,7 @@
 </head>
 <body class="is-3-column">
     <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
-<script>
-    (function BallMouse() {
-        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
-            STAR_SIZE = 5,
-            GRAVITY_SIZE = 100,
-            STAR_MASS = 1,
-            STAR_REMOVE_TIME = 2000;
-
-        const canvas = document.getElementById('BallMouse'),
-            context = canvas.getContext('2d');
-
-        let scale = 1, // device pixel ratio
-            width,
-            height,
-            nowtime;
-
-        let stars = [];
-
-        resize();
-        step();
-
-        window.onresize = resize;
-        window.addEventListener('mousedown', function (e) {
-            onMouseDown(e);
-        }, false);
-        window.addEventListener('mouseup', function (e) {
-            onMouseUp(e);
-        }, false);
-        function placeStar(star) {
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-            return star;
-        }
-
-        function resize() {
-            scale = window.devicePixelRatio || 1;
-            width = window.innerWidth * scale;
-            height = window.innerHeight * scale;
-            canvas.width = width;
-            canvas.height = height;
-            stars.forEach(placeStar);
-        }
-
-        function step() {
-            nowtime = new Date().getTime();
-            context.clearRect(0, 0, width, height);
-            update();
-            render();
-            requestAnimationFrame(step);
-        }
-
-        function update() {
-            for (let index = 0; index < stars.length; index++) {
-                const star = stars[index];
-                if (star.z && nowtime > star.z) {
-                    stars.splice(index, 1);
-                    --index;
-                }
-            }
-            if (stars.length < STAR_COUNT) {
-                let place = (STAR_COUNT - stars.length) * Math.random();
-                for (let i = 0; i < place; i++) {
-                    stars.push(placeStar({
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        vx: 0,
-                        vy: 0,
-                        colorh: parseInt(Math.random() * 359)
-                    }));
-                }
-            }
-            stars.forEach((star) => {
-                stars.forEach(bigStar => {
-                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-                    if (r2 > 10) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                    else if (r2 > 5) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
-                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                });
-            });
-            stars.forEach((star) => {
-                star.vx -= star.vx * 0.05;
-                star.vy -= star.vy * 0.05;
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
-                    if (star.z == 0) {
-                        star.z = nowtime + STAR_REMOVE_TIME;
-                    }
-                } else {
-                    star.z = 0;
-                }
-            });
-        }
-        function render() {
-            stars.forEach((star) => {
-                context.beginPath();
-                context.lineCap = 'round';
-                context.lineWidth = STAR_SIZE * scale;
-                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
-                context.beginPath();
-                context.moveTo(star.x, star.y);
-                context.lineTo(star.x, star.y);
-                context.stroke();
-            });
-        }
-        let inv;
-        function onMouseDown(event) {
-            stars.push({
-                x: event.clientX,
-                y: event.clientY,
-                z: 0,
-                vx: 0,
-                vy: 0,
-                colorh: parseInt(Math.random() * 359)
-            });
-            inv = setTimeout(pushStar, 500);
-            function pushStar() {
-                stars.push({
-                    x: event.clientX,
-                    y: event.clientY,
-                    z: 0,
-                    vx: 0,
-                    vy: 0,
-                    colorh: parseInt(Math.random() * 359)
-                });
-                inv = setTimeout(pushStar, 100);
-            }
-        }
-        function onMouseUp(event) {
-            clearTimeout(inv);
-        }
-    })();
-</script>
+<script src="/js/animation/ballMouse.js" charset="utf-8"></script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -316,8 +176,6 @@
 <p>此题解非正常字典树,推荐先学习普通的字典树并了解指针的使用</p>
 <p>代码还是之前的代码,名为Lumpy_Tnode.</p>
 <a id="more"></a>
-
-
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>树上的边存储字符串,代表节点的单独前缀.</p>
 <p>写题解的上午有了灵感,然后根据思路模拟了一下,可行性挺高的.代码上比普通的复杂一些,我使用了指针.    </p>
 <p><img src="/images/P2580_1.png" alt="Example"></p>
@@ -332,7 +190,7 @@
 <p>边压Trie巧妙利用字符串指针,赋值、继承等操作只需要指针或长度变化就好了,因此插入最小复杂度是O(1),空间上也少了很多空指针. </p>
 <p>太多证明不如一句代码,我放上代码继续分析. </p>
 <h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>节点的结构体,原来的char变成了length和字符串指针:  </p>
-<pre><code class="cpp">#define clear(a) memset(a, 0, sizeof(a))
+<pre><code class="lang-cpp">#define clear(a) memset(a, 0, sizeof(a))
 #define copy(a, b) memcpy(a, b, sizeof(a))
     struct Lumpy_Tnode {
         const char *pStr;
@@ -348,9 +206,10 @@
             pStr= str, length= len, isEnd= end, clear(children);
         }
         //构造函数
-    } mNode;</code></pre>
+    } mNode;
+</code></pre>
 <h4 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h4><p>使用递归和循环,判断比较多,先看代码(看起来常数很大)      </p>
-<pre><code class="cpp">    inline void insert(const char *str, int length, Lumpy_Tnode *bNode) {
+<pre><code class="lang-cpp">    inline void insert(const char *str, int length, Lumpy_Tnode *bNode) {
     //str是指针,指向当前插入字符串的第一个元素
         if(!length) {
         //字符串长度为0代表结尾
@@ -384,7 +243,8 @@
             //因为是指针操作,所以不需要O(n)复制字符串,理论上复杂度O(3)?
         return;
     }
-    //调用方式:insert(插入字符串, 字符串长度, Trie根节点);</code></pre>
+    //调用方式:insert(插入字符串, 字符串长度, Trie根节点);
+</code></pre>
 <p>如果代码看懂了,第一反应可能认为指针操作有一些漏洞.</p>
 <p>的确插入的字符串在插入后就不能进行改变了,所以就只要开一个char[N][K]的数组来保存输入的字符串,K为最长字符串的长度. </p>
 <p>相比较空间复杂度总体仍然较小,其实是把原来每个节点存的char放到了一起,每个节点多了一个指针.</p>
@@ -402,7 +262,7 @@
 <p>清空ab的子节点,颜色改为黑(黑表示不为结尾节点),ab的首字母b子节点指向b.</p>
 <p>在我实现时,先更改长度使ab变为a,再向a中插入c.</p>
 <p>因为没有首字母为c的子节点,直接new一个新的.</p>
-<h4 id="查找操作"><a href="#查找操作" class="headerlink" title="查找操作"></a>查找操作</h4><pre><code class="cpp">    inline int find(const char *str, int length, Lumpy_Tnode *bNode) {
+<h4 id="查找操作"><a href="#查找操作" class="headerlink" title="查找操作"></a>查找操作</h4><pre><code class="lang-cpp">    inline int find(const char *str, int length, Lumpy_Tnode *bNode) {
         if(!length) {
         //递归到查找的字符串长度为0
         //判断当前节点是否为结尾,是否是第一次查询
@@ -423,10 +283,11 @@
         return 0;
         //没有子节点,字典树中不存在当前查找的字符串
     }
-    //调用方式:find(查询字符串, 字符串长度, Trie根节点);</code></pre>
+    //调用方式:find(查询字符串, 字符串长度, Trie根节点);
+</code></pre>
 <p>比插入的代码简单多了,并且自带剪枝,所以比较快.</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>（开启O2） 用时: 127ms / 内存: 4248KB<br>（关闭O2） 用时: 144ms / 内存: 4128KB</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 using namespace std;
@@ -502,7 +363,8 @@ int main() {
         }
     }
     return 0;
-}</code></pre>
+}
+</code></pre>
 <p>最需要注意的是输入的字符串insert后不能再更改那一块内存了不能更改了…</p>
 <h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>我写的常数可能挺大,希望dalao们试试各种卡常优化…  </p>
 

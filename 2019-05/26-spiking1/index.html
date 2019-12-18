@@ -80,147 +80,7 @@
 </head>
 <body class="is-3-column">
     <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
-<script>
-    (function BallMouse() {
-        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
-            STAR_SIZE = 5,
-            GRAVITY_SIZE = 100,
-            STAR_MASS = 1,
-            STAR_REMOVE_TIME = 2000;
-
-        const canvas = document.getElementById('BallMouse'),
-            context = canvas.getContext('2d');
-
-        let scale = 1, // device pixel ratio
-            width,
-            height,
-            nowtime;
-
-        let stars = [];
-
-        resize();
-        step();
-
-        window.onresize = resize;
-        window.addEventListener('mousedown', function (e) {
-            onMouseDown(e);
-        }, false);
-        window.addEventListener('mouseup', function (e) {
-            onMouseUp(e);
-        }, false);
-        function placeStar(star) {
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-            return star;
-        }
-
-        function resize() {
-            scale = window.devicePixelRatio || 1;
-            width = window.innerWidth * scale;
-            height = window.innerHeight * scale;
-            canvas.width = width;
-            canvas.height = height;
-            stars.forEach(placeStar);
-        }
-
-        function step() {
-            nowtime = new Date().getTime();
-            context.clearRect(0, 0, width, height);
-            update();
-            render();
-            requestAnimationFrame(step);
-        }
-
-        function update() {
-            for (let index = 0; index < stars.length; index++) {
-                const star = stars[index];
-                if (star.z && nowtime > star.z) {
-                    stars.splice(index, 1);
-                    --index;
-                }
-            }
-            if (stars.length < STAR_COUNT) {
-                let place = (STAR_COUNT - stars.length) * Math.random();
-                for (let i = 0; i < place; i++) {
-                    stars.push(placeStar({
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        vx: 0,
-                        vy: 0,
-                        colorh: parseInt(Math.random() * 359)
-                    }));
-                }
-            }
-            stars.forEach((star) => {
-                stars.forEach(bigStar => {
-                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-                    if (r2 > 10) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                    else if (r2 > 5) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
-                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                });
-            });
-            stars.forEach((star) => {
-                star.vx -= star.vx * 0.05;
-                star.vy -= star.vy * 0.05;
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
-                    if (star.z == 0) {
-                        star.z = nowtime + STAR_REMOVE_TIME;
-                    }
-                } else {
-                    star.z = 0;
-                }
-            });
-        }
-        function render() {
-            stars.forEach((star) => {
-                context.beginPath();
-                context.lineCap = 'round';
-                context.lineWidth = STAR_SIZE * scale;
-                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
-                context.beginPath();
-                context.moveTo(star.x, star.y);
-                context.lineTo(star.x, star.y);
-                context.stroke();
-            });
-        }
-        let inv;
-        function onMouseDown(event) {
-            stars.push({
-                x: event.clientX,
-                y: event.clientY,
-                z: 0,
-                vx: 0,
-                vy: 0,
-                colorh: parseInt(Math.random() * 359)
-            });
-            inv = setTimeout(pushStar, 500);
-            function pushStar() {
-                stars.push({
-                    x: event.clientX,
-                    y: event.clientY,
-                    z: 0,
-                    vx: 0,
-                    vy: 0,
-                    colorh: parseInt(Math.random() * 359)
-                });
-                inv = setTimeout(pushStar, 100);
-            }
-        }
-        function onMouseUp(event) {
-            clearTimeout(inv);
-        }
-    })();
-</script>
+<script src="/js/animation/ballMouse.js" charset="utf-8"></script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -319,8 +179,6 @@
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这个项目很久前就开始写了，但一直没有很完善。最近想起来，打算重新完善这个项目。</p>
 <p>本教程仅适用于C++。内容较为复杂，可以根据自己需要来阅读。</p>
 <a id="more"></a>
-
-
 <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>做一个项目，首先需要知道你的目标是什么。这个项目名为图片爬虫，当然是为了下载图片。</p>
 <p>再具体一点，用户先给出一个网址，我们先保存网页，抓取网页上的图片链接和其他网址链接。然后保存每一张图片到用户设置的文件夹中。深入其他网址链接，循环这一步骤。</p>
 <p>那么我们去爬一个图片网站，就可以找到很多好（<del>康</del>）看的图片了。</p>
@@ -351,7 +209,7 @@
 </blockquote>
 <p>如果还想了解更多WinInet与WinHTTP的区别，可以看<a href="https://docs.microsoft.com/zh-cn/windows/desktop/wininet/wininet-vs-winhttp" target="_blank" rel="noopener">官方英文文档</a>。</p>
 <h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>相信大家已经对这些东西都有了大致了解，那么就开始写代码了。输入网址的主程序代码就不给出了，我先放出获取页面的代码实例，是从网上找到并改编之后的。</p>
-<pre><code class="cpp">#include &lt;wininet.h&gt;
+<pre><code class="lang-cpp">#include &lt;wininet.h&gt;
 
 #define MAXBLOCKSIZE 1024 * 1024
 void downloadUrl(const char *Url, const char *FilePath) {
@@ -376,30 +234,35 @@ fail:
     if(hSession) InternetCloseHandle(hSession);
     printf(&quot;Internet Error\n&quot;);
     return;
-}</code></pre>
+}
+</code></pre>
 <p>先大致说明一下函数参数，Url为你想下载网页的网址，filePath为保存到电脑的路径。</p>
 <p>你可以找一个网址，选一个存文件的路径，调用函数并编译，你会发现这段代码是无法通过编译的，因为还需要连接静态链接库。</p>
 <p>如果使用Visual Studio，需要在函数之前加入以下这句，并且忽略编号为4996的警告。</p>
-<pre><code class="cpp">#pragma comment(lib, &quot;wininet.lib&quot;)</code></pre>
+<pre><code class="lang-cpp">#pragma comment(lib, &quot;wininet.lib&quot;)
+</code></pre>
 <p>如果使用MinGW，需要添加编译命令来/MinGW64/lib/libwininet.a文件。如果使用DevC++还可以通过项目属性来添加，这里不作细说。如果遇到了其他困难可以下方留言，我将会在第一时间解答。</p>
 <h4 id="InternetOpenA"><a href="#InternetOpenA" class="headerlink" title="InternetOpenA"></a>InternetOpenA</h4><p>先来讲解InternetOpenA函数。这个是我头文件里的定义。如果你使用Unicode遍码就改成InternetOpenW，用法类似。</p>
-<pre><code class="cpp">INTERNETAPI_(HINTERNET) InternetOpenA(
+<pre><code class="lang-cpp">INTERNETAPI_(HINTERNET) InternetOpenA(
     _In_opt_ LPCSTR lpszAgent,
     _In_ DWORD dwAccessType,
     _In_opt_ LPCSTR lpszProxy,
     _In_opt_ LPCSTR lpszProxyBypass,
     _In_ DWORD dwFlags
-    );</code></pre>
+    );
+</code></pre>
 <p><em>lpszAgent</em>指向一个空结束的字符串，用来设置UserAgent。对于我们用处不大，可以随意设置。</p>
 <p><em>dwAccessType</em>指定访问类型，用于是否使用代理或注册表配置。我们选择使用IE代理，如果想设置代理服务器则使用INTERNET_OPEN_TYPE_PROXY。数值表：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>数值</th>
-<th>说明</th>
+<th>说明   </th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>INTERNET_OPEN_TYPE_DIRECT</td>
 <td>使用直接连接网络。</td>
 </tr>
@@ -409,24 +272,28 @@ fail:
 </tr>
 <tr>
 <td>INTERNET_OPEN_TYPE_PRECONFIG_WITH_NO_AUTOPROXY</td>
-<td>获取代理或直接从注册表中的配置，并防止启动Microsoft JScript或Internet设置（INS）文件的使用。</td>
+<td>获取代理或直接从注册表中的配置，并防止启动Microsoft JScript或Internet设置（INS）文件的使用。 </td>
 </tr>
 <tr>
 <td>INTERNET_OPEN_TYPE_PROXY</td>
 <td>通过代理的请求，除非代理旁路列表中提供的名称解析绕过代理,在这种情况下，该功能的使用。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><em>lpszProxy</em>指向一个空结束的字符串，该字符串指定的代理服务器的名称，我们此参数应该设置为NULL。设置代理还要在这里深入研究，由于比较麻烦，我们先不去了解了。</p>
 <p><em>lpszProxyBypass</em>指向一个空结束的字符串，该字符串指定的可选列表的主机名或IP地址。我们此参数也设置为NULL。</p>
 <p><em>dwFlags</em>是设定一些要求的，值可以组合组合，我们设置为0。数值表：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>数值</th>
-<th>说明</th>
+<th>说明   </th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>INTERNET_FLAG_ASYNC</td>
 <td>使异步请求处理的后裔从这个函数返回的句柄。</td>
 </tr>
@@ -438,31 +305,36 @@ fail:
 <td>INTERNET_FLAG_OFFLINE</td>
 <td>同INTERNET_FLAG_FROM_CACHE。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><em>Return Value</em>即返回值是一个HINTERNET句柄，用于接下来的WinINet函数。计算机正常且函数参数规范的情况下，都能够成功返回。如果返回NULL就是失败了，那么请检查自己的参数。</p>
 <h4 id="InternetOpenUrlA"><a href="#InternetOpenUrlA" class="headerlink" title="InternetOpenUrlA"></a>InternetOpenUrlA</h4><p>接下来就是用于打开网页的InternetOpenA函数了，如果使用Unicode编码请改为InternetOpenUrlW。</p>
 <p>相比而言，这个函数参数比较多。</p>
-<pre><code class="cpp">INTERNETAPI_(HINTERNET) InternetOpenUrlA(
+<pre><code class="lang-cpp">INTERNETAPI_(HINTERNET) InternetOpenUrlA(
     _In_ HINTERNET hInternet,
     _In_ LPCSTR lpszUrl,
     _In_reads_opt_(dwHeadersLength) LPCSTR lpszHeaders,
     _In_ DWORD dwHeadersLength,
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
-    );</code></pre>
+    );
+</code></pre>
 <p><em>hInternet</em>为当前的Internet会话句柄，也就是我们刚刚使用InternetOpen 函数返回的句柄。</p>
 <p><em>lpszUrl</em>指向一个空结束的字符串，用于指定读取的网址。非常容易理解。</p>
 <p><em>lpszHeaders</em>指向一个空结束的字符串，指定发送到HTTP服务器的头信息。我们不必做过多了解，设为NULL即可。</p>
 <p><em>dwHeadersLength</em>指定的长度，字符，额外的标头。对于我们说也没什么用，设为0即可。</p>
 <p><em>dwFlags</em>设定一些要求，我们设置的INTERNET_FLAG_NO_CACHE，与INTERNET_FLAG_NO_CACHE_WRITE有相同作用。有较多数值，可以了解后选择其中一个。数值表：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>数值</th>
-<th>说明</th>
+<th>说明   </th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>INTERNET_FLAG_EXISTING_CONNECT</td>
 <td>如果使用相同的必须属性创建会话，会尝试利用现有的InternetConnect对象。这只对FTP操作非常有用，因为FTP是唯一在同一会话中执行多种操作的协议。WinINet API 为每个由InternetOpen产生的HINTERNET句柄缓冲一个单独链接句柄。InternetOpenUrl使用此标志的HTTP和FTP连接。</td>
 </tr>
@@ -538,33 +410,40 @@ fail:
 <td>INTERNET_FLAG_SECURE</td>
 <td>使用安全传输语义。这次传输使用安全套字节层/专用通信技术（的SSL / PCT ），这只有在HTTP请求时有意义。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><em>dwContext</em>为指向一个变量的指针，将随着返回的句柄，一起传递给回调函数。有兴趣可以自行查阅，我们设为NULL即可。</p>
 <p><em>Return Value</em>即返回值，若成功连接则返回一个有效的HINTERNET句柄，如果失败将放回NULL。如果失败可以使用GetLastError检索特定的错误讯息。请调用InternetGetLastResponseInfo确定为什么对服务器的访问被拒绝，这些函数大家有兴趣可以查阅更多资料来了解。</p>
 <h4 id="FILE"><a href="#FILE" class="headerlink" title="FILE"></a>FILE</h4><p>这一步就不作过多讲解了，只简单介绍这几个函数。</p>
 <p>fopen用来打开文件，返回文件指针。</p>
-<pre><code class="cpp">FILE * fopen(const char * path, const char * mode);</code></pre>
+<pre><code class="lang-cpp">FILE * fopen(const char * path, const char * mode);
+</code></pre>
 <p>fwrite用于向文件中写入一个数据块，可以看实际代码自行理解。</p>
-<pre><code class="cpp">size_t fwrite(const void * ptr, size_t size, size_t count, FILE * stream);</code></pre>
+<pre><code class="lang-cpp">size_t fwrite(const void * ptr, size_t size, size_t count, FILE * stream);
+</code></pre>
 <p>fclose用于关闭一个流。</p>
-<pre><code class="cpp">int fclose(FILE * stream); </code></pre>
+<pre><code class="lang-cpp">int fclose(FILE * stream);
+</code></pre>
 <h4 id="InternetReadFile"><a href="#InternetReadFile" class="headerlink" title="InternetReadFile"></a>InternetReadFile</h4><p>InternetReadFile的官方定义为，从一个由InternetOpenUrl，FtpOpenFile或HttpOpenRequest函数打开的句柄中读取数据。我们使用它来将网页上的内容保存到一个字符数组中。</p>
 <p>InternetReadFile函数每次获取的内容长度有限，所以应多次调用，直到全部获取完毕。</p>
-<pre><code class="cpp">BOOLAPI InternetReadFile(
+<pre><code class="lang-cpp">BOOLAPI InternetReadFile(
     _In_ HINTERNET hFile,
     _Out_writes_bytes_(dwNumberOfBytesToRead) __out_data_source(NETWORK) LPVOID lpBuffer,
     _In_ DWORD dwNumberOfBytesToRead,
     _Out_ LPDWORD lpdwNumberOfBytesRead
-    );</code></pre>
+    );
+</code></pre>
 <p><em>hFile</em>为InternetOpenUrl，FtpOpenFile或HttpOpenRequest函数返回的句柄。我们使用InternetOpenUrl获得的HINTERNET句柄。</p>
 <p><em>lpBuffer</em>为指向缓冲器的指针。因此我们需要定义一个字符数组，然后将它作为参数。</p>
 <p><em>dwNumberOfBytesToRead</em>为要读取的字节数。这个需要根据自己的网络情况，我使用的为1024 * 1024，也就是1M。</p>
 <p><em>lpdwNumberOfBytesRead</em>为接收读取字节量的变量。我们用它来判断是否将网页内容全部获取完毕。</p>
 <p><em>Return Value</em>即返回值，成功为TRUE，失败为FALSE。若失败可用GetLastError查看更多错误信息。</p>
 <h4 id="InternetCloseHandle"><a href="#InternetCloseHandle" class="headerlink" title="InternetCloseHandle"></a>InternetCloseHandle</h4><p>到这，获取网页的代码基本完工了。但做事应善始善终，那些句柄占用的资源还需要释放。InternetCloseHandle函数用来关闭一个Internet句柄。</p>
-<pre><code class="cpp">BOOLAPI InternetCloseHandle(
+<pre><code class="lang-cpp">BOOLAPI InternetCloseHandle(
     _In_ HINTERNET hInternet
-    );</code></pre>
+    );
+</code></pre>
 <p><em>hInternet</em>为要关闭的句柄。我们要依次关闭那俩个HINTERNET句柄。</p>
 <p><em>Return Value</em>即返回值，成功为TRUE，失败为FALSE。若失败可用GetLastError查看更多错误信息。</p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>其实获取网页内容的代码是非常简单的，然而其中还蕴含着许许多多的知识。这段代码不仅可以获取网页，也可以用来获取图片或其他格式的文件。</p>

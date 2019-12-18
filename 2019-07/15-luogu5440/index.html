@@ -80,147 +80,7 @@
 </head>
 <body class="is-3-column">
     <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
-<script>
-    (function BallMouse() {
-        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
-            STAR_SIZE = 5,
-            GRAVITY_SIZE = 100,
-            STAR_MASS = 1,
-            STAR_REMOVE_TIME = 2000;
-
-        const canvas = document.getElementById('BallMouse'),
-            context = canvas.getContext('2d');
-
-        let scale = 1, // device pixel ratio
-            width,
-            height,
-            nowtime;
-
-        let stars = [];
-
-        resize();
-        step();
-
-        window.onresize = resize;
-        window.addEventListener('mousedown', function (e) {
-            onMouseDown(e);
-        }, false);
-        window.addEventListener('mouseup', function (e) {
-            onMouseUp(e);
-        }, false);
-        function placeStar(star) {
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-            return star;
-        }
-
-        function resize() {
-            scale = window.devicePixelRatio || 1;
-            width = window.innerWidth * scale;
-            height = window.innerHeight * scale;
-            canvas.width = width;
-            canvas.height = height;
-            stars.forEach(placeStar);
-        }
-
-        function step() {
-            nowtime = new Date().getTime();
-            context.clearRect(0, 0, width, height);
-            update();
-            render();
-            requestAnimationFrame(step);
-        }
-
-        function update() {
-            for (let index = 0; index < stars.length; index++) {
-                const star = stars[index];
-                if (star.z && nowtime > star.z) {
-                    stars.splice(index, 1);
-                    --index;
-                }
-            }
-            if (stars.length < STAR_COUNT) {
-                let place = (STAR_COUNT - stars.length) * Math.random();
-                for (let i = 0; i < place; i++) {
-                    stars.push(placeStar({
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        vx: 0,
-                        vy: 0,
-                        colorh: parseInt(Math.random() * 359)
-                    }));
-                }
-            }
-            stars.forEach((star) => {
-                stars.forEach(bigStar => {
-                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-                    if (r2 > 10) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                    else if (r2 > 5) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
-                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                });
-            });
-            stars.forEach((star) => {
-                star.vx -= star.vx * 0.05;
-                star.vy -= star.vy * 0.05;
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
-                    if (star.z == 0) {
-                        star.z = nowtime + STAR_REMOVE_TIME;
-                    }
-                } else {
-                    star.z = 0;
-                }
-            });
-        }
-        function render() {
-            stars.forEach((star) => {
-                context.beginPath();
-                context.lineCap = 'round';
-                context.lineWidth = STAR_SIZE * scale;
-                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
-                context.beginPath();
-                context.moveTo(star.x, star.y);
-                context.lineTo(star.x, star.y);
-                context.stroke();
-            });
-        }
-        let inv;
-        function onMouseDown(event) {
-            stars.push({
-                x: event.clientX,
-                y: event.clientY,
-                z: 0,
-                vx: 0,
-                vy: 0,
-                colorh: parseInt(Math.random() * 359)
-            });
-            inv = setTimeout(pushStar, 500);
-            function pushStar() {
-                stars.push({
-                    x: event.clientX,
-                    y: event.clientY,
-                    z: 0,
-                    vx: 0,
-                    vy: 0,
-                    colorh: parseInt(Math.random() * 359)
-                });
-                inv = setTimeout(pushStar, 100);
-            }
-        }
-        function onMouseUp(event) {
-            clearTimeout(inv);
-        }
-    })();
-</script>
+<script src="/js/animation/ballMouse.js" charset="utf-8"></script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -315,14 +175,12 @@
 </blockquote>
 <p>然后我就天天做搜索，最后退役。</p>
 <a id="more"></a>
-
-
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>正解搜索或暴力枚举，代码区已经几乎是相同的思路，只是有些大佬有很多优化，效率快，但是特批有很多并且极其复杂。经对比我觉得我的代码可视性还是不错的，并且没有乱七八糟的特判，可以说是常规DFS代码+筛质数优化的代码。</p>
 <p>下面说一下思路。首先题目很好理解，一个有效日期，日、月+日、年+月+日组成的数字均为质数，那就先不考虑优化，直接上模拟。</p>
 <p>按DFS的常规模板（自己总结出来的），先有一个参数，代表搜索到哪一位。在本题中就是日期的第几位数字，我选择的顺序为：日-&gt;月-&gt;年，这样可以逐层判断，而且效率较高代码优雅。</p>
 <p>第二个参数，是为了方便和小幅提升效率，我们把已经枚举完的位编成一个整数$ x $，然后日就是 x % 100 ，月就是 x % 10000 /  100 ，年就是x / 10000<br>。</p>
 <p>这道题中还需要考虑到特殊情况，是否必须为闰年或大月。我为了方便，当成两个参数来传递，现在想想好像可以改一个。因为一个只考虑年份，一个只考虑月份。DFS带详细注释代码如下，自己觉得算得上优雅。</p>
-<pre><code class="cpp">// 调用方法: dfs(8, 0, 0, 0)
+<pre><code class="lang-cpp">// 调用方法: dfs(8, 0, 0, 0)
 int dfs(int nown, int num, int rn, int jy) {
     if(nown == 0) {
     // 日期全部枚举完
@@ -359,9 +217,10 @@ int dfs(int nown, int num, int rn, int jy) {
     for(int i= 0; i &lt;= 9; i++) res+= dfs(nown - 1, i * p10[8 - nown] + num, rn, jy);
     // 枚举0~9为此位
     return res;
-}</code></pre>
+}
+</code></pre>
 <p>如果是用复杂度为$ O(\sqrt{n}) $ 的判断质数就只有90分，所以还得用线性筛预处理出$  \sqrt{100000000} = 10000 $ 以内的质数，然后我们判断质数就对这些数取模就行了，具体原理不再解释。</p>
-<pre><code class="cpp">// 筛10005以内的质数
+<pre><code class="lang-cpp">// 筛10005以内的质数
 inline void init() {
     flag[1]= 1;
     for(int i= 2; i &lt; 10005; i++) {
@@ -380,9 +239,10 @@ inline int pdzs(int x) {
     for(int i= 1; i &lt;= tot; i++)
         if(x % prim[i] == 0) return x == prim[i];
     return 1;
-}</code></pre>
+}
+</code></pre>
 <p>然后就可以愉快的AC了，总代码只有70行且简单优雅。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #include &lt;math.h&gt;
 using namespace std;
@@ -451,7 +311,8 @@ int main() {
         put(dfs(8, 0, 0, 0)), putchar(&#39;\n&#39;);
     }
     return 0;
-}</code></pre>
+}
+</code></pre>
 
         </div>
         

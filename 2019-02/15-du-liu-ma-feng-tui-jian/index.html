@@ -11,7 +11,7 @@
 
 
     <meta name="description" content="用了这个码风，再也不怕代码出BUG了( 前言相信码风对于我们来说太熟悉了，以至于平常都忘记了它的存在">
-<meta name="keywords" content="闲聊,Cpp,码风">
+<meta name="keywords" content="Cpp,闲聊,码风">
 <meta property="og:type" content="article">
 <meta property="og:title" content="闲聊 - 毒瘤码风推荐">
 <meta property="og:url" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-02&#x2F;15-du-liu-ma-feng-tui-jian&#x2F;index.html">
@@ -80,147 +80,7 @@
 </head>
 <body class="is-3-column">
     <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
-<script>
-    (function BallMouse() {
-        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
-            STAR_SIZE = 5,
-            GRAVITY_SIZE = 100,
-            STAR_MASS = 1,
-            STAR_REMOVE_TIME = 2000;
-
-        const canvas = document.getElementById('BallMouse'),
-            context = canvas.getContext('2d');
-
-        let scale = 1, // device pixel ratio
-            width,
-            height,
-            nowtime;
-
-        let stars = [];
-
-        resize();
-        step();
-
-        window.onresize = resize;
-        window.addEventListener('mousedown', function (e) {
-            onMouseDown(e);
-        }, false);
-        window.addEventListener('mouseup', function (e) {
-            onMouseUp(e);
-        }, false);
-        function placeStar(star) {
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-            return star;
-        }
-
-        function resize() {
-            scale = window.devicePixelRatio || 1;
-            width = window.innerWidth * scale;
-            height = window.innerHeight * scale;
-            canvas.width = width;
-            canvas.height = height;
-            stars.forEach(placeStar);
-        }
-
-        function step() {
-            nowtime = new Date().getTime();
-            context.clearRect(0, 0, width, height);
-            update();
-            render();
-            requestAnimationFrame(step);
-        }
-
-        function update() {
-            for (let index = 0; index < stars.length; index++) {
-                const star = stars[index];
-                if (star.z && nowtime > star.z) {
-                    stars.splice(index, 1);
-                    --index;
-                }
-            }
-            if (stars.length < STAR_COUNT) {
-                let place = (STAR_COUNT - stars.length) * Math.random();
-                for (let i = 0; i < place; i++) {
-                    stars.push(placeStar({
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        vx: 0,
-                        vy: 0,
-                        colorh: parseInt(Math.random() * 359)
-                    }));
-                }
-            }
-            stars.forEach((star) => {
-                stars.forEach(bigStar => {
-                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-                    if (r2 > 10) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                    else if (r2 > 5) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
-                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                });
-            });
-            stars.forEach((star) => {
-                star.vx -= star.vx * 0.05;
-                star.vy -= star.vy * 0.05;
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
-                    if (star.z == 0) {
-                        star.z = nowtime + STAR_REMOVE_TIME;
-                    }
-                } else {
-                    star.z = 0;
-                }
-            });
-        }
-        function render() {
-            stars.forEach((star) => {
-                context.beginPath();
-                context.lineCap = 'round';
-                context.lineWidth = STAR_SIZE * scale;
-                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
-                context.beginPath();
-                context.moveTo(star.x, star.y);
-                context.lineTo(star.x, star.y);
-                context.stroke();
-            });
-        }
-        let inv;
-        function onMouseDown(event) {
-            stars.push({
-                x: event.clientX,
-                y: event.clientY,
-                z: 0,
-                vx: 0,
-                vy: 0,
-                colorh: parseInt(Math.random() * 359)
-            });
-            inv = setTimeout(pushStar, 500);
-            function pushStar() {
-                stars.push({
-                    x: event.clientX,
-                    y: event.clientY,
-                    z: 0,
-                    vx: 0,
-                    vy: 0,
-                    colorh: parseInt(Math.random() * 359)
-                });
-                inv = setTimeout(pushStar, 100);
-            }
-        }
-        function onMouseUp(event) {
-            clearTimeout(inv);
-        }
-    })();
-</script>
+<script src="/js/animation/ballMouse.js" charset="utf-8"></script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -318,12 +178,11 @@
             <p>用了这个码风，再也不怕代码出BUG了(</p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>相信码风对于我们来说太熟悉了，以至于平常都忘记了它的存在</p>
 <a id="more"></a>
-
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>码风全称代码风格…</p>
 <p>我就不啰嗦了，估计也都知道是啥，想看详细介绍可以右转<a href="https://baike.baidu.com/item/代码风格" target="_blank" rel="noopener">代码风格-百度百科</a>或<a href="https://en.wikipedia.org/wiki/Programming_style" target="_blank" rel="noopener">Programming style-Wikipedia</a></p>
 <h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>那么就直接推荐自己的码风了</p>
 <p>(从来不多打空格的可以跳过这一部分)</p>
-<pre><code class="cpp">// QuickRead
+<pre><code class="lang-cpp">// QuickRead
 inline int read() {
     int e= 0, f= 1;
     char ch= getchar();
@@ -333,13 +192,14 @@ inline int read() {
     }
     while(ch &gt;= &#39;0&#39; &amp;&amp; ch &lt;= &#39;9&#39;) e= e * 10 + ch - &#39;0&#39;, ch= getchar();
     return e * f;
-}</code></pre>
+}
+</code></pre>
 <p>这个空格写法确实毒瘤，估计像我这样的全世界应该有1%…</p>
 <p>赋值符前不加空格，赋值符后加空格，运算符和逻辑符前后都加空格，手打不是很方便，习惯就好了.</p>
 <p>大括号前不换行加空格，for循环中每个语句只在前加空格</p>
 <hr>
 <p>(关于换行等事)</p>
-<pre><code class="cpp">// 负载平衡问题
+<pre><code class="lang-cpp">// 负载平衡问题
 inline int absi(int i) {
     return i &gt; 0 ? i : -i;
 }
@@ -352,10 +212,11 @@ int main() {
     for(int i= 1; i &lt;= n; i++) ans+= absi(s[i] - k);
     cout &lt;&lt; ans &lt;&lt; endl;
     return 0;
-}</code></pre>
+}
+</code></pre>
 <p>只遵守一个原则: 一行只存在一个分号, 能一行表示就不要多行表示</p>
 <p>但也有例外，较长表达式不会压到一行，比较长的函数定义也不会压到一行</p>
-<pre><code class="cpp">// 匈牙利算法
+<pre><code class="lang-cpp">// 匈牙利算法
 int dfs(int nown, int wptr) {
     for(int i= head[nown], to; i; i= eds[i].nexty) {
         to= eds[i].to;
@@ -365,11 +226,12 @@ int dfs(int nown, int wptr) {
         }
     }
     return 0;
-}</code></pre>
+}
+</code></pre>
 <p>大概就是这种码风，能省略就省略，但一行一条语句。</p>
 <hr>
 <p>(判断语句和数组定义)</p>
-<pre><code class="cpp">// 主席树
+<pre><code class="lang-cpp">// 主席树
 int main() {
     n= read(), m= read();
     while(~scanf(&quot;%s&quot;, o)) {
@@ -380,13 +242,15 @@ int main() {
             printf(&quot;%d\n&quot;, query(tmpxx, tmpyy) - query(tmpx - 1, tmpyy) - query(tmpxx, tmpy - 1) + query(tmpx - 1, tmpy - 1));
     }
     return 0;
-}</code></pre>
+}
+</code></pre>
 <p>单行if不会换行，如果存在 else / else if 则换行</p>
-<pre><code class="cpp">int db[]= {
+<pre><code class="lang-cpp">int db[]= {
     0,           1,          1799998,   844059434, 446759866, 865662267, 29583524,  127902423, 614370802, 866384115, 771602680, 248905317, 78054944,  297165834, 271692212, 491940959, 329478404, 984412484, 35704862,  729995974, 257611164, 47520158,
     ......
     869867506, 732424548, 678809493, 143987677, 789130682, 973691054, 893883312, 311519914, 650459219, 821045358, 310559620, 775625624, 108543282, 54180205,  287135615, 875178490, 760920242, 512638949, 254323537, 977186041, 474130473, 455558106,
-    435916613, 787985317, 366892998, 42185197,  192850838, 421591125, 241779127, 969779315, 924599866, 723460313, 430999144};</code></pre>
+    435916613, 787985317, 366892998, 42185197,  192850838, 421591125, 241779127, 969779315, 924599866, 723460313, 430999144};
+</code></pre>
 <p>这个数组定义比较忙=迷，有的时候不会换行有的时候会</p>
 <h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>如果上面这些格式手动的话…估计考试一道题都做不完…</p>
 <p>我目前使用VS Code，他的C++扩展自带格式化工具.clang-format</p>
@@ -398,7 +262,7 @@ int main() {
 <p>SpaceBeforeAssignmentOperator 为赋值符两边的空格</p>
 <p>BraceWrapping 为各位置括号前后换行</p>
 <p>ColumnLimit 为每行最大字符限制(和数组初始化换行有关)</p>
-<h4 id="放一下我的格式化文件配置"><a href="#放一下我的格式化文件配置" class="headerlink" title="放一下我的格式化文件配置:"></a>放一下我的格式化文件配置:</h4><pre><code class="javascript">---
+<h4 id="放一下我的格式化文件配置"><a href="#放一下我的格式化文件配置" class="headerlink" title="放一下我的格式化文件配置:"></a>放一下我的格式化文件配置:</h4><pre><code class="lang-javascript">---
 Language:    Cpp
 BasedOnStyle:    LLVM
 AccessModifierOffset:    0
@@ -487,7 +351,8 @@ SpacesInSquareBrackets:    false
 Standard:    Cpp11
 TabWidth:    4
 UseTab:    Always
-...</code></pre>
+...
+</code></pre>
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>用了这个码风，再也不怕代码出BUG了(</p>
 
         </div>

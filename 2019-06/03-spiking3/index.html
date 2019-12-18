@@ -80,147 +80,7 @@
 </head>
 <body class="is-3-column">
     <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
-<script>
-    (function BallMouse() {
-        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
-            STAR_SIZE = 5,
-            GRAVITY_SIZE = 100,
-            STAR_MASS = 1,
-            STAR_REMOVE_TIME = 2000;
-
-        const canvas = document.getElementById('BallMouse'),
-            context = canvas.getContext('2d');
-
-        let scale = 1, // device pixel ratio
-            width,
-            height,
-            nowtime;
-
-        let stars = [];
-
-        resize();
-        step();
-
-        window.onresize = resize;
-        window.addEventListener('mousedown', function (e) {
-            onMouseDown(e);
-        }, false);
-        window.addEventListener('mouseup', function (e) {
-            onMouseUp(e);
-        }, false);
-        function placeStar(star) {
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-            return star;
-        }
-
-        function resize() {
-            scale = window.devicePixelRatio || 1;
-            width = window.innerWidth * scale;
-            height = window.innerHeight * scale;
-            canvas.width = width;
-            canvas.height = height;
-            stars.forEach(placeStar);
-        }
-
-        function step() {
-            nowtime = new Date().getTime();
-            context.clearRect(0, 0, width, height);
-            update();
-            render();
-            requestAnimationFrame(step);
-        }
-
-        function update() {
-            for (let index = 0; index < stars.length; index++) {
-                const star = stars[index];
-                if (star.z && nowtime > star.z) {
-                    stars.splice(index, 1);
-                    --index;
-                }
-            }
-            if (stars.length < STAR_COUNT) {
-                let place = (STAR_COUNT - stars.length) * Math.random();
-                for (let i = 0; i < place; i++) {
-                    stars.push(placeStar({
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        vx: 0,
-                        vy: 0,
-                        colorh: parseInt(Math.random() * 359)
-                    }));
-                }
-            }
-            stars.forEach((star) => {
-                stars.forEach(bigStar => {
-                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-                    if (r2 > 10) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                    else if (r2 > 5) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
-                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                });
-            });
-            stars.forEach((star) => {
-                star.vx -= star.vx * 0.05;
-                star.vy -= star.vy * 0.05;
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
-                    if (star.z == 0) {
-                        star.z = nowtime + STAR_REMOVE_TIME;
-                    }
-                } else {
-                    star.z = 0;
-                }
-            });
-        }
-        function render() {
-            stars.forEach((star) => {
-                context.beginPath();
-                context.lineCap = 'round';
-                context.lineWidth = STAR_SIZE * scale;
-                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
-                context.beginPath();
-                context.moveTo(star.x, star.y);
-                context.lineTo(star.x, star.y);
-                context.stroke();
-            });
-        }
-        let inv;
-        function onMouseDown(event) {
-            stars.push({
-                x: event.clientX,
-                y: event.clientY,
-                z: 0,
-                vx: 0,
-                vy: 0,
-                colorh: parseInt(Math.random() * 359)
-            });
-            inv = setTimeout(pushStar, 500);
-            function pushStar() {
-                stars.push({
-                    x: event.clientX,
-                    y: event.clientY,
-                    z: 0,
-                    vx: 0,
-                    vy: 0,
-                    colorh: parseInt(Math.random() * 359)
-                });
-                inv = setTimeout(pushStar, 100);
-            }
-        }
-        function onMouseUp(event) {
-            clearTimeout(inv);
-        }
-    })();
-</script>
+<script src="/js/animation/ballMouse.js" charset="utf-8"></script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -320,8 +180,6 @@
 <p>关于根据链接下载网页的各种方式在第一节已经介绍过了。这里再补充一下，还有一种方式是使用外部库libcurl，使用方便代码简洁，但我不把它当做我们主要学习的对象，因为它太过于简单。</p>
 <p>这节可以说是个扩展篇，并不是这个项目优先考虑的内容。先介绍它主要是因为这部分东西更有意思，大家可能会更感兴趣。</p>
 <a id="more"></a>
-
-
 <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>这个预处理是我自己勉强定义的，所以大家可能不理解。</p>
 <p>通俗的说，URL预处理意为对一个URL链接本体进行处理，请大家不要误以为是对HTML网页内容进行分析。</p>
 <p>再说清楚一些，获取链接所指向的内容前，程序并不知道这个内容是什么类型的。也就是说，它可能是一个HTML也可能是图片，又或者是一个CSS文件。所以我们要对URL进行一定的预处理，然后判断文件后缀之类的。</p>
@@ -334,60 +192,64 @@
 </blockquote>
 <p>URL由多部分组成，详细说有9部分，我们一个一个介绍。有关资料部分来自于<a href="https://blog.csdn.net/u014686399/article/details/84726335" target="_blank" rel="noopener">going_han的博客</a>。</p>
 <p>一个URL的实例: <code>scheme://user:password@host:port/path;params?query#frag</code></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">编号</th>
-<th align="center">名称</th>
-<th align="left">介绍</th>
+<th style="text-align:center">编号</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:left">介绍</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="center">协议(protocol)</td>
-<td align="left">为进行网络中的数据交换而建立的规则、标准或约定。有时也叫scheme，常用的协议有http、https、ftp、file、mailto。</td>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">协议(protocol)</td>
+<td style="text-align:left">为进行网络中的数据交换而建立的规则、标准或约定。有时也叫scheme，常用的协议有http、https、ftp、file、mailto。</td>
 </tr>
 <tr>
-<td align="center">2</td>
-<td align="center">用户名(user)</td>
-<td align="left">一般用不到，为访问资源使用的用户名。</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">用户名(user)</td>
+<td style="text-align:left">一般用不到，为访问资源使用的用户名。</td>
 </tr>
 <tr>
-<td align="center">3</td>
-<td align="center">密码(password)</td>
-<td align="left">一般也用不到，为访问资源使用的密码。</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">密码(password)</td>
+<td style="text-align:left">一般也用不到，为访问资源使用的密码。</td>
 </tr>
 <tr>
-<td align="center">4</td>
-<td align="center">域名(domain)</td>
-<td align="left">域名（英语：Domain Name），简称域名、网域，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。有时也叫host，可以使用IP地址作为域名使用。</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">域名(domain)</td>
+<td style="text-align:left">域名（英语：Domain Name），简称域名、网域，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。有时也叫host，可以使用IP地址作为域名使用。</td>
 </tr>
 <tr>
-<td align="center">5</td>
-<td align="center">端口(port)</td>
-<td align="left">在网络技术中，端口（Port）有好几种意思。我们这里所指的端口不是指物理意义上的端口，而是特指TCP/IP协议中的端口，是逻辑意义上的端口。端口不是一个必须部分，如果省略将采用协议默认使用的端口。</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">端口(port)</td>
+<td style="text-align:left">在网络技术中，端口（Port）有好几种意思。我们这里所指的端口不是指物理意义上的端口，而是特指TCP/IP协议中的端口，是逻辑意义上的端口。端口不是一个必须部分，如果省略将采用协议默认使用的端口。</td>
 </tr>
 <tr>
-<td align="center">6</td>
-<td align="center">路径(path)</td>
-<td align="left">由零或多个“/”符号隔开的字符串，一般用来表示主机上的一个目录或文件地址。</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">路径(path)</td>
+<td style="text-align:left">由零或多个“/”符号隔开的字符串，一般用来表示主机上的一个目录或文件地址。</td>
 </tr>
 <tr>
-<td align="center">7</td>
-<td align="center">参数(params)</td>
-<td align="left">这是用于指定特殊参数的可选项。</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">参数(params)</td>
+<td style="text-align:left">这是用于指定特殊参数的可选项。</td>
 </tr>
 <tr>
-<td align="center">8</td>
-<td align="center">查询(query)</td>
-<td align="left">可选项。用于给动态网页传递参数，可有多个参数，用“&amp;”符号隔开，每个参数的名和值用“=”符号隔开。</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">查询(query)</td>
+<td style="text-align:left">可选项。用于给动态网页传递参数，可有多个参数，用“&amp;”符号隔开，每个参数的名和值用“=”符号隔开。</td>
 </tr>
 <tr>
-<td align="center">9</td>
-<td align="center">片段(frag)</td>
-<td align="left">主要用于对资源进行分类。例如一个网页中有多个名词解释，可使用fragment直接定位到某一名词解释。访问一个帮助文档时，文档的各个章节就可以表述为片段。</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">片段(frag)</td>
+<td style="text-align:left">主要用于对资源进行分类。例如一个网页中有多个名词解释，可使用fragment直接定位到某一名词解释。访问一个帮助文档时，文档的各个章节就可以表述为片段。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>所以分解URL有什么用呢？我们再简单了解一下HTTP访问的步骤，HTTP访问时会进行多步操作，其中有两步我想重点介绍一下，分别是：发送请求头(Request Headers)和接受响应头(Response Headers)。</p>
 <p>其实大家现在就可以直观的了解它，介绍一种方法。</p>
 <p>随便找一个可用网页（比如这篇博客） -&gt; 点击键盘上的F12，弹出开发人员调试工具 -&gt; 进入’Network’选项页 -&gt; 点击录制按钮（黑色的圆点），按钮变红色 -&gt; 刷新页面。</p>
@@ -398,7 +260,7 @@
 <p>其他信息大家可以自行了解，对项目作用不大，我就不作介绍了。</p>
 <p>另外，本节含有大量string类的内容，但只要不是初学者都很熟悉了，因此不作理论上的介绍。</p>
 <h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>这部分理论易理解，但代码部分比较长。先给出本节所有的代码:</p>
-<pre><code class="cpp">string _trim(const string &amp;str) {
+<pre><code class="lang-cpp">string _trim(const string &amp;str) {
     size_t start= str.find_first_not_of(&quot; \n\r\t&quot;);
     size_t until= str.find_last_not_of(&quot; \n\r\t&quot;);
     string::const_iterator i= start == string::npos ? str.begin() : str.begin() + start;
@@ -462,23 +324,28 @@ fail:
     if(hSession) InternetCloseHandle(hSession);
     printf(&quot;Internet Error\n&quot;);
     return;
-}</code></pre>
+}
+</code></pre>
 <p><em>_trim</em>函数作用为去除字符串的空白换行符。</p>
 <p><em>parse_url</em>函数作用为分解URL，分解为端口、域名和路径。</p>
 <p><em>judgeUrlType</em>函数作用为获得HTTP响应头并分析URL内容类型。</p>
 <h4 id="string"><a href="#string" class="headerlink" title="string"></a>string</h4><p>本节使用C++STL中的string类比较多，简单的大家都使用过，所以介绍一下几个比较陌生的函数。</p>
-<h5 id="find-first-not-of"><a href="#find-first-not-of" class="headerlink" title="find_first_not_of"></a>find_first_not_of</h5><pre><code class="cpp">size_t find_first_not_of (const string&amp; str, size_t pos = 0) const;
+<h5 id="find-first-not-of"><a href="#find-first-not-of" class="headerlink" title="find_first_not_of"></a>find_first_not_of</h5><pre><code class="lang-cpp">size_t find_first_not_of (const string&amp; str, size_t pos = 0) const;
 size_t find_first_not_of (const char* s, size_t pos = 0) const;
 size_t find_first_not_of (const char* s, size_t pos, size_t n) const;
-size_t find_first_not_of (char c, size_t pos = 0) const;</code></pre>
+size_t find_first_not_of (char c, size_t pos = 0) const;
+</code></pre>
 <p><em>Return Value</em>即返回值，返回第一个不匹配字符的位置，如果没有不匹配字符则返回string::npos。若使用字符串作参数，则此处不匹配字符指参数中不包含的字符。</p>
-<h5 id="string-npos"><a href="#string-npos" class="headerlink" title="string::npos"></a>string::npos</h5><pre><code class="cpp">static const size_t npos = -1;</code></pre>
-<h5 id="find-last-not-of"><a href="#find-last-not-of" class="headerlink" title="find_last_not_of"></a>find_last_not_of</h5><pre><code class="cpp">size_t find_last_not_of (const string&amp; str, size_t pos = npos) const;
+<h5 id="string-npos"><a href="#string-npos" class="headerlink" title="string::npos"></a>string::npos</h5><pre><code class="lang-cpp">static const size_t npos = -1;
+</code></pre>
+<h5 id="find-last-not-of"><a href="#find-last-not-of" class="headerlink" title="find_last_not_of"></a>find_last_not_of</h5><pre><code class="lang-cpp">size_t find_last_not_of (const string&amp; str, size_t pos = npos) const;
 size_t find_last_not_of (const char* s, size_t pos = npos) const;
 size_t find_last_not_of (const char* s, size_t pos, size_t n) const;
-size_t find_last_not_of (char c, size_t pos = npos) const;</code></pre>
+size_t find_last_not_of (char c, size_t pos = npos) const;
+</code></pre>
 <p><em>Return Value</em>即返回值，与find_first_not_of类似，返回最后一个不匹配字符的位置。</p>
-<h5 id="substr"><a href="#substr" class="headerlink" title="substr"></a>substr</h5><pre><code class="cpp">string substr (size_t pos = 0, size_t len = npos) const;</code></pre>
+<h5 id="substr"><a href="#substr" class="headerlink" title="substr"></a>substr</h5><pre><code class="lang-cpp">string substr (size_t pos = 0, size_t len = npos) const;
+</code></pre>
 <p><em>Return Value</em>即返回值，返回从pos开始长度为len的子串。</p>
 <h4 id="InternetConnectA"><a href="#InternetConnectA" class="headerlink" title="InternetConnectA"></a>InternetConnectA</h4>
         </div>

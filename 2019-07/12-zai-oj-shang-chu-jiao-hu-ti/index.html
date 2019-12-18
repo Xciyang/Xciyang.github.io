@@ -11,7 +11,7 @@
 
 
     <meta name="description" content="有关在OJ上出交互题的一些技巧 本博客所指的OJ仅指SYZOJ，即搭建LOJ使用的在线评测系统。 SYZOJ源码链接(Github仓库): https:&#x2F;&#x2F;github.com&#x2F;syzoj&#x2F;syzoj">
-<meta name="keywords" content="闲聊,Cpp,颓废,技巧">
+<meta name="keywords" content="Cpp,闲聊,颓废,技巧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="技巧 - 在OJ上出交互题">
 <meta property="og:url" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-07&#x2F;12-zai-oj-shang-chu-jiao-hu-ti&#x2F;index.html">
@@ -80,147 +80,7 @@
 </head>
 <body class="is-3-column">
     <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
-<script>
-    (function BallMouse() {
-        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
-            STAR_SIZE = 5,
-            GRAVITY_SIZE = 100,
-            STAR_MASS = 1,
-            STAR_REMOVE_TIME = 2000;
-
-        const canvas = document.getElementById('BallMouse'),
-            context = canvas.getContext('2d');
-
-        let scale = 1, // device pixel ratio
-            width,
-            height,
-            nowtime;
-
-        let stars = [];
-
-        resize();
-        step();
-
-        window.onresize = resize;
-        window.addEventListener('mousedown', function (e) {
-            onMouseDown(e);
-        }, false);
-        window.addEventListener('mouseup', function (e) {
-            onMouseUp(e);
-        }, false);
-        function placeStar(star) {
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-            return star;
-        }
-
-        function resize() {
-            scale = window.devicePixelRatio || 1;
-            width = window.innerWidth * scale;
-            height = window.innerHeight * scale;
-            canvas.width = width;
-            canvas.height = height;
-            stars.forEach(placeStar);
-        }
-
-        function step() {
-            nowtime = new Date().getTime();
-            context.clearRect(0, 0, width, height);
-            update();
-            render();
-            requestAnimationFrame(step);
-        }
-
-        function update() {
-            for (let index = 0; index < stars.length; index++) {
-                const star = stars[index];
-                if (star.z && nowtime > star.z) {
-                    stars.splice(index, 1);
-                    --index;
-                }
-            }
-            if (stars.length < STAR_COUNT) {
-                let place = (STAR_COUNT - stars.length) * Math.random();
-                for (let i = 0; i < place; i++) {
-                    stars.push(placeStar({
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        vx: 0,
-                        vy: 0,
-                        colorh: parseInt(Math.random() * 359)
-                    }));
-                }
-            }
-            stars.forEach((star) => {
-                stars.forEach(bigStar => {
-                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-                    if (r2 > 10) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                    else if (r2 > 5) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
-                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                });
-            });
-            stars.forEach((star) => {
-                star.vx -= star.vx * 0.05;
-                star.vy -= star.vy * 0.05;
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
-                    if (star.z == 0) {
-                        star.z = nowtime + STAR_REMOVE_TIME;
-                    }
-                } else {
-                    star.z = 0;
-                }
-            });
-        }
-        function render() {
-            stars.forEach((star) => {
-                context.beginPath();
-                context.lineCap = 'round';
-                context.lineWidth = STAR_SIZE * scale;
-                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
-                context.beginPath();
-                context.moveTo(star.x, star.y);
-                context.lineTo(star.x, star.y);
-                context.stroke();
-            });
-        }
-        let inv;
-        function onMouseDown(event) {
-            stars.push({
-                x: event.clientX,
-                y: event.clientY,
-                z: 0,
-                vx: 0,
-                vy: 0,
-                colorh: parseInt(Math.random() * 359)
-            });
-            inv = setTimeout(pushStar, 500);
-            function pushStar() {
-                stars.push({
-                    x: event.clientX,
-                    y: event.clientY,
-                    z: 0,
-                    vx: 0,
-                    vy: 0,
-                    colorh: parseInt(Math.random() * 359)
-                });
-                inv = setTimeout(pushStar, 100);
-            }
-        }
-        function onMouseUp(event) {
-            clearTimeout(inv);
-        }
-    })();
-</script>
+<script src="/js/animation/ballMouse.js" charset="utf-8"></script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -313,8 +173,6 @@
 <p>本博客所指的OJ仅指SYZOJ，即搭建LOJ使用的在线评测系统。</p>
 <p>SYZOJ源码链接(Github仓库): <a href="https://github.com/syzoj/syzoj" target="_blank" rel="noopener">https://github.com/syzoj/syzoj</a></p>
 <a id="more"></a>
-
-
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在校内使用SYZOJ搭建内网OJ已经有些时日了。其实之前就看到有交互题这一说，但一直没有去关注和了解。</p>
 <p>今天正颓废时，突然想起了交互题，然后开始便研究。</p>
 <p>本以为是testlib，现在才发现SYZOJ有自己特有的交互方式。</p>
@@ -326,37 +184,40 @@
 <h4 id="如何交互"><a href="#如何交互" class="headerlink" title="如何交互"></a>如何交互</h4><p>根据帮助，<code>交互通过输入输出进行</code>，那么意为选手程序使用std::cout输出给交互器程序，而交互器程序使用std::cin读取选手的输出，反过来也是如此。</p>
 <p>LOJ中交互题系统测试题<a href="https://loj.ac/problem/6" target="_blank" rel="noopener">Guess Number</a>可以自行了解一下。</p>
 <h4 id="输入文件"><a href="#输入文件" class="headerlink" title="输入文件"></a>输入文件</h4><p>根据帮助，<code>目录下会有 input 文件，表示该测试点的输入文件</code>，那么就需要用文件流操作，我选择使用std::ifstream来读取input文件。交互器从输入文件读取一个整数的实例：</p>
-<pre><code class="cpp">#include &lt;fstream&gt;
+<pre><code class="lang-cpp">#include &lt;fstream&gt;
 int n;
 int main() {
     std::ifstream datin(&quot;input&quot;);
     datin &gt;&gt; n;
     return 0;
-}</code></pre>
+}
+</code></pre>
 <h4 id="选手得分"><a href="#选手得分" class="headerlink" title="选手得分"></a>选手得分</h4><p><code>将选手得分写入 score.txt 文件中</code> 也是同理，使用std::ofstream打开score.txt文件，写入一个数即可。</p>
 <p>可以根据查询次数等信息来确定得分，支持部分正确（0 &lt;= 得分 &lt;= 100）。</p>
 <h4 id="额外信息"><a href="#额外信息" class="headerlink" title="额外信息"></a>额外信息</h4><p>继续看帮助，<code>将提供给用户的额外信息输出到标准错误输出（stderr）中</code>。额外信息就是测试点的反馈信息，我们常在传统题WA时看到<code>Files user_out and answer differ</code>。给出一个交互器判定选手输出的实例（不完整）：</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
 int n, ans;
 int main() {
     // main_code
     std::cerr &lt;&lt; &quot;Wrong answer! The correct answer is &quot; &lt;&lt; ans &lt;&lt; &quot; .&quot; &lt;&lt; std::endl;
     return 0;
-}</code></pre>
+}
+</code></pre>
 <p>当WA时输出正确的答案以供选手参考，与Special Judge类似。</p>
 <h4 id="封装交互"><a href="#封装交互" class="headerlink" title="封装交互"></a>封装交互</h4><p>帮助最后一句，是可选的。我们可以封装标准输入输出的交互，我们对于C++而言，可以写一个头文件interactor.h。</p>
 <p>我们模拟一个很简单的题来示范interactor.h，选手输出两个数（代表一个坐标）与交互器进行交互，交互器返回一个数表示与终点的曼哈顿距离。</p>
 <p>代码如下（只是interactor.h）：</p>
-<pre><code class="cpp">#include &lt;iostream&gt;
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
 int query(int x, int y){
     std::cout &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; y &lt;&lt; std::endl &lt;&lt; std::flush;
     int res;
     std::cin &gt;&gt; res;
     return res;
-}</code></pre>
+}
+</code></pre>
 <p>你可以把它当做附加源文件提供给选手，方便不太懂的选手交互。</p>
 <h4 id="数据判断"><a href="#数据判断" class="headerlink" title="数据判断"></a>数据判断</h4><p>在交互过程中，交互器需要面对选手提供的各种输出数据。这些数据可能不合法，为了节省代码，介绍一个assert函数，貌似testlib中有类似的函数。</p>
-<pre><code class="cpp">template &lt; typename T &gt;
+<pre><code class="lang-cpp">template &lt; typename T &gt;
 inline void assert(const T &amp;condition, const std::string &amp;message) {
     if(!condition) {
         std::cerr &lt;&lt; message &lt;&lt; std::endl;
@@ -364,18 +225,22 @@ inline void assert(const T &amp;condition, const std::string &amp;message) {
         exit(0);
     }
     return;
-}</code></pre>
+}
+</code></pre>
 <p>此函数是模板函数，刚入门C++的人可能不太懂。对于这个函数来讲，模板就是为了适用所有类型。condition为一个表达式，message为提供的额外信息。</p>
 <p>判断选手输出是否为整数可以用以下代码，如果不是，cin就会出错，然后执行if中的语句（选手的输出等同于交互器的输入）。</p>
-<pre><code class="cpp">int x, y;
-assert(std::cin &gt;&gt; x &gt;&gt; y, &quot;Invalid `x` or `y`!&quot;);</code></pre>
+<pre><code class="lang-cpp">int x, y;
+assert(std::cin &gt;&gt; x &gt;&gt; y, &quot;Invalid `x` or `y`!&quot;);
+</code></pre>
 <p>交互器判断选手输出的数的范围也是如此：</p>
-<pre><code class="cpp">assert(x &gt;= 1 &amp;&amp; x &lt;= n &amp;&amp; y &gt;= 1 &amp;&amp; y &lt;= n, &quot;`x` and `y` must in [1, n]!&quot;);</code></pre>
+<pre><code class="lang-cpp">assert(x &gt;= 1 &amp;&amp; x &lt;= n &amp;&amp; y &gt;= 1 &amp;&amp; y &lt;= n, &quot;`x` and `y` must in [1, n]!&quot;);
+</code></pre>
 <h4 id="data-yml"><a href="#data-yml" class="headerlink" title="data.yml"></a>data.yml</h4><p>写好标程、题面，造好数据之后，对于SYZOJ的交互题必须用data.yml来指明交互器。</p>
 <p>交互题与传统题的data.yml差别较小，只是增加交互器名称即可。使用C++11编写名为interactor.cpp的交互器，要在其中增加以下内容：</p>
-<pre><code class="json">interactor:
+<pre><code class="lang-json">interactor:
   language: cpp11
-  fileName: interactor.cpp</code></pre>
+  fileName: interactor.cpp
+</code></pre>
 <p>然后数据文件的ZIP中需要包含interactor.cpp文件。</p>
 <h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>总体来说比较简单。交互题一般能增大难度、限制选手的算法，也是强制在线的一种实现方法。</p>
 

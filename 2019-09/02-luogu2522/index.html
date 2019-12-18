@@ -80,147 +80,7 @@
 </head>
 <body class="is-3-column">
     <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
-<script>
-    (function BallMouse() {
-        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
-            STAR_SIZE = 5,
-            GRAVITY_SIZE = 100,
-            STAR_MASS = 1,
-            STAR_REMOVE_TIME = 2000;
-
-        const canvas = document.getElementById('BallMouse'),
-            context = canvas.getContext('2d');
-
-        let scale = 1, // device pixel ratio
-            width,
-            height,
-            nowtime;
-
-        let stars = [];
-
-        resize();
-        step();
-
-        window.onresize = resize;
-        window.addEventListener('mousedown', function (e) {
-            onMouseDown(e);
-        }, false);
-        window.addEventListener('mouseup', function (e) {
-            onMouseUp(e);
-        }, false);
-        function placeStar(star) {
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-            return star;
-        }
-
-        function resize() {
-            scale = window.devicePixelRatio || 1;
-            width = window.innerWidth * scale;
-            height = window.innerHeight * scale;
-            canvas.width = width;
-            canvas.height = height;
-            stars.forEach(placeStar);
-        }
-
-        function step() {
-            nowtime = new Date().getTime();
-            context.clearRect(0, 0, width, height);
-            update();
-            render();
-            requestAnimationFrame(step);
-        }
-
-        function update() {
-            for (let index = 0; index < stars.length; index++) {
-                const star = stars[index];
-                if (star.z && nowtime > star.z) {
-                    stars.splice(index, 1);
-                    --index;
-                }
-            }
-            if (stars.length < STAR_COUNT) {
-                let place = (STAR_COUNT - stars.length) * Math.random();
-                for (let i = 0; i < place; i++) {
-                    stars.push(placeStar({
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        vx: 0,
-                        vy: 0,
-                        colorh: parseInt(Math.random() * 359)
-                    }));
-                }
-            }
-            stars.forEach((star) => {
-                stars.forEach(bigStar => {
-                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-                    if (r2 > 10) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                    else if (r2 > 5) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
-                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                });
-            });
-            stars.forEach((star) => {
-                star.vx -= star.vx * 0.05;
-                star.vy -= star.vy * 0.05;
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
-                    if (star.z == 0) {
-                        star.z = nowtime + STAR_REMOVE_TIME;
-                    }
-                } else {
-                    star.z = 0;
-                }
-            });
-        }
-        function render() {
-            stars.forEach((star) => {
-                context.beginPath();
-                context.lineCap = 'round';
-                context.lineWidth = STAR_SIZE * scale;
-                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
-                context.beginPath();
-                context.moveTo(star.x, star.y);
-                context.lineTo(star.x, star.y);
-                context.stroke();
-            });
-        }
-        let inv;
-        function onMouseDown(event) {
-            stars.push({
-                x: event.clientX,
-                y: event.clientY,
-                z: 0,
-                vx: 0,
-                vy: 0,
-                colorh: parseInt(Math.random() * 359)
-            });
-            inv = setTimeout(pushStar, 500);
-            function pushStar() {
-                stars.push({
-                    x: event.clientX,
-                    y: event.clientY,
-                    z: 0,
-                    vx: 0,
-                    vy: 0,
-                    colorh: parseInt(Math.random() * 359)
-                });
-                inv = setTimeout(pushStar, 100);
-            }
-        }
-        function onMouseUp(event) {
-            clearTimeout(inv);
-        }
-    })();
-</script>
+<script src="/js/animation/ballMouse.js" charset="utf-8"></script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -313,41 +173,28 @@
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>机房很久前就人均会反演，今天我终于看懂是啥了。</p>
 <p>然后把整除分块理解透彻！</p>
 <a id="more"></a>
-
-
 <p>先做道最简单的题练练手，感谢<a href="https://oi-wiki.org/math/mobius/" target="_blank" rel="noopener">莫比乌斯反演 - OI WIKI</a>和<a href="https://ctz45562.github.io/" target="_blank" rel="noopener">大佬CTZ</a>的帮助。</p>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>本题题目翻译成公式：</p>
-<p>$$ \sum_{x=a}^{b}\sum_{y=c}^{d} [gcd(x,y)=k] $$</p>
-<p>可以按照二维前缀和的思想分治一下，先设</p>
-<p>$$ F(n,m) = \sum_{i=1}^{n}\sum_{j=1}^{m} [gcd(i,j)=k] $$</p>
-<p>那么</p>
-<p>$$ ans = F(b,d) - F(b,c-1) - F(a-1,d) + F(a-1,c-1) $$</p>
-<p>然后对F(n,m)进行化简，首先两边同除以K，至于可行性，记录一下大佬的亲自讲解</p>
+<script type="math/tex; mode=display">\sum_{x=a}^{b}\sum_{y=c}^{d} [gcd(x,y)=k]</script><p>可以按照二维前缀和的思想分治一下，先设</p>
+<script type="math/tex; mode=display">F(n,m) = \sum_{i=1}^{n}\sum_{j=1}^{m} [gcd(i,j)=k]</script><p>那么</p>
+<script type="math/tex; mode=display">ans = F(b,d) - F(b,c-1) - F(a-1,d) + F(a-1,c-1)</script><p>然后对F(n,m)进行化简，首先两边同除以K，至于可行性，记录一下大佬的亲自讲解</p>
 <p>如果原式中$gcd(i,j)=k$，那么$i,j$一定是k的倍数，现在设</p>
-<p>$$ i = i’ * k , j = j’ * k $$ </p>
-<p>那么一定$gcd(i’,j’)=1$，所以得出</p>
-<p>$$ F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} [gcd(i,j)=1] $$</p>
-<p>这就可以莫比乌斯反演了，首先记住一个通用公式</p>
-<p>$$ [gcd(i,j)=1] = \sum_{d \mid gcd(i,j)}\mu(d) $$</p>
-<p>然后代入F(n,m)中</p>
-<p>$$ F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} \sum_{d \mid gcd(i,j)}\mu(d) $$</p>
-<p>先默认$n &lt; m$，那么可知$d \in [1,\lfloor \frac{n}{k} \rfloor]$</p>
+<script type="math/tex; mode=display">i = i' * k , j = j' * k</script><p>那么一定$gcd(i’,j’)=1$，所以得出</p>
+<script type="math/tex; mode=display">F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} [gcd(i,j)=1]</script><p>这就可以莫比乌斯反演了，首先记住一个通用公式</p>
+<script type="math/tex; mode=display">[gcd(i,j)=1] = \sum_{d \mid gcd(i,j)}\mu(d)</script><p>然后代入F(n,m)中</p>
+<script type="math/tex; mode=display">F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} \sum_{d \mid gcd(i,j)}\mu(d)</script><p>先默认$n &lt; m$，那么可知$d \in [1,\lfloor \frac{n}{k} \rfloor]$</p>
 <p>然后改变一下位置</p>
-<p>$$ F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}[i \mid p]\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor}[j \mid p] $$</p>
-<p>注意，右边是一个整体，后面的$[i\mid d],[j\mid d]$取1或0，也就是表示能否整除。</p>
+<script type="math/tex; mode=display">F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}[i \mid p]\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor}[j \mid p]</script><p>注意，右边是一个整体，后面的$[i\mid d],[j\mid d]$取1或0，也就是表示能否整除。</p>
 <p>这样还能进一步化简，根据常识易得</p>
-<p>$$ \sum_{i=1}^{n} i \mid p = \lfloor \frac{n}{p} \rfloor$$</p>
-<p>从而推出</p>
-<p>$$ F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\lfloor \frac{n}{kd} \rfloor{\lfloor \frac{m}{kd} \rfloor} $$</p>
-<p>式子终于推完了，然后就是整除分块。</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{n} i \mid p = \lfloor \frac{n}{p} \rfloor</script><p>从而推出</p>
+<script type="math/tex; mode=display">F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\lfloor \frac{n}{kd} \rfloor{\lfloor \frac{m}{kd} \rfloor}</script><p>式子终于推完了，然后就是整除分块。</p>
 <p>其实我一开始没看懂整除分块是因为不知道有啥用，其实是用来$O(\sqrt{n})$求这个式子</p>
-<p>$$ \sum_{i=1}^{n} \lfloor \frac{i}{p} \rfloor $$</p>
-<p>这样就好说了，我们知道某些$\lfloor \frac{i}{p} \rfloor$的值是相等的，并且这些项在一个连续区间$[l,r]$内。</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{n} \lfloor \frac{i}{p} \rfloor</script><p>这样就好说了，我们知道某些$\lfloor \frac{i}{p} \rfloor$的值是相等的，并且这些项在一个连续区间$[l,r]$内。</p>
 <p>所以枚举时找一个右端点$r$，直接计算$[i,r]$这个区间的结果，这个$r= \lfloor \frac{n}{\lfloor \frac{n}{i} \rfloor} \rfloor$。</p>
 <p>具体证明不难，<a href="https://oi-wiki.org/math/mobius/#_3" target="_blank" rel="noopener">数论分块 - OI WIKI</a>有略证。</p>
 <p>然后就写代码，还需要写莫比乌斯函数筛、前缀和。</p>
 <p>这个莫比乌斯函数筛我有待研究。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="cpp">#include &lt;iostream&gt;
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 #define MAXA 50001
 using namespace std;
@@ -389,7 +236,8 @@ int main() {
         cout &lt;&lt; query(b, d) - query(b, c - 1) - query(a - 1, d) + query(a - 1, c - 1) &lt;&lt; endl;
     }
     return 0;
-}</code></pre>
+}
+</code></pre>
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>然后你还可以把<a href="https://www.luogu.org/problem/P3455" target="_blank" rel="noopener">【LuoguP3455】【POI2007】ZAP-Queries</a> 一块通过了，只需要改一下输入输出。</p>
 
         </div>

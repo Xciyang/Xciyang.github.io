@@ -80,147 +80,7 @@
 </head>
 <body class="is-3-column">
     <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
-<script>
-    (function BallMouse() {
-        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
-            STAR_SIZE = 5,
-            GRAVITY_SIZE = 100,
-            STAR_MASS = 1,
-            STAR_REMOVE_TIME = 2000;
-
-        const canvas = document.getElementById('BallMouse'),
-            context = canvas.getContext('2d');
-
-        let scale = 1, // device pixel ratio
-            width,
-            height,
-            nowtime;
-
-        let stars = [];
-
-        resize();
-        step();
-
-        window.onresize = resize;
-        window.addEventListener('mousedown', function (e) {
-            onMouseDown(e);
-        }, false);
-        window.addEventListener('mouseup', function (e) {
-            onMouseUp(e);
-        }, false);
-        function placeStar(star) {
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-            return star;
-        }
-
-        function resize() {
-            scale = window.devicePixelRatio || 1;
-            width = window.innerWidth * scale;
-            height = window.innerHeight * scale;
-            canvas.width = width;
-            canvas.height = height;
-            stars.forEach(placeStar);
-        }
-
-        function step() {
-            nowtime = new Date().getTime();
-            context.clearRect(0, 0, width, height);
-            update();
-            render();
-            requestAnimationFrame(step);
-        }
-
-        function update() {
-            for (let index = 0; index < stars.length; index++) {
-                const star = stars[index];
-                if (star.z && nowtime > star.z) {
-                    stars.splice(index, 1);
-                    --index;
-                }
-            }
-            if (stars.length < STAR_COUNT) {
-                let place = (STAR_COUNT - stars.length) * Math.random();
-                for (let i = 0; i < place; i++) {
-                    stars.push(placeStar({
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        vx: 0,
-                        vy: 0,
-                        colorh: parseInt(Math.random() * 359)
-                    }));
-                }
-            }
-            stars.forEach((star) => {
-                stars.forEach(bigStar => {
-                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-                    if (r2 > 10) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                    else if (r2 > 5) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
-                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                });
-            });
-            stars.forEach((star) => {
-                star.vx -= star.vx * 0.05;
-                star.vy -= star.vy * 0.05;
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
-                    if (star.z == 0) {
-                        star.z = nowtime + STAR_REMOVE_TIME;
-                    }
-                } else {
-                    star.z = 0;
-                }
-            });
-        }
-        function render() {
-            stars.forEach((star) => {
-                context.beginPath();
-                context.lineCap = 'round';
-                context.lineWidth = STAR_SIZE * scale;
-                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
-                context.beginPath();
-                context.moveTo(star.x, star.y);
-                context.lineTo(star.x, star.y);
-                context.stroke();
-            });
-        }
-        let inv;
-        function onMouseDown(event) {
-            stars.push({
-                x: event.clientX,
-                y: event.clientY,
-                z: 0,
-                vx: 0,
-                vy: 0,
-                colorh: parseInt(Math.random() * 359)
-            });
-            inv = setTimeout(pushStar, 500);
-            function pushStar() {
-                stars.push({
-                    x: event.clientX,
-                    y: event.clientY,
-                    z: 0,
-                    vx: 0,
-                    vy: 0,
-                    colorh: parseInt(Math.random() * 359)
-                });
-                inv = setTimeout(pushStar, 100);
-            }
-        }
-        function onMouseUp(event) {
-            clearTimeout(inv);
-        }
-    })();
-</script>
+<script src="/js/animation/ballMouse.js" charset="utf-8"></script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -319,8 +179,6 @@
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。</p>
 <p>因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。</p>
 <a id="more"></a>
-
-
 <h3 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h3><p>我们写编码转换的代码，肯定要知道这些编码之间的关系。</p>
 <p>ASCII编码我们再熟悉不过了，然而我相信很多人和我一样，分不清什么是Unicode，UTF-8，UTF-16，UTF-32。</p>
 <p>我不想用长篇大论来解释这些东西，就给出它们各自的定义和我们需要知道的东西。如果想更深入的了解，可以自行搜索。</p>
@@ -335,20 +193,22 @@
 <p>UTF-8（8-bit Unicode Transformation Format）是一种针对Unicode的可变长度字符编码，又称万国码，由Ken Thompson于1992年创建。</p>
 </blockquote>
 <p>如果略懂编码的话，可变长度是最大特点。但是为了实现可变长度，就需要一些二进制位来表示长度，我认为它的编码规则可以说是非常典型了。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>字节数</th>
-<th>二进制编码形式</th>
+<th>二进制编码形式 </th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1字节</td>
 <td>0xxxxxxx</td>
 </tr>
 <tr>
 <td>2字节</td>
-<td>110xxxxx 10xxxxxx</td>
+<td>110xxxxx 10xxxxxx </td>
 </tr>
 <tr>
 <td>3字节</td>
@@ -356,17 +216,19 @@
 </tr>
 <tr>
 <td>4字节</td>
-<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx </td>
 </tr>
 <tr>
 <td>5字节</td>
-<td>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+<td>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx </td>
 </tr>
 <tr>
 <td>6字节</td>
 <td>1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>再简单说一下UTF-16，定义：</p>
 <blockquote>
 <p>UTF-16是Unicode字符编码五层次模型的第三层：字符编码表（Character Encoding Form，也称为 “storage format”）的一种实现方式。</p>
@@ -377,7 +239,7 @@
 </blockquote>
 <p>网上找到一个工具，<a href="https://www.qqxiuzi.cn/bianma/Unicode-UTF.php" target="_blank" rel="noopener">Unicode和UTF编码转换</a>，有兴趣可以试一下。</p>
 <h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>我们为什么要了解上面那些东西，最终还是为了更容易理解代码。先给出一个将一个字符串从UTF-8转为ASCII的示例代码，从网上抄下来的。</p>
-<pre><code class="cpp">const char *changeTxtEncoding(const char *szU8) {
+<pre><code class="lang-cpp">const char *changeTxtEncoding(const char *szU8) {
     int wcsLen= MultiByteToWideChar(CP_UTF8, NULL, szU8, strlen(szU8), NULL, 0);
     wchar_t *wszString= new wchar_t[wcsLen + 1];
     MultiByteToWideChar(CP_UTF8, NULL, szU8, strlen(szU8), wszString, wcsLen);
@@ -388,63 +250,70 @@
     szAnsi[ansiLen]= &#39;\0&#39;;
     delete[] wszString;
     return szAnsi;
-}</code></pre>
+}
+</code></pre>
 <p>此函数是将一个字符串，先从UTF-8转为UTF-16，再转为ASCII。</p>
 <h4 id="MultiByteToWideChar"><a href="#MultiByteToWideChar" class="headerlink" title="MultiByteToWideChar"></a>MultiByteToWideChar</h4><p>此函数可将字符串映射到UTF-16(宽字符)字符串。字符串不一定来自多字节字符集。在这里，字符集或代码页我们都可以理解为编码映射表。</p>
-<pre><code class="cpp">int WINAPI MultiByteToWideChar(
+<pre><code class="lang-cpp">int WINAPI MultiByteToWideChar(
     _In_ UINT CodePage,
     _In_ DWORD dwFlags,
     _In_NLS_string_(cbMultiByte) LPCCH lpMultiByteStr,
     _In_ int cbMultiByte,
     _Out_writes_to_opt_(cchWideChar,return) LPWSTR lpWideCharStr,
     _In_ int cchWideChar
-    );</code></pre>
+    );
+</code></pre>
 <p>定义简化如下：</p>
-<pre><code class="cpp">int WINAPI MultiByteToWideChar(
+<pre><code class="lang-cpp">int WINAPI MultiByteToWideChar(
     UINT CodePage, 
     DWORD dwFlags, 
     LPCCH lpMultiByteStr, 
     int cbMultiByte, 
     LPWSTR lpWideCharStr, 
     int cchWideChar
-    );</code></pre>
+    );
+</code></pre>
 <p><em>CodePage</em>为指定执行转换的字符集。如果原字符串为ASCII通常选择CP_ACP，关于CP_ACP与CP_THREAD_ACP的区别可以自己了解。我们这里原字符串为UTF-8，因此选择CP_UTF8。数值表：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>数值</th>
-<th>说明</th>
+<th>说明   </th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>CP_ACP</td>
-<td>Windows系统默认的ANSI代码页。</td>
+<td>Windows系统默认的ANSI代码页。 </td>
 </tr>
 <tr>
 <td>CP_MACCP</td>
-<td>Mac系统代码页。</td>
+<td>Mac系统代码页。 </td>
 </tr>
 <tr>
 <td>CP_ACP</td>
-<td>OEM系统代码页。</td>
+<td>OEM系统代码页。 </td>
 </tr>
 <tr>
 <td>CP_SYMBOL</td>
-<td>符号字符集。</td>
+<td>符号字符集。 </td>
 </tr>
 <tr>
 <td>CP_THREAD_ACP</td>
-<td>当前Windows线程的ANSI代码页。</td>
+<td>当前Windows线程的ANSI代码页。 </td>
 </tr>
 <tr>
 <td>CP_UTF7</td>
-<td>使用UTF-7。</td>
+<td>使用UTF-7。 </td>
 </tr>
 <tr>
 <td>CP_UTF8</td>
-<td>使用UTF-8。</td>
+<td>使用UTF-8。 </td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><em>dwFlags</em>设定转换类型。缺省值为MB_PRECOMPOSED，对于UTF-8必须为0或MB_ERR_INVALID_CHARS，此参数作用较小，数值表就不给出了。</p>
 <p><em>lpMultiByteStr</em>指向一个要转换的字符串。</p>
 <p><em>cbMultiByte</em>指定长度，如果lpMultiByteStr指向的字符串为空结束，此参数可设为-1。如果设为-1，函数将处理包括终止空字符在内的所有字符。我们可以用strlen来自行获得长度。</p>
@@ -453,7 +322,7 @@
 <p><em>Return Value</em>即返回值，返回写入到缓冲器的字符数。如果cchWideChar为0则返回缓冲器所需大小(以字符为单位)。</p>
 <p>我们第一次调用此函数时应将cchWideChar设为0，并记录函数返回值，第二次调用时将cchWideChar设为此值。</p>
 <h4 id="WideCharToMultiByte"><a href="#WideCharToMultiByte" class="headerlink" title="WideCharToMultiByte"></a>WideCharToMultiByte</h4><p>与MultiByteToWideChar恰恰相反，但多两个参数，此函数可将UTF-16(宽字符)字符串映射到新字符串。</p>
-<pre><code class="cpp">int WINAPI WideCharToMultiByte(
+<pre><code class="lang-cpp">int WINAPI WideCharToMultiByte(
     UINT CodePage, 
     DWORD dwFlags, 
     LPCWCH lpWideCharStr, 
@@ -462,7 +331,8 @@
     int cbMultiByte, 
     LPCCH lpDefaultChar, 
     LPBOOL lpUsedDefaultChar
-    );</code></pre>
+    );
+</code></pre>
 <p><em>CodePage</em>为指定执行转换的字符集。可选数值与MultiByteToWideChar相同，我们这里选择CP_ACP。</p>
 <p><em>dwFlags</em>设定转换类型。设为0即可。</p>
 <p><em>lpWideCharStr</em>指向一个要转换的字符串。</p>

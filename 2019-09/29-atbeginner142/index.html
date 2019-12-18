@@ -80,147 +80,7 @@
 </head>
 <body class="is-3-column">
     <canvas id="BallMouse" style="position: fixed;width: 100%;height: 100%;"></canvas>
-<script>
-    (function BallMouse() {
-        const STAR_COUNT = (window.innerWidth + window.innerHeight) / 50,
-            STAR_SIZE = 5,
-            GRAVITY_SIZE = 100,
-            STAR_MASS = 1,
-            STAR_REMOVE_TIME = 2000;
-
-        const canvas = document.getElementById('BallMouse'),
-            context = canvas.getContext('2d');
-
-        let scale = 1, // device pixel ratio
-            width,
-            height,
-            nowtime;
-
-        let stars = [];
-
-        resize();
-        step();
-
-        window.onresize = resize;
-        window.addEventListener('mousedown', function (e) {
-            onMouseDown(e);
-        }, false);
-        window.addEventListener('mouseup', function (e) {
-            onMouseUp(e);
-        }, false);
-        function placeStar(star) {
-            star.x = Math.random() * width;
-            star.y = Math.random() * height;
-            return star;
-        }
-
-        function resize() {
-            scale = window.devicePixelRatio || 1;
-            width = window.innerWidth * scale;
-            height = window.innerHeight * scale;
-            canvas.width = width;
-            canvas.height = height;
-            stars.forEach(placeStar);
-        }
-
-        function step() {
-            nowtime = new Date().getTime();
-            context.clearRect(0, 0, width, height);
-            update();
-            render();
-            requestAnimationFrame(step);
-        }
-
-        function update() {
-            for (let index = 0; index < stars.length; index++) {
-                const star = stars[index];
-                if (star.z && nowtime > star.z) {
-                    stars.splice(index, 1);
-                    --index;
-                }
-            }
-            if (stars.length < STAR_COUNT) {
-                let place = (STAR_COUNT - stars.length) * Math.random();
-                for (let i = 0; i < place; i++) {
-                    stars.push(placeStar({
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        vx: 0,
-                        vy: 0,
-                        colorh: parseInt(Math.random() * 359)
-                    }));
-                }
-            }
-            stars.forEach((star) => {
-                stars.forEach(bigStar => {
-                    let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-                    if (r2 > 10) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-                        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                    else if (r2 > 5) {
-                        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / (r2);
-                        star.vx += (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-                        star.vy += (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
-                    }
-                });
-            });
-            stars.forEach((star) => {
-                star.vx -= star.vx * 0.05;
-                star.vy -= star.vy * 0.05;
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
-                    if (star.z == 0) {
-                        star.z = nowtime + STAR_REMOVE_TIME;
-                    }
-                } else {
-                    star.z = 0;
-                }
-            });
-        }
-        function render() {
-            stars.forEach((star) => {
-                context.beginPath();
-                context.lineCap = 'round';
-                context.lineWidth = STAR_SIZE * scale;
-                context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
-                context.beginPath();
-                context.moveTo(star.x, star.y);
-                context.lineTo(star.x, star.y);
-                context.stroke();
-            });
-        }
-        let inv;
-        function onMouseDown(event) {
-            stars.push({
-                x: event.clientX,
-                y: event.clientY,
-                z: 0,
-                vx: 0,
-                vy: 0,
-                colorh: parseInt(Math.random() * 359)
-            });
-            inv = setTimeout(pushStar, 500);
-            function pushStar() {
-                stars.push({
-                    x: event.clientX,
-                    y: event.clientY,
-                    z: 0,
-                    vx: 0,
-                    vy: 0,
-                    colorh: parseInt(Math.random() * 359)
-                });
-                inv = setTimeout(pushStar, 100);
-            }
-        }
-        function onMouseUp(event) {
-            clearTimeout(inv);
-        }
-    })();
-</script>
+<script src="/js/animation/ballMouse.js" charset="utf-8"></script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -313,8 +173,6 @@
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这次比赛略水，真是上分的好比赛。作为仅有300+rating的我直接安排，AK比赛后直接上到900+。</p>
 <p>比赛中有几个题对我还是比较有意义的。</p>
 <a id="more"></a>
-
-
 <h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><h4 id="A"><a href="#A" class="headerlink" title="A"></a>A</h4><p>题意翻译：</p>
 <p>给出一个数$N$，从$1~N$中随机抽取，求抽到奇数的概率。</p>
 <p>这题还挺简单，再看数据范围$1 &lt;= N &lt;= 100$，太水了！</p>
@@ -331,17 +189,19 @@
 <p>数据范围$1 &lt;= A,B &lt;= 10^{12}$。</p>
 <p>看起来好像有点麻烦，但实际上我们先求出$C=gcd(A, B)$，那么$C$的约数就是两个数的共同约数。然后再分解质因数即可，题目转换为求一个较大的数的质因数个数。</p>
 <p>核心代码：</p>
-<pre><code class="cpp">long long gcd(long long a, long long b) {
+<pre><code class="lang-cpp">long long gcd(long long a, long long b) {
     return b ? gcd(b, a % b) : a;
-}</code></pre>
-<pre><code class="cpp">long long ans= 1;
+}
+</code></pre>
+<pre><code class="lang-cpp">long long ans= 1;
 for(long long i= 2; i * i &lt;= m; i++) {
     if(m % i == 0) {
         ++ans;
         while(m % i == 0) m/= i;
     }
 }
-if(m &gt; 1) ++ans;</code></pre>
+if(m &gt; 1) ++ans;
+</code></pre>
 <h4 id="E"><a href="#E" class="headerlink" title="E"></a>E</h4><p>题目到这已经不再那么水了。</p>
 <p>题意翻译：</p>
 <p>给出一个数$N$代表多少上锁的盒子，再给出一个数$M$代表有多少钥匙。每个钥匙需要花$A_i$来购买，可以打开$B_i$个盒子，分别为$C_{ij}$，一个钥匙可以多次使用。问打开所有盒子的最小花费，若无解输出-1。</p>
@@ -350,22 +210,24 @@ if(m &gt; 1) ++ans;</code></pre>
 <p>设置一个数组$F[1 &lt;&lt; N]$表示打开某些盒子的最小花费。</p>
 <p>先枚举$M$个钥匙钥匙，对将钥匙能打开的盒子二进制压缩到数$X$，然后取最小值。</p>
 <p>核心代码：</p>
-<pre><code class="cpp">int getx(int x) {
+<pre><code class="lang-cpp">int getx(int x) {
     int res= 0;
     for(int i= 1; i &lt;= b[x]; i++) res+= (1 &lt;&lt; (c[x][i] - 1));
     return res;
-}</code></pre>
+}
+</code></pre>
 <p>然后再写转移方程，由于我比较傻，所以一开始写了$F[i | j] = min(F[i] + F[j])$，结果反而枚举的是$x = i | j$。看起来复杂度$2^{3N}$，然后确实TLE了。</p>
 <p>然后我想把方程改为$F[i] = min(F[i], f[j] + f[i ^ j])$，现在想想好像枚举i,j就可以了，那样复杂度$2^{2N}$好像能过，可惜我比赛时没想这种方法。</p>
 <p>我在比赛时用了更麻烦的方法，因为我想起了之前一道题，在初始化时枚举二进制所有子集全部更新。这样预处理复杂度最大$M * 2^{N}$能过，然后再DP。我就来Blog上擅用搜索引擎，搜到了<a href="https://xciyang.github.io/2019-04/22-luoguat2657/">AT2657 - Mole and Abandoned Mine</a>。</p>
 <p>然后非常套路的预处理出每个数二进制下1的个数。</p>
 <p>核心代码：</p>
-<pre><code class="cpp">int getg(int x) {
+<pre><code class="lang-cpp">int getg(int x) {
     int res= 0;
     while(x) ++res, x-= (x &amp; -x);
     return res;
-}</code></pre>
-<pre><code class="cpp">int maxx= (1 &lt;&lt; n);
+}
+</code></pre>
+<pre><code class="lang-cpp">int maxx= (1 &lt;&lt; n);
 for(int i= 0; i &lt; maxx; i++) w[i]= getg(i);
 memset(f, 0x3f, sizeof(f));
 for(int i= 1, j; i &lt;= m; i++) {
@@ -380,7 +242,8 @@ for(int i= 1; i &lt;= n; i++) {
             f[j]= min(f[j], f[k] + f[k ^ j]);
         }
     }
-}</code></pre>
+}
+</code></pre>
 <h4 id="F"><a href="#F" class="headerlink" title="F"></a>F</h4><p>终于到最后一题，比较激动。题目还挺复杂的。</p>
 <p>题意翻译：</p>
 <p>给出一个图G，有$N$个点，$M$条单向边，无自环和重边。求出一个子图包含$N’$个点，$M’$为这些点构成的边，满足所有点的入度和出度都为1。如果有多个子图，输出任意一个。输出$N’$和包含的点。无解输出-1。</p>
@@ -390,7 +253,7 @@ for(int i= 1; i &lt;= n; i++) {
 <p>再膜一下第三组数据，发现只要有环就一定有解。</p>
 <p>因为入度出度为一，可以把这个图称为单环。我们从每个点DFS，让途中经过的点的所有能到达的点入度+1。这样DFS时，如果一个点入度已经大于1，那么从起始点开始一定不能与当前状态构成单环。所以我们每次DFS一个能到达的入度为1的点。点。再记录我们已经走过的点，如果又一次到达某点，那么一定形成了单环。如果某次更新时，途中走过的点的入度&gt;1了，那么这个点也不能与当前状态构成单环。</p>
 <p>解释不清楚，核心代码：</p>
-<pre><code class="cpp">int n, m, tmpx, tmpy, r[1005], st[1005], ans[1005];
+<pre><code class="lang-cpp">int n, m, tmpx, tmpy, r[1005], st[1005], ans[1005];
 vector&lt; int &gt; edg[1005];
 int dfs(int nown) {
     if(st[nown]) return 1;
@@ -412,14 +275,16 @@ int dfs(int nown) {
     for(int i= 0; i &lt; edg[nown].size(); i++) --r[edg[nown][i]];
     st[nown]= 0;
     return 0;
-}</code></pre>
+}
+</code></pre>
 <p>我一开始的做法是，枚举每个点为起始点跑一次DFS，直到找出答案，然后就TLE了几个点，但是AC了大部分就还能救。</p>
 <p>既然DFS都是乱搞，那就再加一个随机化。本题时限2s，那么不到1.8s我们就继续DFS。</p>
 <p>然后复杂度我也不太会证明，因为DFS复杂度也非常玄学。大概是O(能过)。最后输出答案我还sort了一遍，因为样例是排序好的。</p>
 <p>核心代码：</p>
-<pre><code class="cpp">srand(time(0));
+<pre><code class="lang-cpp">srand(time(0));
 while(clock() &lt; CLOCKS_PER_SEC * 1.8)
-    if(dfs(rand() % n + 1)) break;</code></pre>
+    if(dfs(rand() % n + 1)) break;
+</code></pre>
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>仍犯了很多错误，A题一开始竟把奇数看成质数，D题枚举因数没开long long。</p>
 
         </div>
