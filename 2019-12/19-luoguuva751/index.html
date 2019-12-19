@@ -7,17 +7,19 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: 分块 - Ciyang’s Blog</title>
+<title>UVA751 - Triangle War - Ciyang’s Blog</title>
 
 
-    <meta name="description" content="一个半退役OI的文化课选手...">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ciyang’s Blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;tags&#x2F;%E5%88%86%E5%9D%97&#x2F;index.html">
+    <meta name="description" content="【UVA751】Triangle War题目链接1: https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;UVA751题目链接2: https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;jump&#x2F;uva&#x2F;751 前言最近看R在玩某树来做黑白棋AI，让我也想学习博弈相关内容。然后学了max-min策略，然后又学了alpha-beta剪枝。 这个题是练习max-min策略+alpha-bet">
+<meta name="keywords" content="题解,Cpp,alpha-beta剪枝,记忆化搜索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UVA751 - Triangle War">
+<meta property="og:url" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-12&#x2F;19-luoguuva751&#x2F;index.html">
 <meta property="og:site_name" content="Ciyang’s Blog">
-<meta property="og:description" content="一个半退役OI的文化课选手...">
+<meta property="og:description" content="【UVA751】Triangle War题目链接1: https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;UVA751题目链接2: https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;jump&#x2F;uva&#x2F;751 前言最近看R在玩某树来做黑白棋AI，让我也想学习博弈相关内容。然后学了max-min策略，然后又学了alpha-beta剪枝。 这个题是练习max-min策略+alpha-bet">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;images&#x2F;og_image.png">
+<meta property="og:updated_time" content="2019-12-19T10:00:13.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -84,7 +86,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/medias/avatar.jpg" alt="Ciyang’s Blog" height="28">
+                <img src="/medias/avatar.jpg" alt="UVA751 - Triangle War" height="28">
             
             </a>
         </div>
@@ -115,6 +117,10 @@
             <div class="navbar-end">
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;" target="_blank" rel="noopener">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;" target="_blank" rel="noopener">
                     <i class="fas fa-search"></i>
@@ -128,182 +134,125 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-19T09:49:45.000Z">2019-12-19</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 分钟 读完 (大约 1348 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                UVA751 - Triangle War
+            
+        </h1>
+        <div class="content">
+            <p>【UVA751】Triangle War<br>题目链接1: <a href="https://www.luogu.com.cn/problem/UVA751" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/UVA751</a><br>题目链接2: <a href="https://www.luogu.com.cn/jump/uva/751" target="_blank" rel="noopener">https://www.luogu.com.cn/jump/uva/751</a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近看R在玩某树来做黑白棋AI，让我也想学习博弈相关内容。然后学了max-min策略，然后又学了alpha-beta剪枝。</p>
+<p>这个题是练习max-min策略+alpha-beta剪枝的好题，但是我们也可以记忆化搜索。</p>
+<a id="more"></a>
+
+<p>并且此题状态少，记忆化只需要20ms，比用alpha-beta剪枝的做法要快一些。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>当然我做这道题还是想学习alpha-beta剪枝的，使用此算法的题解已有，所以不多加解释。</p>
+<p>此题有两种max-min策略的解法，解法1是最大最小化最终胜负（1为先手胜利，-1为后手胜利），解法2是最大最小化最终得分差（先手得分-后手得分），当然流程就是先手最大化此值，后手最小化此值。</p>
+<p>至于局面的存储，与已有题解类似，存储边的编号，然后用二进制表示已连接的边。而三角形连接我们就手写一个数组表示需要哪三条边（很麻烦）。这个题只有单位三角形得分，似乎题意里没说。</p>
+<p>再来说两种解法的差异，因为最终胜负在一方大于等于5分就可判定，所以解法1效率较高，并且我们还可用使用alpha-beta剪枝来优化。</p>
+<p>当然我们也可以用解法2。有一个显然的结论，无论此步是A还是B，一个状态只会对应一个最优得分。那么就可以使用记忆化，已知状态总共有$(1 &lt;&lt; 18) - 1$种，这样效率就高了。并且我们每组数据前不需要清空记忆化数组，因为一个状态对应一个分数，并不需要知道你是如何到达此状态的。</p>
+<p>实现时先模拟给出的N步，然后记录双方已得分数。然后max_min搜索，如果此步得分，继续操作，如果此步不得分，就让对手操作，然后减去对手操作的分数，如果全部连接就返回0，每层都是最大化自己的得分。至于为什么双方都是最大化，我给出以下解释：A最大化(A的得分-B的得分)，B最大化(B的得分-A的得分)，所以都是最大化。</p>
+<p>在最终判定胜负时，设当前玩家为p(p为0或1)，若p已得分数+max_min(从p开始)的结果&gt;(p^1)的分数就判定p胜利，否则(p^1)胜利。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>解法1</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> edg[<span class="hljs-number">11</span>][<span class="hljs-number">11</span>];</span><br><span class="line"><span class="hljs-keyword">int</span> tri[] = &#123;(<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">0</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">1</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">2</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">3</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">4</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">7</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">2</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">4</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">5</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">5</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">6</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">10</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">8</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">9</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">15</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">7</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">9</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">11</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">11</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">12</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">16</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">10</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">12</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">13</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">13</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">14</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">17</span>)&#125;;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> addedge(x, y, z) (edg[x][y] = edg[y][x] = z)</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	addedge(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>);</span><br><span class="line">	addedge(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>);</span><br><span class="line">	addedge(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>);</span><br><span class="line">	<span class="hljs-comment">// ...</span></span><br><span class="line">	<span class="hljs-comment">// 本连边方式不推荐学习，因此部分内容已省略，相信有更好的方式</span></span><br><span class="line">	<span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">int</span> T, n, tmpx, tmpy;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">nextStep</span><span class="hljs-params">(<span class="hljs-keyword">int</span> lst, <span class="hljs-keyword">int</span> nst)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;</span><br><span class="line">	<span class="hljs-comment">// lst 为之前状态 nst 为当前状态</span></span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; i++)</span><br><span class="line">		<span class="hljs-keyword">if</span>((lst &amp; tri[i]) != tri[i] &amp;&amp; (nst &amp; tri[i]) == tri[i]) ++cnt;</span><br><span class="line">	<span class="hljs-keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> full = (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">18</span>) - <span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">alpha_beta</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nowp, <span class="hljs-keyword">int</span> st, <span class="hljs-keyword">int</span> alpha, <span class="hljs-keyword">int</span> beta, <span class="hljs-keyword">int</span> ans[<span class="hljs-number">2</span>])</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span>(ans[<span class="hljs-number">0</span>] &gt;= <span class="hljs-number">5</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">if</span>(ans[<span class="hljs-number">1</span>] &gt;= <span class="hljs-number">5</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;</span><br><span class="line">	<span class="hljs-keyword">int</span> fst = full ^ st, nst;</span><br><span class="line">	<span class="hljs-keyword">while</span>(fst) &#123;</span><br><span class="line">		<span class="hljs-keyword">int</span> edge = fst &amp; (-fst);</span><br><span class="line">		<span class="hljs-comment">// 枚举连边</span></span><br><span class="line">		<span class="hljs-keyword">int</span> res = nextStep(st, (nst = st | edge));</span><br><span class="line">		<span class="hljs-keyword">if</span>(res) &#123;</span><br><span class="line">			ans[nowp] += res;</span><br><span class="line">			(nowp ? beta : alpha) = (nowp ? min&lt; <span class="hljs-keyword">int</span> &gt; : max&lt; <span class="hljs-keyword">int</span> &gt;)((nowp ? beta : alpha), alpha_beta(nowp, nst, alpha, beta, ans));</span><br><span class="line">			ans[nowp] -= res;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">			(nowp ? beta : alpha) = (nowp ? min&lt; <span class="hljs-keyword">int</span> &gt; : max&lt; <span class="hljs-keyword">int</span> &gt;)((nowp ? beta : alpha), alpha_beta(nowp ^ <span class="hljs-number">1</span>, nst, alpha, beta, ans));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-comment">// 压行写法</span></span><br><span class="line">		<span class="hljs-keyword">if</span>(alpha &gt;= beta) <span class="hljs-keyword">break</span>;</span><br><span class="line">		<span class="hljs-comment">// alpha-beta剪枝</span></span><br><span class="line">		fst -= edge;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> nowp ? beta : alpha;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; T;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> t = <span class="hljs-number">1</span>; t &lt;= T; t++) &#123;</span><br><span class="line">		<span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">		<span class="hljs-keyword">int</span> st = <span class="hljs-number">0</span>, p = <span class="hljs-number">0</span>, ans[<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">0</span>&#125;;</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">			<span class="hljs-built_in">cin</span> &gt;&gt; tmpx &gt;&gt; tmpy;</span><br><span class="line">			<span class="hljs-keyword">int</span> res = nextStep(st, st | (<span class="hljs-number">1</span> &lt;&lt; edg[tmpx][tmpy]));</span><br><span class="line">			st = st | (<span class="hljs-number">1</span> &lt;&lt; edg[tmpx][tmpy]);</span><br><span class="line">			<span class="hljs-keyword">if</span>(res) &#123;</span><br><span class="line">				ans[p] += res;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">				p ^= <span class="hljs-number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-comment">// 模拟</span></span><br><span class="line">		<span class="hljs-keyword">int</span> res = alpha_beta(p, st, <span class="hljs-number">-0x3f3f3f3f</span>, <span class="hljs-number">0x3f3f3f3f</span>, ans);</span><br><span class="line">		<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Game "</span> &lt;&lt; t &lt;&lt; <span class="hljs-string">": "</span>;</span><br><span class="line">		<span class="hljs-keyword">if</span>(res &gt;= <span class="hljs-number">0</span>) &#123;</span><br><span class="line">			<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"A wins."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">			<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"B wins."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解法2</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> edg[<span class="hljs-number">11</span>][<span class="hljs-number">11</span>];</span><br><span class="line"><span class="hljs-keyword">int</span> tri[] = &#123;(<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">0</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">1</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">2</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">3</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">4</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">7</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">2</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">4</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">5</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">5</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">6</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">10</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">8</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">9</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">15</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">7</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">9</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">11</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">11</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">12</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">16</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">10</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">12</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">13</span>),</span><br><span class="line">			 (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">13</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">14</span>) + (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">17</span>)&#125;;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> addedge(x, y, z) (edg[x][y] = edg[y][x] = z)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> full = (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">18</span>) - <span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> mm[full + <span class="hljs-number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	addedge(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>);</span><br><span class="line">	addedge(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>);</span><br><span class="line">	addedge(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>);</span><br><span class="line">	<span class="hljs-comment">// ...</span></span><br><span class="line">	<span class="hljs-comment">// 本连边方式不推荐学习，因此部分内容已省略，相信有更好的方式</span></span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; full; i++) mm[i] = <span class="hljs-number">-0x3f3f3f3f</span>;</span><br><span class="line">	mm[full] = <span class="hljs-number">0</span>;</span><br><span class="line">	<span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> T, n, tmpx, tmpy;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">nextStep</span><span class="hljs-params">(<span class="hljs-keyword">int</span> lst, <span class="hljs-keyword">int</span> nst)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-comment">// lst 为之前状态 nst 为当前状态</span></span><br><span class="line">	<span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; i++)</span><br><span class="line">		<span class="hljs-keyword">if</span>((lst &amp; tri[i]) != tri[i] &amp;&amp; (nst &amp; tri[i]) == tri[i]) ++cnt;</span><br><span class="line">	<span class="hljs-comment">// 本次得分</span></span><br><span class="line">	<span class="hljs-keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">max_min</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nowp, <span class="hljs-keyword">int</span> st)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span>(mm[st] != <span class="hljs-number">-0x3f3f3f3f</span>) <span class="hljs-keyword">return</span> mm[st];</span><br><span class="line">	<span class="hljs-keyword">int</span> fst = full ^ st, nst, maxx = <span class="hljs-number">-0x3f3f3f3f</span>;</span><br><span class="line">	<span class="hljs-keyword">while</span>(fst) &#123;</span><br><span class="line">		<span class="hljs-keyword">int</span> edge = fst &amp; (-fst);</span><br><span class="line">		<span class="hljs-comment">// 枚举连边</span></span><br><span class="line">		<span class="hljs-keyword">int</span> res = nextStep(st, (nst = st | edge));</span><br><span class="line">		<span class="hljs-keyword">if</span>(res) &#123;</span><br><span class="line">			maxx = max(maxx, res + max_min(nowp, nst));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">			maxx = max(maxx, -max_min(nowp ^ <span class="hljs-number">1</span>, nst));</span><br><span class="line">		&#125;</span><br><span class="line">		fst -= edge;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> mm[st] = maxx;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; T;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> t = <span class="hljs-number">1</span>; t &lt;= T; t++) &#123;</span><br><span class="line">		<span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">		<span class="hljs-keyword">int</span> st = <span class="hljs-number">0</span>, p = <span class="hljs-number">0</span>, ans[<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">0</span>&#125;;</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">			<span class="hljs-built_in">cin</span> &gt;&gt; tmpx &gt;&gt; tmpy;</span><br><span class="line">			<span class="hljs-keyword">int</span> res = nextStep(st, st | (<span class="hljs-number">1</span> &lt;&lt; edg[tmpx][tmpy]));</span><br><span class="line">			st = st | (<span class="hljs-number">1</span> &lt;&lt; edg[tmpx][tmpy]);</span><br><span class="line">			<span class="hljs-keyword">if</span>(res) &#123;</span><br><span class="line">				ans[p] += res;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">				p ^= <span class="hljs-number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-comment">// 模拟</span></span><br><span class="line">		<span class="hljs-keyword">int</span> res = max_min(p, st);</span><br><span class="line">		<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Game "</span> &lt;&lt; t &lt;&lt; <span class="hljs-string">": "</span>;</span><br><span class="line">		<span class="hljs-keyword">if</span>((ans[p] + res &gt; ans[p ^ <span class="hljs-number">1</span>]) ^ p) &#123;</span><br><span class="line">			<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"A wins."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">			<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"B wins."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>不过这个题3s时限怕是有点水了。</p>
+<p>然后还可以做<a href="https://www.luogu.com.cn/problem/P4363" target="_blank" rel="noopener"> 【九省联考2018】一双木棋chess</a>，也可以使用max-min策略+记忆化搜索。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Cpp/" rel="tag">Cpp</a>, <a class="has-link-grey -link" href="/tags/alpha-beta%E5%89%AA%E6%9E%9D/" rel="tag">alpha-beta剪枝</a>, <a class="has-link-grey -link" href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" rel="tag">记忆化搜索</a>, <a class="has-link-grey -link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019-12/09-csps2019afo/">
+                <span class="level-item">CSP-S 2019 · AFO游记</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">分块</a></li>
-        </ul>
-        </nav>
-    </div>
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NjA4Ni8yMjU5Nw==">
+    <script type="text/javascript">
+        (function(d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+
+            if (typeof LivereTower === 'function') { return; }
+
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
+    </script>
+    <noscript> Please activate JavaScript for write a comment in LiveRe</noscript>
 </div>
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-11T03:04:15.000Z">2019-07-11</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    16 分钟 读完 (大约 2406 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019-07/11-luogu4008/">NOI2003 - 文本编辑器</a>
-            
-        </h1>
-        <div class="content">
-            <p>【LuoguP4008】【BZOJ1507】【NOI2003】文本编辑器 Editor<br>题目链接1: <a href="https://www.luogu.org/problemnew/show/P4008" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P4008</a><br>题目链接2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1507" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=1507</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这题放在任务计划里已经有些时日了，又拿出来看了看题面。原本是练习Splay用的，但因为不够熟练和懒得缘故，一直不想动手写。看了题解，发现了一个思路简单，代码较为暴力的数据结构——“块状链表”。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019-07/11-luogu4008/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-09T08:42:10.000Z">2019-07-09</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 分钟 读完 (大约 631 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019-07/09-luogu3396/">LuoguP3396 - 哈希冲突</a>
-            
-        </h1>
-        <div class="content">
-            <p>【LuoguP3396】哈希冲突<br>题目链接: <a href="https://www.luogu.org/problemnew/show/P3396" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P3396</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>话说快暑假了…但是好像没有几天假期啊。</p>
-<p>然后期末考试之际做了找到题，发现暴力好像都能用分块优化。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019-07/09-luogu3396/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-07T13:31:51.000Z">2019-03-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 分钟 读完 (大约 1003 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019-03/07-luogu4085/">USACO17DEC - Haybale Feast</a>
-            
-        </h1>
-        <div class="content">
-            <p>【LuoguP4085】【USACO17DEC】Haybale Feast<br>题目链接: <a href="https://www.luogu.org/problemnew/show/P4085" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P4085</a></p>
-<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>好像教练说要考线段树和树状数组, 然后看到了这个题</p>
-<p>这道题可以练习各种数据结构的基础操作…</p>
-<p>我就浪费了大把时间用各种算法来A这道题</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019-03/07-luogu4085/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 </div>
                 
 
@@ -430,6 +379,34 @@
 </div>
     
         
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#前言">
+        <span class="has-mr-6">1</span>
+        <span>前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#分析">
+        <span class="has-mr-6">2</span>
+        <span>分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码">
+        <span class="has-mr-6">3</span>
+        <span>代码</span>
+        </a></li><li>
+        <a class="is-flex" href="#后记">
+        <span class="has-mr-6">4</span>
+        <span>后记</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
     
         <div class="card widget">
     <div class="card-content">
@@ -1621,7 +1598,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/medias/avatar.jpg" alt="Ciyang’s Blog" height="28">
+                    <img src="/medias/avatar.jpg" alt="UVA751 - Triangle War" height="28">
                 
                 </a>
                 <p class="is-size-7">
