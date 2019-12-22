@@ -1,14 +1,16 @@
 window.addEventListener('load', function (e) {
-  const STAR_COUNT = (window.innerWidth + window.innerHeight) / 30,
-    STAR_SIZE = 5.5,
-    GRAVITY_SIZE = 10,
-    STAR_MASS = 1,
-    STAR_REMOVE_TIME = 2000;
+  const STAR_COUNT = (window.innerWidth + window.innerHeight) / 100,
+    STAR_MIN_SIZE = 5,
+    STAR_MAX_SIZE = 10,
+    GRAVITY_SIZE = 1,
+    STAR_MASS = 5,
+    STAR_REMOVE_TIME = 3000,
+    RESISTANCE_SIZE = 0.0001;
 
   const canvas = document.getElementById('BallMouse'),
     context = canvas.getContext('2d');
 
-  let scale = 1, // device pixel ratio
+  let scale = 1,
     width,
     height,
     nowtime;
@@ -25,11 +27,6 @@ window.addEventListener('load', function (e) {
   window.addEventListener('mouseup', function (e) {
     onMouseUp(e);
   });
-  function placeStar(star) {
-    star.x = Math.random() * width;
-    star.y = Math.random() * height;
-    return star;
-  }
 
   function resize() {
     scale = window.devicePixelRatio || 1;
@@ -37,7 +34,6 @@ window.addEventListener('load', function (e) {
     height = window.innerHeight * scale;
     canvas.width = width;
     canvas.height = height;
-    stars.forEach(placeStar);
   }
 
   function step() {
@@ -59,26 +55,31 @@ window.addEventListener('load', function (e) {
     if (stars.length < STAR_COUNT) {
       let place = (STAR_COUNT - stars.length) * Math.random();
       for (let i = 0; i < place; i++) {
-        stars.push(placeStar({
-          x: 0,
-          y: 0,
+        stars.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
           z: 0,
+          siz: STAR_MIN_SIZE + Math.random() * (STAR_MAX_SIZE - STAR_MIN_SIZE) / 2,
           vx: 0,
           vy: 0,
           colorh: parseInt(Math.random() * 359)
-        }));
+        });
       }
     }
     stars.forEach((star) => {
       stars.forEach(bigStar => {
         let r2 = (star.x - bigStar.x) * (star.x - bigStar.x) + (star.y - bigStar.y) * (star.y - bigStar.y);
-        r2 = Math.max(r2, STAR_SIZE * STAR_SIZE);
-        let f = GRAVITY_SIZE * STAR_MASS * STAR_MASS / r2;
-        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / STAR_MASS;
-        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / STAR_MASS;
+        r2 = Math.max(r2, (star.siz + bigStar.siz) * (star.siz + bigStar.siz));
+        let f = GRAVITY_SIZE * star.siz * STAR_MASS * bigStar.siz * STAR_MASS / r2;
+        star.vx -= (star.x - bigStar.x) / Math.sqrt(r2) * f / (star.siz * STAR_MASS);
+        star.vy -= (star.y - bigStar.y) / Math.sqrt(r2) * f / (star.siz * STAR_MASS);
       });
     });
     stars.forEach((star) => {
+      let v2 = star.vx * star.vx + star.vy * star.vy;
+      let f = Math.PI * RESISTANCE_SIZE * star.siz * Math.sqrt(v2);
+      star.vx -= star.vx / Math.sqrt(v2) * f / (star.siz * STAR_MASS);
+      star.vy -= star.vy / Math.sqrt(v2) * f / (star.siz * STAR_MASS);
       star.x += star.vx;
       star.y += star.vy;
       if (star.x < 0 || star.y < 0 || star.x > width || star.y > height) {
@@ -94,8 +95,8 @@ window.addEventListener('load', function (e) {
     stars.forEach((star) => {
       context.beginPath();
       context.lineCap = 'round';
-      context.lineWidth = STAR_SIZE * scale;
-      context.strokeStyle = 'hsla(' + star.colorh + ',100%,70%,' + (star.z ? (star.z - nowtime) / STAR_REMOVE_TIME : 1) + ')';
+      context.lineWidth = star.siz * scale;
+      context.strokeStyle = 'hsla(' + star.colorh + ',100%,60%, 70%)';
       context.beginPath();
       context.moveTo(star.x, star.y);
       context.lineTo(star.x, star.y);
@@ -104,10 +105,12 @@ window.addEventListener('load', function (e) {
   }
   let inv;
   function onMouseDown(event) {
+    let siz = STAR_MIN_SIZE + Math.random() * (STAR_MAX_SIZE - STAR_MIN_SIZE);
     stars.push({
-      x: event.clientX + Math.random() * STAR_SIZE,
-      y: event.clientY + Math.random() * STAR_SIZE,
+      x: event.clientX + Math.random() * siz,
+      y: event.clientY + Math.random() * siz,
       z: 0,
+      siz: siz,
       vx: 0,
       vy: 0,
       colorh: parseInt(Math.random() * 359)
