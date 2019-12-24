@@ -1,50 +1,41 @@
-window.addEventListener('load', function (e) {
-  const STAR_COUNT = (window.innerWidth + window.innerHeight) / 100,
+() => {
+  const STAR_COUNT = (window.innerWidth + window.innerHeight) / 80,
     STAR_MIN_SIZE = 5,
     STAR_MAX_SIZE = 10,
     GRAVITY_SIZE = 1,
     STAR_MASS = 5,
     STAR_REMOVE_TIME = 3000,
     RESISTANCE_SIZE = 0.0001;
-
-  const canvas = document.getElementById('BallMouse'),
-    context = canvas.getContext('2d');
-
+  const canvas = document.createElement('canvas');
+  canvas.style.position = 'fixed';
+  canvas.style.width = 'auto';
+  canvas.style.height = 'auto';
+  document.body.prepend(canvas);
+  const context = canvas.getContext('2d');
   let scale = 1,
     width,
-    height,
+    height;
+
+  let stars = [],
     nowtime;
 
-  let stars = [];
-
-  resize();
-  step();
-
-  window.onresize = resize;
-  window.addEventListener('mousedown', function (e) {
-    onMouseDown(e);
-  });
-  window.addEventListener('mouseup', function (e) {
-    onMouseUp(e);
-  });
-
-  function resize() {
+  const resize = (event) => {
     scale = window.devicePixelRatio || 1;
     width = window.innerWidth * scale;
     height = window.innerHeight * scale;
     canvas.width = width;
     canvas.height = height;
-  }
+  };
 
-  function step() {
+  const step = () => {
     nowtime = new Date().getTime();
     context.clearRect(0, 0, width, height);
     update();
     render();
     requestAnimationFrame(step);
-  }
+  };
 
-  function update() {
+  const update = () => {
     for (let index = 0; index < stars.length; index++) {
       const star = stars[index];
       if (star.z && nowtime > star.z) {
@@ -53,8 +44,8 @@ window.addEventListener('load', function (e) {
       }
     }
     if (stars.length < STAR_COUNT) {
-      let place = (STAR_COUNT - stars.length) * Math.random();
-      for (let i = 0; i < place; i++) {
+      let placeNumber = (STAR_COUNT - stars.length) * Math.random();
+      for (let i = 0; i < placeNumber; i++) {
         stars.push({
           x: Math.random() * width,
           y: Math.random() * height,
@@ -90,8 +81,8 @@ window.addEventListener('load', function (e) {
         star.z = 0;
       }
     });
-  }
-  function render() {
+  };
+  const render = () => {
     stars.forEach((star) => {
       context.beginPath();
       context.lineCap = 'round';
@@ -102,22 +93,32 @@ window.addEventListener('load', function (e) {
       context.lineTo(star.x, star.y);
       context.stroke();
     });
-  }
+  };
   let inv;
-  function onMouseDown(event) {
+  const onMouseDown = (event) => {
+    if (!inv) {
+      inv = setInterval(onMouseDown, 100, event)
+    }
     let siz = STAR_MIN_SIZE + Math.random() * (STAR_MAX_SIZE - STAR_MIN_SIZE);
     stars.push({
-      x: event.clientX + Math.random() * siz,
-      y: event.clientY + Math.random() * siz,
+      x: event.clientX + Math.random() * siz * 2,
+      y: event.clientY + Math.random() * siz * 2,
       z: 0,
       siz: siz,
       vx: 0,
       vy: 0,
       colorh: parseInt(Math.random() * 359)
     });
-    inv = setTimeout(onMouseDown, 100, event);
-  }
-  function onMouseUp(event) {
-    clearTimeout(inv);
-  }
-});
+  };
+  const onMouseUp = (event) => {
+    clearInterval(inv);
+    inv = 0;
+  };
+
+  resize();
+  step();
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousedown', onMouseDown);
+  window.addEventListener('mouseup', onMouseUp);
+
+};
