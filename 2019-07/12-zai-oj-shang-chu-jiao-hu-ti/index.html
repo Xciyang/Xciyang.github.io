@@ -171,8 +171,6 @@
 <p>本博客所指的OJ仅指SYZOJ，即搭建LOJ使用的在线评测系统。</p>
 <p>SYZOJ源码链接(Github仓库): <a href="https://github.com/syzoj/syzoj" target="_blank" rel="noopener">https://github.com/syzoj/syzoj</a></p>
 <a id="more"></a>
-
-
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在校内使用SYZOJ搭建内网OJ已经有些时日了。其实之前就看到有交互题这一说，但一直没有去关注和了解。</p>
 <p>今天正颓废时，突然想起了交互题，然后开始便研究。</p>
 <p>本以为是testlib，现在才发现SYZOJ有自己特有的交互方式。</p>
@@ -185,33 +183,26 @@
 <p>LOJ中交互题系统测试题<a href="https://loj.ac/problem/6" target="_blank" rel="noopener">Guess Number</a>可以自行了解一下。</p>
 <h4 id="输入文件"><a href="#输入文件" class="headerlink" title="输入文件"></a>输入文件</h4><p>根据帮助，<code>目录下会有 input 文件，表示该测试点的输入文件</code>，那么就需要用文件流操作，我选择使用std::ifstream来读取input文件。交互器从输入文件读取一个整数的实例：</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">int</span> n;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">std</span>::<span class="hljs-function">ifstream <span class="hljs-title">datin</span><span class="hljs-params">(<span class="hljs-string">"input"</span>)</span></span>;</span><br><span class="line">    datin &gt;&gt; n;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="选手得分"><a href="#选手得分" class="headerlink" title="选手得分"></a>选手得分</h4><p><code>将选手得分写入 score.txt 文件中</code> 也是同理，使用std::ofstream打开score.txt文件，写入一个数即可。</p>
 <p>可以根据查询次数等信息来确定得分，支持部分正确（0 &lt;= 得分 &lt;= 100）。</p>
 <h4 id="额外信息"><a href="#额外信息" class="headerlink" title="额外信息"></a>额外信息</h4><p>继续看帮助，<code>将提供给用户的额外信息输出到标准错误输出（stderr）中</code>。额外信息就是测试点的反馈信息，我们常在传统题WA时看到<code>Files user_out and answer differ</code>。给出一个交互器判定选手输出的实例（不完整）：</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">int</span> n, ans;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// main_code</span></span><br><span class="line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">"Wrong answer! The correct answer is "</span> &lt;&lt; ans &lt;&lt; <span class="hljs-string">" ."</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>当WA时输出正确的答案以供选手参考，与Special Judge类似。</p>
 <h4 id="封装交互"><a href="#封装交互" class="headerlink" title="封装交互"></a>封装交互</h4><p>帮助最后一句，是可选的。我们可以封装标准输入输出的交互，我们对于C++而言，可以写一个头文件interactor.h。</p>
 <p>我们模拟一个很简单的题来示范interactor.h，选手输出两个数（代表一个坐标）与交互器进行交互，交互器返回一个数表示与终点的曼哈顿距离。</p>
 <p>代码如下（只是interactor.h）：</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; y &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-built_in">std</span>::flush;</span><br><span class="line">    <span class="hljs-keyword">int</span> res;</span><br><span class="line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; res;</span><br><span class="line">    <span class="hljs-keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>你可以把它当做附加源文件提供给选手，方便不太懂的选手交互。</p>
 <h4 id="数据判断"><a href="#数据判断" class="headerlink" title="数据判断"></a>数据判断</h4><p>在交互过程中，交互器需要面对选手提供的各种输出数据。这些数据可能不合法，为了节省代码，介绍一个assert函数，貌似testlib中有类似的函数。</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">template</span> &lt; <span class="hljs-keyword">typename</span> T &gt;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">assert</span><span class="hljs-params">(<span class="hljs-keyword">const</span> T &amp;condition, <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;message)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span>(!condition) &#123;</span><br><span class="line">		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cerr</span> &lt;&lt; message &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span><br><span class="line">		score &lt;&lt; <span class="hljs-number">-1</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span><br><span class="line">		<span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>此函数是模板函数，刚入门C++的人可能不太懂。对于这个函数来讲，模板就是为了适用所有类型。condition为一个表达式，message为提供的额外信息。</p>
 <p>判断选手输出是否为整数可以用以下代码，如果不是，cin就会出错，然后执行if中的语句（选手的输出等同于交互器的输入）。</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">int</span> x, y;</span><br><span class="line">assert(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; x &gt;&gt; y, <span class="hljs-string">"Invalid `x` or `y`!"</span>);</span><br></pre></td></tr></table></figure>
-
 <p>交互器判断选手输出的数的范围也是如此：</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert(x &gt;= <span class="hljs-number">1</span> &amp;&amp; x &lt;= n &amp;&amp; y &gt;= <span class="hljs-number">1</span> &amp;&amp; y &lt;= n, <span class="hljs-string">"`x` and `y` must in [1, n]!"</span>);</span><br></pre></td></tr></table></figure>
-
 <h4 id="data-yml"><a href="#data-yml" class="headerlink" title="data.yml"></a>data.yml</h4><p>写好标程、题面，造好数据之后，对于SYZOJ的交互题必须用data.yml来指明交互器。</p>
 <p>交互题与传统题的data.yml差别较小，只是增加交互器名称即可。使用C++11编写名为interactor.cpp的交互器，要在其中增加以下内容：</p>
 <figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interactor:</span><br><span class="line">  language: cpp11</span><br><span class="line">  fileName: interactor.cpp</span><br></pre></td></tr></table></figure>
-
 <p>然后数据文件的ZIP中需要包含interactor.cpp文件。</p>
 <h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>总体来说比较简单。交互题一般能增大难度、限制选手的算法，也是强制在线的一种实现方法。</p>
 
@@ -1658,7 +1649,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 Ciyang&nbsp;
+                &copy; 2020 Ciyang&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 

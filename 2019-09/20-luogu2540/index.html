@@ -172,12 +172,9 @@
 <p>早在一年前就用贪心完成了普通版，然后现在忘了。</p>
 <p>所以重新写一遍这道题，并且提高难度做增强版。看了仅剩的智商，我选择搜索。</p>
 <a id="more"></a>
-
-
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>其实我一开始没有想着去写100分的代码，因为爆搜的复杂度太大，然后这题好像我只会爆搜。</p>
 <h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>首先，很容易想到一种最纯粹的爆搜。每层都将当前剩余牌可行的情况全部枚举判断，然后打出一种可行的牌进入下一层继续搜索。</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">搜索是盲目的，我们考虑剪枝。    ——某金牌教练</span><br></pre></td></tr></table></figure>
-
 <p>一个剪枝是搜索必备，如果当前答案大于或等于已知的最小答案，我们接下来的搜索一定不会更新答案，所以回到上一层。</p>
 <p>然后再继续想，可以加一个启发式剪枝，计算打出所有剩余牌的最大出牌次数。</p>
 <p>用肉眼就能推出，一副牌的最大出牌次数就是牌的数码种类数，两个王在此可以算一种。然后我们计算出当前最大出牌次数加上当前已出牌次数去更新答案，这样就会剪去接下来的一些较差的出牌方法。</p>
@@ -1621,7 +1618,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 Ciyang&nbsp;
+                &copy; 2020 Ciyang&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 
