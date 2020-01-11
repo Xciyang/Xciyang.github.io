@@ -19,7 +19,7 @@
 <meta property="og:description" content="【LuoguP3695】 CYaRon!语题目链接: https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P3695 前言很早前就想写一个自己的语言，但教程一直看不懂，甚至无法写出一个代码优美、逻辑清晰的计算器。最近又有了这个念头，根据国外文献开始学习解释器。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2020-01-11T11:23:39.699Z">
+<meta property="og:updated_time" content="2020-01-11T23:04:19.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -149,7 +149,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    34 分钟 读完 (大约 5078 个字)
+                    34 分钟 读完 (大约 5079 个字)
                 </span>
                 
                 
@@ -216,7 +216,8 @@
 <p>如果不知道某个TOKEN_TYPE的含义，那么请看在代码里的LEXER中TOKEN是如何产生的。</p>
 <h4 id="VARIABLE"><a href="#VARIABLE" class="headerlink" title="VARIABLE"></a>VARIABLE</h4><p>至于为什么先讲这个，因为程序一上来就要定义变量。我是针对本题只有int来解决的，解释器文献的这部分在C++中出入较大。</p>
 <p>本着不用STL的原则，因此无法使用map。我并不想也不会写红黑树，而本题只有10个变量，所以就链表查询变量了。代码（部分）：</p>
-<p>class VAR {<br>    private:<br>    const char *_name;  // 变量名<br>    unsigned int _len;  // 变量名长度<br>    VAR *_nxt;          // 链表下一个<br>    int *_mem;          // 内存<br>    int _s, _t;         // 数组下标起始和终止，非数组中分别为0、1<br>    …<br>};</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VAR</span> &#123;</span></span><br><span class="line">	<span class="hljs-keyword">private</span>:</span><br><span class="line">	<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *_name;  <span class="hljs-comment">// 变量名</span></span><br><span class="line">	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> _len;  <span class="hljs-comment">// 变量名长度</span></span><br><span class="line">	VAR *_nxt;          <span class="hljs-comment">// 链表下一个</span></span><br><span class="line">	<span class="hljs-keyword">int</span> *_mem;          <span class="hljs-comment">// 内存</span></span><br><span class="line">	<span class="hljs-keyword">int</span> _s, <span class="hljs-keyword">_t</span>;         <span class="hljs-comment">// 数组下标起始和终止，非数组中分别为0、1</span></span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>然后定义一个链表首节点var_first，写两个函数分别为getVar、setVar，前置是根据名称获得VAR指针，后者实际上是注册一个VAR。</p>
 <h4 id="BLOCK"><a href="#BLOCK" class="headerlink" title="BLOCK"></a>BLOCK</h4><p>BLOCK是一个TOKEN类型，目的表示代码块。一个<code>{}</code>所包含的内容即是一个代码块，特别的，整个程序也是一个代码块。</p>
 <p>根据语言的特性，代码块的第一行通常为控制语句，比如判断、循环、vars等。如果没有控制语句，设置BLOCK为默认控制语句，代表只运行一次，vars也是如此。</p>
@@ -230,7 +231,7 @@
 <p>那么组成它的TOKEN包括VARIABLE_NAME、VARIABLE_TYPE、BRACKET_LEFT、BRACKET_RIGHT、INTEGER、T_DOT。</p>
 <p>语法树构建时，我把T_COLON设为多元运算符，VARIABLE_NAME设为第0子节点，省去了VARIABLE_TYPE，如果为数组再新建两个INTEGER节点当做T_COLON的子节点。</p>
 <p>此为parserVar函数。</p>
-<p>运作时判断子节点数，VAR中的_s为第1个子节点的值，_t为第2个子节点的值，无子节点视为0、1；</p>
+<p>运作时判断子节点数，VAR中的_s为第1个子节点的值，_t为第2个子节点的值，无子节点视为0、1。</p>
 <h4 id="EXPRESSION"><a href="#EXPRESSION" class="headerlink" title="EXPRESSION"></a>EXPRESSION</h4><p>表达式已经是老生常谈的问题了，所以不再细说。</p>
 <p>遇到表达式调用parserSecond，内部调用parserThird，分析出常量、变量、加减运算符，遇到括号（然而此题没有，才发现）就递归调用parserSecond。</p>
 <h4 id="VARIABLE-1"><a href="#VARIABLE-1" class="headerlink" title="VARIABLE"></a>VARIABLE</h4><p>读取变量的值时先读入VARIABLE_NAME，再判断是否有BRACKET_LEFT（左中括号），之后再调用parserSecond读取内部表达式，再读入BRACKET_RIGHT，然而本题内部表达式并不会很复杂。</p>
