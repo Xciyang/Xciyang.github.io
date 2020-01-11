@@ -11,7 +11,7 @@
 
 
     <meta name="description" content="【LuoguP2633】【SP10628】【BZOJ2588】Count on a tree 树上第 K 大题目链接1: https:&#x2F;&#x2F;www.luogu.org&#x2F;problemnew&#x2F;show&#x2F;P2633题目链接2: https:&#x2F;&#x2F;www.lydsy.com&#x2F;JudgeOnline&#x2F;problem.php?id=2588题目链接3: https:&#x2F;&#x2F;www.luogu.org&#x2F;problem">
-<meta name="keywords" content="题解,Cpp,LCA,主席树">
+<meta name="keywords" content="Cpp,题解,LCA,主席树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LuoguP2633 - Count on a tree">
 <meta property="og:url" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-02&#x2F;18-luogu2633&#x2F;index.html">
@@ -170,16 +170,13 @@
             <p>【LuoguP2633】【SP10628】【BZOJ2588】Count on a tree 树上第 K 大<br>题目链接1: <a href="https://www.luogu.org/problemnew/show/P2633" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P2633</a><br>题目链接2: <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2588" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=2588</a><br>题目链接3: <a href="https://www.luogu.org/problemnew/show/SP10628" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/SP10628</a><br>题目链接4: <a href="https://www.spoj.com/problems/COT/" target="_blank" rel="noopener">https://www.spoj.com/problems/COT/</a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本来是打算做 TJOI2018 - 异或 那道题的, 然后又看到这道题, 好像做这道题有助于那道题…然后就开始干</p>
 <a id="more"></a>
-
-
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这道题像是组合模板题…用倍增LCA + 主席树, 直接套模板就行了.</p>
 <p>有一些需要注意的东西, 边的数组最好开大一点, 不然容易RE, 哪个算法写炸了也容易RE, 所以需要小心谨慎的写代码, 然而Ciyang的倍增写挂了…</p>
 <p>主席树我写的指针版, 好像很罕见, 强烈安利, 虽然和数组版没有多大的区别.</p>
 <p>对于这道题, 先预处理出LCA, 然后建个树（数组版不需要）</p>
 <p>查询时把$ x $和$ y $之间的链提出来, 主席树上存的是前缀和, 那么就需要先求出$ lca(x,y) $</p>
 <p>再根据数学上的某些原理（容斥?）求出</p>
-<p>$$ Sum(x,y) = sum(x) + sum(y) - sum(lca(x,y)) - sum(lca(x,y)) - sum(f[lca(x,y)])$$</p>
-<p>$ f[x] $ 代表 x 的父节点, 然后直接套主席树板子就行了</p>
+<script type="math/tex; mode=display">Sum(x,y) = sum(x) + sum(y) - sum(lca(x,y)) - sum(lca(x,y)) - sum(f[lca(x,y)])</script><p>$ f[x] $ 代表 x 的父节点, 然后直接套主席树板子就行了</p>
 <p>推荐两个STL必备黑科技, unique 和 lower_bound, 前者那个是给有序数组去重, 后者是有序数组二分查找. 一般都会了, 不会的百度把… </p>
 <p>如果出现RE, 找不到原因, 可以去交<a href="https://www.luogu.org/problemnew/show/SP10628" target="_blank" rel="noopener">这道题</a>, 去掉强制在线, 如果WA就是算法问题了.再出现RE可能就是像我一样手残打错了一个数字之类的东西…</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>评测详情(未开O2): Accepted 100 用时: 1765ms / 内存: 76648KB</p>

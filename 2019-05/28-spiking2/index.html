@@ -177,8 +177,6 @@
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。</p>
 <p>因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。</p>
 <a id="more"></a>
-
-
 <h3 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h3><p>我们写编码转换的代码，肯定要知道这些编码之间的关系。</p>
 <p>ASCII编码我们再熟悉不过了，然而我相信很多人和我一样，分不清什么是Unicode，UTF-8，UTF-16，UTF-32。</p>
 <p>我不想用长篇大论来解释这些东西，就给出它们各自的定义和我们需要知道的东西。如果想更深入的了解，可以自行搜索。</p>
@@ -193,20 +191,22 @@
 <p>UTF-8（8-bit Unicode Transformation Format）是一种针对Unicode的可变长度字符编码，又称万国码，由Ken Thompson于1992年创建。</p>
 </blockquote>
 <p>如果略懂编码的话，可变长度是最大特点。但是为了实现可变长度，就需要一些二进制位来表示长度，我认为它的编码规则可以说是非常典型了。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>字节数</th>
-<th>二进制编码形式</th>
+<th>二进制编码形式 </th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1字节</td>
 <td>0xxxxxxx</td>
 </tr>
 <tr>
 <td>2字节</td>
-<td>110xxxxx 10xxxxxx</td>
+<td>110xxxxx 10xxxxxx </td>
 </tr>
 <tr>
 <td>3字节</td>
@@ -214,17 +214,19 @@
 </tr>
 <tr>
 <td>4字节</td>
-<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx </td>
 </tr>
 <tr>
 <td>5字节</td>
-<td>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+<td>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx </td>
 </tr>
 <tr>
 <td>6字节</td>
 <td>1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>再简单说一下UTF-16，定义：</p>
 <blockquote>
 <p>UTF-16是Unicode字符编码五层次模型的第三层：字符编码表（Character Encoding Form，也称为 “storage format”）的一种实现方式。</p>
@@ -237,47 +239,47 @@
 <h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>我们为什么要了解上面那些东西，最终还是为了更容易理解代码。先给出一个将一个字符串从UTF-8转为ASCII的示例代码，从网上抄下来的。</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *<span class="hljs-title">changeTxtEncoding</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *szU8)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">int</span> wcsLen= MultiByteToWideChar(CP_UTF8, <span class="hljs-literal">NULL</span>, szU8, <span class="hljs-built_in">strlen</span>(szU8), <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>);</span><br><span class="line">	<span class="hljs-keyword">wchar_t</span> *wszString= <span class="hljs-keyword">new</span> <span class="hljs-keyword">wchar_t</span>[wcsLen + <span class="hljs-number">1</span>];</span><br><span class="line">	MultiByteToWideChar(CP_UTF8, <span class="hljs-literal">NULL</span>, szU8, <span class="hljs-built_in">strlen</span>(szU8), wszString, wcsLen);</span><br><span class="line">	wszString[wcsLen]= <span class="hljs-string">'\0'</span>;</span><br><span class="line">	<span class="hljs-keyword">int</span> ansiLen= WideCharToMultiByte(CP_ACP, <span class="hljs-literal">NULL</span>, wszString, wcslen(wszString), <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);</span><br><span class="line">	<span class="hljs-keyword">char</span> *szAnsi= <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[ansiLen + <span class="hljs-number">1</span>];</span><br><span class="line">	WideCharToMultiByte(CP_ACP, <span class="hljs-literal">NULL</span>, wszString, wcslen(wszString), szAnsi, ansiLen, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);</span><br><span class="line">	szAnsi[ansiLen]= <span class="hljs-string">'\0'</span>;</span><br><span class="line">	<span class="hljs-keyword">delete</span>[] wszString;</span><br><span class="line">	<span class="hljs-keyword">return</span> szAnsi;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此函数是将一个字符串，先从UTF-8转为UTF-16，再转为ASCII。</p>
-<h4 id="MultiByteToWideChar"><a href="#MultiByteToWideChar" class="headerlink" title="MultiByteToWideChar"></a>MultiByteToWideChar</h4><p>此函数可将字符串映射到UTF-16(宽字符)字符串。字符串不一定来自多字节字符集。在这里，字符集或代码页我们都可以理解为编码映射表。</p>
-<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> WINAPI <span class="hljs-title">MultiByteToWideChar</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ UINT CodePage,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ DWORD dwFlags,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_NLS_string_(cbMultiByte) LPCCH lpMultiByteStr,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ <span class="hljs-keyword">int</span> cbMultiByte,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _Out_writes_to_opt_(cchWideChar,<span class="hljs-keyword">return</span>) LPWSTR lpWideCharStr,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ <span class="hljs-keyword">int</span> cchWideChar</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>定义简化如下：</p>
-<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> WINAPI <span class="hljs-title">MultiByteToWideChar</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	UINT CodePage, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	DWORD dwFlags, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	LPCCH lpMultiByteStr, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	<span class="hljs-keyword">int</span> cbMultiByte, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	LPWSTR lpWideCharStr, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	<span class="hljs-keyword">int</span> cchWideChar</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	)</span></span>;</span><br></pre></td></tr></table></figure>
-<p><em>CodePage</em>为指定执行转换的字符集。如果原字符串为ASCII通常选择CP_ACP，关于CP_ACP与CP_THREAD_ACP的区别可以自己了解。我们这里原字符串为UTF-8，因此选择CP_UTF8。数值表：</p>
+<h4 id="MultiByteToWideChar"><a href="#MultiByteToWideChar" class="headerlink" title="MultiByteToWideChar"></a>MultiByteToWideChar</h4><p>此函数可将字符串映射到UTF-16(宽字符)字符串。字符串不一定来自多字节字符集。在这里，字符集或代码页我们都可以理解为编码映射表。<br><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> WINAPI <span class="hljs-title">MultiByteToWideChar</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ UINT CodePage,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ DWORD dwFlags,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_NLS_string_(cbMultiByte) LPCCH lpMultiByteStr,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ <span class="hljs-keyword">int</span> cbMultiByte,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _Out_writes_to_opt_(cchWideChar,<span class="hljs-keyword">return</span>) LPWSTR lpWideCharStr,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ <span class="hljs-keyword">int</span> cchWideChar</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    )</span></span>;</span><br></pre></td></tr></table></figure><br>定义简化如下：<br><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> WINAPI <span class="hljs-title">MultiByteToWideChar</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	UINT CodePage, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	DWORD dwFlags, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	LPCCH lpMultiByteStr, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	<span class="hljs-keyword">int</span> cbMultiByte, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	LPWSTR lpWideCharStr, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	<span class="hljs-keyword">int</span> cchWideChar</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	)</span></span>;</span><br></pre></td></tr></table></figure><br><em>CodePage</em>为指定执行转换的字符集。如果原字符串为ASCII通常选择CP_ACP，关于CP_ACP与CP_THREAD_ACP的区别可以自己了解。我们这里原字符串为UTF-8，因此选择CP_UTF8。数值表：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>数值</th>
-<th>说明</th>
+<th>说明   </th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>CP_ACP</td>
-<td>Windows系统默认的ANSI代码页。</td>
+<td>Windows系统默认的ANSI代码页。 </td>
 </tr>
 <tr>
 <td>CP_MACCP</td>
-<td>Mac系统代码页。</td>
+<td>Mac系统代码页。 </td>
 </tr>
 <tr>
 <td>CP_ACP</td>
-<td>OEM系统代码页。</td>
+<td>OEM系统代码页。 </td>
 </tr>
 <tr>
 <td>CP_SYMBOL</td>
-<td>符号字符集。</td>
+<td>符号字符集。 </td>
 </tr>
 <tr>
 <td>CP_THREAD_ACP</td>
-<td>当前Windows线程的ANSI代码页。</td>
+<td>当前Windows线程的ANSI代码页。 </td>
 </tr>
 <tr>
 <td>CP_UTF7</td>
-<td>使用UTF-7。</td>
+<td>使用UTF-7。 </td>
 </tr>
 <tr>
 <td>CP_UTF8</td>
-<td>使用UTF-8。</td>
+<td>使用UTF-8。 </td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><em>dwFlags</em>设定转换类型。缺省值为MB_PRECOMPOSED，对于UTF-8必须为0或MB_ERR_INVALID_CHARS，此参数作用较小，数值表就不给出了。</p>
 <p><em>lpMultiByteStr</em>指向一个要转换的字符串。</p>
 <p><em>cbMultiByte</em>指定长度，如果lpMultiByteStr指向的字符串为空结束，此参数可设为-1。如果设为-1，函数将处理包括终止空字符在内的所有字符。我们可以用strlen来自行获得长度。</p>
@@ -287,7 +289,6 @@
 <p>我们第一次调用此函数时应将cchWideChar设为0，并记录函数返回值，第二次调用时将cchWideChar设为此值。</p>
 <h4 id="WideCharToMultiByte"><a href="#WideCharToMultiByte" class="headerlink" title="WideCharToMultiByte"></a>WideCharToMultiByte</h4><p>与MultiByteToWideChar恰恰相反，但多两个参数，此函数可将UTF-16(宽字符)字符串映射到新字符串。</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> WINAPI <span class="hljs-title">WideCharToMultiByte</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	UINT CodePage, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	DWORD dwFlags, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	LPCWCH lpWideCharStr, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	<span class="hljs-keyword">int</span> cchWideChar, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	LPSTR lpMultiByteStr, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	<span class="hljs-keyword">int</span> cbMultiByte, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	LPCCH lpDefaultChar, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	LPBOOL lpUsedDefaultChar</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">	)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <p><em>CodePage</em>为指定执行转换的字符集。可选数值与MultiByteToWideChar相同，我们这里选择CP_ACP。</p>
 <p><em>dwFlags</em>设定转换类型。设为0即可。</p>
 <p><em>lpWideCharStr</em>指向一个要转换的字符串。</p>

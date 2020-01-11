@@ -11,7 +11,7 @@
 
 
     <meta name="description" content="【LuoguP1072】【NOIP2009】Hankson 的趣味题题目链接: https:&#x2F;&#x2F;www.luogu.org&#x2F;problemnew&#x2F;show&#x2F;P1072 引言半个月没更新博客了, 一直忙于做题练习和学文化课, 不然快被劝退了 最近学习一本通提高篇, 复习下之前学的GCD等数论知识">
-<meta name="keywords" content="题解,Cpp,GCD,数论">
+<meta name="keywords" content="Cpp,题解,GCD,数论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NOIP2009 - Hankson 的趣味题">
 <meta property="og:url" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-03&#x2F;03-luogu1072&#x2F;index.html">
@@ -171,28 +171,19 @@
 <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>半个月没更新博客了, 一直忙于做题练习和学文化课, 不然快被劝退了</p>
 <p>最近学习一本通提高篇, 复习下之前学的GCD等数论知识</p>
 <a id="more"></a>
-
-
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>先从题目描述说起, 给出了a0, a1, b0, b1四个数</p>
 <p>求 $ gcd(x, a0) = a1 $ 且 $ lcm(x, b0) = b1 $ 中 x 的方案数 </p>
 <p>那么首先我们都知道两个很基础的东西</p>
-<p>$$ gcd(a, b) = gcd(b, a\mod b) $$</p>
-<p>$$ lcm(a, b) = a × b / gcd(a, b) $$</p>
-<p>然后就可以来做这道题了</p>
+<script type="math/tex; mode=display">gcd(a, b) = gcd(b, a\mod b)</script><script type="math/tex; mode=display">lcm(a, b) = a × b / gcd(a, b)</script><p>然后就可以来做这道题了</p>
 <p>因为</p>
-<p>$$ lcm(x, b0) = x × b0 / gcd(x, b0) = b1 $$</p>
-<p>所以</p>
-<p>$$ x = \frac{b1}{b0} × gcd(x, b0) $$</p>
-<p>我们设一个数 $ y = gcd(x, b0) $ 那么一定 $ 1 ≤ y ≤ \sqrt{b0} $</p>
+<script type="math/tex; mode=display">lcm(x, b0) = x × b0 / gcd(x, b0) = b1</script><p>所以</p>
+<script type="math/tex; mode=display">x = \frac{b1}{b0} × gcd(x, b0)</script><p>我们设一个数 $ y = gcd(x, b0) $ 那么一定 $ 1 ≤ y ≤ \sqrt{b0} $</p>
 <p>所以我们只要枚举 y 的值, 然后代入算出 $ x = b1 / b0 × y $</p>
 <p>然后代入题目中的两个式子进行判断</p>
 <p>还有一个简化</p>
-<p>$$ x × b0 / gcd(x, b0) == b1 $$</p>
-<p>可简化为</p>
-<p>$$ b1 / b0 × y × b0 / gcd(x, b0) == b1 $$</p>
-<p>即</p>
-<p>$$ gcd(x, b0) == y $$</p>
-<p>要判断 $ x = b1 / y $ 的情况, 也有可能是一个解</p>
+<script type="math/tex; mode=display">x × b0 / gcd(x, b0) == b1</script><p>可简化为</p>
+<script type="math/tex; mode=display">b1 / b0 × y × b0 / gcd(x, b0) == b1</script><p>即</p>
+<script type="math/tex; mode=display">gcd(x, b0) == y</script><p>要判断 $ x = b1 / y $ 的情况, 也有可能是一个解</p>
 <p>也不要忘了特判 $ y = \sqrt{b0} $ 的情况</p>
 <p>然后就完美解决了</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>没有开各种优化, 能过</p>
