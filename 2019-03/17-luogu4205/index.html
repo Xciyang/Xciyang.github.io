@@ -11,7 +11,7 @@
 
 
     <meta name="description" content="【LuoguP4205】【BZOJ1501】【NOI2005】智慧珠游戏题目链接1: https:&#x2F;&#x2F;www.luogu.org&#x2F;problemnew&#x2F;show&#x2F;P4205题目链接2: https:&#x2F;&#x2F;www.lydsy.com&#x2F;JudgeOnline&#x2F;problem.php?id=1501 引言最近忙于各种事, 又有十天没写题解了, 好像这十天又变颓废了好多 实在学习不下去很酷很炫的算法, 特意">
-<meta name="keywords" content="Cpp,题解,搜索,模拟">
+<meta name="keywords" content="题解,Cpp,搜索,模拟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NOI2005 - 智慧珠游戏">
 <meta property="og:url" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-03&#x2F;17-luogu4205&#x2F;index.html">
@@ -173,7 +173,10 @@
 <p>做题的时候教练还在说:”不要看不起搜索…”</p>
 <p>然后因为看我做这道题, 旁边的大佬还作了一首诗</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">生命诚可贵</span><br><span class="line">搜索价更高</span><br><span class="line">若为暴力故</span><br><span class="line">二者皆可抛</span><br><span class="line">    --Steve_Braveman</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
+
+
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我就直接把题目描述的图搬过来了</p>
 <p><img src="https://www.lydsy.com/JudgeOnline/images/1501_1.jpg" alt="题目描述"></p>
 <p>一眼看上去就直接劝退, 当然其实也没那么严重, 好像还是可做的</p>
@@ -182,6 +185,7 @@
 <p>为了区别什么是不同的摆放方法, 就要确定搜索的方式, 我们枚举每一个点, 如果这个点当前没有被覆盖过, 那么我们就可以选择当前剩余的零件进行判断.</p>
 <p>我选择零件最左上角的那个珠子来填当前这个点, 因此有这些种不同的摆放方式</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">A: 4种</span><br><span class="line">B: 2种</span><br><span class="line">C: 8种</span><br><span class="line">D: 1种</span><br><span class="line">E: 4种</span><br><span class="line">F: 8种</span><br><span class="line">G: 4种</span><br><span class="line">H: 8种</span><br><span class="line">I: 8种</span><br><span class="line">J: 1种</span><br><span class="line">K: 4种</span><br><span class="line">L: 8种</span><br></pre></td></tr></table></figure>
+
 <p>加起来的确有很多种, 然后就开始写DFS了.</p>
 <p>我写的还是比较暴力的, 暴力模拟, 只做了一些小的技巧.</p>
 <p>在某次DFS种, 第一次判断某条件时就把他以一个变量存起来, 起一个较为直观的变量名, 然后等下次判断就可以直接判断这个变量了.</p>

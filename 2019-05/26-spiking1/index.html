@@ -177,6 +177,8 @@
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这个项目很久前就开始写了，但一直没有很完善。最近想起来，打算重新完善这个项目。</p>
 <p>本教程仅适用于C++。内容较为复杂，可以根据自己需要来阅读。</p>
 <a id="more"></a>
+
+
 <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>做一个项目，首先需要知道你的目标是什么。这个项目名为图片爬虫，当然是为了下载图片。</p>
 <p>再具体一点，用户先给出一个网址，我们先保存网页，抓取网页上的图片链接和其他网址链接。然后保存每一张图片到用户设置的文件夹中。深入其他网址链接，循环这一步骤。</p>
 <p>那么我们去爬一个图片网站，就可以找到很多好（<del>康</del>）看的图片了。</p>
@@ -208,22 +210,25 @@
 <p>如果还想了解更多WinInet与WinHTTP的区别，可以看<a href="https://docs.microsoft.com/zh-cn/windows/desktop/wininet/wininet-vs-winhttp" target="_blank" rel="noopener">官方英文文档</a>。</p>
 <h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>相信大家已经对这些东西都有了大致了解，那么就开始写代码了。输入网址的主程序代码就不给出了，我先放出获取页面的代码实例，是从网上找到并改编之后的。</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;wininet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXBLOCKSIZE 1024 * 1024</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">downloadUrl</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *Url, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *FilePath)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">static</span> byte Temp[MAXBLOCKSIZE];</span><br><span class="line">	HINTERNET hSession= InternetOpenA(<span class="hljs-string">"DownloadKit"</span>, INTERNET_OPEN_TYPE_PRECONFIG, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>), hOpenUrl= <span class="hljs-number">0</span>;</span><br><span class="line">	<span class="hljs-keyword">if</span>(hSession != <span class="hljs-literal">NULL</span>) &#123;</span><br><span class="line">		hOpenUrl= InternetOpenUrlA(hSession, Url, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>, INTERNET_FLAG_DONT_CACHE, <span class="hljs-literal">NULL</span>);</span><br><span class="line">		<span class="hljs-keyword">if</span>(hOpenUrl == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">goto</span> fail;</span><br><span class="line">		FILE *stream= fopen(FilePath, <span class="hljs-string">"wb"</span>);</span><br><span class="line">		ULONG Number= <span class="hljs-number">1</span>;</span><br><span class="line">		<span class="hljs-keyword">while</span>(Number &gt; <span class="hljs-number">0</span>) &#123;</span><br><span class="line">			InternetReadFile(hOpenUrl, Temp, MAXBLOCKSIZE, &amp;Number);</span><br><span class="line">			fwrite(Temp, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">char</span>), Number, stream);</span><br><span class="line">		&#125;</span><br><span class="line">		fclose(stream);</span><br><span class="line">		<span class="hljs-keyword">if</span>(hOpenUrl) InternetCloseHandle(hOpenUrl);</span><br><span class="line">		<span class="hljs-keyword">if</span>(hSession) InternetCloseHandle(hSession);</span><br><span class="line">		<span class="hljs-keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">fail:</span><br><span class="line">	<span class="hljs-keyword">if</span>(hOpenUrl) InternetCloseHandle(hOpenUrl);</span><br><span class="line">	<span class="hljs-keyword">if</span>(hSession) InternetCloseHandle(hSession);</span><br><span class="line">	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"Internet Error\n"</span>);</span><br><span class="line">	<span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>先大致说明一下函数参数，Url为你想下载网页的网址，filePath为保存到电脑的路径。</p>
 <p>你可以找一个网址，选一个存文件的路径，调用函数并编译，你会发现这段代码是无法通过编译的，因为还需要连接静态链接库。</p>
-<p>如果使用Visual Studio，需要在函数之前加入以下这句，并且忽略编号为4996的警告。<br><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> comment(lib, <span class="hljs-meta-string">"wininet.lib"</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p>如果使用Visual Studio，需要在函数之前加入以下这句，并且忽略编号为4996的警告。</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> comment(lib, <span class="hljs-meta-string">"wininet.lib"</span>)</span></span><br></pre></td></tr></table></figure>
+
 <p>如果使用MinGW，需要添加编译命令来/MinGW64/lib/libwininet.a文件。如果使用DevC++还可以通过项目属性来添加，这里不作细说。如果遇到了其他困难可以下方留言，我将会在第一时间解答。</p>
-<h4 id="InternetOpenA"><a href="#InternetOpenA" class="headerlink" title="InternetOpenA"></a>InternetOpenA</h4><p>先来讲解InternetOpenA函数。这个是我头文件里的定义。如果你使用Unicode遍码就改成InternetOpenW，用法类似。<br><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">INTERNETAPI_(HINTERNET) InternetOpenA(</span><br><span class="line">    _In_opt_ LPCSTR lpszAgent,</span><br><span class="line">    _In_ DWORD dwAccessType,</span><br><span class="line">    _In_opt_ LPCSTR lpszProxy,</span><br><span class="line">    _In_opt_ LPCSTR lpszProxyBypass,</span><br><span class="line">    _In_ DWORD dwFlags</span><br><span class="line">    );</span><br></pre></td></tr></table></figure><br><em>lpszAgent</em>指向一个空结束的字符串，用来设置UserAgent。对于我们用处不大，可以随意设置。</p>
+<h4 id="InternetOpenA"><a href="#InternetOpenA" class="headerlink" title="InternetOpenA"></a>InternetOpenA</h4><p>先来讲解InternetOpenA函数。这个是我头文件里的定义。如果你使用Unicode遍码就改成InternetOpenW，用法类似。</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">INTERNETAPI_(HINTERNET) InternetOpenA(</span><br><span class="line">    _In_opt_ LPCSTR lpszAgent,</span><br><span class="line">    _In_ DWORD dwAccessType,</span><br><span class="line">    _In_opt_ LPCSTR lpszProxy,</span><br><span class="line">    _In_opt_ LPCSTR lpszProxyBypass,</span><br><span class="line">    _In_ DWORD dwFlags</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+<p><em>lpszAgent</em>指向一个空结束的字符串，用来设置UserAgent。对于我们用处不大，可以随意设置。</p>
 <p><em>dwAccessType</em>指定访问类型，用于是否使用代理或注册表配置。我们选择使用IE代理，如果想设置代理服务器则使用INTERNET_OPEN_TYPE_PROXY。数值表：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>数值</th>
-<th>说明   </th>
+<th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>INTERNET_OPEN_TYPE_DIRECT</td>
 <td>使用直接连接网络。</td>
 </tr>
@@ -233,28 +238,24 @@
 </tr>
 <tr>
 <td>INTERNET_OPEN_TYPE_PRECONFIG_WITH_NO_AUTOPROXY</td>
-<td>获取代理或直接从注册表中的配置，并防止启动Microsoft JScript或Internet设置（INS）文件的使用。 </td>
+<td>获取代理或直接从注册表中的配置，并防止启动Microsoft JScript或Internet设置（INS）文件的使用。</td>
 </tr>
 <tr>
 <td>INTERNET_OPEN_TYPE_PROXY</td>
 <td>通过代理的请求，除非代理旁路列表中提供的名称解析绕过代理,在这种情况下，该功能的使用。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><em>lpszProxy</em>指向一个空结束的字符串，该字符串指定的代理服务器的名称，我们此参数应该设置为NULL。设置代理还要在这里深入研究，由于比较麻烦，我们先不去了解了。</p>
 <p><em>lpszProxyBypass</em>指向一个空结束的字符串，该字符串指定的可选列表的主机名或IP地址。我们此参数也设置为NULL。</p>
 <p><em>dwFlags</em>是设定一些要求的，值可以组合组合，我们设置为0。数值表：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>数值</th>
-<th>说明   </th>
+<th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>INTERNET_FLAG_ASYNC</td>
 <td>使异步请求处理的后裔从这个函数返回的句柄。</td>
 </tr>
@@ -266,9 +267,7 @@
 <td>INTERNET_FLAG_OFFLINE</td>
 <td>同INTERNET_FLAG_FROM_CACHE。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><em>Return Value</em>即返回值是一个HINTERNET句柄，用于接下来的WinINet函数。计算机正常且函数参数规范的情况下，都能够成功返回。如果返回NULL就是失败了，那么请检查自己的参数。</p>
 <h4 id="InternetOpenUrlA"><a href="#InternetOpenUrlA" class="headerlink" title="InternetOpenUrlA"></a>InternetOpenUrlA</h4><p>接下来就是用于打开网页的InternetOpenA函数了，如果使用Unicode编码请改为InternetOpenUrlW。</p>
 <p>相比而言，这个函数参数比较多。</p>
@@ -278,16 +277,14 @@
 <p><em>lpszHeaders</em>指向一个空结束的字符串，指定发送到HTTP服务器的头信息。我们不必做过多了解，设为NULL即可。</p>
 <p><em>dwHeadersLength</em>指定的长度，字符，额外的标头。对于我们说也没什么用，设为0即可。</p>
 <p><em>dwFlags</em>设定一些要求，我们设置的INTERNET_FLAG_NO_CACHE，与INTERNET_FLAG_NO_CACHE_WRITE有相同作用。有较多数值，可以了解后选择其中一个。数值表：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>数值</th>
-<th>说明   </th>
+<th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>INTERNET_FLAG_EXISTING_CONNECT</td>
 <td>如果使用相同的必须属性创建会话，会尝试利用现有的InternetConnect对象。这只对FTP操作非常有用，因为FTP是唯一在同一会话中执行多种操作的协议。WinINet API 为每个由InternetOpen产生的HINTERNET句柄缓冲一个单独链接句柄。InternetOpenUrl使用此标志的HTTP和FTP连接。</td>
 </tr>
@@ -363,16 +360,21 @@
 <td>INTERNET_FLAG_SECURE</td>
 <td>使用安全传输语义。这次传输使用安全套字节层/专用通信技术（的SSL / PCT ），这只有在HTTP请求时有意义。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><em>dwContext</em>为指向一个变量的指针，将随着返回的句柄，一起传递给回调函数。有兴趣可以自行查阅，我们设为NULL即可。</p>
 <p><em>Return Value</em>即返回值，若成功连接则返回一个有效的HINTERNET句柄，如果失败将放回NULL。如果失败可以使用GetLastError检索特定的错误讯息。请调用InternetGetLastResponseInfo确定为什么对服务器的访问被拒绝，这些函数大家有兴趣可以查阅更多资料来了解。</p>
 <h4 id="FILE"><a href="#FILE" class="headerlink" title="FILE"></a>FILE</h4><p>这一步就不作过多讲解了，只简单介绍这几个函数。</p>
-<p>fopen用来打开文件，返回文件指针。<br><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">FILE * <span class="hljs-title">fopen</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * path, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * mode)</span></span>;</span><br></pre></td></tr></table></figure><br>fwrite用于向文件中写入一个数据块，可以看实际代码自行理解。<br><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">size_t</span> fwrite(<span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> * ptr, <span class="hljs-keyword">size_t</span> size, <span class="hljs-keyword">size_t</span> count, FILE * stream);</span><br></pre></td></tr></table></figure><br>fclose用于关闭一个流。<br><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fclose</span><span class="hljs-params">(FILE * stream)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>fopen用来打开文件，返回文件指针。</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">FILE * <span class="hljs-title">fopen</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * path, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * mode)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>fwrite用于向文件中写入一个数据块，可以看实际代码自行理解。</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">size_t</span> fwrite(<span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> * ptr, <span class="hljs-keyword">size_t</span> size, <span class="hljs-keyword">size_t</span> count, FILE * stream);</span><br></pre></td></tr></table></figure>
+<p>fclose用于关闭一个流。</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fclose</span><span class="hljs-params">(FILE * stream)</span></span>;</span><br></pre></td></tr></table></figure>
+
 <h4 id="InternetReadFile"><a href="#InternetReadFile" class="headerlink" title="InternetReadFile"></a>InternetReadFile</h4><p>InternetReadFile的官方定义为，从一个由InternetOpenUrl，FtpOpenFile或HttpOpenRequest函数打开的句柄中读取数据。我们使用它来将网页上的内容保存到一个字符数组中。</p>
 <p>InternetReadFile函数每次获取的内容长度有限，所以应多次调用，直到全部获取完毕。</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">BOOLAPI <span class="hljs-title">InternetReadFile</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ HINTERNET hFile,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _Out_writes_bytes_(dwNumberOfBytesToRead) __out_data_source(NETWORK) LPVOID lpBuffer,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ DWORD dwNumberOfBytesToRead,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _Out_ LPDWORD lpdwNumberOfBytesRead</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    )</span></span>;</span><br></pre></td></tr></table></figure>
+
 <p><em>hFile</em>为InternetOpenUrl，FtpOpenFile或HttpOpenRequest函数返回的句柄。我们使用InternetOpenUrl获得的HINTERNET句柄。</p>
 <p><em>lpBuffer</em>为指向缓冲器的指针。因此我们需要定义一个字符数组，然后将它作为参数。</p>
 <p><em>dwNumberOfBytesToRead</em>为要读取的字节数。这个需要根据自己的网络情况，我使用的为1024 * 1024，也就是1M。</p>
@@ -380,6 +382,7 @@
 <p><em>Return Value</em>即返回值，成功为TRUE，失败为FALSE。若失败可用GetLastError查看更多错误信息。</p>
 <h4 id="InternetCloseHandle"><a href="#InternetCloseHandle" class="headerlink" title="InternetCloseHandle"></a>InternetCloseHandle</h4><p>到这，获取网页的代码基本完工了。但做事应善始善终，那些句柄占用的资源还需要释放。InternetCloseHandle函数用来关闭一个Internet句柄。</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">BOOLAPI <span class="hljs-title">InternetCloseHandle</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ HINTERNET hInternet</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    )</span></span>;</span><br></pre></td></tr></table></figure>
+
 <p><em>hInternet</em>为要关闭的句柄。我们要依次关闭那俩个HINTERNET句柄。</p>
 <p><em>Return Value</em>即返回值，成功为TRUE，失败为FALSE。若失败可用GetLastError查看更多错误信息。</p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>其实获取网页内容的代码是非常简单的，然而其中还蕴含着许许多多的知识。这段代码不仅可以获取网页，也可以用来获取图片或其他格式的文件。</p>

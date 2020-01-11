@@ -11,7 +11,7 @@
 
 
     <meta name="description" content="【LuoguP1955】【BZOJ4195】【NOI2015】程序自动分析题目链接1: https:&#x2F;&#x2F;www.luogu.org&#x2F;problemnew&#x2F;show&#x2F;P1955题目链接2: https:&#x2F;&#x2F;www.lydsy.com&#x2F;JudgeOnline&#x2F;problem.php?id=4195 引言最近变得越来越颓废. 介于好长时间没更新博客, 强行水一篇题解. 这道题没看题解15分钟就A了, 真">
-<meta name="keywords" content="Cpp,题解,并查集,STL,离散化">
+<meta name="keywords" content="题解,Cpp,并查集,STL,离散化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NOI2015 - 程序自动分析">
 <meta property="og:url" content="https:&#x2F;&#x2F;xciyang.github.io&#x2F;2019-03&#x2F;31-luogu1955&#x2F;index.html">
@@ -171,6 +171,8 @@
 <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>最近变得越来越颓废. 介于好长时间没更新博客, 强行水一篇题解.</p>
 <p>这道题没看题解15分钟就A了, 真的有点水了…</p>
 <a id="more"></a>
+
+
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>题意大概就是有 N 个关系, 每个代表X1 = X2 或者 X1 ≠ X2, 求出这些关系能不能成立.</p>
 <p>很容易就想到并查集, 先将相等的X合并, 然后判断不等关系的两个变量在不在一个并查集里就行了.那么就只需要排下序, 先进行合并操作再去判断.</p>
 <p>判断不等关系过程中发现X1和X2在同一个并查集里, 那直接输出NO就行了.</p>
