@@ -178,6 +178,8 @@
 <p>关于根据链接下载网页的各种方式在第一节已经介绍过了。这里再补充一下，还有一种方式是使用外部库libcurl，使用方便代码简洁，但我不把它当做我们主要学习的对象，因为它太过于简单。</p>
 <p>这节可以说是个扩展篇，并不是这个项目优先考虑的内容。先介绍它主要是因为这部分东西更有意思，大家可能会更感兴趣。</p>
 <a id="more"></a>
+
+
 <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>这个预处理是我自己勉强定义的，所以大家可能不理解。</p>
 <p>通俗的说，URL预处理意为对一个URL链接本体进行处理，请大家不要误以为是对HTML网页内容进行分析。</p>
 <p>再说清楚一些，获取链接所指向的内容前，程序并不知道这个内容是什么类型的。也就是说，它可能是一个HTML也可能是图片，又或者是一个CSS文件。所以我们要对URL进行一定的预处理，然后判断文件后缀之类的。</p>
@@ -190,64 +192,60 @@
 </blockquote>
 <p>URL由多部分组成，详细说有9部分，我们一个一个介绍。有关资料部分来自于<a href="https://blog.csdn.net/u014686399/article/details/84726335" target="_blank" rel="noopener">going_han的博客</a>。</p>
 <p>一个URL的实例: <code>scheme://user:password@host:port/path;params?query#frag</code></p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">编号</th>
-<th style="text-align:center">名称</th>
-<th style="text-align:left">介绍</th>
+<th align="center">编号</th>
+<th align="center">名称</th>
+<th align="left">介绍</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">协议(protocol)</td>
-<td style="text-align:left">为进行网络中的数据交换而建立的规则、标准或约定。有时也叫scheme，常用的协议有http、https、ftp、file、mailto。</td>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">协议(protocol)</td>
+<td align="left">为进行网络中的数据交换而建立的规则、标准或约定。有时也叫scheme，常用的协议有http、https、ftp、file、mailto。</td>
 </tr>
 <tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">用户名(user)</td>
-<td style="text-align:left">一般用不到，为访问资源使用的用户名。</td>
+<td align="center">2</td>
+<td align="center">用户名(user)</td>
+<td align="left">一般用不到，为访问资源使用的用户名。</td>
 </tr>
 <tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">密码(password)</td>
-<td style="text-align:left">一般也用不到，为访问资源使用的密码。</td>
+<td align="center">3</td>
+<td align="center">密码(password)</td>
+<td align="left">一般也用不到，为访问资源使用的密码。</td>
 </tr>
 <tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">域名(domain)</td>
-<td style="text-align:left">域名（英语：Domain Name），简称域名、网域，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。有时也叫host，可以使用IP地址作为域名使用。</td>
+<td align="center">4</td>
+<td align="center">域名(domain)</td>
+<td align="left">域名（英语：Domain Name），简称域名、网域，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。有时也叫host，可以使用IP地址作为域名使用。</td>
 </tr>
 <tr>
-<td style="text-align:center">5</td>
-<td style="text-align:center">端口(port)</td>
-<td style="text-align:left">在网络技术中，端口（Port）有好几种意思。我们这里所指的端口不是指物理意义上的端口，而是特指TCP/IP协议中的端口，是逻辑意义上的端口。端口不是一个必须部分，如果省略将采用协议默认使用的端口。</td>
+<td align="center">5</td>
+<td align="center">端口(port)</td>
+<td align="left">在网络技术中，端口（Port）有好几种意思。我们这里所指的端口不是指物理意义上的端口，而是特指TCP/IP协议中的端口，是逻辑意义上的端口。端口不是一个必须部分，如果省略将采用协议默认使用的端口。</td>
 </tr>
 <tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">路径(path)</td>
-<td style="text-align:left">由零或多个“/”符号隔开的字符串，一般用来表示主机上的一个目录或文件地址。</td>
+<td align="center">6</td>
+<td align="center">路径(path)</td>
+<td align="left">由零或多个“/”符号隔开的字符串，一般用来表示主机上的一个目录或文件地址。</td>
 </tr>
 <tr>
-<td style="text-align:center">7</td>
-<td style="text-align:center">参数(params)</td>
-<td style="text-align:left">这是用于指定特殊参数的可选项。</td>
+<td align="center">7</td>
+<td align="center">参数(params)</td>
+<td align="left">这是用于指定特殊参数的可选项。</td>
 </tr>
 <tr>
-<td style="text-align:center">8</td>
-<td style="text-align:center">查询(query)</td>
-<td style="text-align:left">可选项。用于给动态网页传递参数，可有多个参数，用“&amp;”符号隔开，每个参数的名和值用“=”符号隔开。</td>
+<td align="center">8</td>
+<td align="center">查询(query)</td>
+<td align="left">可选项。用于给动态网页传递参数，可有多个参数，用“&amp;”符号隔开，每个参数的名和值用“=”符号隔开。</td>
 </tr>
 <tr>
-<td style="text-align:center">9</td>
-<td style="text-align:center">片段(frag)</td>
-<td style="text-align:left">主要用于对资源进行分类。例如一个网页中有多个名词解释，可使用fragment直接定位到某一名词解释。访问一个帮助文档时，文档的各个章节就可以表述为片段。</td>
+<td align="center">9</td>
+<td align="center">片段(frag)</td>
+<td align="left">主要用于对资源进行分类。例如一个网页中有多个名词解释，可使用fragment直接定位到某一名词解释。访问一个帮助文档时，文档的各个章节就可以表述为片段。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>所以分解URL有什么用呢？我们再简单了解一下HTTP访问的步骤，HTTP访问时会进行多步操作，其中有两步我想重点介绍一下，分别是：发送请求头(Request Headers)和接受响应头(Response Headers)。</p>
 <p>其实大家现在就可以直观的了解它，介绍一种方法。</p>
 <p>随便找一个可用网页（比如这篇博客） -&gt; 点击键盘上的F12，弹出开发人员调试工具 -&gt; 进入’Network’选项页 -&gt; 点击录制按钮（黑色的圆点），按钮变红色 -&gt; 刷新页面。</p>
@@ -259,16 +257,21 @@
 <p>另外，本节含有大量string类的内容，但只要不是初学者都很熟悉了，因此不作理论上的介绍。</p>
 <h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>这部分理论易理解，但代码部分比较长。先给出本节所有的代码:</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">string</span> _trim(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;str) &#123;</span><br><span class="line">	<span class="hljs-keyword">size_t</span> start= str.find_first_not_of(<span class="hljs-string">" \n\r\t"</span>);</span><br><span class="line">	<span class="hljs-keyword">size_t</span> until= str.find_last_not_of(<span class="hljs-string">" \n\r\t"</span>);</span><br><span class="line">	<span class="hljs-built_in">string</span>::const_iterator i= start == <span class="hljs-built_in">string</span>::npos ? str.begin() : str.begin() + start;</span><br><span class="line">	<span class="hljs-built_in">string</span>::const_iterator x= until == <span class="hljs-built_in">string</span>::npos ? str.end() : str.begin() + until + <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-built_in">string</span>(i, x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">parse_url</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;raw_url, <span class="hljs-built_in">string</span> &amp;port, <span class="hljs-built_in">string</span> &amp;domain, <span class="hljs-built_in">string</span> &amp;path)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-built_in">string</span> x= _trim(raw_url), protocol, query;</span><br><span class="line">	<span class="hljs-keyword">int</span> offset= <span class="hljs-number">0</span>;</span><br><span class="line">	<span class="hljs-keyword">size_t</span> pos1, pos2, pos3, pos4;</span><br><span class="line">	offset= offset == <span class="hljs-number">0</span> &amp;&amp; x.compare(<span class="hljs-number">0</span>, <span class="hljs-number">8</span>, <span class="hljs-string">"https://"</span>) == <span class="hljs-number">0</span> ? <span class="hljs-number">8</span> : offset;</span><br><span class="line">	offset= offset == <span class="hljs-number">0</span> &amp;&amp; x.compare(<span class="hljs-number">0</span>, <span class="hljs-number">7</span>, <span class="hljs-string">"http://"</span>) == <span class="hljs-number">0</span> ? <span class="hljs-number">7</span> : offset;</span><br><span class="line">	pos1= x.find_first_of(<span class="hljs-string">'/'</span>, offset + <span class="hljs-number">1</span>);</span><br><span class="line">	path= pos1 == <span class="hljs-built_in">string</span>::npos ? <span class="hljs-string">""</span> : x.substr(pos1);</span><br><span class="line">	domain= <span class="hljs-built_in">string</span>(x.begin() + offset, pos1 != <span class="hljs-built_in">string</span>::npos ? x.begin() + pos1 : x.end());</span><br><span class="line">	path= (pos2= path.find(<span class="hljs-string">"#"</span>)) != <span class="hljs-built_in">string</span>::npos ? path.substr(<span class="hljs-number">0</span>, pos2) : path;</span><br><span class="line">	port= (pos3= domain.find(<span class="hljs-string">":"</span>)) != <span class="hljs-built_in">string</span>::npos ? domain.substr(pos3 + <span class="hljs-number">1</span>) : <span class="hljs-string">"0"</span>;</span><br><span class="line">	domain= domain.substr(<span class="hljs-number">0</span>, pos3 != <span class="hljs-built_in">string</span>::npos ? pos3 : domain.length());</span><br><span class="line">	protocol= offset &gt; <span class="hljs-number">0</span> ? x.substr(<span class="hljs-number">0</span>, offset - <span class="hljs-number">3</span>) : <span class="hljs-string">""</span>;</span><br><span class="line">	query= (pos4= path.find(<span class="hljs-string">"?"</span>)) != <span class="hljs-built_in">string</span>::npos ? path.substr(pos4 + <span class="hljs-number">1</span>) : <span class="hljs-string">""</span>;</span><br><span class="line">	path= pos4 != <span class="hljs-built_in">string</span>::npos ? path.substr(<span class="hljs-number">0</span>, pos4) : path;</span><br><span class="line">	<span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">judgeUrlType</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *Url, <span class="hljs-built_in">string</span> &amp;fileSuffix)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">static</span> byte Temp[MAXBLOCKSIZE];</span><br><span class="line">	HINTERNET hSession= InternetOpenA(<span class="hljs-string">"DownloadKit"</span>, INTERNET_OPEN_TYPE_PRECONFIG, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>), hConnect= <span class="hljs-number">0</span>, hRequest= <span class="hljs-number">0</span>;</span><br><span class="line">	<span class="hljs-keyword">if</span>(hSession != <span class="hljs-literal">NULL</span>) &#123;</span><br><span class="line">		INTERNET_PORT nPort= <span class="hljs-number">0</span>;</span><br><span class="line">		DWORD dwReadSize= MAXBLOCKSIZE;</span><br><span class="line">		<span class="hljs-built_in">string</span> sPort, sServer, sObject;</span><br><span class="line">		parse_url(Url, sPort, sServer, sObject);</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">size_t</span> i= <span class="hljs-number">0</span>; i &lt; sPort.size(); i++) nPort= nPort * <span class="hljs-number">10</span> + sPort[i] - <span class="hljs-string">'0'</span>;</span><br><span class="line">		hConnect= InternetConnectA(hSession, sServer.c_str(), nPort, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, INTERNET_SERVICE_HTTP, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>);</span><br><span class="line">		<span class="hljs-keyword">if</span>(hConnect == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">goto</span> fail;</span><br><span class="line">		hRequest= HttpOpenRequestA(</span><br><span class="line">			hConnect, <span class="hljs-string">"GET"</span>, sObject.c_str(), <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, INTERNET_FLAG_KEEP_CONNECTION | INTERNET_FLAG_NO_AUTH | INTERNET_FLAG_NO_COOKIES | INTERNET_FLAG_NO_UI | INTERNET_FLAG_IGNORE_CERT_CN_INVALID | INTERNET_FLAG_RELOAD, <span class="hljs-literal">NULL</span>);</span><br><span class="line">		<span class="hljs-keyword">if</span>(hRequest == <span class="hljs-literal">NULL</span> || !HttpSendRequest(hRequest, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>)) <span class="hljs-keyword">goto</span> fail;</span><br><span class="line">		<span class="hljs-keyword">if</span>(!HttpQueryInfoA(hRequest, HTTP_QUERY_RAW_HEADERS, Temp, &amp;dwReadSize, <span class="hljs-literal">NULL</span>)) <span class="hljs-keyword">goto</span> fail;</span><br><span class="line">		Temp[dwReadSize]= <span class="hljs-string">'\0'</span>;</span><br><span class="line"></span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> i= <span class="hljs-number">0</span>; i &lt; dwReadSize; i= i + <span class="hljs-built_in">strlen</span>((<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *)Temp + i) + <span class="hljs-number">1</span>) &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span>(<span class="hljs-built_in">string</span>((<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *)Temp + i).compare(<span class="hljs-number">0</span>, <span class="hljs-number">13</span>, <span class="hljs-string">"Content-Type:"</span>) == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">				<span class="hljs-built_in">printf</span>(<span class="hljs-string">"%s\n"</span>, Temp + i + <span class="hljs-number">14</span>);</span><br><span class="line">				fileSuffix= <span class="hljs-string">""</span>;</span><br><span class="line">				fileSuffix= (<span class="hljs-built_in">string</span>((<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *)Temp + i + <span class="hljs-number">14</span>).compare(<span class="hljs-string">"text/html"</span>) == <span class="hljs-number">0</span>) ? <span class="hljs-string">"html"</span> : fileSuffix;</span><br><span class="line">				fileSuffix= (<span class="hljs-built_in">string</span>((<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *)Temp + i + <span class="hljs-number">14</span>).compare(<span class="hljs-string">"image/png"</span>) == <span class="hljs-number">0</span>) ? <span class="hljs-string">"png"</span> : fileSuffix;</span><br><span class="line">				fileSuffix= (<span class="hljs-built_in">string</span>((<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *)Temp + i + <span class="hljs-number">14</span>).compare(<span class="hljs-string">"image/jpeg"</span>) == <span class="hljs-number">0</span>) ? <span class="hljs-string">"jpg"</span> : fileSuffix;</span><br><span class="line">				fileSuffix= (<span class="hljs-built_in">string</span>((<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *)Temp + i + <span class="hljs-number">14</span>).compare(<span class="hljs-string">"image/gif"</span>) == <span class="hljs-number">0</span>) ? <span class="hljs-string">"gif"</span> : fileSuffix;</span><br><span class="line">				<span class="hljs-comment">// Add what you want</span></span><br><span class="line">				<span class="hljs-keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">if</span>(hRequest) InternetCloseHandle(hRequest);</span><br><span class="line">		<span class="hljs-keyword">if</span>(hConnect) InternetCloseHandle(hConnect);</span><br><span class="line">		<span class="hljs-keyword">if</span>(hSession) InternetCloseHandle(hSession);</span><br><span class="line">		<span class="hljs-keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">fail:</span><br><span class="line">	<span class="hljs-keyword">if</span>(hRequest) InternetCloseHandle(hRequest);</span><br><span class="line">	<span class="hljs-keyword">if</span>(hConnect) InternetCloseHandle(hConnect);</span><br><span class="line">	<span class="hljs-keyword">if</span>(hSession) InternetCloseHandle(hSession);</span><br><span class="line">	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"Internet Error\n"</span>);</span><br><span class="line">	<span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><em>_trim</em>函数作用为去除字符串的空白换行符。</p>
 <p><em>parse_url</em>函数作用为分解URL，分解为端口、域名和路径。</p>
 <p><em>judgeUrlType</em>函数作用为获得HTTP响应头并分析URL内容类型。</p>
 <h4 id="string"><a href="#string" class="headerlink" title="string"></a>string</h4><p>本节使用C++STL中的string类比较多，简单的大家都使用过，所以介绍一下几个比较陌生的函数。</p>
 <h5 id="find-first-not-of"><a href="#find-first-not-of" class="headerlink" title="find_first_not_of"></a>find_first_not_of</h5><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">size_t</span> find_first_not_of (<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; str, <span class="hljs-keyword">size_t</span> pos = <span class="hljs-number">0</span>) <span class="hljs-keyword">const</span>;</span><br><span class="line"><span class="hljs-keyword">size_t</span> find_first_not_of (<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* s, <span class="hljs-keyword">size_t</span> pos = <span class="hljs-number">0</span>) <span class="hljs-keyword">const</span>;</span><br><span class="line"><span class="hljs-keyword">size_t</span> find_first_not_of (<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* s, <span class="hljs-keyword">size_t</span> pos, <span class="hljs-keyword">size_t</span> n) <span class="hljs-keyword">const</span>;</span><br><span class="line"><span class="hljs-keyword">size_t</span> find_first_not_of (<span class="hljs-keyword">char</span> c, <span class="hljs-keyword">size_t</span> pos = <span class="hljs-number">0</span>) <span class="hljs-keyword">const</span>;</span><br></pre></td></tr></table></figure>
+
 <p><em>Return Value</em>即返回值，返回第一个不匹配字符的位置，如果没有不匹配字符则返回string::npos。若使用字符串作参数，则此处不匹配字符指参数中不包含的字符。</p>
 <h5 id="string-npos"><a href="#string-npos" class="headerlink" title="string::npos"></a>string::npos</h5><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> npos = <span class="hljs-number">-1</span>;</span><br></pre></td></tr></table></figure>
+
 <h5 id="find-last-not-of"><a href="#find-last-not-of" class="headerlink" title="find_last_not_of"></a>find_last_not_of</h5><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">size_t</span> find_last_not_of (<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; str, <span class="hljs-keyword">size_t</span> pos = npos) <span class="hljs-keyword">const</span>;</span><br><span class="line"><span class="hljs-keyword">size_t</span> find_last_not_of (<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* s, <span class="hljs-keyword">size_t</span> pos = npos) <span class="hljs-keyword">const</span>;</span><br><span class="line"><span class="hljs-keyword">size_t</span> find_last_not_of (<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* s, <span class="hljs-keyword">size_t</span> pos, <span class="hljs-keyword">size_t</span> n) <span class="hljs-keyword">const</span>;</span><br><span class="line"><span class="hljs-keyword">size_t</span> find_last_not_of (<span class="hljs-keyword">char</span> c, <span class="hljs-keyword">size_t</span> pos = npos) <span class="hljs-keyword">const</span>;</span><br></pre></td></tr></table></figure>
+
 <p><em>Return Value</em>即返回值，与find_first_not_of类似，返回最后一个不匹配字符的位置。</p>
 <h5 id="substr"><a href="#substr" class="headerlink" title="substr"></a>substr</h5><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">substr</span> <span class="hljs-params">(<span class="hljs-keyword">size_t</span> pos = <span class="hljs-number">0</span>, <span class="hljs-keyword">size_t</span> len = npos)</span> <span class="hljs-keyword">const</span></span>;</span><br></pre></td></tr></table></figure>
+
 <p><em>Return Value</em>即返回值，返回从pos开始长度为len的子串。</p>
 <h4 id="InternetConnectA"><a href="#InternetConnectA" class="headerlink" title="InternetConnectA"></a>InternetConnectA</h4>
         </div>
@@ -386,7 +389,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -410,7 +413,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            41
+                            42
                         </p>
                     </a>
                 </div>
@@ -613,7 +616,7 @@
                 <span class="level-item">题解</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">21</span>
+                <span class="level-item tag">22</span>
             </span>
         </a></li>
             </ul>
@@ -626,7 +629,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.67px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/alpha-beta%E5%89%AA%E6%9E%9D/" style="font-size: 10px;">alpha-beta剪枝</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 13.33px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.67px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 13.33px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 16.67px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13.33px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.33px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.67px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%AE%B0%E5%BF%86/" style="font-size: 10px;">记忆</a> <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 10px;">记忆化搜索</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 16.67px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.67px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 13.33px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 16.67px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.33px;">题解</a>
+        <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.43px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/alpha-beta%E5%89%AA%E6%9E%9D/" style="font-size: 10px;">alpha-beta剪枝</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 12.86px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15.71px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.43px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 12.86px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 17.14px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 14.29px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 12.86px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.43px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/" style="font-size: 10px;">解释器</a> <a href="/tags/%E8%AE%B0%E5%BF%86/" style="font-size: 10px;">记忆</a> <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 10px;">记忆化搜索</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 17.14px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.43px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 12.86px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 17.14px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.57px;">题解</a>
     </div>
 </div>
     
@@ -638,6 +641,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020-01/11-luogu3695/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LuoguP3695 - CYaRon!语">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T06:17:45.000Z">2020-01-11</time></div>
+                    <a href="/2020-01/11-luogu3695/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LuoguP3695 - CYaRon!语</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -715,25 +737,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019-09/25-luogu1026/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
-                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -744,6 +747,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/12/">
@@ -871,7 +885,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cpp/">
                         <span class="tag">Cpp</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
@@ -1025,7 +1039,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
                         <span class="tag">模拟</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1093,6 +1107,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/">
+                        <span class="tag">解释器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
                         <span class="tag">记忆</span>
                         <span class="tag is-grey">1</span>
@@ -1151,7 +1172,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
                         <span class="tag">题解</span>
-                        <span class="tag is-grey">21</span>
+                        <span class="tag is-grey">22</span>
                     </a>
                 </div>
                 
@@ -1179,6 +1200,25 @@
         
         <article class="media">
             
+            <a href="/2020-01/11-luogu3695/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LuoguP3695 - CYaRon!语">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T06:17:45.000Z">2020-01-11</time></div>
+                    <a href="/2020-01/11-luogu3695/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LuoguP3695 - CYaRon!语</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019-12/19-luoguuva751/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="UVA751 - Triangle War">
@@ -1253,25 +1293,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019-09/25-luogu1026/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
-                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1282,6 +1303,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/12/">
@@ -1409,7 +1441,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cpp/">
                         <span class="tag">Cpp</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
@@ -1563,7 +1595,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
                         <span class="tag">模拟</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1631,6 +1663,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/">
+                        <span class="tag">解释器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
                         <span class="tag">记忆</span>
                         <span class="tag is-grey">1</span>
@@ -1689,7 +1728,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
                         <span class="tag">题解</span>
-                        <span class="tag is-grey">21</span>
+                        <span class="tag is-grey">22</span>
                     </a>
                 </div>
                 
@@ -1876,8 +1915,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/insight.css">
     
-
-    <script src="/js/animations/ballMouse.min.js" charset="utf-8"></script>
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

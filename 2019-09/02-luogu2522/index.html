@@ -171,28 +171,42 @@
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>机房很久前就人均会反演，今天我终于看懂是啥了。</p>
 <p>然后把整除分块理解透彻！</p>
 <a id="more"></a>
+
+
 <p>先做道最简单的题练练手，感谢<a href="https://oi-wiki.org/math/mobius/" target="_blank" rel="noopener">莫比乌斯反演 - OI WIKI</a>和<a href="https://ctz45562.github.io/" target="_blank" rel="noopener">大佬CTZ</a>的帮助。</p>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>本题题目翻译成公式：</p>
-<script type="math/tex; mode=display">\sum_{x=a}^{b}\sum_{y=c}^{d} [gcd(x,y)=k]</script><p>可以按照二维前缀和的思想分治一下，先设</p>
-<script type="math/tex; mode=display">F(n,m) = \sum_{i=1}^{n}\sum_{j=1}^{m} [gcd(i,j)=k]</script><p>那么</p>
-<script type="math/tex; mode=display">ans = F(b,d) - F(b,c-1) - F(a-1,d) + F(a-1,c-1)</script><p>然后对F(n,m)进行化简，首先两边同除以K，至于可行性，记录一下大佬的亲自讲解</p>
+<p>$$ \sum_{x=a}^{b}\sum_{y=c}^{d} [gcd(x,y)=k] $$</p>
+<p>可以按照二维前缀和的思想分治一下，先设</p>
+<p>$$ F(n,m) = \sum_{i=1}^{n}\sum_{j=1}^{m} [gcd(i,j)=k] $$</p>
+<p>那么</p>
+<p>$$ ans = F(b,d) - F(b,c-1) - F(a-1,d) + F(a-1,c-1) $$</p>
+<p>然后对F(n,m)进行化简，首先两边同除以K，至于可行性，记录一下大佬的亲自讲解</p>
 <p>如果原式中$gcd(i,j)=k$，那么$i,j$一定是k的倍数，现在设</p>
-<script type="math/tex; mode=display">i = i' * k , j = j' * k</script><p>那么一定$gcd(i’,j’)=1$，所以得出</p>
-<script type="math/tex; mode=display">F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} [gcd(i,j)=1]</script><p>这就可以莫比乌斯反演了，首先记住一个通用公式</p>
-<script type="math/tex; mode=display">[gcd(i,j)=1] = \sum_{d \mid gcd(i,j)}\mu(d)</script><p>然后代入F(n,m)中</p>
-<script type="math/tex; mode=display">F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} \sum_{d \mid gcd(i,j)}\mu(d)</script><p>先默认$n &lt; m$，那么可知$d \in [1,\lfloor \frac{n}{k} \rfloor]$</p>
+<p>$$ i = i’ * k , j = j’ * k $$ </p>
+<p>那么一定$gcd(i’,j’)=1$，所以得出</p>
+<p>$$ F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} [gcd(i,j)=1] $$</p>
+<p>这就可以莫比乌斯反演了，首先记住一个通用公式</p>
+<p>$$ [gcd(i,j)=1] = \sum_{d \mid gcd(i,j)}\mu(d) $$</p>
+<p>然后代入F(n,m)中</p>
+<p>$$ F(n,m) = \sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor} \sum_{d \mid gcd(i,j)}\mu(d) $$</p>
+<p>先默认$n &lt; m$，那么可知$d \in [1,\lfloor \frac{n}{k} \rfloor]$</p>
 <p>然后改变一下位置</p>
-<script type="math/tex; mode=display">F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}[i \mid p]\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor}[j \mid p]</script><p>注意，右边是一个整体，后面的$[i\mid d],[j\mid d]$取1或0，也就是表示能否整除。</p>
+<p>$$ F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\sum_{i=1}^{\lfloor \frac{n}{k} \rfloor}[i \mid p]\sum_{j=1}^{\lfloor \frac{m}{k} \rfloor}[j \mid p] $$</p>
+<p>注意，右边是一个整体，后面的$[i\mid d],[j\mid d]$取1或0，也就是表示能否整除。</p>
 <p>这样还能进一步化简，根据常识易得</p>
-<script type="math/tex; mode=display">\sum_{i=1}^{n} i \mid p = \lfloor \frac{n}{p} \rfloor</script><p>从而推出</p>
-<script type="math/tex; mode=display">F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\lfloor \frac{n}{kd} \rfloor{\lfloor \frac{m}{kd} \rfloor}</script><p>式子终于推完了，然后就是整除分块。</p>
+<p>$$ \sum_{i=1}^{n} i \mid p = \lfloor \frac{n}{p} \rfloor$$</p>
+<p>从而推出</p>
+<p>$$ F(n,m) = \sum_{d=1}^{\lfloor \frac{n}{k} \rfloor}\mu(d)\lfloor \frac{n}{kd} \rfloor{\lfloor \frac{m}{kd} \rfloor} $$</p>
+<p>式子终于推完了，然后就是整除分块。</p>
 <p>其实我一开始没看懂整除分块是因为不知道有啥用，其实是用来$O(\sqrt{n})$求这个式子</p>
-<script type="math/tex; mode=display">\sum_{i=1}^{n} \lfloor \frac{i}{p} \rfloor</script><p>这样就好说了，我们知道某些$\lfloor \frac{i}{p} \rfloor$的值是相等的，并且这些项在一个连续区间$[l,r]$内。</p>
+<p>$$ \sum_{i=1}^{n} \lfloor \frac{i}{p} \rfloor $$</p>
+<p>这样就好说了，我们知道某些$\lfloor \frac{i}{p} \rfloor$的值是相等的，并且这些项在一个连续区间$[l,r]$内。</p>
 <p>所以枚举时找一个右端点$r$，直接计算$[i,r]$这个区间的结果，这个$r= \lfloor \frac{n}{\lfloor \frac{n}{i} \rfloor} \rfloor$。</p>
 <p>具体证明不难，<a href="https://oi-wiki.org/math/mobius/#_3" target="_blank" rel="noopener">数论分块 - OI WIKI</a>有略证。</p>
 <p>然后就写代码，还需要写莫比乌斯函数筛、前缀和。</p>
 <p>这个莫比乌斯函数筛我有待研究。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXA 50001</span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> miu[<span class="hljs-number">50005</span>], notzs[<span class="hljs-number">50005</span>], zs[<span class="hljs-number">50005</span>], sum[<span class="hljs-number">50005</span>];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">shai</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	notzs[<span class="hljs-number">1</span>]= <span class="hljs-number">1</span>, miu[<span class="hljs-number">1</span>]= <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">2</span>; i &lt;= MAXA; i++) &#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(!notzs[i]) miu[i]= <span class="hljs-number">-1</span>, zs[++zs[<span class="hljs-number">0</span>]]= i;</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j= <span class="hljs-number">1</span>; j &lt;= zs[<span class="hljs-number">0</span>] &amp;&amp; i * zs[j] &lt;= MAXA; j++) &#123;</span><br><span class="line">			notzs[i * zs[j]]= <span class="hljs-number">1</span>;</span><br><span class="line">			<span class="hljs-keyword">if</span>(i % zs[j] == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">				miu[i * zs[j]]= <span class="hljs-number">0</span>;</span><br><span class="line">				<span class="hljs-keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			miu[i * zs[j]]= -miu[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>; i &lt;= MAXA; i++) sum[i]= sum[i - <span class="hljs-number">1</span>] + miu[i];</span><br><span class="line">	<span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">int</span> res= <span class="hljs-number">0</span>;</span><br><span class="line">	n/= k, m/= k;</span><br><span class="line">	<span class="hljs-keyword">if</span>(n &gt; m) swap(n, m);</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>, j; i &lt;= n; i= j + <span class="hljs-number">1</span>) &#123;</span><br><span class="line">		j= min(n / (n / i), m / (m / i));</span><br><span class="line">		res+= (sum[j] - sum[i - <span class="hljs-number">1</span>]) * (n / i) * (m / i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> query(x, y) query(x, y, k)</span></span><br><span class="line"><span class="hljs-keyword">int</span> t;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	shai();</span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; t;</span><br><span class="line">	<span class="hljs-keyword">int</span> a, b, c, d, k;</span><br><span class="line">	<span class="hljs-keyword">while</span>(t--) &#123;</span><br><span class="line">		<span class="hljs-built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d &gt;&gt; k;</span><br><span class="line">		<span class="hljs-built_in">cout</span> &lt;&lt; query(b, d) - query(b, c - <span class="hljs-number">1</span>) - query(a - <span class="hljs-number">1</span>, d) + query(a - <span class="hljs-number">1</span>, c - <span class="hljs-number">1</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>然后你还可以把<a href="https://www.luogu.org/problem/P3455" target="_blank" rel="noopener">【LuoguP3455】【POI2007】ZAP-Queries</a> 一块通过了，只需要改一下输入输出。</p>
 
         </div>
@@ -310,7 +324,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -334,7 +348,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            41
+                            42
                         </p>
                     </a>
                 </div>
@@ -513,7 +527,7 @@
                 <span class="level-item">题解</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">21</span>
+                <span class="level-item tag">22</span>
             </span>
         </a></li>
             </ul>
@@ -526,7 +540,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.67px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/alpha-beta%E5%89%AA%E6%9E%9D/" style="font-size: 10px;">alpha-beta剪枝</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 13.33px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.67px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 13.33px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 16.67px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13.33px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.33px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.67px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%AE%B0%E5%BF%86/" style="font-size: 10px;">记忆</a> <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 10px;">记忆化搜索</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 16.67px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.67px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 13.33px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 16.67px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.33px;">题解</a>
+        <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.43px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/alpha-beta%E5%89%AA%E6%9E%9D/" style="font-size: 10px;">alpha-beta剪枝</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 12.86px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15.71px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.43px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 12.86px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 17.14px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 14.29px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 12.86px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.43px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/" style="font-size: 10px;">解释器</a> <a href="/tags/%E8%AE%B0%E5%BF%86/" style="font-size: 10px;">记忆</a> <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 10px;">记忆化搜索</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 17.14px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.43px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 12.86px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 17.14px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.57px;">题解</a>
     </div>
 </div>
     
@@ -538,6 +552,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020-01/11-luogu3695/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LuoguP3695 - CYaRon!语">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T06:17:45.000Z">2020-01-11</time></div>
+                    <a href="/2020-01/11-luogu3695/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LuoguP3695 - CYaRon!语</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -615,25 +648,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019-09/25-luogu1026/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
-                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -644,6 +658,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/12/">
@@ -771,7 +796,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cpp/">
                         <span class="tag">Cpp</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
@@ -925,7 +950,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
                         <span class="tag">模拟</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -993,6 +1018,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/">
+                        <span class="tag">解释器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
                         <span class="tag">记忆</span>
                         <span class="tag is-grey">1</span>
@@ -1051,7 +1083,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
                         <span class="tag">题解</span>
-                        <span class="tag is-grey">21</span>
+                        <span class="tag is-grey">22</span>
                     </a>
                 </div>
                 
@@ -1079,6 +1111,25 @@
         
         <article class="media">
             
+            <a href="/2020-01/11-luogu3695/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LuoguP3695 - CYaRon!语">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T06:17:45.000Z">2020-01-11</time></div>
+                    <a href="/2020-01/11-luogu3695/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LuoguP3695 - CYaRon!语</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019-12/19-luoguuva751/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="UVA751 - Triangle War">
@@ -1153,25 +1204,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019-09/25-luogu1026/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
-                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1182,6 +1214,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/12/">
@@ -1309,7 +1352,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cpp/">
                         <span class="tag">Cpp</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
@@ -1463,7 +1506,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
                         <span class="tag">模拟</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1531,6 +1574,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/">
+                        <span class="tag">解释器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
                         <span class="tag">记忆</span>
                         <span class="tag is-grey">1</span>
@@ -1589,7 +1639,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
                         <span class="tag">题解</span>
-                        <span class="tag is-grey">21</span>
+                        <span class="tag is-grey">22</span>
                     </a>
                 </div>
                 
@@ -1776,8 +1826,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/insight.css">
     
-
-    <script src="/js/animations/ballMouse.min.js" charset="utf-8"></script>
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

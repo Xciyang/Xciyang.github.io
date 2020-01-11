@@ -176,26 +176,32 @@
             <p>用了这个码风，再也不怕代码出BUG了(</p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>相信码风对于我们来说太熟悉了，以至于平常都忘记了它的存在</p>
 <a id="more"></a>
+
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>码风全称代码风格…</p>
 <p>我就不啰嗦了，估计也都知道是啥，想看详细介绍可以右转<a href="https://baike.baidu.com/item/代码风格" target="_blank" rel="noopener">代码风格-百度百科</a>或<a href="https://en.wikipedia.org/wiki/Programming_style" target="_blank" rel="noopener">Programming style-Wikipedia</a></p>
 <h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>那么就直接推荐自己的码风了</p>
 <p>(从来不多打空格的可以跳过这一部分)</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// QuickRead</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">int</span> e= <span class="hljs-number">0</span>, f= <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">char</span> ch= getchar();</span><br><span class="line">	<span class="hljs-keyword">while</span>(ch &lt; <span class="hljs-string">'0'</span> || ch &gt; <span class="hljs-string">'9'</span>) &#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'-'</span>) f= <span class="hljs-number">-1</span>;</span><br><span class="line">		ch= getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">while</span>(ch &gt;= <span class="hljs-string">'0'</span> &amp;&amp; ch &lt;= <span class="hljs-string">'9'</span>) e= e * <span class="hljs-number">10</span> + ch - <span class="hljs-string">'0'</span>, ch= getchar();</span><br><span class="line">	<span class="hljs-keyword">return</span> e * f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>这个空格写法确实毒瘤，估计像我这样的全世界应该有1%…</p>
 <p>赋值符前不加空格，赋值符后加空格，运算符和逻辑符前后都加空格，手打不是很方便，习惯就好了.</p>
 <p>大括号前不换行加空格，for循环中每个语句只在前加空格</p>
 <hr>
 <p>(关于换行等事)</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 负载平衡问题</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">absi</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">return</span> i &gt; <span class="hljs-number">0</span> ? i : -i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	<span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>; i &lt;= n; i++) <span class="hljs-built_in">cin</span> &gt;&gt; a[i], sum+= a[i];</span><br><span class="line">	sum/= n;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>; i &lt;= n; i++) a[i]-= sum, s[i]= s[i - <span class="hljs-number">1</span>] + a[i];</span><br><span class="line">	sort(s + <span class="hljs-number">1</span>, s + n + <span class="hljs-number">1</span>), k= s[n / <span class="hljs-number">2</span> + <span class="hljs-number">1</span>];</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= <span class="hljs-number">1</span>; i &lt;= n; i++) ans+= absi(s[i] - k);</span><br><span class="line">	<span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>只遵守一个原则: 一行只存在一个分号, 能一行表示就不要多行表示</p>
 <p>但也有例外，较长表达式不会压到一行，比较长的函数定义也不会压到一行</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 匈牙利算法</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nown, <span class="hljs-keyword">int</span> wptr)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i= head[nown], to; i; i= eds[i].nexty) &#123;</span><br><span class="line">		to= eds[i].to;</span><br><span class="line">		<span class="hljs-keyword">if</span>(walkpast[to] != wptr) &#123;</span><br><span class="line">			walkpast[to]= wptr;</span><br><span class="line">			<span class="hljs-keyword">if</span>(!pp[to] || dfs(pp[to], wptr)) <span class="hljs-keyword">return</span> pp[to]= nown, <span class="hljs-number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>大概就是这种码风，能省略就省略，但一行一条语句。</p>
 <hr>
 <p>(判断语句和数组定义)</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 主席树</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    n= read(), m= read();</span><br><span class="line">    <span class="hljs-keyword">while</span>(~<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, o)) &#123;</span><br><span class="line">        tmpx= read(), tmpy= read(), tmpxx= read(), tmpyy= read();</span><br><span class="line">        <span class="hljs-keyword">if</span>(o[<span class="hljs-number">0</span>] == <span class="hljs-string">'L'</span>)</span><br><span class="line">            tmpc= read(), update(tmpx, tmpy, tmpc), update(tmpx, tmpyy + <span class="hljs-number">1</span>, -tmpc), update(tmpxx + <span class="hljs-number">1</span>, tmpy, -tmpc), update(tmpxx + <span class="hljs-number">1</span>, tmpyy + <span class="hljs-number">1</span>, tmpc);</span><br><span class="line">        <span class="hljs-keyword">else</span></span><br><span class="line">            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, query(tmpxx, tmpyy) - query(tmpx - <span class="hljs-number">1</span>, tmpyy) - query(tmpxx, tmpy - <span class="hljs-number">1</span>) + query(tmpx - <span class="hljs-number">1</span>, tmpy - <span class="hljs-number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>单行if不会换行，如果存在 else / else if 则换行</p>
 <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">int</span> db[]= &#123;</span><br><span class="line">    <span class="hljs-number">0</span>,		   <span class="hljs-number">1</span>,		  <span class="hljs-number">1799998</span>,   <span class="hljs-number">844059434</span>, <span class="hljs-number">446759866</span>, <span class="hljs-number">865662267</span>, <span class="hljs-number">29583524</span>,  <span class="hljs-number">127902423</span>, <span class="hljs-number">614370802</span>, <span class="hljs-number">866384115</span>, <span class="hljs-number">771602680</span>, <span class="hljs-number">248905317</span>, <span class="hljs-number">78054944</span>,  <span class="hljs-number">297165834</span>, <span class="hljs-number">271692212</span>, <span class="hljs-number">491940959</span>, <span class="hljs-number">329478404</span>, <span class="hljs-number">984412484</span>, <span class="hljs-number">35704862</span>,  <span class="hljs-number">729995974</span>, <span class="hljs-number">257611164</span>, <span class="hljs-number">47520158</span>,</span><br><span class="line">	......</span><br><span class="line">    <span class="hljs-number">869867506</span>, <span class="hljs-number">732424548</span>, <span class="hljs-number">678809493</span>, <span class="hljs-number">143987677</span>, <span class="hljs-number">789130682</span>, <span class="hljs-number">973691054</span>, <span class="hljs-number">893883312</span>, <span class="hljs-number">311519914</span>, <span class="hljs-number">650459219</span>, <span class="hljs-number">821045358</span>, <span class="hljs-number">310559620</span>, <span class="hljs-number">775625624</span>, <span class="hljs-number">108543282</span>, <span class="hljs-number">54180205</span>,  <span class="hljs-number">287135615</span>, <span class="hljs-number">875178490</span>, <span class="hljs-number">760920242</span>, <span class="hljs-number">512638949</span>, <span class="hljs-number">254323537</span>, <span class="hljs-number">977186041</span>, <span class="hljs-number">474130473</span>, <span class="hljs-number">455558106</span>,</span><br><span class="line">    <span class="hljs-number">435916613</span>, <span class="hljs-number">787985317</span>, <span class="hljs-number">366892998</span>, <span class="hljs-number">42185197</span>,  <span class="hljs-number">192850838</span>, <span class="hljs-number">421591125</span>, <span class="hljs-number">241779127</span>, <span class="hljs-number">969779315</span>, <span class="hljs-number">924599866</span>, <span class="hljs-number">723460313</span>, <span class="hljs-number">430999144</span>&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>这个数组定义比较忙=迷，有的时候不会换行有的时候会</p>
 <h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>如果上面这些格式手动的话…估计考试一道题都做不完…</p>
 <p>我目前使用VS Code，他的C++扩展自带格式化工具.clang-format</p>
@@ -208,6 +214,7 @@
 <p>BraceWrapping 为各位置括号前后换行</p>
 <p>ColumnLimit 为每行最大字符限制(和数组初始化换行有关)</p>
 <h4 id="放一下我的格式化文件配置"><a href="#放一下我的格式化文件配置" class="headerlink" title="放一下我的格式化文件配置:"></a>放一下我的格式化文件配置:</h4><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">Language:	Cpp</span><br><span class="line">BasedOnStyle:	LLVM</span><br><span class="line">AccessModifierOffset:	<span class="hljs-number">0</span></span><br><span class="line">AlignAfterOpenBracket:	Align</span><br><span class="line">AlignConsecutiveAssignments:	<span class="hljs-literal">false</span></span><br><span class="line">AlignConsecutiveDeclarations:	<span class="hljs-literal">false</span></span><br><span class="line">AlignEscapedNewlinesLeft:	<span class="hljs-literal">true</span></span><br><span class="line">AlignOperands:	<span class="hljs-literal">true</span></span><br><span class="line">AlignTrailingComments:	<span class="hljs-literal">true</span></span><br><span class="line">AllowAllParametersOfDeclarationOnNextLine:	<span class="hljs-literal">true</span></span><br><span class="line">AllowShortBlocksOnASingleLine:	<span class="hljs-literal">false</span></span><br><span class="line">AllowShortCaseLabelsOnASingleLine:	<span class="hljs-literal">true</span></span><br><span class="line">AllowShortFunctionsOnASingleLine:	Empty</span><br><span class="line">AllowShortIfStatementsOnASingleLine:	<span class="hljs-literal">true</span></span><br><span class="line">AllowShortLoopsOnASingleLine:	<span class="hljs-literal">true</span></span><br><span class="line">AlwaysBreakAfterDefinitionReturnType:	None</span><br><span class="line">AlwaysBreakAfterReturnType:	None</span><br><span class="line">AlwaysBreakBeforeMultilineStrings:	<span class="hljs-literal">true</span></span><br><span class="line">AlwaysBreakTemplateDeclarations:	<span class="hljs-literal">true</span></span><br><span class="line">BinPackArguments:	<span class="hljs-literal">false</span></span><br><span class="line">BinPackParameters:	<span class="hljs-literal">false</span></span><br><span class="line">BraceWrapping:	</span><br><span class="line">  AfterClass:	<span class="hljs-literal">false</span></span><br><span class="line">  AfterControlStatement:	<span class="hljs-literal">false</span></span><br><span class="line">  AfterEnum:	<span class="hljs-literal">false</span></span><br><span class="line">  AfterFunction:	<span class="hljs-literal">false</span></span><br><span class="line">  AfterNamespace:	<span class="hljs-literal">false</span></span><br><span class="line">  AfterObjCDeclaration:	<span class="hljs-literal">false</span></span><br><span class="line">  AfterStruct:	<span class="hljs-literal">false</span></span><br><span class="line">  AfterUnion:	<span class="hljs-literal">false</span></span><br><span class="line">  BeforeCatch:	<span class="hljs-literal">true</span></span><br><span class="line">  BeforeElse:	<span class="hljs-literal">true</span></span><br><span class="line">  IndentBraces:	<span class="hljs-literal">false</span></span><br><span class="line">BreakBeforeBinaryOperators:	NonAssignment</span><br><span class="line">BreakBeforeBraces:	Custom</span><br><span class="line">BreakBeforeTernaryOperators:	<span class="hljs-literal">false</span></span><br><span class="line">BreakConstructorInitializersBeforeComma:	<span class="hljs-literal">false</span></span><br><span class="line">ColumnLimit:	<span class="hljs-number">250</span></span><br><span class="line">CommentPragmas:	<span class="hljs-string">'^ IWYU pragma:'</span></span><br><span class="line">ConstructorInitializerAllOnOneLineOrOnePerLine:	<span class="hljs-literal">true</span></span><br><span class="line">ConstructorInitializerIndentWidth:	<span class="hljs-number">4</span></span><br><span class="line">ContinuationIndentWidth:	<span class="hljs-number">4</span></span><br><span class="line">Cpp11BracedListStyle:	<span class="hljs-literal">true</span></span><br><span class="line">DerivePointerAlignment:	<span class="hljs-literal">false</span></span><br><span class="line">DisableFormat:	<span class="hljs-literal">false</span></span><br><span class="line">ExperimentalAutoDetectBinPacking:	<span class="hljs-literal">false</span></span><br><span class="line">ForEachMacros:	[ foreach, Q_FOREACH, BOOST_FOREACH ]</span><br><span class="line">IncludeCategories: </span><br><span class="line">  - Regex:	<span class="hljs-string">'^"(llvm|llvm-c|clang|clang-c)/'</span></span><br><span class="line">    Priority:	<span class="hljs-number">2</span></span><br><span class="line">  - Regex:	<span class="hljs-string">'^(&lt;|"(gtest|isl|json)/)'</span></span><br><span class="line">    Priority:	<span class="hljs-number">3</span></span><br><span class="line">  - Regex:	<span class="hljs-string">'.*'</span></span><br><span class="line">    Priority:	<span class="hljs-number">1</span></span><br><span class="line">IndentCaseLabels:	<span class="hljs-literal">true</span></span><br><span class="line">IndentWidth:	<span class="hljs-number">4</span></span><br><span class="line">IndentWrappedFunctionNames:	<span class="hljs-literal">false</span></span><br><span class="line">KeepEmptyLinesAtTheStartOfBlocks:	<span class="hljs-literal">false</span></span><br><span class="line">MacroBlockBegin:	<span class="hljs-string">''</span></span><br><span class="line">MacroBlockEnd:	<span class="hljs-string">''</span></span><br><span class="line">MaxEmptyLinesToKeep:	<span class="hljs-number">1</span></span><br><span class="line">NamespaceIndentation:	Inner</span><br><span class="line">ObjCBlockIndentWidth:	<span class="hljs-number">4</span></span><br><span class="line">ObjCSpaceAfterProperty:	<span class="hljs-literal">false</span></span><br><span class="line">ObjCSpaceBeforeProtocolList:	<span class="hljs-literal">true</span></span><br><span class="line">PenaltyBreakBeforeFirstCallParameter:	<span class="hljs-number">19</span></span><br><span class="line">PenaltyBreakComment:	<span class="hljs-number">300</span></span><br><span class="line">PenaltyBreakFirstLessLess:	<span class="hljs-number">120</span></span><br><span class="line">PenaltyBreakString:	<span class="hljs-number">1000</span></span><br><span class="line">PenaltyExcessCharacter:	<span class="hljs-number">1000000</span></span><br><span class="line">PenaltyReturnTypeOnItsOwnLine:	<span class="hljs-number">60</span></span><br><span class="line">PointerAlignment:	Right</span><br><span class="line">ReflowComments:	<span class="hljs-literal">true</span></span><br><span class="line">SortIncludes:	<span class="hljs-literal">false</span></span><br><span class="line">SpaceAfterCStyleCast:	<span class="hljs-literal">false</span></span><br><span class="line">SpaceAfterTemplateKeyword: <span class="hljs-literal">true</span></span><br><span class="line">SpaceBeforeAssignmentOperators:	<span class="hljs-literal">false</span></span><br><span class="line">SpaceBeforeParens:	Never</span><br><span class="line">SpaceInEmptyParentheses:	<span class="hljs-literal">false</span></span><br><span class="line">SpacesBeforeTrailingComments:	<span class="hljs-number">2</span></span><br><span class="line">SpacesInAngles:	<span class="hljs-literal">true</span></span><br><span class="line">SpacesInContainerLiterals:	<span class="hljs-literal">false</span></span><br><span class="line">SpacesInCStyleCastParentheses:	<span class="hljs-literal">false</span></span><br><span class="line">SpacesInParentheses:	<span class="hljs-literal">false</span></span><br><span class="line">SpacesInSquareBrackets:	<span class="hljs-literal">false</span></span><br><span class="line">Standard:	Cpp11</span><br><span class="line">TabWidth:	<span class="hljs-number">4</span></span><br><span class="line">UseTab:	Always</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>用了这个码风，再也不怕代码出BUG了(</p>
 
         </div>
@@ -325,7 +332,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -349,7 +356,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            41
+                            42
                         </p>
                     </a>
                 </div>
@@ -540,7 +547,7 @@
                 <span class="level-item">题解</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">21</span>
+                <span class="level-item tag">22</span>
             </span>
         </a></li>
             </ul>
@@ -553,7 +560,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.67px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/alpha-beta%E5%89%AA%E6%9E%9D/" style="font-size: 10px;">alpha-beta剪枝</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 13.33px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.67px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 13.33px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 16.67px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13.33px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.33px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.67px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%AE%B0%E5%BF%86/" style="font-size: 10px;">记忆</a> <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 10px;">记忆化搜索</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 16.67px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.67px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 13.33px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 16.67px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.33px;">题解</a>
+        <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.43px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/alpha-beta%E5%89%AA%E6%9E%9D/" style="font-size: 10px;">alpha-beta剪枝</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 12.86px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15.71px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.43px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 12.86px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 17.14px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 14.29px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 12.86px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.43px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/" style="font-size: 10px;">解释器</a> <a href="/tags/%E8%AE%B0%E5%BF%86/" style="font-size: 10px;">记忆</a> <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 10px;">记忆化搜索</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 17.14px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.43px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 12.86px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 17.14px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.57px;">题解</a>
     </div>
 </div>
     
@@ -565,6 +572,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020-01/11-luogu3695/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LuoguP3695 - CYaRon!语">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T06:17:45.000Z">2020-01-11</time></div>
+                    <a href="/2020-01/11-luogu3695/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LuoguP3695 - CYaRon!语</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -642,25 +668,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019-09/25-luogu1026/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
-                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -671,6 +678,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/12/">
@@ -798,7 +816,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cpp/">
                         <span class="tag">Cpp</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
@@ -952,7 +970,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
                         <span class="tag">模拟</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1020,6 +1038,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/">
+                        <span class="tag">解释器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
                         <span class="tag">记忆</span>
                         <span class="tag is-grey">1</span>
@@ -1078,7 +1103,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
                         <span class="tag">题解</span>
-                        <span class="tag is-grey">21</span>
+                        <span class="tag is-grey">22</span>
                     </a>
                 </div>
                 
@@ -1106,6 +1131,25 @@
         
         <article class="media">
             
+            <a href="/2020-01/11-luogu3695/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LuoguP3695 - CYaRon!语">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T06:17:45.000Z">2020-01-11</time></div>
+                    <a href="/2020-01/11-luogu3695/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LuoguP3695 - CYaRon!语</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019-12/19-luoguuva751/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="UVA751 - Triangle War">
@@ -1180,25 +1224,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019-09/25-luogu1026/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
-                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1209,6 +1234,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/12/">
@@ -1336,7 +1372,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cpp/">
                         <span class="tag">Cpp</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
@@ -1490,7 +1526,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
                         <span class="tag">模拟</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1558,6 +1594,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/">
+                        <span class="tag">解释器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
                         <span class="tag">记忆</span>
                         <span class="tag is-grey">1</span>
@@ -1616,7 +1659,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
                         <span class="tag">题解</span>
-                        <span class="tag is-grey">21</span>
+                        <span class="tag is-grey">22</span>
                     </a>
                 </div>
                 
@@ -1803,8 +1846,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/insight.css">
     
-
-    <script src="/js/animations/ballMouse.min.js" charset="utf-8"></script>
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

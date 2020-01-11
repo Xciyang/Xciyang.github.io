@@ -170,6 +170,8 @@
             <p>写一个应用于Luogu的油猴插件，拥有在任意页面上快捷搜索跳转题目的功能。</p>
 <p>安装链接（插件发布地址）: <a href="https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher" target="_blank" rel="noopener">https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher</a></p>
 <a id="more"></a>
+
+
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>应同机房大佬要求，做一个洛谷快捷题目搜索的油猴插件。</p>
 <h4 id="一些鲜为人知的历史"><a href="#一些鲜为人知的历史" class="headerlink" title="一些鲜为人知的历史"></a>一些鲜为人知的历史</h4><p>其实这个早在洛谷??.9版本（大概是18年底的一次UI更新）就写过一次了。</p>
 <p>那段时间luogu把搜索框去掉了，以致于不能方便的搜索题目，才写了这个插件，并且使用luogu很早前搜索框的css。</p>
@@ -182,42 +184,56 @@
 <h3 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h3><p>可以先进入文章开头的链接查看介绍，也可以查看全部代码。</p>
 <p>首先我们设定 F1 打开搜索框，若已打开就关闭，F1键码为112。注册按键：</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">document</span>.onkeydown = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123; <span class="hljs-keyword">if</span> (event.keyCode == <span class="hljs-number">112</span>) mainfunc(); &#125;;</span><br></pre></td></tr></table></figure>
+
 <p>mainfunc 函数就是用来打开关闭对话框。但是这个页面本来没有对话框，该怎么打开呢？</p>
 <p>那么就需要新建，新建需要在网页中插入HTML。根据经验，我们需要在页面加载完成之后才能插入HTML，否则有不可预料的BUG。判断网页是否加载完成：</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.readyState == <span class="hljs-string">"complete"</span>) &#123;</span><br><span class="line">    <span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">    Write your code here.</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>然后就是新建元素、改样式、插入到网页中，这些很语法基础就直接给出，相关函数请自行了解。</p>
 <p>我们选择把元素加入到页面的app（洛谷设计的）中。初始化：</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> newElement = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"div"</span>);</span><br><span class="line">newElement.id = <span class="hljs-string">"CiyangSearch"</span>;</span><br><span class="line">newElement.innerHTML = <span class="hljs-string">"&lt;input type = 'text'&gt; | &lt;a&gt;&lt;i class = 'fas fa-search'&gt;&lt;/i&gt;&lt;/a&gt; | &lt;a&gt;&lt;i class= 'fa fa-cog'&gt;&lt;/i&gt;&lt;/a&gt;"</span>;</span><br><span class="line">newElement.style.position = <span class="hljs-string">"fixed"</span>;</span><br><span class="line">newElement.style.zIndex = <span class="hljs-string">"2"</span>;</span><br><span class="line">newElement.style.top = <span class="hljs-string">"10%"</span>;</span><br><span class="line">newElement.style.left = <span class="hljs-string">"30%"</span>;</span><br><span class="line">newElement.style.width = <span class="hljs-string">"240px"</span>;</span><br><span class="line">newElement.style.backgroundColor = <span class="hljs-string">"rgb(128,128,128)"</span>;</span><br><span class="line"><span class="hljs-keyword">var</span> appElement = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>);</span><br><span class="line">appElement.appendChild(newElement);</span><br></pre></td></tr></table></figure>
+
 <p>上面的代码就已经可以打开一个搜索框，还有搜索按钮和设置按钮，但非常丑陋。</p>
 <p>只有搜索框但是不能进行搜索，所以要绑定点击搜索按钮和回车键，回车键的键码为13。注册函数：</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">newElement.children[<span class="hljs-number">0</span>].onkeydown = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (event.keyCode == <span class="hljs-number">13</span>) &#123;</span><br><span class="line">        <span class="hljs-keyword">var</span> str = <span class="hljs-keyword">this</span>.value;</span><br><span class="line">        <span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">        Write your code here.</span></span><br><span class="line"><span class="hljs-comment">        */</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;;</span><br><span class="line">newElement.children[<span class="hljs-number">1</span>].onclick = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">var</span> str = newElement.children[<span class="hljs-number">0</span>].value;</span><br><span class="line">    <span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">    Write your code here.</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">    <span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>str就是搜索框中输入的内容，获取后就可以跳转题目了。</p>
 <p>我们想让它可自动识别是否为题目，如果是就打开题目页面，否则就打开题目列表进行搜索。</p>
 <p>比如：输入P1001打开P1001题目页面，输入1001就进入题目列表搜索1001。</p>
 <p>因为OI不学正则表达式，所以一般情况下我们想到if判断。这非常麻烦，会使代码复杂冗长，这个时候正则表达式就能大显身手了。</p>
 <p>此处借鉴了另一个油猴插件<a href="https://greasyfork.org/zh-CN/scripts/388947-luogu-problem-jumper" target="_blank" rel="noopener">Luogu Problem Jumper</a>的匹配代码，应该是匹配洛谷题目最好的代码。</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">judegeProblem</span>(<span class="hljs-params">str</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str.match(<span class="hljs-regexp">/AT[0-9]&#123;1,4&#125;/</span>) == str) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str.match(<span class="hljs-regexp">/CF[0-9]&#123;1,4&#125;[A-Z][0-9]&#123;0,1&#125;/</span>) == str) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str.match(<span class="hljs-regexp">/SP[0-9]&#123;1,5&#125;/</span>) == str) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str.match(<span class="hljs-regexp">/P[0-9]&#123;4&#125;/</span>) == str) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str.match(<span class="hljs-regexp">/UVA[0-9]&#123;1,5&#125;/</span>) == str) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str.match(<span class="hljs-regexp">/U[0-9]&#123;1,6&#125;/</span>) == str) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str.match(<span class="hljs-regexp">/T[0-9]&#123;1,6&#125;/</span>) == str) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>接下来是打开页面，有两种方式，前者是从当前页跳转，后者是新标签页打开。</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">window</span>.location = url;</span><br><span class="line"><span class="hljs-built_in">window</span>.open(url);</span><br></pre></td></tr></table></figure>
+
 <p>我们想要设计为用户选择首选方式，可首选其中一种方式，搜索时先输入 # 才能用优先级低的方式。</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> dUrl = <span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">A lot of code.</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">judgeURL</span>(<span class="hljs-params">way, str</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str.length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (judegeProblem(str)) go(dUrl ^ way, <span class="hljs-string">'/problemnew/show/'</span> + str);</span><br><span class="line">    <span class="hljs-keyword">else</span> go(dUrl ^ way, <span class="hljs-string">'/problem/list?keyword='</span> + str);</span><br><span class="line">    <span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">go</span>(<span class="hljs-params">k, url</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (k == <span class="hljs-number">0</span>) <span class="hljs-built_in">window</span>.location = url;</span><br><span class="line">    <span class="hljs-keyword">else</span> <span class="hljs-built_in">window</span>.open(url);</span><br><span class="line">    removek();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>dUrl设为1就是首选新标签页，way表示是否先输入了 # 。</p>
 <p>再回到绑定按键、点击搜索按钮的地方，比较懒所以代码没有合并到一起：</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">newElement.children[<span class="hljs-number">0</span>].onkeydown = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (event.keyCode == <span class="hljs-number">13</span>) &#123;</span><br><span class="line">        <span class="hljs-keyword">var</span> str = <span class="hljs-keyword">this</span>.value;</span><br><span class="line">        <span class="hljs-keyword">if</span> (str.length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span> (str[<span class="hljs-number">0</span>] == <span class="hljs-string">'#'</span>) judgeURL(<span class="hljs-number">1</span>, str.substring(<span class="hljs-number">1</span>, str.length));</span><br><span class="line">        <span class="hljs-keyword">else</span> judgeURL(<span class="hljs-number">0</span>, str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;;</span><br><span class="line">newElement.children[<span class="hljs-number">1</span>].onclick = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">var</span> str = newElement.children[<span class="hljs-number">0</span>].value;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str.length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str[<span class="hljs-number">0</span>] == <span class="hljs-string">'#'</span>) judgeURL(<span class="hljs-number">1</span>, str.substring(<span class="hljs-number">1</span>, str.length));</span><br><span class="line">    <span class="hljs-keyword">else</span> judgeURL(<span class="hljs-number">0</span>, str);</span><br><span class="line">    <span class="hljs-keyword">return</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>主体基本完成，然后就是一些小功能。若打开搜索框，再次按下 F1 关闭。使设置打开页面方式更加可视化，完善设置按钮。</p>
 <p>在 mainfuc 函数中，先加入一行代码：</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> (removek()) <span class="hljs-keyword">return</span>;</span><br></pre></td></tr></table></figure>
+
 <p>之前我们为了方便，将搜索框整体的元素ID改为了CiyangSearch，可以直接根据此ID来获取控件。代码简单：</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removek</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">var</span> search = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"CiyangSearch"</span>);</span><br><span class="line">    <span class="hljs-keyword">if</span> (search) &#123;</span><br><span class="line">        search.parentNode.removeChild(search);</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>完善设置按钮也很简单，首先在 mainfunc 绑定按键、搜索按钮处理下加入一行代码：</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newElement.children[<span class="hljs-number">2</span>].onclick = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123; setLink(); &#125;;</span><br></pre></td></tr></table></figure>
+
 <p>先介绍两个油猴自带的函数，GM_setValue和GM_getValue，可以非常方便的存储和读取数据，具体原理可以自行搜索。</p>
 <p>点击设置按钮后跳出对话框，用户输入1或者0，设置首选方式。将之前的dUrl设置为读取数据。</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> dUrl = GM_getValue(<span class="hljs-string">"default_way"</span>);</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setLink</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">var</span> defaultWay = prompt(<span class="hljs-string">"请输入首选打开网页方式，1 为新标签页，0为从当前页跳转。当前为"</span> + dUrl + <span class="hljs-string">"，搜索先输入 # 可使用优先级低的方式。"</span>);</span><br><span class="line">    <span class="hljs-keyword">if</span> (defaultWay == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (defaultWay != <span class="hljs-string">"0"</span> &amp;&amp; defaultWay != <span class="hljs-string">"1"</span>) &#123;</span><br><span class="line">        alert(<span class="hljs-string">"您的输入有误"</span>);</span><br><span class="line">        <span class="hljs-keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    GM_setValue(<span class="hljs-string">"default_way"</span>, defaultWay);</span><br><span class="line">    location.reload();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>我们还有需要一个使搜索的输入框自动获得焦点的小特性，只要在元素（控件）插入页面后加入一行代码：</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newElement.children[<span class="hljs-number">0</span>].focus();</span><br></pre></td></tr></table></figure>
+
 <p>然后8.23美化了一下UI，具体就不给出了。增加了设置背景颜色，换汤不换药。其中较为重要的修改：</p>
 <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> dUrl = GM_getValue(<span class="hljs-string">"default_way"</span>), bgColor = GM_getValue(<span class="hljs-string">"searcher_bg"</span>);</span><br><span class="line"><span class="hljs-keyword">if</span> (bgColor == <span class="hljs-literal">undefined</span>) &#123;</span><br><span class="line">    GM_setValue(<span class="hljs-string">"searcher_bg"</span>, <span class="hljs-string">"rgba(135,206,235,0.5)"</span>);</span><br><span class="line">    bgColor = <span class="hljs-string">"rgba(135,206,235,0.5)"</span>;</span><br><span class="line">&#125;</span><br><span class="line">newElement.innerHTML = <span class="hljs-string">"&lt;input type = 'text'&gt; | &lt;i class = 'fas fa-search'&gt;&lt;/i&gt; | &lt;i class= 'fas fa-cog'&gt;&lt;/i&gt; | &lt;i class ='fas fa-crosshairs'&gt;&lt;/i&gt; |"</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setBGColor</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">var</span> searcherBG = prompt(<span class="hljs-string">"请输入背景颜色码，支持RGB和十六进制。当前为"</span> + bgColor + <span class="hljs-string">"。"</span>, bgColor);</span><br><span class="line">    <span class="hljs-keyword">if</span> (searcherBG == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;</span><br><span class="line">    GM_setValue(<span class="hljs-string">"searcher_bg"</span>, searcherBG);</span><br><span class="line">    location.reload();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>分别处于代码各个位置，思路与设置打开方式类似，自行了解即可。</p>
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>还有什么问题可以在博客或发布网站评论提出，也可以用社交软件联系我。</p>
 <p>在greasyfork发布，链接：<a href="https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher" target="_blank" rel="noopener">https://greasyfork.org/zh-CN/scripts/389291-luogu-quick-searcher</a></p>
@@ -338,7 +354,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -362,7 +378,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            41
+                            42
                         </p>
                     </a>
                 </div>
@@ -549,7 +565,7 @@
                 <span class="level-item">题解</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">21</span>
+                <span class="level-item tag">22</span>
             </span>
         </a></li>
             </ul>
@@ -562,7 +578,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.67px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/alpha-beta%E5%89%AA%E6%9E%9D/" style="font-size: 10px;">alpha-beta剪枝</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 13.33px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.67px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 13.33px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 16.67px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 13.33px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.33px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.67px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%AE%B0%E5%BF%86/" style="font-size: 10px;">记忆</a> <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 10px;">记忆化搜索</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 16.67px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.67px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 13.33px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 16.67px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.33px;">题解</a>
+        <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/GCD/" style="font-size: 10px;">GCD</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/STL/" style="font-size: 11.43px;">STL</a> <a href="/tags/ST%E8%A1%A8/" style="font-size: 10px;">ST表</a> <a href="/tags/alpha-beta%E5%89%AA%E6%9E%9D/" style="font-size: 10px;">alpha-beta剪枝</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 10px;">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 10px;">二分查找</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 12.86px;">分块</a> <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" style="font-size: 10px;">前缀和</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15.71px;">动态规划</a> <a href="/tags/%E5%9D%97%E7%8A%B6%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">块状链表</a> <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/" style="font-size: 10px;">字典树</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%B7%A6%E5%81%8F%E6%A0%91/" style="font-size: 10px;">左偏树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 11.43px;">并查集</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 12.86px;">技巧</a> <a href="/tags/%E6%90%9C%E7%B4%A2/" style="font-size: 17.14px;">搜索</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" style="font-size: 10px;">整除分块</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 14.29px;">模拟</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 10px;">比赛</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 12.86px;">爬虫</a> <a href="/tags/%E7%8A%B6%E5%8E%8BDP/" style="font-size: 11.43px;">状压DP</a> <a href="/tags/%E7%A0%81%E9%A3%8E/" style="font-size: 10px;">码风</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/" style="font-size: 10px;">离散化</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 10px;">线段树</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 10px;">背包</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/%E8%8E%AB%E9%98%9F/" style="font-size: 10px;">莫队</a> <a href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/" style="font-size: 10px;">解释器</a> <a href="/tags/%E8%AE%B0%E5%BF%86/" style="font-size: 10px;">记忆</a> <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 10px;">记忆化搜索</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 10px;">语录</a> <a href="/tags/%E8%BE%B9%E5%8E%8BTrie/" style="font-size: 10px;">边压Trie</a> <a href="/tags/%E9%97%B2%E8%81%8A/" style="font-size: 17.14px;">闲聊</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%90%9C%E7%B4%A2/" style="font-size: 11.43px;">随机化搜索</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 12.86px;">项目</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 17.14px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 18.57px;">题解</a>
     </div>
 </div>
     
@@ -574,6 +590,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020-01/11-luogu3695/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LuoguP3695 - CYaRon!语">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T06:17:45.000Z">2020-01-11</time></div>
+                    <a href="/2020-01/11-luogu3695/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LuoguP3695 - CYaRon!语</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -651,25 +686,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019-09/25-luogu1026/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
-                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -680,6 +696,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/12/">
@@ -807,7 +834,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cpp/">
                         <span class="tag">Cpp</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
@@ -961,7 +988,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
                         <span class="tag">模拟</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1029,6 +1056,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/">
+                        <span class="tag">解释器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
                         <span class="tag">记忆</span>
                         <span class="tag is-grey">1</span>
@@ -1087,7 +1121,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
                         <span class="tag">题解</span>
-                        <span class="tag is-grey">21</span>
+                        <span class="tag is-grey">22</span>
                     </a>
                 </div>
                 
@@ -1115,6 +1149,25 @@
         
         <article class="media">
             
+            <a href="/2020-01/11-luogu3695/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="LuoguP3695 - CYaRon!语">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T06:17:45.000Z">2020-01-11</time></div>
+                    <a href="/2020-01/11-luogu3695/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LuoguP3695 - CYaRon!语</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019-12/19-luoguuva751/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="UVA751 - Triangle War">
@@ -1189,25 +1242,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019-09/25-luogu1026/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="NOIP2001 - 统计单词个数">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-25T03:33:20.000Z">2019-09-25</time></div>
-                    <a href="/2019-09/25-luogu1026/" class="title has-link-black-ter is-size-6 has-text-weight-normal">NOIP2001 - 统计单词个数</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1218,6 +1252,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/12/">
@@ -1345,7 +1390,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cpp/">
                         <span class="tag">Cpp</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
@@ -1499,7 +1544,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/">
                         <span class="tag">模拟</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1567,6 +1612,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/">
+                        <span class="tag">解释器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E8%AE%B0%E5%BF%86/">
                         <span class="tag">记忆</span>
                         <span class="tag is-grey">1</span>
@@ -1625,7 +1677,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%A2%98%E8%A7%A3/">
                         <span class="tag">题解</span>
-                        <span class="tag is-grey">21</span>
+                        <span class="tag is-grey">22</span>
                     </a>
                 </div>
                 
@@ -1812,8 +1864,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/insight.css">
     
-
-    <script src="/js/animations/ballMouse.min.js" charset="utf-8"></script>
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
