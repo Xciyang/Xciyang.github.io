@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xciyang.github.io/"/>
-  <updated>2020-01-11T23:04:19.371Z</updated>
+  <updated>2020-01-19T13:13:38.600Z</updated>
   <id>https://xciyang.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>粤语学习的个人经验</title>
+    <link href="https://xciyang.github.io/2020-01/19-yue-yu-xue-xi-de-ge-ren-jing-yan/"/>
+    <id>https://xciyang.github.io/2020-01/19-yue-yu-xue-xi-de-ge-ren-jing-yan/</id>
+    <published>2020-01-19T12:27:07.000Z</published>
+    <updated>2020-01-19T13:13:38.600Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近更新: 2020.01.19</p><p>又开了新坑，仅当粤语（广东话）学习途中的某些个人<del>经验</del>误解。</p><p><strong>本篇仅供参考，有严重错误可以指出。</strong></p><p>相关链接: <a href="http://humanum.arts.cuhk.edu.hk/Lexis/lexi-can/" target="_blank" rel="noopener">http://humanum.arts.cuhk.edu.hk/Lexis/lexi-can/</a></p><a id="more"></a><blockquote><p>粤语（Cantonese），又称广东话、广府话、唐话。</p></blockquote><h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>之前就一直想学粤语了，但一直没有实际。看了知乎学粤语的一些回答，鉴于不能只说不做，在2020年1月9日终于开始了。</p><h3 id="声调"><a href="#声调" class="headerlink" title="声调"></a>声调</h3><blockquote><p>粤语具有完整的九声六调，保留较多古汉语特征。</p></blockquote><p>感觉应该是从声调开始学比较好，有6个声调，数量上比普通话多一点。<em>暂时还不太清楚九声，下一步开始深入。</em>列出一个表格，符号字母最好感性理解！实在不行就多听几次。</p><table><thead><tr><th>调值</th><th>符号字母</th><th>实例</th></tr></thead><tbody><tr><td>1</td><td>á/â</td><td><a href="/medias/yueyu/se1.wav">se1</a>、<a href="/medias/yueyu/le1.wav">le1</a>、<a href="/medias/yueyu/ce1.wav">ce1</a></td></tr><tr><td>2</td><td>ǎ</td><td><a href="/medias/yueyu/se2.wav">se2</a>、<a href="/medias/yueyu/le2.wav">le2</a>、<a href="/medias/yueyu/ce2.wav">ce2</a></td></tr><tr><td>3</td><td>ā</td><td><a href="/medias/yueyu/se3.wav">se3</a>、<a href="/medias/yueyu/ce3.wav">ce3</a></td></tr><tr><td>4</td><td>a̖/ȁ</td><td><a href="/medias/yueyu/se4.wav">se4</a>、<a href="/medias/yueyu/le4.wav">le4</a>、<a href="/medias/yueyu/ce4.wav">ce4</a></td></tr><tr><td>5</td><td>a̗</td><td><a href="/medias/yueyu/se5.wav">se5</a>、<a href="/medias/yueyu/le5.wav">le5</a>、<a href="/medias/yueyu/jaa5.wav">jaa5</a></td></tr><tr><td>6</td><td>à</td><td><a href="/medias/yueyu/se6.wav">se6</a>、<a href="/medias/yueyu/jaa6.wav">jaa6</a></td></tr></tbody></table><h2 id="积累"><a href="#积累" class="headerlink" title="积累"></a>积累</h2><p>暂时还没有，这部分大概是一个词库。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近更新: 2020.01.19&lt;/p&gt;
+&lt;p&gt;又开了新坑，仅当粤语（广东话）学习途中的某些个人&lt;del&gt;经验&lt;/del&gt;误解。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本篇仅供参考，有严重错误可以指出。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;相关链接: &lt;a href=&quot;http://humanum.arts.cuhk.edu.hk/Lexis/lexi-can/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://humanum.arts.cuhk.edu.hk/Lexis/lexi-can/&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="闲聊" scheme="https://xciyang.github.io/categories/%E9%97%B2%E8%81%8A/"/>
+    
+    
+      <category term="闲聊" scheme="https://xciyang.github.io/tags/%E9%97%B2%E8%81%8A/"/>
+    
+      <category term="粤语" scheme="https://xciyang.github.io/tags/%E7%B2%A4%E8%AF%AD/"/>
+    
+  </entry>
   
   <entry>
     <title>LuoguP3695 - CYaRon!语</title>
@@ -124,9 +152,9 @@
       <category term="技巧" scheme="https://xciyang.github.io/categories/%E6%8A%80%E5%B7%A7/"/>
     
     
-      <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
-    
       <category term="闲聊" scheme="https://xciyang.github.io/tags/%E9%97%B2%E8%81%8A/"/>
+    
+      <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
     
       <category term="技巧" scheme="https://xciyang.github.io/tags/%E6%8A%80%E5%B7%A7/"/>
     
@@ -459,9 +487,9 @@
       <category term="技巧" scheme="https://xciyang.github.io/categories/%E6%8A%80%E5%B7%A7/"/>
     
     
-      <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
-    
       <category term="闲聊" scheme="https://xciyang.github.io/tags/%E9%97%B2%E8%81%8A/"/>
+    
+      <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
     
       <category term="技巧" scheme="https://xciyang.github.io/tags/%E6%8A%80%E5%B7%A7/"/>
     
@@ -574,37 +602,6 @@
 &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;上一节说这节介绍WinHTTP，现在好像鸽子了。经过我再三思考后，还是先深入学习WinInet吧。&lt;/p&gt;
 &lt;p&gt;关于根据链接下载网页的各种方式在第一节已经介绍过了。这里再补充一下，还有一种方式是使用外部库libcurl，使用方便代码简洁，但我不把它当做我们主要学习的对象，因为它太过于简单。&lt;/p&gt;
 &lt;p&gt;这节可以说是个扩展篇，并不是这个项目优先考虑的内容。先介绍它主要是因为这部分东西更有意思，大家可能会更感兴趣。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="项目" scheme="https://xciyang.github.io/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-    
-      <category term="Cpp" scheme="https://xciyang.github.io/tags/Cpp/"/>
-    
-      <category term="颓废" scheme="https://xciyang.github.io/tags/%E9%A2%93%E5%BA%9F/"/>
-    
-      <category term="项目" scheme="https://xciyang.github.io/tags/%E9%A1%B9%E7%9B%AE/"/>
-    
-      <category term="爬虫" scheme="https://xciyang.github.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>项目日记 - 开发图片爬虫 Ⅱ</title>
-    <link href="https://xciyang.github.io/2019-05/28-spiking2/"/>
-    <id>https://xciyang.github.io/2019-05/28-spiking2/</id>
-    <published>2019-05-28T12:54:38.000Z</published>
-    <updated>2019-12-09T12:30:52.106Z</updated>
-    
-    <content type="html"><![CDATA[<p>用C++开发一个图片爬虫 Ⅱ ：编码转换</p><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。</p><p>因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。</p><a id="more"></a><h3 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h3><p>我们写编码转换的代码，肯定要知道这些编码之间的关系。</p><p>ASCII编码我们再熟悉不过了，然而我相信很多人和我一样，分不清什么是Unicode，UTF-8，UTF-16，UTF-32。</p><p>我不想用长篇大论来解释这些东西，就给出它们各自的定义和我们需要知道的东西。如果想更深入的了解，可以自行搜索。</p><blockquote><p>Unicode（统一码、万国码、单一码）是计算机科学领域里的一项业界标准，包括字符集、编码方案等。</p></blockquote><p>至于它为什么诞生，我简单说明一下。因为我们熟知的ASCII码能表示的字符是非常有限的，根本无法承受那么多国家的字符。因此国际组织就又发明了一个新的编码，几乎收尽所有国家的字符，甚至包括特殊字符。</p><p>Unicode与其他编码类似，也是每一个字符都对应一个数字来表示它。但Unicode也仅仅如此，它没有规定这个二进制代码如何存储。</p><p>那么问题来了，在Unicode编码下，假设有一个3字节的二进制代码，计算机怎么知道表示的是一个字符还是两个字符或者是三个字符呢？因此UTF-8、UTF-16这一系列东西就诞生了。</p><p>先介绍UTF-8，这是开发网页首选的编码存储方式。</p><blockquote><p>UTF-8（8-bit Unicode Transformation Format）是一种针对Unicode的可变长度字符编码，又称万国码，由Ken Thompson于1992年创建。</p></blockquote><p>如果略懂编码的话，可变长度是最大特点。但是为了实现可变长度，就需要一些二进制位来表示长度，我认为它的编码规则可以说是非常典型了。</p><table><thead><tr><th>字节数</th><th>二进制编码形式</th></tr></thead><tbody><tr><td>1字节</td><td>0xxxxxxx</td></tr><tr><td>2字节</td><td>110xxxxx 10xxxxxx</td></tr><tr><td>3字节</td><td>1110xxxx 10xxxxxx 10xxxxxx</td></tr><tr><td>4字节</td><td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td></tr><tr><td>5字节</td><td>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</td></tr><tr><td>6字节</td><td>1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</td></tr></tbody></table><p>再简单说一下UTF-16，定义：</p><blockquote><p>UTF-16是Unicode字符编码五层次模型的第三层：字符编码表（Character Encoding Form，也称为 “storage format”）的一种实现方式。</p></blockquote><p>UTF-16虽然也可变长度，但不如UTF-8灵活。它有大尾序和小尾序两种储存形式，这个可以自行查阅。</p><blockquote><p>UTF-32 (或 UCS-4)是一种将Unicode字符编码的协定，对每一个Unicode码位使用恰好32位元。其它的Unicode transformation formats则使用不定长度编码。</p></blockquote><p>网上找到一个工具，<a href="https://www.qqxiuzi.cn/bianma/Unicode-UTF.php" target="_blank" rel="noopener">Unicode和UTF编码转换</a>，有兴趣可以试一下。</p><h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>我们为什么要了解上面那些东西，最终还是为了更容易理解代码。先给出一个将一个字符串从UTF-8转为ASCII的示例代码，从网上抄下来的。</p><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *<span class="hljs-title">changeTxtEncoding</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *szU8)</span> </span>&#123;</span><br><span class="line"><span class="hljs-keyword">int</span> wcsLen= MultiByteToWideChar(CP_UTF8, <span class="hljs-literal">NULL</span>, szU8, <span class="hljs-built_in">strlen</span>(szU8), <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>);</span><br><span class="line"><span class="hljs-keyword">wchar_t</span> *wszString= <span class="hljs-keyword">new</span> <span class="hljs-keyword">wchar_t</span>[wcsLen + <span class="hljs-number">1</span>];</span><br><span class="line">MultiByteToWideChar(CP_UTF8, <span class="hljs-literal">NULL</span>, szU8, <span class="hljs-built_in">strlen</span>(szU8), wszString, wcsLen);</span><br><span class="line">wszString[wcsLen]= <span class="hljs-string">'\0'</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> ansiLen= WideCharToMultiByte(CP_ACP, <span class="hljs-literal">NULL</span>, wszString, wcslen(wszString), <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);</span><br><span class="line"><span class="hljs-keyword">char</span> *szAnsi= <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[ansiLen + <span class="hljs-number">1</span>];</span><br><span class="line">WideCharToMultiByte(CP_ACP, <span class="hljs-literal">NULL</span>, wszString, wcslen(wszString), szAnsi, ansiLen, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);</span><br><span class="line">szAnsi[ansiLen]= <span class="hljs-string">'\0'</span>;</span><br><span class="line"><span class="hljs-keyword">delete</span>[] wszString;</span><br><span class="line"><span class="hljs-keyword">return</span> szAnsi;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>此函数是将一个字符串，先从UTF-8转为UTF-16，再转为ASCII。</p><h4 id="MultiByteToWideChar"><a href="#MultiByteToWideChar" class="headerlink" title="MultiByteToWideChar"></a>MultiByteToWideChar</h4><p>此函数可将字符串映射到UTF-16(宽字符)字符串。字符串不一定来自多字节字符集。在这里，字符集或代码页我们都可以理解为编码映射表。</p><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> WINAPI <span class="hljs-title">MultiByteToWideChar</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ UINT CodePage,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ DWORD dwFlags,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_NLS_string_(cbMultiByte) LPCCH lpMultiByteStr,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ <span class="hljs-keyword">int</span> cbMultiByte,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _Out_writes_to_opt_(cchWideChar,<span class="hljs-keyword">return</span>) LPWSTR lpWideCharStr,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    _In_ <span class="hljs-keyword">int</span> cchWideChar</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    )</span></span>;</span><br></pre></td></tr></table></figure><p>定义简化如下：</p><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> WINAPI <span class="hljs-title">MultiByteToWideChar</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">UINT CodePage, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">DWORD dwFlags, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">LPCCH lpMultiByteStr, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span> cbMultiByte, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">LPWSTR lpWideCharStr, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span> cchWideChar</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">)</span></span>;</span><br></pre></td></tr></table></figure><p><em>CodePage</em>为指定执行转换的字符集。如果原字符串为ASCII通常选择CP_ACP，关于CP_ACP与CP_THREAD_ACP的区别可以自己了解。我们这里原字符串为UTF-8，因此选择CP_UTF8。数值表：</p><table><thead><tr><th>数值</th><th>说明</th></tr></thead><tbody><tr><td>CP_ACP</td><td>Windows系统默认的ANSI代码页。</td></tr><tr><td>CP_MACCP</td><td>Mac系统代码页。</td></tr><tr><td>CP_ACP</td><td>OEM系统代码页。</td></tr><tr><td>CP_SYMBOL</td><td>符号字符集。</td></tr><tr><td>CP_THREAD_ACP</td><td>当前Windows线程的ANSI代码页。</td></tr><tr><td>CP_UTF7</td><td>使用UTF-7。</td></tr><tr><td>CP_UTF8</td><td>使用UTF-8。</td></tr></tbody></table><p><em>dwFlags</em>设定转换类型。缺省值为MB_PRECOMPOSED，对于UTF-8必须为0或MB_ERR_INVALID_CHARS，此参数作用较小，数值表就不给出了。</p><p><em>lpMultiByteStr</em>指向一个要转换的字符串。</p><p><em>cbMultiByte</em>指定长度，如果lpMultiByteStr指向的字符串为空结束，此参数可设为-1。如果设为-1，函数将处理包括终止空字符在内的所有字符。我们可以用strlen来自行获得长度。</p><p><em>lpWideCharStr</em>为指向接收缓冲器的指针。</p><p><em>cchWideChar</em>为lpWideCharStr指示的缓冲器的大小(以字符为单位)。如果此值为0不使用lpWideCharStr缓冲区。</p><p><em>Return Value</em>即返回值，返回写入到缓冲器的字符数。如果cchWideChar为0则返回缓冲器所需大小(以字符为单位)。</p><p>我们第一次调用此函数时应将cchWideChar设为0，并记录函数返回值，第二次调用时将cchWideChar设为此值。</p><h4 id="WideCharToMultiByte"><a href="#WideCharToMultiByte" class="headerlink" title="WideCharToMultiByte"></a>WideCharToMultiByte</h4><p>与MultiByteToWideChar恰恰相反，但多两个参数，此函数可将UTF-16(宽字符)字符串映射到新字符串。</p><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> WINAPI <span class="hljs-title">WideCharToMultiByte</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">UINT CodePage, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">DWORD dwFlags, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">LPCWCH lpWideCharStr, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span> cchWideChar, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">LPSTR lpMultiByteStr, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span> cbMultiByte, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">LPCCH lpDefaultChar, </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">LPBOOL lpUsedDefaultChar</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">)</span></span>;</span><br></pre></td></tr></table></figure><p><em>CodePage</em>为指定执行转换的字符集。可选数值与MultiByteToWideChar相同，我们这里选择CP_ACP。</p><p><em>dwFlags</em>设定转换类型。设为0即可。</p><p><em>lpWideCharStr</em>指向一个要转换的字符串。</p><p><em>cchWideChar</em>指定长度。对于宽字符，自行使用wcslen来获得。</p><p><em>lpMultiByteStr</em>为指向接收缓冲器的指针。</p><p><em>cbMultiByte</em>为lpMultiByteStr指示的缓冲器的大小(以字符为单位)。</p><p><em>lpDefaultChar</em>为指向另一个接收缓冲器的指针，如果某个字符不能在指定的代码页中表示将使用此缓冲器。我们不需要，设为NULL即可。</p><p><em>lpUsedDefaultChar</em>为一个指向BOOL变量的指针。如果使用了lpDefaultChar将被设为TRUE，否则为FALSE。我们也设为NULL即可。</p><p><em>Return Value</em>即返回值，与MultiByteToWideChar相类比。</p><p>调用两次，步骤也与MultiByteToWideChar相似。</p><h4 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h4><p>网上给的代码没有释放内存的语句，可能会造成内存泄露。</p><p><em>delete</em>语句使用过指针都知道，释放一个指针指向的内存。</p><p><em>delete[]</em>语句释放一个数组指针指向的内存。</p><p>如果想深入了解其中的原理，可以自行查阅。</p><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>这一节简单介绍了编码的知识和使用C++进行编码转换的代码。我们这个项目深入了解编码系统，所介绍的也不过是冰山一角。</p><p>现在大家已经可以自己写代码对网页进行简单分析了。下一节我打算介绍关于WinHTTP的内容和用途。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;用C++开发一个图片爬虫 Ⅱ ：编码转换&lt;/p&gt;
-&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;我们上一节学习了获取网页的代码，那么大家可能会以为接下来就是分析网页了。但事实上，我们还需要先转换编码。我们都知道，C++编程常用的是ASCII编码，而网页大部分使用的是UTF-8编码。&lt;/p&gt;
-&lt;p&gt;因此我们要先将获取后的网页转换成我们想要的编码，再去分析内容。&lt;/p&gt;
     
     </summary>
     

@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>粤语学习的个人经验</title>
+      <link href="/2020-01/19-yue-yu-xue-xi-de-ge-ren-jing-yan/"/>
+      <url>/2020-01/19-yue-yu-xue-xi-de-ge-ren-jing-yan/</url>
+      
+        <content type="html"><![CDATA[<p>最近更新: 2020.01.19</p><p>又开了新坑，仅当粤语（广东话）学习途中的某些个人<del>经验</del>误解。</p><p><strong>本篇仅供参考，有严重错误可以指出。</strong></p><p>相关链接: <a href="http://humanum.arts.cuhk.edu.hk/Lexis/lexi-can/" target="_blank" rel="noopener">http://humanum.arts.cuhk.edu.hk/Lexis/lexi-can/</a></p><a id="more"></a><blockquote><p>粤语（Cantonese），又称广东话、广府话、唐话。</p></blockquote><h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>之前就一直想学粤语了，但一直没有实际。看了知乎学粤语的一些回答，鉴于不能只说不做，在2020年1月9日终于开始了。</p><h3 id="声调"><a href="#声调" class="headerlink" title="声调"></a>声调</h3><blockquote><p>粤语具有完整的九声六调，保留较多古汉语特征。</p></blockquote><p>感觉应该是从声调开始学比较好，有6个声调，数量上比普通话多一点。<em>暂时还不太清楚九声，下一步开始深入。</em>列出一个表格，符号字母最好感性理解！实在不行就多听几次。</p><table><thead><tr><th>调值</th><th>符号字母</th><th>实例</th></tr></thead><tbody><tr><td>1</td><td>á/â</td><td><a href="/medias/yueyu/se1.wav">se1</a>、<a href="/medias/yueyu/le1.wav">le1</a>、<a href="/medias/yueyu/ce1.wav">ce1</a></td></tr><tr><td>2</td><td>ǎ</td><td><a href="/medias/yueyu/se2.wav">se2</a>、<a href="/medias/yueyu/le2.wav">le2</a>、<a href="/medias/yueyu/ce2.wav">ce2</a></td></tr><tr><td>3</td><td>ā</td><td><a href="/medias/yueyu/se3.wav">se3</a>、<a href="/medias/yueyu/ce3.wav">ce3</a></td></tr><tr><td>4</td><td>a̖/ȁ</td><td><a href="/medias/yueyu/se4.wav">se4</a>、<a href="/medias/yueyu/le4.wav">le4</a>、<a href="/medias/yueyu/ce4.wav">ce4</a></td></tr><tr><td>5</td><td>a̗</td><td><a href="/medias/yueyu/se5.wav">se5</a>、<a href="/medias/yueyu/le5.wav">le5</a>、<a href="/medias/yueyu/jaa5.wav">jaa5</a></td></tr><tr><td>6</td><td>à</td><td><a href="/medias/yueyu/se6.wav">se6</a>、<a href="/medias/yueyu/jaa6.wav">jaa6</a></td></tr></tbody></table><h2 id="积累"><a href="#积累" class="headerlink" title="积累"></a>积累</h2><p>暂时还没有，这部分大概是一个词库。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 闲聊 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 闲聊 </tag>
+            
+            <tag> 粤语 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>LuoguP3695 - CYaRon!语</title>
       <link href="/2020-01/11-luogu3695/"/>
       <url>/2020-01/11-luogu3695/</url>
@@ -109,9 +136,9 @@
       
         <tags>
             
-            <tag> Cpp </tag>
-            
             <tag> 闲聊 </tag>
+            
+            <tag> Cpp </tag>
             
             <tag> 技巧 </tag>
             
@@ -442,9 +469,9 @@
       
         <tags>
             
-            <tag> Cpp </tag>
-            
             <tag> 闲聊 </tag>
+            
+            <tag> Cpp </tag>
             
             <tag> 技巧 </tag>
             
@@ -975,9 +1002,9 @@
       
         <tags>
             
-            <tag> Cpp </tag>
-            
             <tag> 闲聊 </tag>
+            
+            <tag> Cpp </tag>
             
             <tag> 码风 </tag>
             
